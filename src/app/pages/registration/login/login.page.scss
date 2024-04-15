@@ -17,7 +17,15 @@
     display: block;
   }
 
-  #email-label {
-    margin-left: 1em;
+  #eye-icon {
+    width: 2em;
+    height: auto;
+  }
+
+  #login-button {
+    margin-top: 2.5em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
   }
 }

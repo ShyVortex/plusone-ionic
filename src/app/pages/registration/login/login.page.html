@@ -15,10 +15,11 @@
     ></ion-input>
   </ion-item>
   <ion-item fill="solid" class="ion-margin-top">
-    <ion-label position="floating" >Password</ion-label>
-    <ion-input type=password color="dark" ngModel password ></ion-input>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" color="dark" ngModel password></ion-input>
     <ion-button fill="clear" slot="end" aria-label="Show/hide">
-      <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
+      <ion-img id="eye-icon" src="../../assets/icon/eye.png" slot="end"></ion-img>
     </ion-button>
   </ion-item>
+  <ion-button id="login-button" size="default">LOGIN</ion-button>
 </ion-content>
