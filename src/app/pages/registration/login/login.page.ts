@@ -25,8 +25,7 @@ export class LoginPage implements OnInit {
 
   constructor(private navCtrl: NavController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   routeToSignUp() {
     this.navCtrl.navigateForward('signup');

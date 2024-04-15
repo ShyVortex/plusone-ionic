@@ -1,0 +1,60 @@
+.signup-toolbar {
+  margin-top: 1em;
+
+  #signup-title {
+    font-family: Inter, sans-serif;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center;
+  }
+}
+
+.signup-content {
+  #plusone-logo {
+    width: 8.5em;
+    height: auto;
+
+    // usati entrambi per centrare l'immagine
+    margin: auto;
+    display: block;
+  }
+
+  .signup-labels {
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  #eye-icon {
+    width: 2em;
+    height: auto;
+  }
+
+  #checkbox {
+    margin-left: 1.2em;
+    margin-top: 1.5em;
+    font-size: 15px;
+  }
+
+  #signup-button {
+    margin-top: 2.5em;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+  }
+
+  .text-button {
+    text-transform: none;
+    margin-left: 3em;
+    display: grid;
+    justify-content: left;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  #lost-password-button {
+    margin-top: 2em;
+  }
+}
