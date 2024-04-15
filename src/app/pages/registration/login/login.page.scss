@@ -1,5 +1,23 @@
 .login-toolbar {
   #login-title {
+    font-family: "Open Sans", sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
     text-align: center;
+  }
+}
+
+.login-content {
+  #plusone-logo {
+    width: 10em;
+    height: auto;
+
+    // usati entrambi per centrare l'immagine
+    margin: auto;
+    display: block;
+  }
+
+  #email-label {
+    margin-left: 1em;
   }
 }

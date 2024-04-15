@@ -4,7 +4,8 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+ // default --ion-color-primary: #3880ff;
+  --ion-color-primary: #20D77F;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -76,7 +77,7 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-// to switch theme change the value of prefers-color-scheme
+// per cambiare tema modifica il valore di prefers-color-scheme
 @media (prefers-color-scheme: light) {
   /*
    * Dark Colors
