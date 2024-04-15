@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { 
+import {
   IonContent,
-  IonHeader, 
-  IonTitle, 
-  IonToolbar, 
-  IonImg, 
-  IonItem, 
-  IonInput, 
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonImg,
+  IonItem,
+  IonInput,
   IonButton
 } from '@ionic/angular/standalone';
 
@@ -27,6 +27,6 @@ export class SignupContinuePage implements OnInit {
   ngOnInit() {}
 
   routeToLogin() {
-    this.navCtrl.navigateForward('login');
+    this.navCtrl.navigateRoot('login');
   }
 }

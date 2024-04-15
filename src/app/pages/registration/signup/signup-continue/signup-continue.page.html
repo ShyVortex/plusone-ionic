@@ -6,7 +6,7 @@
 
 <ion-content class="signup-continue-content" [fullscreen]="true">
   <ion-img id="plusone-logo" src="../../assets/icon/logo-plusone.png"></ion-img>
-  
+
   <ion-item fill="transparent">
     <ion-input class="signup-continue-labels"
                type="text"
@@ -47,11 +47,12 @@
     ></ion-input>
   </ion-item>
 
-  <ion-button id="signup-continue-button" size="default" (click)="routeToLogin()">Prosegui</ion-button>
+  <ion-button id="signup-complete-button" size="default" (click)="routeToLogin()">Registrati</ion-button>
 
   <ion-button class="text-button"
-  size="small"
-  fill="clear"
-  (click)="routeToLogin()">Hai già un account? Effettua il login</ion-button>
+              id="login-button"
+              size="small"
+              fill="clear"
+              (click)="routeToLogin()">Hai già un account? Effettua il login</ion-button>
 
 </ion-content>
