@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import {
   IonButton, IonCheckbox,
   IonContent,
@@ -22,9 +23,12 @@ import {
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  routeToSignUp() {
+    this.navCtrl.navigateForward('signup');
+  }
 }

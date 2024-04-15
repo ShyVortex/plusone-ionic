@@ -1,20 +1,27 @@
 .login-toolbar {
+  margin-top: 1em;
+
   #login-title {
-    font-family: "Open Sans", sans-serif;
-    font-size: xx-large;
-    font-weight: bold;
+    font-family: Inter, sans-serif;
+    font-size: 26px;
+    font-weight: bolder;
     text-align: center;
   }
 }
 
 .login-content {
   #plusone-logo {
-    width: 10em;
+    width: 8.5em;
     height: auto;
 
     // usati entrambi per centrare l'immagine
     margin: auto;
     display: block;
+  }
+
+  .login-labels {
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
   }
 
   #eye-icon {
@@ -33,5 +40,21 @@
     display: grid;
     justify-content: center;
     align-items: center;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+  }
+
+  .text-button {
+    text-transform: none;
+    margin-left: 3em;
+    display: grid;
+    justify-content: left;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  #lost-password-button {
+    margin-top: 2em;
   }
 }
