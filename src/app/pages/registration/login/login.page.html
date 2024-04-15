@@ -6,20 +6,22 @@
 
 <ion-content class="login-content" [fullscreen]="true">
   <ion-img id="plusone-logo" src="../../assets/icon/logo-plusone.png"></ion-img>
-  <ion-item fill="solid">
+  <ion-item fill="transparent">
     <ion-input
                type="email"
-               fill="transparent"
                label="Email"
                label-placement="floating"
     ></ion-input>
   </ion-item>
-  <ion-item fill="solid" class="ion-margin-top">
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="password" color="dark" ngModel password></ion-input>
+  <ion-item fill="transparent" class="ion-margin-top">
+    <ion-input type="password"
+               label="Password"
+               label-placement="floating"
+               color="dark" ngModel password></ion-input>
     <ion-button fill="clear" slot="end" aria-label="Show/hide">
-      <ion-img id="eye-icon" src="../../assets/icon/eye.png" slot="end"></ion-img>
+      <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
     </ion-button>
   </ion-item>
-  <ion-button id="login-button" size="default">LOGIN</ion-button>
+  <ion-checkbox id="checkbox" label-placement="end">Rimani connesso</ion-checkbox>
+  <ion-button id="login-button" size="default">Login</ion-button>
 </ion-content>
