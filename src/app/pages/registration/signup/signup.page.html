@@ -1,13 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="signup-toolbar">
+    <ion-title id="signup-title">Registrazione</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="signup-content" [fullscreen]="true">
+  <ion-img id="plusone-logo" src="../../assets/icon/logo-plusone.png"></ion-img>
+
+  <ion-item fill="transparent">
+    <ion-input class="signup-labels"
+               type="text"
+               label="Email"
+               label-placement="floating"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item fill="transparent" class="ion-margin-top">
+    <ion-input
+      class="signup-labels"
+      type="password"
+      label="Password"
+      label-placement="floating"
+      color="dark" ngModel password
+    ></ion-input>
+    <ion-button fill="clear" slot="end" aria-label="Show/hide">
+      <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
+    </ion-button>
+  </ion-item>
+
+  <ion-button id="continue-button" size="default" (click)="continueSignUp()">Prosegui</ion-button>
+
+  <ion-button class="text-button"
+              id="login-button"
+              size="small"
+              fill="clear"
+              (click)="routeToLogin()">Hai già un account? Effettua il login</ion-button>
+
 </ion-content>
