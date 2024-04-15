@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'signup-continue',
     loadComponent: () => import('./pages/registration/signup/signup-continue/signup-continue.page').then(m => m.SignupContinuePage)
   },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/patient/home/home.page').then(m => m.HomePage)
+  },
 ];
