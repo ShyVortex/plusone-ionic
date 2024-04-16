@@ -1,0 +1,23 @@
+.patient-toolbar {
+  --ion-toolbar-background: #20D77F;
+  height: 6.5em;
+}
+
+#settings-icon {
+  font-size: 2.25em;
+  margin-right: 0.2em;
+}
+
+.bottom-bar {
+  .bottom-bar-buttons {
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .bottom-bar-icons {
+    width: 1.65em;
+    height: auto;
+  }
+}
