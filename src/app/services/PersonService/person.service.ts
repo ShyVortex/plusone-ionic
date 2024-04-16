@@ -8,12 +8,19 @@ import {Person} from "../../models/person/person";
   providedIn: 'root'
 })
 export class PersonService {
-  private personObservable: Observable<Person>;
+  private personURL= "http://localhost:8080/api/users";
+
 
   constructor(
-    personObservable: Observable<Person>,
+    private http: HttpClient
   ) {
-    this.personObservable = personObservable;
+
   }
+  getPeople():Observable<Person[]> {
+    return this.http.get<Person[]>(`${this.personURL}/getAll`)
+  }
+
+
+
 
 }

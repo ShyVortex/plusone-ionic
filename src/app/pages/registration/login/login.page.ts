@@ -13,6 +13,8 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {PersonService} from "../../../services/PersonService/person.service";
+import {Person} from "../../../models/person/person";
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,16 @@ import {
 })
 export class LoginPage implements OnInit {
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController,private personService:PersonService) {
 
-  ngOnInit() {}
+  }
 
-  routeToSignUp() {
+  ngOnInit() {
+     this.personService.getPeople().subscribe(value => console.log("Dati ricevuti: ${value}"))
+  }
+
+   routeToSignUp() {
     this.navCtrl.navigateForward('signup');
   }
+
 }
