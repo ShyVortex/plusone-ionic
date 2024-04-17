@@ -77,6 +77,15 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
+/** Light Mode overrides **/
+ion-tab-bar {
+  --ion-background-color: rgba(32, 215, 127, 0.35);
+
+  ion-tab-button {
+    --color: #000;
+  }
+}
+
 body.dark {
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66,140,255;
