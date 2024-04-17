@@ -13,13 +13,13 @@ import {
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-sos',
-  templateUrl: './sos.page.html',
-  styleUrls: ['./sos.page.scss'],
+  selector: 'app-prescriptions',
+  templateUrl: './prescriptions.page.html',
+  styleUrls: ['./prescriptions.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs]
 })
-export class SOSPage implements OnInit {
+export class PrescriptionsPage implements OnInit {
 
   constructor() { }
 

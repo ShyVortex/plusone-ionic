@@ -4,22 +4,22 @@ import { FormsModule } from '@angular/forms';
 import {
   IonContent,
   IonHeader,
-  IonIcon,
   IonImg,
   IonTabBar,
-  IonTabButton, IonTabs,
+  IonTabButton,
+  IonTabs,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 
 @Component({
-  selector: 'app-sos',
-  templateUrl: './sos.page.html',
-  styleUrls: ['./sos.page.scss'],
+  selector: 'app-shifts',
+  templateUrl: './shifts.page.html',
+  styleUrls: ['./shifts.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs]
 })
-export class SOSPage implements OnInit {
+export class ShiftsPage implements OnInit {
 
   constructor() { }
 
