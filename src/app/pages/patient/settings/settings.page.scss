@@ -1,0 +1,39 @@
+.top-toolbar {
+  .back-button {
+    --color: #000;
+    pointer-events: none;
+    margin-top: 1.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: xx-large;
+  }
+
+  .back-text {
+    text-transform: none;
+    margin-left: 1em;
+    margin-top: 0.2em;
+    font-size: 26px;
+  }
+}
+
+.settings-content {
+  .profile-image {
+    width: 5em;
+    height: auto;
+  }
+
+  .profile-summary {
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
+
+  .settings-image {
+    width: 2em;
+    height: auto;
+  }
+
+  .settings-text {
+    margin-left: 1em;
+  }
+}
