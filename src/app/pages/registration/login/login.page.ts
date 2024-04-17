@@ -66,20 +66,20 @@ export class LoginPage implements OnInit,OnDestroy {
 
       this.personToLogin = Person.fromJSON(data)
 
-      console.log(this.personToLogin);
+
 
 
     if(this.personToLogin.getRuolo() === "ADMIN" ){
-      console.log("ADMIN")
+
     }
     else if(this.personToLogin.getRuolo() === "PAZIENTE" ){
-      console.log("PAZIENTE")
+      this.navCtrl.navigateForward('patient-home')
     }
     else if(this.personToLogin.getRuolo() === "MEDICO" ){
-      console.log("MEDICO")
+      this.navCtrl.navigateForward('medic-home')
     }
     else if(this.personToLogin.getRuolo() === "INFERMIERE" ){
-      console.log("INFERMIERE")
+      this.navCtrl.navigateForward('')
     }
 
 
