@@ -41,4 +41,39 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/patient/sos/sos.page')
       .then(m => m.SOSPage)
   },
+  {
+    path: 'nurse-drugs',
+    loadComponent: () => import('./pages/nurse/drugs/drugs.page')
+      .then(m => m.DrugsPage)
+  },
+  {
+    path: 'nurse-notifs',
+    loadComponent: () => import('./pages/nurse/notifications/notifications.page')
+      .then(m => m.NotificationsPage)
+  },
+  {
+    path: 'nurse-shifts',
+    loadComponent: () => import('./pages/nurse/shifts/shifts.page')
+      .then(m => m.ShiftsPage)
+  },
+  {
+    path: 'nurse-sos',
+    loadComponent: () => import('./pages/nurse/sos/sos.page')
+      .then(m => m.SOSPage)
+  },
+  {
+    path: 'medic-home',
+    loadComponent: () => import('./pages/medic/home/home.page')
+      .then(m => m.HomePage)
+  },
+  {
+    path: 'medic-notifs',
+    loadComponent: () => import('./pages/medic/notifications/notifications.page')
+      .then(m => m.NotificationsPage)
+  },
+  {
+    path: 'medic-prescriptions',
+    loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
+      .then(m => m.PrescriptionsPage)
+  },
 ];
