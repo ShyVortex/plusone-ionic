@@ -16,6 +16,7 @@ import {PersonService} from "../../../services/PersonService/person.service";
 import {Person} from "../../../models/person/person";
 import {Observable, Subscriber, Subscription,firstValueFrom} from "rxjs";
 import {person} from "ionicons/icons";
+import {HashingUtilities} from "../hashing-utilities";
 
 @Component({
   selector: 'app-login',
@@ -31,18 +32,23 @@ export class LoginPage implements OnInit,OnDestroy {
   private personToLogin:Person
   private getAllPeopleSubscription: Subscription
   private getPersonaByEmailAndPasswordObservable: Observable<Person>;
+  private getPersonaByEmailObservable:Observable<Person>;
+  private hashedPassword:string
 
   constructor(private navCtrl: NavController, private personService: PersonService) {
     this.email = "";
     this.password = "";
+    this.hashedPassword = "";
     this.personToLogin = new Person(0,"","","","","","") ;
 
     this.getAllPeopleSubscription = new Subscription();
     this.getPersonaByEmailAndPasswordObservable = new Observable<Person>();
+    this.getPersonaByEmailObservable = new Observable<Person>();
   }
 
   ngOnInit() {
-
+      console.log(HashingUtilities.HashPassword("pippo"))
+      console.log(HashingUtilities.HashPassword("mimmo"))
   }
 
   routeToSignUp() {
@@ -69,15 +75,23 @@ export class LoginPage implements OnInit,OnDestroy {
   }
 
   async loginButton():Promise<void> {
-    this.getPersonaByEmailAndPasswordObservable =  this.personService.getPersonByEmailAndPassword(this.email, this.password)
-      const data :any = await firstValueFrom<Person>(this.getPersonaByEmailAndPasswordObservable);
 
-      this.personToLogin = Person.fromJSON(data)
-      if(this.personToLogin.isEmpty()){
-        this.setOpen(true);
-        console.log("Credenziali non valide")
+
+    this.getPersonaByEmailObservable =  this.personService.getPersonByEmail(this.email)
+      const data :any = await firstValueFrom<Person>(this.getPersonaByEmailObservable);
+
+      this.personToLogin = Person.fromJSON(data);
+      console.log(this.personToLogin);
+
+
+      try {
+        console.log(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password))
       }
-      else if(!this.personToLogin.isEmpty()) {
+        catch (error){
+          this.setOpen(true);
+          console.log("Credenziali non valide")
+      }
+       if(!this.personToLogin.isEmpty() && await HashingUtilities.verifyPassword(this.password, this.personToLogin.password) ) {
 
 
         if (this.personToLogin.getRuolo() === "ADMIN") {
@@ -91,6 +105,10 @@ export class LoginPage implements OnInit,OnDestroy {
         }
 
 
+      }
+      else if(!await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
+        this.setOpen(true);
+        console.log("Credenziali non valide")
       }
   }
   isEnable():boolean{
