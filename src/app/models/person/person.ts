@@ -61,4 +61,10 @@ export class Person {
       json.username
     );
   }
+  public isEmpty():boolean{
+    if(this.nome==undefined && this.cognome==undefined && this.email==undefined && this.password==undefined && this.username==undefined){
+      return true;
+    }
+    else return false;
+  }
 }

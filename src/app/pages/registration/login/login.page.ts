@@ -65,24 +65,23 @@ export class LoginPage implements OnInit,OnDestroy {
       const data :any = await firstValueFrom<Person>(this.getPersonaByEmailAndPasswordObservable);
 
       this.personToLogin = Person.fromJSON(data)
+      if(this.personToLogin.isEmpty()){
+        console.log("Credenziali non valide")
+      }
+      else if(!this.personToLogin.isEmpty()) {
 
 
+        if (this.personToLogin.getRuolo() === "ADMIN") {
+
+        } else if (this.personToLogin.getRuolo() === "PAZIENTE") {
+          this.navCtrl.navigateForward('patient-home')
+        } else if (this.personToLogin.getRuolo() === "MEDICO") {
+          this.navCtrl.navigateForward('medic-home')
+        } else if (this.personToLogin.getRuolo() === "INFERMIERE") {
+          this.navCtrl.navigateForward('')
+        }
 
 
-    if(this.personToLogin.getRuolo() === "ADMIN" ){
-
-    }
-    else if(this.personToLogin.getRuolo() === "PAZIENTE" ){
-      this.navCtrl.navigateForward('patient-home')
-    }
-    else if(this.personToLogin.getRuolo() === "MEDICO" ){
-      this.navCtrl.navigateForward('medic-home')
-    }
-    else if(this.personToLogin.getRuolo() === "INFERMIERE" ){
-      this.navCtrl.navigateForward('')
-    }
-
-
-
+      }
   }
 }
