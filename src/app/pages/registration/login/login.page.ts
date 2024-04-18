@@ -37,7 +37,6 @@ export class LoginPage implements OnInit,OnDestroy {
     this.password = "";
     this.personToLogin = new Person(0,"","","","","","") ;
 
-
     this.getAllPeopleSubscription = new Subscription();
     this.getPersonaByEmailAndPasswordObservable = new Observable<Person>();
   }
@@ -93,5 +92,13 @@ export class LoginPage implements OnInit,OnDestroy {
 
 
       }
+  }
+  isEnable():boolean{
+
+
+    if(this.email===""||this.password===""){
+      return true
+    }
+    else return false;
   }
 }
