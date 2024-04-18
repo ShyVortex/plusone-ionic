@@ -6,14 +6,16 @@
 
 <ion-content class="login-content" [fullscreen]="true">
   <ion-img id="plusone-logo" src="../../assets/icon/logo-plusone.png"></ion-img>
+  
   <ion-item fill="transparent">
     <ion-input class="login-labels"
-               type="email"
-               label="Email"
-               label-placement="floating"
-               [(ngModel)]="this.email"
+      type="email"
+      label="Email"
+      label-placement="floating"
+      [(ngModel)]="this.email"
     ></ion-input>
   </ion-item>
+
   <ion-item fill="transparent" class="ion-margin-top">
     <ion-input
                class="login-labels"
@@ -25,14 +27,28 @@
       <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
     </ion-button>
   </ion-item>
+
   <ion-checkbox id="checkbox" label-placement="end">Rimani connesso</ion-checkbox>
-  <ion-button id="login-button" size="default" (click)="loginButton()">Login</ion-button>
+  
+  <ion-button id="login-button" size="default" (click)="loginButton(); showData()">Login</ion-button>
+  
   <ion-button class="text-button"
-              id="lost-password-button"
-              size="small"
-              fill="clear">Password dimenticata?</ion-button>
+    id="lost-password-button"
+    size="small"
+    fill="clear">Password dimenticata?
+  </ion-button>
+
   <ion-button class="text-button"
-              size="small"
-              fill="clear"
-              (click)="routeToSignUp()">Non hai un account? Registrati</ion-button>
+    size="small"
+    fill="clear"
+    (click)="routeToSignUp()">Non hai un account? Registrati
+  </ion-button>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="Credenziali non valide"
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
+
 </ion-content>
