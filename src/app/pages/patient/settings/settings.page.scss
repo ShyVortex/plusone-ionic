@@ -1,31 +1,44 @@
 .top-toolbar {
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
   .back-button {
     --color: #000;
-    pointer-events: none;
+    //pointer-events: none;
     margin-top: 1.5em;
     font-family: Inter, sans-serif;
     letter-spacing: 0;
     font-weight: bold;
     font-size: xx-large;
+    flex: 0 0 auto;
   }
 
   .back-text {
+    color: #000;
     text-transform: none;
-    margin-left: 1em;
-    margin-top: 0.2em;
-    font-size: 26px;
+    margin-top: 1.85em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
   }
 }
 
 .settings-content {
-  .profile-image {
-    width: 5em;
-    height: auto;
-  }
+  .profile-panel {
+    pointer-events: auto !important;
 
-  .profile-summary {
-    margin-left: 1em;
-    margin-bottom: 1em;
+    .profile-image {
+      width: 5em;
+      height: auto;
+    }
+
+    .profile-summary {
+      margin-left: 1em;
+      margin-bottom: 1em;
+    }
   }
 
   .settings-image {
