@@ -35,6 +35,17 @@ export class PersonService {
         );
     });
   }
+  getPersonByEmail(email:string):Observable<Person> {
+    return new Observable<Person>((observer:Observer<Person>)  => {
+      axios.get<Person>(this.personURL +"/GetUserByEmail/" + email).then
+      ((response:AxiosResponse<Person,Person>)  => {
+        observer.next(response.data);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)}
+        );
+    });
+  }
 
 
 
