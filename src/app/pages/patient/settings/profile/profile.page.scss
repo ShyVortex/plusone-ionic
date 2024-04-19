@@ -1,0 +1,80 @@
+.top-toolbar {
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-button {
+    --color: #000;
+    margin-top: 1.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: xx-large;
+    flex: 0 0 auto;
+  }
+
+  .back-text {
+    color: #000;
+    text-transform: none;
+    margin-top: 1.85em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+.profile-content {
+  .profile-image {
+    width: 10em;
+    height: auto;
+    position: relative;
+    margin: auto;
+    display: block;
+  }
+
+  .change-pic-image {
+    width: 2em;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1.5em;
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+
+  .profile-name {
+    text-align: center;
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
+
+  .edit-labels {
+    margin-left: 0.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  .label-textarea {
+    pointer-events: none;
+    margin-left: 0.5em;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
+
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
+  }
+
+  .settings-image {
+    width: 2em;
+    height: auto;
+  }
+
+  .settings-text {
+    margin-left: 1em;
+  }
+}

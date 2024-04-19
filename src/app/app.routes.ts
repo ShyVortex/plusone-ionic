@@ -42,6 +42,18 @@ export const routes: Routes = [
       .then(m => m.SOSPage)
   },
   {
+    path: 'patient-settings',
+    loadComponent: () => import('./pages/patient/settings/settings.page').then(m => m.SettingsPage)
+  },
+  {
+    path: 'patient-profile',
+    loadComponent: () => import('./pages/patient/settings/profile/profile.page').then(m => m.ProfilePage)
+  },
+  {
+    path: 'patient-bugreport',
+    loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page').then(m => m.BugreportPage)
+  },
+  {
     path: 'nurse-drugs',
     loadComponent: () => import('./pages/nurse/drugs/drugs.page')
       .then(m => m.DrugsPage)

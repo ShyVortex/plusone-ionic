@@ -7,6 +7,7 @@ import {Person} from "../../models/person/person";
   providedIn: 'root'
 })
 export class PersonService {
+  // Android Studio IP address: 10.0.2.2
   private personURL= "http://localhost:8080/api/users";
 
 

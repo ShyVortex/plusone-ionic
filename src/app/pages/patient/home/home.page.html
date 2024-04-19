@@ -2,12 +2,13 @@
   <ion-toolbar class="top-toolbar">
     <ion-icon id="settings-icon"
               src="../../assets/icon/settings/settings.svg"
-              slot="end"></ion-icon>
+              slot="end"
+              (click)="routeToSettings()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-tabs class="bottom-bar">
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar class="bottom-tab-bar" slot="bottom">
     <ion-tab-button class="bottom-bar-buttons" tab="home">
       <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
       Home
