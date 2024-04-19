@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="back-text">Profilo</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content" [fullscreen]="true">
+  <ion-text class="profile-name">
+    <h1>Mario Giannini</h1>
+  </ion-text>
+  <ion-img class="profile-image" src="../../assets/icon/settings/new-user.png"></ion-img>
+  <ion-img class="change-pic-image" src="../../assets/icon/settings/camera.png"></ion-img>
+<!--  <ion-input class="edit-labels"
+             type="email"
+             label="Email"
+             label-placement="floating"
+             readonly
+             placeholder="mario@gmail.com">
+    <ion-button fill="clear" slot="end" aria-label="Show/hide">
+      <ion-img id="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+    </ion-button>
+  </ion-input> -->
+  <ion-row style="height: 2em"></ion-row> <!-- empty space -->
+  <ion-label class="edit-labels">Email
+    <ion-textarea class="label-textarea"
+                  readonly="true"
+                  placeholder="mario@gmail.com">
+      <ion-button fill="clear" slot="end" aria-label="Show/hide">
+        <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+      </ion-button>
+    </ion-textarea>
+  </ion-label>
+  <ion-label class="edit-labels">Password
+    <ion-textarea class="label-textarea"
+                  readonly="true"
+                  placeholder="........">
+      <ion-button fill="clear" slot="end" aria-label="Show/hide">
+        <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+      </ion-button>
+    </ion-textarea>
+  </ion-label>
+
+  <ion-tabs class="bottom-bar">
+    <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+      <ion-tab-button class="bottom-bar-buttons" tab="home">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+        Home
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="notifications">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+        Notifiche
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="reservations">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
+        Prenota
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="sos">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+        SOS
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

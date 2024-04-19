@@ -79,8 +79,6 @@
 
 /** Light Mode global theme **/
 ion-tab-bar {
-  --ion-background-color: rgba(32, 215, 127, 0.35);
-
   ion-tab-button {
     --color: #000;
   }
@@ -94,6 +92,9 @@ ion-tab-bar {
   margin-right: 0.2em;
 }
 .bottom-bar {
+  .bottom-tab-bar {
+    --ion-background-color: #8DECB4;
+  }
   .bottom-bar-buttons {
     font-family: Roboto, sans-serif;
     letter-spacing: 0;
