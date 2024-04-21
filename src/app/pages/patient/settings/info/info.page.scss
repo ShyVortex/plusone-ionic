@@ -1,0 +1,16 @@
+.info-content {
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .version-text {
+    text-align: center;
+
+    .build-ver {
+      font-weight: bold;
+    }
+  }
+ }
+}

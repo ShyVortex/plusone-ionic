@@ -1,0 +1,65 @@
+.report-content {
+  .report-container {
+    margin-left: 1em;
+    margin-top: 1em;
+
+    .report-text {
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+      font-size: 20px;
+    }
+
+    .report-select {
+      margin-top: 1em;
+      width: 70%;
+      height: auto;
+    }
+  }
+
+  .report-container-alt {
+    margin-left: 1em;
+    margin-top: 6.5em;
+
+    .report-text {
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+      font-size: 20px;
+    }
+
+    .report-select {
+      margin-top: 1em;
+      width: 70%;
+      height: auto;
+    }
+  }
+
+  .issue-textarea {
+    margin-top: 0.85em;
+    width: 90%;
+    height: 12.5em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
+
+  .reset-button {
+    --background: #D9D9D9;
+    --color: #000;
+    margin-top: 1em;
+    margin-left: 0.7em;
+    text-transform: none;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    flex: 0 0 auto;
+  }
+
+  .confirm-button {
+    --color: #000;
+    margin-top: 1em;
+    margin-left: 0.7em;
+    text-transform: none;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    flex: 0 0 auto;
+  }
+}
