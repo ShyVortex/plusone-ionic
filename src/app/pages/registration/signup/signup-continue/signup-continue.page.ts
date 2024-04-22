@@ -10,7 +10,7 @@ import {
   IonImg,
   IonItem,
   IonInput,
-  IonButton
+  IonButton, IonText
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -18,7 +18,7 @@ import {
   templateUrl: './signup-continue.page.html',
   styleUrls: ['./signup-continue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText]
 })
 export class SignupContinuePage implements OnInit {
 

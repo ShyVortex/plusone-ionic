@@ -5,7 +5,8 @@
 :root {
   /** primary **/
  // default --ion-color-primary: #3880ff;
-  --ion-color-primary: #20D77F;
+ // --ion-color-primary: #20D77F; // VECCHIO TEMA
+  --ion-color-primary: #65eab5; // NUOVO TEMA
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -85,7 +86,9 @@ ion-tab-bar {
 }
 
 .top-toolbar {
-  --ion-toolbar-background: #20D77F;
+ // --ion-toolbar-background: #20D77F;  COLORE VECCHIO TEMA
+  --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
+ // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
   height: 6.5em;
 
   .container {
@@ -121,7 +124,8 @@ ion-tab-bar {
 
 .bottom-bar {
   .bottom-tab-bar {
-    --ion-background-color: #8DECB4;
+   // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
+    --ion-background-color: #a6f3d4; //  COLORE NUOVO TEMA
   }
 
   .bottom-bar-buttons {
