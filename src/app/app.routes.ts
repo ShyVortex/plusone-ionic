@@ -54,6 +54,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page').then(m => m.BugreportPage)
   },
   {
+    path: 'patient-app-info',
+    loadComponent: () => import('./pages/patient/settings/info/info.page').then(m => m.InfoPage)
+  },
+  {
     path: 'nurse-drugs',
     loadComponent: () => import('./pages/nurse/drugs/drugs.page')
       .then(m => m.DrugsPage)

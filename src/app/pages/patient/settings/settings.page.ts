@@ -39,7 +39,11 @@ export class SettingsPage implements OnInit {
   }
 
   routeToBugReport() {
-    this.navCtrl.navigateForward("patient-bug-report");
+    this.navCtrl.navigateForward("patient-bugreport");
+  }
+
+  routeToInfo() {
+    this.navCtrl.navigateForward("patient-app-info");
   }
 
   logout() {

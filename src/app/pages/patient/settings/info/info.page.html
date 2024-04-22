@@ -4,31 +4,23 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="back-text">Impostazioni</ion-label>
+      <ion-label class="back-text">Informazioni</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="settings-content" [fullscreen]="true">
-  <ion-item class="profile-panel" fill="transparent" (click)="routeToProfile()">
-    <ion-img class="profile-image" src="../../assets/icon/settings/new-user.png"></ion-img>
-    <ion-text class="profile-summary">
-      <h3>Mario Giannini</h3>
-      <ion-text>mario&commat;gmail.com</ion-text>
+<ion-content class="info-content" [fullscreen]="true">
+  <div class="info-container">
+    <ion-text class="version-text">
+      <p>
+        Versione app:
+        <br />
+        <ion-text class="build-ver">
+          dev-build_u3n6T
+        </ion-text>
+      </p>
     </ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="routeToBugReport()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/bug.png"></ion-img>
-    <ion-text class="settings-text">Segnalazione errori</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="routeToInfo()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/info.png"></ion-img>
-    <ion-text class="settings-text">Informazioni</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="logout()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/logout.png"></ion-img>
-    <ion-text class="settings-text">Logout</ion-text>
-  </ion-item>
+  </div>
 
   <ion-tabs class="bottom-bar">
     <ion-tab-bar class="bottom-tab-bar" slot="bottom">

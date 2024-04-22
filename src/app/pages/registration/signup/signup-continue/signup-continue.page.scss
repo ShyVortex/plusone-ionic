@@ -35,7 +35,7 @@
     font-size: 15px;
   }
 
-  #signup-complete-button {
+  #confirm-button {
     margin-top: 2.5em;
     display: grid;
     justify-content: center;
@@ -43,14 +43,22 @@
     font-family: Inter, sans-serif;
     letter-spacing: 0;
     font-weight: bold;
+
+    #confirm-button-text {
+      text-shadow: #000 0.45px 0.5px;
+    }
   }
 
-  .text-button {
+  .clear-button {
     text-transform: none;
     display: grid;
     justify-content: center;
     font-family: Inter, sans-serif;
     letter-spacing: 0;
+
+    .clear-button-text {
+      text-shadow: #000 0.45px 0.5px;
+    }
   }
 
   #login-button {

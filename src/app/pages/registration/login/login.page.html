@@ -30,18 +30,26 @@
 
   <ion-checkbox id="checkbox" label-placement="end">Rimani connesso</ion-checkbox>
 
-  <ion-button id="login-button" size="default" (click)="loginButton();" [disabled]="isEnable()">Login</ion-button>
-
-  <ion-button class="text-button"
-    id="lost-password-button"
-    size="small"
-    fill="clear">Password dimenticata?
+  <ion-button id="login-button"
+              size="default"
+              (click)="loginButton();"
+              [disabled]="isEnable()">
+    <ion-text id="login-button-text">Login</ion-text>
   </ion-button>
 
-  <ion-button class="text-button"
+  <!-- clear-button dato il tipo di fill !-->
+  <ion-button class="clear-button"
+    id="lost-password-button"
+    size="small"
+    fill="clear">
+    <ion-text class="clear-button-text">Password dimenticata?</ion-text>
+  </ion-button>
+
+  <ion-button class="clear-button"
     size="small"
     fill="clear"
-    (click)="routeToSignUp()">Non hai un account? Registrati
+    (click)="routeToSignUp()">
+    <ion-text class="clear-button-text">Non hai un account? Registrati</ion-text>
   </ion-button>
 
   <ion-toast

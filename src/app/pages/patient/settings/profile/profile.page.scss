@@ -1,30 +1,3 @@
-.top-toolbar {
-  .container {
-    display: flex;
-    align-items: center;
-  }
-
-  .back-button {
-    --color: #000;
-    margin-top: 1.5em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
-    font-weight: bold;
-    font-size: xx-large;
-    flex: 0 0 auto;
-  }
-
-  .back-text {
-    color: #000;
-    text-transform: none;
-    margin-top: 1.85em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
-    font-weight: bold;
-    font-size: 25px;
-  }
-}
-
 .profile-content {
   .profile-image {
     width: 10em;
@@ -51,30 +24,51 @@
     margin-bottom: 1em;
   }
 
-  .edit-labels {
-    margin-left: 0.5em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
+  .variables-container {
+    margin-top: 1em;
+
+    .edit-labels {
+      margin-top: 1em;
+      margin-left: 1.1em;
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .label-textarea {
+      width: 90%;
+      margin-left: 1em;
+      pointer-events: none;
+      font-family: Inter, sans-serif;
+      font-size: large;
+    }
+
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
   }
 
-  .label-textarea {
-    pointer-events: none;
-    margin-left: 0.5em;
-    font-family: Inter, sans-serif;
-    font-size: large;
-  }
+  .variables-container-alt {
+    margin-top: 2em;
 
-  .edit-icon {
-    width: 1.5em;
-    height: auto;
-  }
+    .edit-labels {
+      margin-top: 1em;
+      margin-left: 1.1em;
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+    }
 
-  .settings-image {
-    width: 2em;
-    height: auto;
-  }
+    .label-textarea {
+      width: 90%;
+      margin-left: 1em;
+      pointer-events: none;
+      font-family: Inter, sans-serif;
+      font-size: large;
+    }
 
-  .settings-text {
-    margin-left: 1em;
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
   }
 }

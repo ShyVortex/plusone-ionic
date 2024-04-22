@@ -5,7 +5,8 @@
 :root {
   /** primary **/
  // default --ion-color-primary: #3880ff;
-  --ion-color-primary: #20D77F;
+ // --ion-color-primary: #20D77F; // VECCHIO TEMA
+  --ion-color-primary: #65eab5; // NUOVO TEMA
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -77,24 +78,56 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-/** Light Mode global theme **/
+/** LIGHT MODE GLOBAL THEME **/
 ion-tab-bar {
   ion-tab-button {
     --color: #000;
   }
 }
+
 .top-toolbar {
-  --ion-toolbar-background: #20D77F;
+ // --ion-toolbar-background: #20D77F;  COLORE VECCHIO TEMA
+  --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
+ // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
   height: 6.5em;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-button {
+    --color: #000;
+    margin-top: 1.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: xx-large;
+    flex: 0 0 auto;
+  }
+
+  .back-text {
+    color: #000;
+    text-transform: none;
+    margin-top: 1.85em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
 }
+
 #settings-icon {
   font-size: 2.25em;
   margin-right: 0.2em;
 }
+
 .bottom-bar {
   .bottom-tab-bar {
-    --ion-background-color: #8DECB4;
+   // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
+    --ion-background-color: #a6f3d4; //  COLORE NUOVO TEMA
   }
+
   .bottom-bar-buttons {
     font-family: Roboto, sans-serif;
     letter-spacing: 0;
@@ -108,6 +141,7 @@ ion-tab-bar {
   }
 }
 
+/** DARK MODE SETTINGS **/
 body.dark {
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66,140,255;

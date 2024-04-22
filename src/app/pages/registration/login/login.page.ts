@@ -11,7 +11,8 @@ import {
   IonItem,
   IonLabel, IonList,
   IonTitle,
-  IonToolbar, IonToast } from '@ionic/angular/standalone';
+  IonToolbar, IonToast, IonText
+} from '@ionic/angular/standalone';
 import {PersonService} from "../../../services/PersonService/person.service";
 import {Person} from "../../../models/person/person";
 import {Observable, Subscriber, Subscription,firstValueFrom} from "rxjs";
@@ -23,7 +24,7 @@ import {HashingUtilities} from "../hashing-utilities";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonToast, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonLabel, IonInput, IonItem, IonIcon, IonButton, IonList, IonCheckbox]
+  imports: [IonToast, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonLabel, IonInput, IonItem, IonIcon, IonButton, IonList, IonCheckbox, IonText]
 })
 export class LoginPage implements OnInit,OnDestroy {
   protected email: string

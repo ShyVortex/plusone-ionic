@@ -14,7 +14,7 @@
     <h1>Mario Giannini</h1>
   </ion-text>
   <ion-img class="profile-image" src="../../assets/icon/settings/new-user.png"></ion-img>
-  <ion-img class="change-pic-image" src="../../assets/icon/settings/camera.png"></ion-img>
+  <ion-img class="change-pic-image" src="../../assets/icon/settings/camera-alt.png"></ion-img>
 <!--  <ion-input class="edit-labels"
              type="email"
              label="Email"
@@ -25,25 +25,31 @@
       <ion-img id="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
     </ion-button>
   </ion-input> -->
-  <ion-row style="height: 2em"></ion-row> <!-- empty space -->
-  <ion-label class="edit-labels">Email
-    <ion-textarea class="label-textarea"
-                  readonly="true"
-                  placeholder="mario@gmail.com">
-      <ion-button fill="clear" slot="end" aria-label="Show/hide">
-        <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
-      </ion-button>
-    </ion-textarea>
-  </ion-label>
-  <ion-label class="edit-labels">Password
-    <ion-textarea class="label-textarea"
-                  readonly="true"
-                  placeholder="........">
-      <ion-button fill="clear" slot="end" aria-label="Show/hide">
-        <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
-      </ion-button>
-    </ion-textarea>
-  </ion-label>
+  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto-->
+  <div class="variables-container">
+    <ion-label class="edit-labels">Email
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="mario@gmail.com">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+  </div>
+  <div class="variables-container-alt">
+    <ion-label class="edit-labels">Password
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="........">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+  </div>
 
   <ion-tabs class="bottom-bar">
     <ion-tab-bar class="bottom-tab-bar" slot="bottom">

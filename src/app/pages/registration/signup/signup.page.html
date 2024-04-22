@@ -28,12 +28,18 @@
     </ion-button>
   </ion-item>
 
-  <ion-button id="continue-button" size="default" (click)="continueSignUp()">Prosegui</ion-button>
+  <ion-button id="continue-button"
+              size="default"
+              (click)="continueSignUp()">
+    <ion-text id="continue-button-text">Prosegui</ion-text>
+  </ion-button>
 
-  <ion-button class="text-button"
+  <ion-button class="clear-button"
               id="login-button"
               size="small"
               fill="clear"
-              (click)="routeToLogin()">Hai già un account? Effettua il login</ion-button>
+              (click)="routeToLogin()">
+    <ion-text class="clear-button-text">Hai già un account? Effettua il login</ion-text>
+  </ion-button>
 
 </ion-content>
