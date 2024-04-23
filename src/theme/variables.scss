@@ -106,7 +106,7 @@ ion-tab-bar {
     flex: 0 0 auto;
   }
 
-  .back-text {
+  .tab-name {
     color: #000;
     text-transform: none;
     margin-top: 1.85em;
@@ -118,8 +118,9 @@ ion-tab-bar {
 }
 
 #settings-icon {
-  font-size: 2.25em;
+  margin-top: -0.85em;
   margin-right: 0.2em;
+  font-size: 2.25em;
 }
 
 .bottom-bar {
@@ -138,6 +139,86 @@ ion-tab-bar {
   .bottom-bar-icons {
     width: 1.65em;
     height: auto;
+  }
+}
+
+.text-container {
+  margin-top: 3.5em;
+  margin-left: 2em;
+}
+
+.home-content {
+  .profile-image {
+    width: 10em;
+    height: auto;
+    position: relative;
+    margin: auto;
+    display: block;
+  }
+
+  .change-pic-image {
+    width: 2em;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1.5em;
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+
+  .profile-name {
+    text-align: center;
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
+
+  .variables-container {
+    margin-top: 1em;
+
+    .edit-labels {
+      margin-top: 1em;
+      margin-left: 1.1em;
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .label-textarea {
+      width: 90%;
+      margin-left: 1em;
+      pointer-events: none;
+      font-family: Inter, sans-serif;
+      font-size: large;
+    }
+
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
+  }
+
+  .variables-container-alt {
+    margin-top: 2em;
+
+    .edit-labels {
+      margin-top: 1em;
+      margin-left: 1.1em;
+      font-family: Inter, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .label-textarea {
+      width: 90%;
+      margin-left: 1em;
+      pointer-events: none;
+      font-family: Inter, sans-serif;
+      font-size: large;
+    }
+
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
   }
 }
 

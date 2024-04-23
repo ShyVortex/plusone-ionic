@@ -27,9 +27,9 @@ export const routes: Routes = [
       .then(m => m.HomePage)
   },
   {
-    path: 'patient-notifs',
-    loadComponent: () => import('./pages/patient/notifications/notifications.page')
-      .then(m => m.NotificationsPage)
+    path: 'patient-logbook',
+    loadComponent: () => import('./pages/patient/logbook/logbook.page')
+      .then(m => m.LogbookPage)
   },
   {
     path: 'patient-reservation',
@@ -46,10 +46,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/patient/settings/settings.page').then(m => m.SettingsPage)
   },
   {
-    path: 'patient-profile',
-    loadComponent: () => import('./pages/patient/settings/profile/profile.page').then(m => m.ProfilePage)
-  },
-  {
     path: 'patient-bugreport',
     loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page').then(m => m.BugreportPage)
   },
@@ -58,14 +54,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/patient/settings/info/info.page').then(m => m.InfoPage)
   },
   {
+    path: 'nurse-home',
+    loadComponent: () => import('./pages/nurse/home/home.page')
+      .then(m => m.HomePage)
+  },
+  {
     path: 'nurse-drugs',
     loadComponent: () => import('./pages/nurse/drugs/drugs.page')
       .then(m => m.DrugsPage)
-  },
-  {
-    path: 'nurse-notifs',
-    loadComponent: () => import('./pages/nurse/notifications/notifications.page')
-      .then(m => m.NotificationsPage)
   },
   {
     path: 'nurse-shifts',
@@ -91,5 +87,9 @@ export const routes: Routes = [
     path: 'medic-prescriptions',
     loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
       .then(m => m.PrescriptionsPage)
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/nurse/home/home.page').then(m => m.HomePage)
   },
 ];

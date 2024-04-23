@@ -2,14 +2,15 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader, IonIcon, IonImg,
-  IonNav,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar
+    IonButton,
+    IonContent,
+    IonHeader, IonIcon, IonImg, IonLabel,
+    IonNav, IonRow,
+    IonTabBar,
+    IonTabButton,
+    IonTabs, IonText, IonTextarea,
+    IonTitle,
+    IonToolbar
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -17,17 +18,17 @@ import {
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
-    CommonModule,
-    FormsModule,
-    IonTabs,
-    IonNav,
-    IonTabBar,
-    IonTabButton,
-    IonIcon, IonImg],
+    imports: [IonContent,
+        IonHeader,
+        IonTitle,
+        IonToolbar,
+        CommonModule,
+        FormsModule,
+        IonTabs,
+        IonNav,
+        IonTabBar,
+        IonTabButton,
+        IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HomePage implements OnInit {

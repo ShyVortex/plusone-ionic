@@ -1,17 +1,24 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="top-toolbar">
+    <ion-icon id="settings-icon"
+              src="../../assets/icon/settings/settings.svg"
+              slot="end">
+    </ion-icon>
+    <div class="text-container">
+      <ion-label class="tab-name">SOS</ion-label>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-tabs class="bottom-bar">
   <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+    <ion-tab-button class="bottom-bar-buttons" tab="home">
+      <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+      Home
+    </ion-tab-button>
     <ion-tab-button class="bottom-bar-buttons" tab="drugs">
       <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/drugs.png"></ion-img>
       Farmaci
-    </ion-tab-button>
-    <ion-tab-button class="bottom-bar-buttons" tab="notifications">
-      <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
-      Notifiche
     </ion-tab-button>
     <ion-tab-button class="bottom-bar-buttons" tab="shifts">
       <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>

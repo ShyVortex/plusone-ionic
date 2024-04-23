@@ -34,10 +34,6 @@ export class SettingsPage implements OnInit {
     this.navCtrl.navigateBack("patient-home");
   }
 
-  routeToProfile() {
-    this.navCtrl.navigateForward("patient-profile");
-  }
-
   routeToBugReport() {
     this.navCtrl.navigateForward("patient-bugreport");
   }

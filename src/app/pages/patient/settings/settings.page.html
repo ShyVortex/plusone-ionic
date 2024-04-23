@@ -4,19 +4,12 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="back-text">Impostazioni</ion-label>
+      <ion-label class="tab-name">Impostazioni</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="settings-content" [fullscreen]="true">
-  <ion-item class="profile-panel" fill="transparent" (click)="routeToProfile()">
-    <ion-img class="profile-image" src="../../assets/icon/settings/new-user.png"></ion-img>
-    <ion-text class="profile-summary">
-      <h3>Mario Giannini</h3>
-      <ion-text>mario&commat;gmail.com</ion-text>
-    </ion-text>
-  </ion-item>
   <ion-item fill="transparent" (click)="routeToBugReport()">
     <ion-img class="settings-image" src="../../assets/icon/settings/bug.png"></ion-img>
     <ion-text class="settings-text">Segnalazione errori</ion-text>
@@ -36,9 +29,9 @@
         <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
         Home
       </ion-tab-button>
-      <ion-tab-button class="bottom-bar-buttons" tab="notifications">
-        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
-        Notifiche
+      <ion-tab-button class="bottom-bar-buttons" tab="logbook">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
+        Registro
       </ion-tab-button>
       <ion-tab-button class="bottom-bar-buttons" tab="reservations">
         <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>

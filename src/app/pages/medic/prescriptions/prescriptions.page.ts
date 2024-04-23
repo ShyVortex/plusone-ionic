@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonImg,
-  IonTabBar,
-  IonTabButton, IonTabs,
-  IonTitle,
-  IonToolbar
+    IonContent,
+    IonHeader,
+    IonIcon,
+    IonImg, IonLabel,
+    IonTabBar,
+    IonTabButton, IonTabs,
+    IonTitle,
+    IonToolbar
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -17,7 +17,7 @@ import {
   templateUrl: './prescriptions.page.html',
   styleUrls: ['./prescriptions.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs]
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel]
 })
 export class PrescriptionsPage implements OnInit {
 
