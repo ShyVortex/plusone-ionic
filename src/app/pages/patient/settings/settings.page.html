@@ -10,6 +10,10 @@
 </ion-header>
 
 <ion-content class="settings-content" [fullscreen]="true">
+  <ion-item fill="transparent" (click)="routeToSecurity()">
+    <ion-img class="settings-image" src="../../assets/icon/settings/security.png"></ion-img>
+    <ion-text class="settings-text">Sicurezza</ion-text>
+  </ion-item>
   <ion-item fill="transparent" (click)="routeToBugReport()">
     <ion-img class="settings-image" src="../../assets/icon/settings/bug.png"></ion-img>
     <ion-text class="settings-text">Segnalazione errori</ion-text>

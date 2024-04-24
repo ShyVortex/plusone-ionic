@@ -4,22 +4,37 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Informazioni</ion-label>
+      <ion-label class="tab-name">Sicurezza</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="info-content" [fullscreen]="true">
-  <div class="info-container">
-    <ion-text class="version-text">
-      <p>
-        Versione app:
-        <br />
-        <ion-text class="build-ver">
-          dev-build_0ibcd
-        </ion-text>
-      </p>
-    </ion-text>
+<ion-content class="security-content" [fullscreen]="true">
+  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="item-text">DETTAGLI ACCOUNT</ion-item>
+  <div class="variables-container">
+    <ion-label class="edit-labels">Email
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="mario@gmail.com">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+  </div>
+  <div class="variables-container-alt">
+    <ion-label class="edit-labels">Password
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="........">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
   </div>
 
   <ion-tabs class="bottom-bar">

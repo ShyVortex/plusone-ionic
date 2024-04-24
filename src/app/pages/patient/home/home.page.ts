@@ -2,9 +2,9 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
+  IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
   IonContent,
-  IonHeader, IonIcon, IonImg, IonLabel,
+  IonHeader, IonIcon, IonImg, IonItem, IonLabel,
   IonNav, IonRow,
   IonTabBar,
   IonTabButton,
@@ -29,7 +29,7 @@ import {NavController} from "@ionic/angular";
     IonNav,
     IonTabBar,
     IonTabButton,
-    IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea],
+    IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HomePage implements OnInit {

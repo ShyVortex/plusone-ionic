@@ -89,12 +89,9 @@ ion-tab-bar {
  // --ion-toolbar-background: #20D77F;  COLORE VECCHIO TEMA
   --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
  // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
-  height: 6.5em;
-
-  .container {
-    display: flex;
-    align-items: center;
-  }
+  height: 12.5em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
 
   .back-button {
     --color: #000;
@@ -115,12 +112,61 @@ ion-tab-bar {
     font-weight: bold;
     font-size: 25px;
   }
+
+  .profile-container {
+    margin-top: 2em;
+    margin-left: 1.5em;
+
+    .images-container {
+      margin-top: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+
+      .profile-image {
+        width: 6.5em;
+        height: auto;
+        position: relative;
+        margin: auto;
+        display: block;
+      }
+
+      .change-pic-image {
+        width: 1.5em;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -1em;
+        position: relative;
+        display: block;
+        z-index: 1;
+      }
+    }
+
+    .text-container {
+      margin-top: -1.65em;
+
+      .profile-name {
+        color: #000;
+        text-align: center;
+        margin-left: 1em;
+        margin-bottom: 10em;
+      }
+    }
+  }
 }
 
 #settings-icon {
-  margin-top: -0.85em;
+  margin-top: -4.5em;
   margin-right: 0.2em;
-  font-size: 2.25em;
+  font-size: 2em;
+}
+
+.home-content {
+  .home-container {
+    margin-top: 1.5em;
+    margin-left: 1em;
+  }
 }
 
 .bottom-bar {
@@ -142,83 +188,51 @@ ion-tab-bar {
   }
 }
 
-.text-container {
-  margin-top: 3.5em;
-  margin-left: 2em;
+.variables-container {
+  margin-top: 1em;
+
+  .edit-labels {
+    margin-top: 1em;
+    margin-left: 1.1em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  .label-textarea {
+    width: 90%;
+    margin-left: 1em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
+
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
+  }
 }
 
-.home-content {
-  .profile-image {
-    width: 10em;
-    height: auto;
-    position: relative;
-    margin: auto;
-    display: block;
-  }
+.variables-container-alt {
+  margin-top: 2em;
 
-  .change-pic-image {
-    width: 2em;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -1.5em;
-    position: relative;
-    display: block;
-    z-index: 1;
-  }
-
-  .profile-name {
-    text-align: center;
-    margin-left: 1em;
-    margin-bottom: 1em;
-  }
-
-  .variables-container {
+  .edit-labels {
     margin-top: 1em;
-
-    .edit-labels {
-      margin-top: 1em;
-      margin-left: 1.1em;
-      font-family: Inter, sans-serif;
-      letter-spacing: 0;
-    }
-
-    .label-textarea {
-      width: 90%;
-      margin-left: 1em;
-      pointer-events: none;
-      font-family: Inter, sans-serif;
-      font-size: large;
-    }
-
-    .edit-icon {
-      width: 1.5em;
-      height: auto;
-    }
+    margin-left: 1.1em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
   }
 
-  .variables-container-alt {
-    margin-top: 2em;
+  .label-textarea {
+    width: 90%;
+    margin-left: 1em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
 
-    .edit-labels {
-      margin-top: 1em;
-      margin-left: 1.1em;
-      font-family: Inter, sans-serif;
-      letter-spacing: 0;
-    }
-
-    .label-textarea {
-      width: 90%;
-      margin-left: 1em;
-      pointer-events: none;
-      font-family: Inter, sans-serif;
-      font-size: large;
-    }
-
-    .edit-icon {
-      width: 1.5em;
-      height: auto;
-    }
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
   }
 }
 

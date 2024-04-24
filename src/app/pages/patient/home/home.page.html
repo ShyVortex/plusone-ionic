@@ -5,42 +5,93 @@
               slot="end"
               (click)="routeToSettings()">
     </ion-icon>
-    <div class="text-container">
-      <ion-label class="tab-name">Home</ion-label>
+    <div class="profile-container">
+      <div class="images-container">
+        <ion-img class="profile-image" src="../../assets/icon/home/new-user.png"></ion-img>
+        <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
+      </div>
+      <div class="text-container">
+        <ion-text class="profile-name" slot="end">
+          <h3>CIAO MARIO</h3>
+        </ion-text>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home-content" [fullscreen]="true">
-  <ion-text class="profile-name">
-    <h1>Mario Giannini</h1>
-  </ion-text>
-  <ion-img class="profile-image" src="../../assets/icon/settings/new-user.png"></ion-img>
-  <ion-img class="change-pic-image" src="../../assets/icon/settings/camera-alt.png"></ion-img>
-  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto-->
-  <div class="variables-container">
-    <ion-label class="edit-labels">Email
-      <ion-textarea class="label-textarea"
-                    fill="outline"
-                    readonly="true"
-                    placeholder="mario@gmail.com">
-        <ion-button fill="clear" slot="end" aria-label="Show/hide">
-          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
-        </ion-button>
-      </ion-textarea>
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="user-details-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/home/user-card.png"></ion-img>
+    DETTAGLI UTENTE
+  </ion-item>
+  <div class="home-container">
+    <ion-label class="list-key">
+      Nome:
+      <ion-text class="list-value">
+        Mario <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Cognome:
+      <ion-text class="list-value">
+        Giannini <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Indirizzo:
+      <ion-text class="list-value">
+        Contrada Lappone, Pesche (IS) <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Esenzione:
+      <ion-text class="list-value">
+        Reddito, E02 <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Medico curante:
+      <ion-text class="list-value">
+        Francesco Leone <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Donatore organi:
+      <ion-text class="list-value">
+        NO <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Codice fiscale:
+      <ion-text class="list-value">
+        GNNMRA02R05E335P <br/><br/>
+      </ion-text>
     </ion-label>
   </div>
-  <div class="variables-container-alt">
-    <ion-label class="edit-labels">Password
-      <ion-textarea class="label-textarea"
-                    fill="outline"
-                    readonly="true"
-                    placeholder="........">
-        <ion-button fill="clear" slot="end" aria-label="Show/hide">
-          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
-        </ion-button>
-      </ion-textarea>
-    </ion-label>
+  <ion-item class="user-details-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/home/quick-access.png"></ion-img>
+    ACCESSO RAPIDO
+  </ion-item>
+  <div class="home-container">
+    <ion-card class="access-card" color="tertiary">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/home/lock.png"></ion-img>
+        <ion-card-title class="card-title">Sicurezza</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="access-card" color="warning">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/settings/logout.png"></ion-img>
+        <ion-card-title class="card-title">Logout</ion-card-title>
+      </ion-card-header>
+    </ion-card>
   </div>
 
   <ion-tabs class="bottom-bar">

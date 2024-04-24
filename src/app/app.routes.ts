@@ -43,15 +43,23 @@ export const routes: Routes = [
   },
   {
     path: 'patient-settings',
-    loadComponent: () => import('./pages/patient/settings/settings.page').then(m => m.SettingsPage)
+    loadComponent: () => import('./pages/patient/settings/settings.page')
+      .then(m => m.SettingsPage)
+  },
+  {
+    path: 'patient-security',
+    loadComponent: () => import('./pages/patient/settings/security/security.page')
+      .then(m => m.SecurityPage)
   },
   {
     path: 'patient-bugreport',
-    loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page').then(m => m.BugreportPage)
+    loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page')
+      .then(m => m.BugreportPage)
   },
   {
     path: 'patient-app-info',
-    loadComponent: () => import('./pages/patient/settings/info/info.page').then(m => m.InfoPage)
+    loadComponent: () => import('./pages/patient/settings/info/info.page')
+      .then(m => m.InfoPage)
   },
   {
     path: 'nurse-home',
@@ -87,9 +95,5 @@ export const routes: Routes = [
     path: 'medic-prescriptions',
     loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
       .then(m => m.PrescriptionsPage)
-  },
-  {
-    path: 'home',
-    loadComponent: () => import('./pages/nurse/home/home.page').then(m => m.HomePage)
   },
 ];
