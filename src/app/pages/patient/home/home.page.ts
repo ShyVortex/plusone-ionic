@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader, IonIcon, IonImg, IonItem, IonLabel,
   IonNav, IonRow,
   IonTabBar,
@@ -29,7 +29,7 @@ import {NavController} from "@ionic/angular";
     IonNav,
     IonTabBar,
     IonTabButton,
-    IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent],
+    IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonFooter],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HomePage implements OnInit {
