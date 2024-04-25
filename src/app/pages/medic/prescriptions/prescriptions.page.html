@@ -10,19 +10,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-tabs class="bottom-bar">
-  <ion-tab-bar class="bottom-tab-bar" slot="bottom">
-    <ion-tab-button class="bottom-bar-buttons" tab="home">
-      <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
-      Home
-    </ion-tab-button>
-    <ion-tab-button class="bottom-bar-buttons" tab="notifications">
-      <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
-      Notifiche
-    </ion-tab-button>
-    <ion-tab-button class="bottom-bar-buttons" tab="prescriptions">
-      <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
-      Prescrizioni
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToPrescriptions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
+          Prescrizioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

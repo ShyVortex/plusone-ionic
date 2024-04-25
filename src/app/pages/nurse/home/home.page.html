@@ -96,19 +96,19 @@
   <ion-toolbar>
     <ion-tabs class="bottom-bar">
       <ion-tab-bar class="bottom-tab-bar" slot="bottom">
-        <ion-tab-button class="bottom-bar-buttons" tab="home">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" tab="drugs">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToDrugs()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/drugs.png"></ion-img>
           Farmaci
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" tab="shifts">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToShifts()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
           Turni
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" tab="sos">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
           SOS
         </ion-tab-button>

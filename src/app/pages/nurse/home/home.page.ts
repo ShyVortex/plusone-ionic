@@ -41,4 +41,20 @@ export class HomePage implements OnInit {
   logout() {
     this.navCtrl.navigateRoot("login");
   }
+
+  goToHome() {
+    this.navCtrl.navigateBack("nurse-home");
+  }
+
+  goToDrugs() {
+    this.navCtrl.navigateForward("nurse-drugs");
+  }
+
+  goToShifts() {
+    this.navCtrl.navigateForward("nurse-shifts");
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("nurse-sos");
+  }
 }

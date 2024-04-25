@@ -2,28 +2,46 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-    IonContent,
-    IonHeader,
-    IonIcon,
-    IonImg, IonLabel,
-    IonTabBar,
-    IonTabButton, IonTabs,
-    IonTitle,
-    IonToolbar
+  IonContent, IonFooter,
+  IonHeader,
+  IonIcon,
+  IonImg, IonLabel,
+  IonTabBar,
+  IonTabButton, IonTabs,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-drugs',
   templateUrl: './drugs.page.html',
   styleUrls: ['./drugs.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter]
 })
 export class DrugsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
 
+  goToHome() {
+    this.navCtrl.navigateBack("nurse-home");
+  }
+
+  goToDrugs() {
+    this.navCtrl.navigateForward("nurse-drugs");
+  }
+
+  goToShifts() {
+    this.navCtrl.navigateForward("nurse-shifts");
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("nurse-sos");
+  }
 }
