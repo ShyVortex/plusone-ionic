@@ -30,6 +30,6 @@ export class InfoPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("patient-settings");
+    this.navCtrl.navigateBack("settings");
   }
 }

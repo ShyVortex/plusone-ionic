@@ -81,13 +81,16 @@
   </ion-item>
   <div class="home-container">
     <ion-card class="access-card"
-              id="security-card">
+              id="security-card"
+              (click)="routeToSecurity()">
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/home/lock.png"></ion-img>
         <ion-card-title class="card-title">Sicurezza</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="access-card" color="warning">
+    <ion-card class="access-card"
+              color="warning"
+              (click)="logout()">
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/settings/logout.png"></ion-img>
         <ion-card-title class="card-title">Logout</ion-card-title>

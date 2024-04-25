@@ -42,6 +42,14 @@ export class HomePage implements OnInit {
   }
 
   routeToSettings() {
-    this.navCtrl.navigateForward("patient-settings");
+    this.navCtrl.navigateForward("settings");
+  }
+
+  routeToSecurity() {
+    this.navCtrl.navigateForward("settings-security");
+  }
+
+  logout() {
+    this.navCtrl.navigateRoot("login");
   }
 }

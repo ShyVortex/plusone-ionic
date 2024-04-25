@@ -42,26 +42,6 @@ export const routes: Routes = [
       .then(m => m.SOSPage)
   },
   {
-    path: 'patient-settings',
-    loadComponent: () => import('./pages/patient/settings/settings.page')
-      .then(m => m.SettingsPage)
-  },
-  {
-    path: 'patient-security',
-    loadComponent: () => import('./pages/patient/settings/security/security.page')
-      .then(m => m.SecurityPage)
-  },
-  {
-    path: 'patient-bugreport',
-    loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page')
-      .then(m => m.BugreportPage)
-  },
-  {
-    path: 'patient-app-info',
-    loadComponent: () => import('./pages/patient/settings/info/info.page')
-      .then(m => m.InfoPage)
-  },
-  {
     path: 'nurse-home',
     loadComponent: () => import('./pages/nurse/home/home.page')
       .then(m => m.HomePage)
@@ -95,5 +75,25 @@ export const routes: Routes = [
     path: 'medic-prescriptions',
     loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
       .then(m => m.PrescriptionsPage)
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./pages/settings/settings.page')
+      .then(m => m.SettingsPage)
+  },
+  {
+    path: 'settings-security',
+    loadComponent: () => import('./pages/settings/security/security.page')
+      .then(m => m.SecurityPage)
+  },
+  {
+    path: 'settings-bugreport',
+    loadComponent: () => import('./pages/settings/bugreport/bugreport.page')
+      .then(m => m.BugreportPage)
+  },
+  {
+    path: 'settings-info',
+    loadComponent: () => import('./pages/settings/info/info.page')
+      .then(m => m.InfoPage)
   },
 ];

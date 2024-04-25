@@ -30,7 +30,10 @@ export class BugreportPage implements OnInit {
   ngOnInit() {
   }
 
+  /* TODO logica che inserisce all'interno degli ion-select-option
+      le schermate corrette a seconda del tipo di utente */
+
   navigateBack() {
-    this.navCtrl.navigateBack("patient-settings");
+    this.navCtrl.navigateBack("settings");
   }
 }

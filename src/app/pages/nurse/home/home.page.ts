@@ -12,6 +12,7 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/angular/standalone';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -22,9 +23,22 @@ import {
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
 
+  routeToSettings() {
+    this.navCtrl.navigateForward("settings");
+  }
+
+  routeToSecurity() {
+    this.navCtrl.navigateForward("settings-security");
+  }
+
+  logout() {
+    this.navCtrl.navigateRoot("login");
+  }
 }

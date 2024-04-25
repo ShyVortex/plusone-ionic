@@ -31,22 +31,23 @@ export class SettingsPage implements OnInit {
   }
 
   navigateBack() {
+    // TODO logica che torna indietro nella pagina corretta a seconda del tipo di utente
     this.navCtrl.navigateBack("patient-home");
   }
 
   routeToSecurity() {
-    this.navCtrl.navigateForward("patient-security");
+    this.navCtrl.navigateForward("settings-security");
   }
 
   routeToBugReport() {
-    this.navCtrl.navigateForward("patient-bugreport");
+    this.navCtrl.navigateForward("settings-bugreport");
   }
 
   routeToInfo() {
-    this.navCtrl.navigateForward("patient-app-info");
+    this.navCtrl.navigateForward("settings-info");
   }
 
   logout() {
-    this.navCtrl.navigateBack("login");
+    this.navCtrl.navigateRoot("login");
   }
 }
