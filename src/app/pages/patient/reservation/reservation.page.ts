@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-    IonContent, IonFooter,
-    IonHeader, IonIcon,
-    IonImg, IonLabel,
-    IonTabBar,
-    IonTabButton,
-    IonTabs, IonText,
-    IonTitle,
-    IonToolbar
+  IonButton, IonCard, IonCardHeader, IonCardTitle,
+  IonContent, IonFooter,
+  IonHeader, IonIcon,
+  IonImg, IonItem, IonLabel, IonRow,
+  IonTabBar,
+  IonTabButton,
+  IonTabs, IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 
@@ -18,7 +19,7 @@ import {NavController} from "@ionic/angular";
   templateUrl: './reservation.page.html',
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle]
 })
 export class ReservationPage implements OnInit {
 
