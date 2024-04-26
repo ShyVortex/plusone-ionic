@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-label class="tab-name">Prenotazione confermata</ion-label>
+    </div>
+    <!-- <ion-icon id="settings-icon"
+              src="../../../assets/icon/settings/settings.svg"
+              slot="end"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-lottie height="25em" [options]="options" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h2 class="info-h2">PRENOTAZIONE EFFETTUATA</h2>
+  <h6 class="info-h6">La prenotazione è stata effettuata ed è ora in attesa di conferma.</h6>
+  <ion-button class="confirm-button" expand="block" fill="solid" routerLink="/home">Torna alla home</ion-button>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" tab="home">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="notifications">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="reservations">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
+          Prenota
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="sos">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

@@ -37,6 +37,14 @@ export const routes: Routes = [
       .then(m => m.ReservationPage)
   },
   {
+    path: 'patient-reservation-continue',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-continue.page').then( m => m.ReservationContinuePage)
+  },
+  {
+    path: 'reservation-confirmed',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-confirmed/reservation-confirmed.page').then( m => m.ReservationConfirmedPage)
+  },
+  {
     path: 'patient-sos',
     loadComponent: () => import('./pages/patient/sos/sos.page')
       .then(m => m.SOSPage)
@@ -77,7 +85,7 @@ export const routes: Routes = [
       .then(m => m.PrescriptionsPage)
   },
   {
-    path: 'settings',
+      path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)
   },

@@ -10,7 +10,10 @@ import {
   IonTabButton,
   IonTabs, IonText,
   IonTitle,
-  IonToolbar
+  IonToolbar,
+  IonDatetime,
+  IonSegment,
+  IonSegmentButton,
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 
@@ -19,7 +22,9 @@ import {NavController} from "@ionic/angular";
   templateUrl: './reservation.page.html',
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle]
+
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, 
+            IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle, IonSegment, IonSegmentButton, IonDatetime,]
 })
 export class ReservationPage implements OnInit {
 
@@ -28,6 +33,10 @@ export class ReservationPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  routeToReservationContinue() {
+    this.navCtrl.navigateForward('patient-reservation-continue');
   }
 
   routeToSettings() {

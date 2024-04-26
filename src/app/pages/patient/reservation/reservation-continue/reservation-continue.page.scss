@@ -1,0 +1,39 @@
+.available-appointments {
+  justify-content: center;
+}
+
+.appointment {
+  width: 8em;
+}
+
+.appointment-button {
+  width: 6em;
+}
+
+.confirm-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30em;
+  width: 85%;
+}
+
+.policy {
+  color: gray;
+  font-size: 1em;
+}
+
+.top-toolbar {
+  height: 6.5em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.button-clicked {
+  background-color: rgba(78, 182, 140, 0.205);
+}
