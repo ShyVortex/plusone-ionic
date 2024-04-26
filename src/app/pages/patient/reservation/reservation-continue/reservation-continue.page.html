@@ -1,0 +1,69 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Prenotazione</ion-label>
+    </div>
+    <!-- <ion-icon id="settings-icon"
+              src="../../../assets/icon/settings/settings.svg"
+              slot="end"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h5 class="available-appointments"><b>Orari disponibili</b></h5>
+
+  <ion-grid>
+    <ion-row class="available-appointments">
+      <ion-button (click)="toggleClickedItem()" [ngClass]="{'button-clicked': this.itemClicked}" fill="outline" size="default" class="appointment-button">7:00</ion-button>
+      <ion-button fill="outline" size="default" class="appointment-button">11:00</ion-button>
+      <ion-button fill="outline" size="default" class="appointment-button">15:30</ion-button>
+    </ion-row>
+    <ion-row class="available-appointments">
+      <ion-button fill="outline" size="default" class="appointment-button">16:15</ion-button>
+      <ion-button fill="outline" size="default" class="appointment-button">18:00</ion-button>
+      <ion-button fill="outline" size="default" class="appointment-button">18:30</ion-button>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <h6 class="policy">Eventuali modifiche o annullamenti dovranno essere effettuati attraverso l'applicazione con almeno 24 ore di anticipo rispetto all'orario programmato.</h6>
+  
+  <ion-button class="confirm-button" expand="block" fill="solid" id="present-alert">Prenota</ion-button>
+
+  <ion-alert
+  trigger="present-alert"
+  header="Conferma prenotazione"
+  subHeader="Visita generale"
+  message="13/04/2024, alle ore 07:00"
+  [buttons]="alertButtons"
+  ></ion-alert>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" tab="home">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="notifications">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="reservations">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
+          Prenota
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" tab="sos">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

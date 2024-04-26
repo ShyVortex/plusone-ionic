@@ -92,4 +92,12 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
       .then(m => m.PrescriptionsPage)
   },
+  {
+    path: 'patient-reservation-continue',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-continue.page').then( m => m.ReservationContinuePage)
+  },
+  {
+    path: 'reservation-confirmed',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-confirmed/reservation-confirmed.page').then( m => m.ReservationConfirmedPage)
+  },
 ];

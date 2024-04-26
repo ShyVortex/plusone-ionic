@@ -1,27 +1,19 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="top-toolbar">
     <div class="container">
-      <ion-label class="tab-name">Prenotazione</ion-label>
+      <ion-label class="tab-name">Prenotazione confermata</ion-label>
     </div>
+    <!-- <ion-icon id="settings-icon"
+              src="../../../assets/icon/settings/settings.svg"
+              slot="end"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <h5>Specificare il <b>tipo di visita</b></h5>
-  <ion-segment value="Generale" class="reservation-segment" >
-      <ion-segment-button value="Generale">
-        <ion-label>Generale</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Specialistica">
-        <ion-label>Specialistica</ion-label>
-      </ion-segment-button>
-  </ion-segment>
-
-  <h5>Specificare la <b>data</b></h5>
-  <ion-datetime presentation="date" class="reservation-datetime"></ion-datetime>
-
-  <ion-button class="reservation-button" (click)="routeToReservationContinue()">Verifica disponibilità</ion-button>
-
+<ion-content class="ion-padding">
+  <ng-lottie height="25em" [options]="options" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h2 class="info-h2">PRENOTAZIONE EFFETTUATA</h2>
+  <h6 class="info-h6">La prenotazione è stata effettuata ed è ora in attesa di conferma.</h6>
+  <ion-button class="confirm-button" expand="block" fill="solid" routerLink="/home">Torna alla home</ion-button>
 </ion-content>
 
 <ion-footer>

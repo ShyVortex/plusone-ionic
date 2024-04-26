@@ -7,6 +7,8 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
+import { provideLottieOptions } from 'ngx-lottie';
+
 if (environment.production) {
   enableProdMode();
 }
@@ -16,5 +18,8 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
+    provideLottieOptions({
+      player: () => import('lottie-web'),
+    })
   ],
 });
