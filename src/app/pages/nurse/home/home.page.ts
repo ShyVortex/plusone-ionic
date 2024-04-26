@@ -43,18 +43,18 @@ export class HomePage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("nurse-home");
+    this.navCtrl.navigateBack("nurse-home", { animated: false });
   }
 
   goToDrugs() {
-    this.navCtrl.navigateForward("nurse-drugs");
+    this.navCtrl.navigateForward("nurse-drugs", { animated: false });
   }
 
   goToShifts() {
-    this.navCtrl.navigateForward("nurse-shifts");
+    this.navCtrl.navigateForward("nurse-shifts", { animated: false });
   }
 
   goToSOS() {
-    this.navCtrl.navigateForward("nurse-sos");
+    this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
 }

@@ -7,7 +7,7 @@ import {
   IonIcon,
   IonImg, IonLabel,
   IonTabBar,
-  IonTabButton, IonTabs,
+  IonTabButton, IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -18,7 +18,7 @@ import {NavController} from "@ionic/angular";
   templateUrl: './drugs.page.html',
   styleUrls: ['./drugs.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
 })
 export class DrugsPage implements OnInit {
 
@@ -30,18 +30,18 @@ export class DrugsPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("nurse-home");
+    this.navCtrl.navigateBack("nurse-home", { animated: false });
   }
 
   goToDrugs() {
-    this.navCtrl.navigateForward("nurse-drugs");
+    this.navCtrl.navigateForward("nurse-drugs", { animated: false });
   }
 
   goToShifts() {
-    this.navCtrl.navigateForward("nurse-shifts");
+    this.navCtrl.navigateForward("nurse-shifts", { animated: false });
   }
 
   goToSOS() {
-    this.navCtrl.navigateForward("nurse-sos");
+    this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
 }

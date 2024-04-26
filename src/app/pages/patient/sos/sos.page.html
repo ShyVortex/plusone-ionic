@@ -2,9 +2,19 @@
   <ion-toolbar class="top-toolbar">
     <ion-icon id="settings-icon"
               src="../../assets/icon/settings/settings.svg"
-              slot="end"></ion-icon>
-    <div class="text-container">
-      <ion-label class="tab-name">SOS</ion-label>
+              slot="end"
+              (click)="routeToSettings()">
+    </ion-icon>
+    <div class="profile-container">
+      <div class="images-container">
+        <ion-img class="profile-image" src="../../assets/icon/home/new-user.png"></ion-img>
+        <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
+      </div>
+      <div class="text-container">
+        <ion-text class="profile-name" slot="end">
+          <h3>CIAO MARIO</h3>
+        </ion-text>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -22,11 +32,11 @@
           Registro
         </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" (click)="goToReservation()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
           Prenota
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToSOS()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/sos.png"></ion-img>
           SOS
         </ion-tab-button>
       </ion-tab-bar>

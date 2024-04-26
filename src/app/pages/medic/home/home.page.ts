@@ -54,14 +54,14 @@ export class HomePage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("medic-home");
+    this.navCtrl.navigateBack("medic-home", { animated: false });
   }
 
   goToNotifs() {
-    this.navCtrl.navigateForward("medic-notifs");
+    this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
   goToPrescriptions() {
-    this.navCtrl.navigateForward("medic-prescriptions");
+    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
   }
 }

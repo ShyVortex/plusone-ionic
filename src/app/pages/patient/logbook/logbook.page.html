@@ -2,10 +2,19 @@
   <ion-toolbar class="top-toolbar">
     <ion-icon id="settings-icon"
               src="../../assets/icon/settings/settings.svg"
-              slot="end">
+              slot="end"
+              (click)="routeToSettings()">
     </ion-icon>
-    <div class="text-container">
-      <ion-label class="tab-name">Registro</ion-label>
+    <div class="profile-container">
+      <div class="images-container">
+        <ion-img class="profile-image" src="../../assets/icon/home/new-user.png"></ion-img>
+        <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
+      </div>
+      <div class="text-container">
+        <ion-text class="profile-name" slot="end">
+          <h3>CIAO MARIO</h3>
+        </ion-text>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -18,12 +27,12 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToLogbook()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToLogbook()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/logbook.png"></ion-img>
           Registro
         </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" (click)="goToReservation()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/booking.png"></ion-img>
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
           Prenota
         </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">

@@ -7,7 +7,7 @@ import {
   IonIcon,
   IonImg, IonLabel,
   IonTabBar,
-  IonTabButton, IonTabs,
+  IonTabButton, IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -18,7 +18,7 @@ import {NavController} from "@ionic/angular";
   templateUrl: './prescriptions.page.html',
   styleUrls: ['./prescriptions.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
 })
 export class PrescriptionsPage implements OnInit {
 
@@ -30,14 +30,14 @@ export class PrescriptionsPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("medic-home");
+    this.navCtrl.navigateBack("medic-home", { animated: false });
   }
 
   goToNotifs() {
-    this.navCtrl.navigateForward("medic-notifs");
+    this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
   goToPrescriptions() {
-    this.navCtrl.navigateForward("medic-prescriptions");
+    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
   }
 }

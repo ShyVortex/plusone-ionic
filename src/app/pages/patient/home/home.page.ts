@@ -54,18 +54,18 @@ export class HomePage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home");
+    this.navCtrl.navigateBack("patient-home", { animated: false });
   }
 
   goToLogbook() {
-    this.navCtrl.navigateForward("patient-logbook");
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
   }
 
   goToReservation() {
-    this.navCtrl.navigateForward("patient-reservation");
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
   }
 
   goToSOS() {
-    this.navCtrl.navigateForward("patient-sos");
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }
