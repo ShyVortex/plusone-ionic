@@ -24,3 +24,212 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+/** LIGHT MODE GLOBAL THEME **/
+ion-tab-bar {
+  ion-tab-button {
+    --color: #000;
+  }
+}
+
+.top-toolbar {
+  // --ion-toolbar-background: #20D77F;  COLORE VECCHIO TEMA
+  --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
+  // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
+  height: 12.5em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+
+  .back-button {
+    --color: #000;
+    margin-top: 1.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: xx-large;
+    flex: 0 0 auto;
+  }
+
+  .tab-name {
+    color: #000;
+    text-transform: none;
+    margin-top: 1.85em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .profile-container {
+    margin-top: 2em;
+    margin-left: 2.15em;
+    margin-right: auto;
+    display: block;
+
+    .images-container {
+      margin-top: 1em;
+      margin-left: auto;
+
+      .profile-image {
+        width: 6.5em;
+        height: auto;
+        position: relative;
+        margin: auto;
+      }
+
+      .change-pic-image {
+        width: 1.5em;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -1em;
+        position: relative;
+        display: block;
+        z-index: 1;
+      }
+    }
+
+    .text-container {
+      margin-top: -1.65em;
+
+      .profile-name {
+        color: #000;
+        text-align: center;
+        margin-left: 1em;
+        margin-bottom: 10em;
+      }
+    }
+  }
+}
+
+#settings-icon {
+  margin-top: -4.5em;
+  margin-right: 0.2em;
+  font-size: 2em;
+}
+
+.home-content {
+  width: 100%;
+  height: auto;
+  margin: auto;
+
+  .home-container {
+    margin-top: 1.5em;
+    margin-left: 1em;
+  }
+
+  .item-title {
+    font-size: x-large;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    .item-title-icon {
+      width: 1.5em;
+      height: auto;
+      margin-right: 0.5em;
+    }
+  }
+
+  .list-key {
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .list-value {
+    font-weight: normal;
+  }
+
+  #security-card {
+    background-color: #845EC2;
+  }
+
+  .access-card {
+    margin-top: -0.5em;
+    width: 10em;
+    height: auto;
+    display: inline-block;
+
+    .card-icon {
+      width: 2em;
+      height: auto;
+      margin: auto;
+      display: block;
+    }
+
+    .card-title {
+      color: #000;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+  }
+}
+
+.bottom-bar {
+  .bottom-tab-bar {
+    // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
+    --ion-background-color: #a6f3d4; //  COLORE NUOVO TEMA
+  }
+
+  .bottom-bar-buttons {
+    font-family: Roboto, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .bottom-bar-icons {
+    width: 1.65em;
+    height: auto;
+  }
+}
+
+.variables-container {
+  margin-top: 1em;
+
+  .edit-labels {
+    margin-top: 1em;
+    margin-left: 1.1em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  .label-textarea {
+    width: 90%;
+    margin-left: 1em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
+
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
+  }
+}
+
+.variables-container-alt {
+  margin-top: 2em;
+
+  .edit-labels {
+    margin-top: 1em;
+    margin-left: 1.1em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+  }
+
+  .label-textarea {
+    width: 90%;
+    margin-left: 1em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
+  }
+
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
+  }
+}

@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Sicurezza</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="security-content" [fullscreen]="true">
+  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="item-text">DETTAGLI ACCOUNT</ion-item>
+  <div class="variables-container">
+    <ion-label class="edit-labels">Email
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="mario@gmail.com">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+  </div>
+  <div class="variables-container-alt">
+    <ion-label class="edit-labels">Password
+      <ion-textarea class="label-textarea"
+                    fill="outline"
+                    readonly="true"
+                    placeholder="........">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+  </div>
+
+  <ion-tabs class="bottom-bar">
+    <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+      <ion-tab-button class="bottom-bar-buttons" tab="home">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+        Home
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="logbook">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
+        Registro
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="reservations">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
+        Prenota
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="sos">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+        SOS
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

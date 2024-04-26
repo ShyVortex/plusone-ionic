@@ -27,9 +27,9 @@ export const routes: Routes = [
       .then(m => m.HomePage)
   },
   {
-    path: 'patient-notifs',
-    loadComponent: () => import('./pages/patient/notifications/notifications.page')
-      .then(m => m.NotificationsPage)
+    path: 'patient-logbook',
+    loadComponent: () => import('./pages/patient/logbook/logbook.page')
+      .then(m => m.LogbookPage)
   },
   {
     path: 'patient-reservation',
@@ -37,35 +37,27 @@ export const routes: Routes = [
       .then(m => m.ReservationPage)
   },
   {
+    path: 'patient-reservation-continue',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-continue.page').then( m => m.ReservationContinuePage)
+  },
+  {
+    path: 'reservation-confirmed',
+    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-confirmed/reservation-confirmed.page').then( m => m.ReservationConfirmedPage)
+  },
+  {
     path: 'patient-sos',
     loadComponent: () => import('./pages/patient/sos/sos.page')
       .then(m => m.SOSPage)
   },
   {
-    path: 'patient-settings',
-    loadComponent: () => import('./pages/patient/settings/settings.page').then(m => m.SettingsPage)
-  },
-  {
-    path: 'patient-profile',
-    loadComponent: () => import('./pages/patient/settings/profile/profile.page').then(m => m.ProfilePage)
-  },
-  {
-    path: 'patient-bugreport',
-    loadComponent: () => import('./pages/patient/settings/bugreport/bugreport.page').then(m => m.BugreportPage)
-  },
-  {
-    path: 'patient-app-info',
-    loadComponent: () => import('./pages/patient/settings/info/info.page').then(m => m.InfoPage)
+    path: 'nurse-home',
+    loadComponent: () => import('./pages/nurse/home/home.page')
+      .then(m => m.HomePage)
   },
   {
     path: 'nurse-drugs',
     loadComponent: () => import('./pages/nurse/drugs/drugs.page')
       .then(m => m.DrugsPage)
-  },
-  {
-    path: 'nurse-notifs',
-    loadComponent: () => import('./pages/nurse/notifications/notifications.page')
-      .then(m => m.NotificationsPage)
   },
   {
     path: 'nurse-shifts',
@@ -93,11 +85,23 @@ export const routes: Routes = [
       .then(m => m.PrescriptionsPage)
   },
   {
-    path: 'patient-reservation-continue',
-    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-continue.page').then( m => m.ReservationContinuePage)
+      path: 'settings',
+    loadComponent: () => import('./pages/settings/settings.page')
+      .then(m => m.SettingsPage)
   },
   {
-    path: 'reservation-confirmed',
-    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-confirmed/reservation-confirmed.page').then( m => m.ReservationConfirmedPage)
+    path: 'settings-security',
+    loadComponent: () => import('./pages/settings/security/security.page')
+      .then(m => m.SecurityPage)
+  },
+  {
+    path: 'settings-bugreport',
+    loadComponent: () => import('./pages/settings/bugreport/bugreport.page')
+      .then(m => m.BugreportPage)
+  },
+  {
+    path: 'settings-info',
+    loadComponent: () => import('./pages/settings/info/info.page')
+      .then(m => m.InfoPage)
   },
 ];

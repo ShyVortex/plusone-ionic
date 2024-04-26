@@ -2,30 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
+  IonButton, IonCard, IonCardHeader, IonCardTitle,
+  IonContent, IonFooter,
   IonHeader, IonIcon,
-  IonImg,
+  IonImg, IonItem, IonLabel, IonRow,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs, IonText,
   IonTitle,
   IonToolbar,
-  NavController,
+  IonDatetime,
   IonSegment,
   IonSegmentButton,
-  IonDatetime,
-  IonLabel,
-  IonButton, IonFooter } from '@ionic/angular/standalone';
+} from '@ionic/angular/standalone';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.page.html',
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
-    imports: [IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonSegment, IonSegmentButton, IonDatetime, IonLabel, IonButton]
+
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, 
+            IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle, IonSegment, IonSegmentButton, IonDatetime,]
 })
 export class ReservationPage implements OnInit {
-  constructor(private navCtrl: NavController) { }
+
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
@@ -34,4 +39,23 @@ export class ReservationPage implements OnInit {
     this.navCtrl.navigateForward('patient-reservation-continue');
   }
 
+  routeToSettings() {
+    this.navCtrl.navigateForward("settings");
+  }
+
+  goToHome() {
+    this.navCtrl.navigateBack("patient-home", { animated: false });
+  }
+
+  goToLogbook() {
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+  }
+
+  goToReservation() {
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
+  }
 }

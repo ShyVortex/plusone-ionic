@@ -2,12 +2,13 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader, IonIcon, IonImg,
-  IonNav,
+  IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  IonContent, IonFooter,
+  IonHeader, IonIcon, IonImg, IonItem, IonLabel,
+  IonNav, IonRow,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs, IonText, IonTextarea,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -28,7 +29,7 @@ import {NavController} from "@ionic/angular";
     IonNav,
     IonTabBar,
     IonTabButton,
-    IonIcon, IonImg],
+    IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonFooter],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HomePage implements OnInit {
@@ -41,6 +42,30 @@ export class HomePage implements OnInit {
   }
 
   routeToSettings() {
-    this.navCtrl.navigateForward("patient-settings");
+    this.navCtrl.navigateForward("settings");
+  }
+
+  routeToSecurity() {
+    this.navCtrl.navigateForward("settings-security");
+  }
+
+  logout() {
+    this.navCtrl.navigateRoot("login");
+  }
+
+  goToHome() {
+    this.navCtrl.navigateBack("patient-home", { animated: false });
+  }
+
+  goToLogbook() {
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+  }
+
+  goToReservation() {
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }
