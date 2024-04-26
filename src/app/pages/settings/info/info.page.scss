@@ -1,0 +1,32 @@
+.top-toolbar {
+  height: 6.5em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+#settings-icon {
+  font-size: 2.25em;
+  margin-right: 0.2em;
+}
+
+.info-content {
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .version-text {
+    text-align: center;
+
+    .build-ver {
+      font-weight: bold;
+    }
+  }
+ }
+}

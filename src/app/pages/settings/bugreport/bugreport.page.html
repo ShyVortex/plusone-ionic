@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Segnalazione</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="report-content" [fullscreen]="true">
+  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto -->
+  <div class="report-container">
+    <ion-label
+      class="report-text">
+      In quale sezione hai riscontrato un errore?
+    </ion-label>
+    <ion-select
+                class="report-select"
+                fill="solid"
+                placeholder="Seleziona">
+      <ion-select-option value="patient-home">
+        Home
+      </ion-select-option>
+      <ion-select-option value="patient-notifs">
+        Notifiche
+      </ion-select-option>
+      <ion-select-option value="patient-reservation">
+        Prenotazione
+      </ion-select-option>
+      <ion-select-option value="patient-sos">
+        SOS
+      </ion-select-option>
+    </ion-select>
+  </div>
+  <div class="report-container-alt">
+    <ion-label
+      class="report-text">
+      Descrivi il problema
+    </ion-label>
+    <ion-textarea class="issue-textarea"
+                  fill="outline"
+                  readonly="true">
+    </ion-textarea>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button class="reset-button">Reset</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="confirm-button">Conferma</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-tabs class="bottom-bar">
+    <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+      <ion-tab-button class="bottom-bar-buttons" tab="home">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+        Home
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="logbook">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
+        Registro
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="reservations">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
+        Prenota
+      </ion-tab-button>
+      <ion-tab-button class="bottom-bar-buttons" tab="sos">
+        <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+        SOS
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

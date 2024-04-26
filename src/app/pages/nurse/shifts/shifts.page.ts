@@ -2,28 +2,46 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonImg,
+  IonContent, IonFooter,
+  IonHeader, IonIcon,
+  IonImg, IonLabel,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-shifts',
   templateUrl: './shifts.page.html',
   styleUrls: ['./shifts.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText]
 })
 export class ShiftsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
 
+  goToHome() {
+    this.navCtrl.navigateBack("nurse-home", { animated: false });
+  }
+
+  goToDrugs() {
+    this.navCtrl.navigateForward("nurse-drugs", { animated: false });
+  }
+
+  goToShifts() {
+    this.navCtrl.navigateForward("nurse-shifts", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("nurse-sos", { animated: false });
+  }
 }
