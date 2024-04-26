@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Prenotazione</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-row style="height: 7%"></ion-row> <!-- spazio vuoto-->
+  <h5>Specificare la <b>data</b></h5>
+  <ion-datetime presentation="date" class="reservation-datetime"></ion-datetime>
+
+  <ion-button class="reservation-button" (click)="routeToReservationContinue()">Verifica disponibilità</ion-button>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToLogbook()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
+          Registro
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToReservation()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/calendar.png"></ion-img>
+          Prenota
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

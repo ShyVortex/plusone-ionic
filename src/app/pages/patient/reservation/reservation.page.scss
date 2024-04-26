@@ -41,39 +41,3 @@
     }
   }
 }
-
-.reservation-datetime {
-  margin-top: 0em;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.reservation-item {
-  margin-bottom: 1em;
-}
-
-.reservation-button {
-  margin-top: 1em;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 13em;
-  display: block;
-  width: 85%;
-}
-
-.top-toolbar {
-  height: 6.5em;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-
-  .container {
-    display: flex;
-    align-items: center;
-  }
-
-  .tab-name {
-    margin-left: 1em;
-    margin-top: 2.3em;
-  }
-}

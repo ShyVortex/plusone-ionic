@@ -23,7 +23,7 @@ import {NavController} from "@ionic/angular";
   styleUrls: ['./reservation.page.scss'],
   standalone: true,
 
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, 
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel,
             IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle, IonSegment, IonSegmentButton, IonDatetime,]
 })
 export class ReservationPage implements OnInit {
@@ -35,8 +35,8 @@ export class ReservationPage implements OnInit {
   ngOnInit() {
   }
 
-  routeToReservationContinue() {
-    this.navCtrl.navigateForward('patient-reservation-continue');
+  routeToReservationDate() {
+    this.navCtrl.navigateForward('patient-reservation-date');
   }
 
   routeToSettings() {

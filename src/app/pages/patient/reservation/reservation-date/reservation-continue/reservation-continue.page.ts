@@ -2,28 +2,28 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar, 
-  IonSegment, 
-  IonIcon, 
-  IonSegmentButton, 
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonSegment,
+  IonIcon,
+  IonSegmentButton,
   IonLabel,
-  IonButtons, 
-  IonBackButton, 
-  IonGrid, 
-  IonRow, 
-  IonCol, 
-  IonCard, 
-  IonButton, 
-  IonItem, 
-  IonItemDivider, 
-  IonTabs, 
-  IonTabBar, 
-  IonTabButton, 
-  IonImg, 
+  IonButtons,
+  IonBackButton,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonButton,
+  IonItem,
+  IonItemDivider,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonImg,
   NavController, IonFooter, IonAlert } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { text } from 'ionicons/icons';
@@ -58,7 +58,7 @@ export class ReservationContinuePage implements OnInit {
   }
 
   routeToReservationConfirmed() {
-    this.navCtrl.navigateForward('reservation-confirmed');
+    this.navCtrl.navigateForward('patient-reservation-confirmed');
   }
 
   navigateBack() {
@@ -67,5 +67,21 @@ export class ReservationContinuePage implements OnInit {
 
   toggleClickedItem() {
     this.itemClicked = !this.itemClicked;
+  }
+
+  goToHome() {
+    this.navCtrl.navigateBack("patient-home", { animated: false });
+  }
+
+  goToLogbook() {
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+  }
+
+  goToReservation() {
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }

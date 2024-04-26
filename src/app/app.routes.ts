@@ -37,12 +37,19 @@ export const routes: Routes = [
       .then(m => m.ReservationPage)
   },
   {
-    path: 'patient-reservation-continue',
-    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-continue.page').then( m => m.ReservationContinuePage)
+    path: 'patient-reservation-date',
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-date.page')
+      .then(m => m.ReservationDatePage)
   },
   {
-    path: 'reservation-confirmed',
-    loadComponent: () => import('./pages/patient/reservation/reservation-continue/reservation-confirmed/reservation-confirmed.page').then( m => m.ReservationConfirmedPage)
+    path: 'patient-reservation-continue',
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-continue.page')
+      .then(m => m.ReservationContinuePage)
+  },
+  {
+    path: 'patient-reservation-confirmed',
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-confirmed/reservation-confirmed.page')
+      .then(m => m.ReservationConfirmedPage)
   },
   {
     path: 'patient-sos',

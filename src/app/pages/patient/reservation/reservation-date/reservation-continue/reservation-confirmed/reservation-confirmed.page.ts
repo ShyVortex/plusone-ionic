@@ -6,6 +6,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton,
 
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-reservation-confirmed',
@@ -15,7 +16,9 @@ import { LottieComponent, AnimationOptions } from 'ngx-lottie';
   imports: [LottieComponent, IonLabel, IonFooter, IonTabButton, IonTabs, IonTabBar, IonButton, IonImg, IonIcon, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class ReservationConfirmedPage implements OnInit {
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
@@ -25,15 +28,24 @@ export class ReservationConfirmedPage implements OnInit {
     loop: false,
   };
 
-  /* styles: Partial<CSSStyleDeclaration> = {
-    width: '200em',
-    height: '200em',
-    // margin: 'auto auto',
-  }; */
-
   animationCreated(animationItem: AnimationItem): void {
-    
+
     console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
+  goToHome() {
+    this.navCtrl.navigateBack("patient-home", { animated: false });
+  }
+
+  goToLogbook() {
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+  }
+
+  goToReservation() {
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
+  }
 }
