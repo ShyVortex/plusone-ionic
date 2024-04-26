@@ -63,20 +63,19 @@ ion-tab-bar {
 
   .profile-container {
     margin-top: 2em;
-    margin-left: 1.5em;
+    margin-left: 2.15em;
+    margin-right: auto;
+    display: block;
 
     .images-container {
       margin-top: 1em;
       margin-left: auto;
-      margin-right: auto;
-      display: block;
 
       .profile-image {
         width: 6.5em;
         height: auto;
         position: relative;
         margin: auto;
-        display: block;
       }
 
       .change-pic-image {
