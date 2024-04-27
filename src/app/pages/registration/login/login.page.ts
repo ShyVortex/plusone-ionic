@@ -120,4 +120,5 @@ export class LoginPage implements OnInit,OnDestroy {
     }
     else return false;
   }
+
 }
