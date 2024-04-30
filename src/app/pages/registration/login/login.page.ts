@@ -13,11 +13,14 @@ import {
   IonTitle,
   IonToolbar, IonToast, IonText
 } from '@ionic/angular/standalone';
-import {PersonService} from "../../../services/PersonService/person.service";
+import {PazienteService} from "../../../services/PazienteService/paziente.service";
 import {Person} from "../../../models/person/person";
 import {Observable, Subscriber, Subscription,firstValueFrom} from "rxjs";
-import {person} from "ionicons/icons";
 import {HashingUtilities} from "../hashing-utilities";
+import {Paziente} from "../../../models/paziente/Paziente";
+import {Infermiere} from "../../../models/infermiere/Infermiere";
+import {Medico} from "../../../models/medico/Medico";
+import {LoginUtilities} from "./LoginUtilities";
 
 @Component({
   selector: 'app-login',
@@ -30,21 +33,24 @@ export class LoginPage implements OnInit,OnDestroy {
   protected email: string
   protected password: string
   protected isToastOpen: boolean = false;
-  private personToLogin:Person
-  private getAllPeopleSubscription: Subscription
-  private getPersonaByEmailAndPasswordObservable: Observable<Person>;
-  private getPersonaByEmailObservable:Observable<Person>;
-  private hashedPassword:string
+  private getAllPazientiSubscription: Subscription
 
-  constructor(private navCtrl: NavController, private personService: PersonService) {
+  private getPazienteByEmailObservable:Observable<Paziente>;
+  private getInfermiereByEmailObservable:Observable<Infermiere>;
+  private getMedicoByEmailObservable:Observable<Medico>;
+  private hashedPassword:string;
+  private personToLogin:any
+
+  constructor(private navCtrl: NavController, private pazienteService: PazienteService) {
     this.email = "";
     this.password = "";
     this.hashedPassword = "";
-    this.personToLogin = new Person(0,"","","","","","") ;
 
-    this.getAllPeopleSubscription = new Subscription();
-    this.getPersonaByEmailAndPasswordObservable = new Observable<Person>();
-    this.getPersonaByEmailObservable = new Observable<Person>();
+
+    this.getAllPazientiSubscription = new Subscription();
+    this.getPazienteByEmailObservable = new Observable<Paziente>();
+    this.getMedicoByEmailObservable = new Observable<Medico>();
+    this.getInfermiereByEmailObservable = new Observable<Infermiere>();
   }
 
   ngOnInit() {
@@ -57,13 +63,12 @@ export class LoginPage implements OnInit,OnDestroy {
   }
 
   ionViewWillEnter() {
-    this.getAllPeopleSubscription = this.personService.getPeople().subscribe((value: Person[]) => value.forEach((person: Person) => {
-      console.log(person);
-    }))
+    this.getAllPazientiSubscription = this.pazienteService.getAllPazienti().subscribe();
+
   }
 
   ngOnDestroy() {
-    this.getAllPeopleSubscription.unsubscribe()
+    this.getAllPazientiSubscription.unsubscribe()
   }
 
   showData() {
@@ -75,50 +80,38 @@ export class LoginPage implements OnInit,OnDestroy {
     this.isToastOpen = isOpen;
   }
 
+
   async loginButton():Promise<void> {
 
-
-    this.getPersonaByEmailObservable =  this.personService.getPersonByEmail(this.email)
-      const data :any = await firstValueFrom<Person>(this.getPersonaByEmailObservable);
-
-      this.personToLogin = Person.fromJSON(data);
-      console.log(this.personToLogin);
+    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
+      this.getPazienteByEmailObservable =  this.pazienteService.getPazienteByEmail(this.email)
+      this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable);
+    }
 
 
-      try {
-        console.log(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password))
-      }
-        catch (error){
-          this.setOpen(true);
-          console.log("Credenziali non valide")
-      }
-       if(!this.personToLogin.isEmpty() && await HashingUtilities.verifyPassword(this.password, this.personToLogin.password) ) {
 
 
-        if (this.personToLogin.getRuolo() === "ADMIN") {
 
-        } else if (this.personToLogin.getRuolo() === "PAZIENTE") {
-          this.navCtrl.navigateForward('patient-home')
-        } else if (this.personToLogin.getRuolo() === "MEDICO") {
-          this.navCtrl.navigateForward('medic-home')
-        } else if (this.personToLogin.getRuolo() === "INFERMIERE") {
-          this.navCtrl.navigateForward('')
-        }
+  if(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
+    try {
+      console.log(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password))
+    } catch (error) {
+      this.setOpen(true);
+      console.log("Credenziali non valide")
+    }
+  }
 
-
-      }
       else if(!await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
         this.setOpen(true);
         console.log("Credenziali non valide")
       }
   }
+
+
   isEnable():boolean{
 
 
-    if(this.email===""||this.password===""){
-      return true
-    }
-    else return false;
+    return this.email === "" || this.password === "";
   }
 
 }
