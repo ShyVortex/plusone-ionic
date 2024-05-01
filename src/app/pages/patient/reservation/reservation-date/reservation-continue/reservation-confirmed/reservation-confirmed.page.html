@@ -13,8 +13,9 @@
   <ng-lottie height="25em" [options]="options" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
   <h2 class="info-h2">PRENOTAZIONE EFFETTUATA</h2>
   <h6 class="info-h6">La prenotazione è stata effettuata ed è ora in attesa di conferma.</h6>
-  <ion-button class="confirm-button" expand="block" fill="solid" routerLink="/home">Torna alla home</ion-button>
 </ion-content>
+
+<ion-button class="confirm-button" expand="block" fill="solid" routerLink="/home" (click)="goToHomeAnimated()">Torna alla home</ion-button>
 
 <ion-footer>
   <ion-toolbar>
