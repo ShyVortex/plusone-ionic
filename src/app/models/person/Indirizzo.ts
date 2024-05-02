@@ -4,13 +4,13 @@ export class Indirizzo {
     this._cap = ""
     this._via = ""
     this._numeroCivico = ""
-    this._citta = ""
+    this._città = ""
   }
 
   private _cap:string;
   private _via:string;
   private _numeroCivico:string;
-  private _citta:string;
+  private _città:string;
 
   get cap(): string {
     return this._cap;
@@ -36,11 +36,11 @@ export class Indirizzo {
     this._numeroCivico = value;
   }
 
-  get citta(): string {
-    return this._citta;
+  get città(): string {
+    return this._città;
   }
 
-  set citta(value: string) {
-    this._citta = value;
+  set città(value: string) {
+    this._città = value;
   }
 }

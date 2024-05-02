@@ -112,7 +112,7 @@ export class LoginPage implements OnInit,OnDestroy {
     if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
       this.navCtrl.navigateForward("patient-home", {
         state: {
-          paziente: ModelUtilities.pazienteFromJSON(this.personToLogin)
+          pazienteEmail: this.email
         }
 
       })
@@ -120,14 +120,14 @@ export class LoginPage implements OnInit,OnDestroy {
     else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
       this.navCtrl.navigateForward("nurse-home",{
         state: {
-          infermiere: ModelUtilities.infermiereFromJSON(this.personToLogin)
+          infermiereEmail: this.email
         }
       })
     }
     else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
       this.navCtrl.navigateForward("medic-home", {
         state: {
-          medico: ModelUtilities.medicoFromJSON(this.personToLogin)
+          medicoEmail: this.email
         }
       })
     }

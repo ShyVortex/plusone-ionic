@@ -36,7 +36,7 @@ export abstract class Person {
     this._id = value;
   }
 
-  get nome(): string {
+  public get nome(): string {
     return this._nome;
   }
 
