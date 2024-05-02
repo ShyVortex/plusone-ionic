@@ -42,10 +42,11 @@ export class PazienteService {
     let paziente:Paziente;
 
     return new Observable<Paziente>((observer:Observer<Paziente>)  => {
-      axios.get<Paziente>(this.pazienteURL +"/GetPazienteByEmail/" + email).then
+      axios.get<Paziente>(this.pazienteURL +"/getPazienteByEmail/" + email).then
       ((response:AxiosResponse<Paziente>)  => {
         jsonResponse = response.data
         paziente = ModelUtilities.pazienteFromJSON(jsonResponse);
+        console.log(paziente)
         observer.next(paziente);
         observer.complete();
       })

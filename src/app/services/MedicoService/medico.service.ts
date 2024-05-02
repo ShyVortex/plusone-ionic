@@ -43,7 +43,7 @@ export class MedicoService {
     let medico:Medico;
 
     return new Observable<Medico>((observer:Observer<Medico>)  => {
-      axios.get<Medico>(this.medicoURL +"/GetMedicoByEmail/" + email).then
+      axios.get<Medico>(this.medicoURL +"/getMedicoByEmail/" + email).then
       ((response:AxiosResponse<Medico>)  => {
         jsonResponse = response.data
         medico = ModelUtilities.medicoFromJSON(jsonResponse);

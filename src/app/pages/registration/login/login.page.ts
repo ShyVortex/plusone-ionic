@@ -21,6 +21,9 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
 import {Medico} from "../../../models/medico/Medico";
 import {LoginUtilities} from "./LoginUtilities";
+import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
+import {MedicoService} from "../../../services/MedicoService/medico.service";
+import {ModelUtilities} from "../../../models/ModelUtilities";
 
 @Component({
   selector: 'app-login',
@@ -41,7 +44,7 @@ export class LoginPage implements OnInit,OnDestroy {
   private hashedPassword:string;
   private personToLogin:any
 
-  constructor(private navCtrl: NavController, private pazienteService: PazienteService) {
+  constructor(private navCtrl: NavController, private pazienteService: PazienteService,private infermiereService: InfermiereService,private medicoService :MedicoService) {
     this.email = "";
     this.password = "";
     this.hashedPassword = "";
@@ -86,6 +89,18 @@ export class LoginPage implements OnInit,OnDestroy {
     if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
       this.getPazienteByEmailObservable =  this.pazienteService.getPazienteByEmail(this.email)
       this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable);
+      console.log(this.personToLogin)
+    }
+    else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
+      this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
+      this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
+    }
+    else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
+      this.getMedicoByEmailObservable =  this.medicoService.getMedicoByEmail(this.email);
+      this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
+    }
+    else if(LoginUtilities.getRuoloByEmail(this.email)=== "NON VALIDA"){
+      this.setOpen(true);
     }
 
 
@@ -93,12 +108,31 @@ export class LoginPage implements OnInit,OnDestroy {
 
 
   if(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
-    try {
-      console.log(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password))
-    } catch (error) {
-      this.setOpen(true);
-      console.log("Credenziali non valide")
+
+    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
+      this.navCtrl.navigateForward("patient-home", {
+        state: {
+          paziente: ModelUtilities.pazienteFromJSON(this.personToLogin)
+        }
+
+      })
     }
+    else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
+      this.navCtrl.navigateForward("nurse-home",{
+        state: {
+          infermiere: ModelUtilities.infermiereFromJSON(this.personToLogin)
+        }
+      })
+    }
+    else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
+      this.navCtrl.navigateForward("medic-home", {
+        state: {
+          medico: ModelUtilities.medicoFromJSON(this.personToLogin)
+        }
+      })
+    }
+
+
   }
 
       else if(!await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){

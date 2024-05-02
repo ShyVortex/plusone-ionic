@@ -10,11 +10,14 @@ export class LoginUtilities {
       else if(email.includes("@infermiere.it")){
         return "INFERMIERE"
       }
+      else {
+        return "NON VALIDA"
+      }
     }
     else{
-      throw new Error("Email non valida");
+      return "NON VALIDA"
     }
-    return ""
+
 
 
   }
