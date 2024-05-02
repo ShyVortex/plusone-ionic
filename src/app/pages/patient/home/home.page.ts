@@ -15,9 +15,10 @@ import {
 import {NavController} from "@ionic/angular";
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../models/paziente/Paziente";
 import {ModelUtilities} from "../../../models/ModelUtilities";
+import {Medico} from "../../../models/medico/Medico";
 
 @Component({
   selector: 'app-home',
@@ -41,9 +42,10 @@ export class HomePage implements OnInit {
 
   private getAllMediciSubscription:Subscription;
   protected paziente: Paziente;
-  private getPazienteByEmailSubscription:Subscription;
+  private getPazienteByEmailObservable:Observable<Paziente>;
   private emailPaziente:string
   protected citta :string
+  private getMedicoByEmailObservable:Observable<Medico>
 
   constructor(
     private navCtrl: NavController,
@@ -51,7 +53,8 @@ export class HomePage implements OnInit {
     private medicoService:MedicoService
   ) {
     this.getAllMediciSubscription = new Subscription();
-    this.getPazienteByEmailSubscription = new Subscription()
+    this.getPazienteByEmailObservable = new Observable<Paziente>();
+    this.getMedicoByEmailObservable = new Observable<Medico>();
     this.paziente = new Paziente();
     this.emailPaziente = history.state.pazienteEmail
     this.citta = ""
@@ -61,10 +64,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getAllMediciSubscription = this.medicoService.getAllMedici().subscribe();
-    this.getPazienteByEmailSubscription = this.pazienteService.getPazienteByEmail(this.emailPaziente).subscribe((value:Paziente) =>{
-        this.paziente = value
-        this.citta = this.paziente.indirizzo.città
-    })
+    this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.emailPaziente)
+    this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail("mario.bianchi@medico.it")
 
 
   }
@@ -97,8 +98,13 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
   ionViewWillEnter() {
-
-
+  this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+    this.paziente = value
+    this.citta = this.paziente.indirizzo.città
+  });
+  this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+    this.paziente.medico = value
+  });
   }
 
 }
