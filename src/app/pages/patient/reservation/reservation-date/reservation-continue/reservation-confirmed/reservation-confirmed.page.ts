@@ -16,21 +16,23 @@ import {NavController} from "@ionic/angular";
   imports: [LottieComponent, IonLabel, IonFooter, IonTabButton, IonTabs, IonTabBar, IonButton, IonImg, IonIcon, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class ReservationConfirmedPage implements OnInit {
-  constructor(
-    private navCtrl: NavController,
-  ) { }
-
-  ngOnInit() {
-  }
-
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
     loop: false,
   };
 
-  animationCreated(animationItem: AnimationItem): void {
+  constructor(private navCtrl: NavController) {
+    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time); 
+  }
 
-    console.log("Animazione renderizzata. \n\n", animationItem);
+  ngOnInit() {}
+
+  animationCreated(animationItem: AnimationItem): void {
+    //console.log("Animazione renderizzata. \n\n", animationItem);
+  }
+
+  goToHomeAnimated() {
+    this.navCtrl.navigateBack("patient-home", { animated: true });
   }
 
   goToHome() {
