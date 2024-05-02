@@ -1,0 +1,26 @@
+.top-toolbar {
+  height: 6.5em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+#settings-icon {
+  font-size: 2.25em;
+  margin-right: 0.2em;
+}
+
+.settings-content {
+  .settings-image {
+    width: 2em;
+    height: auto;
+  }
+
+  .settings-text {
+    margin-left: 1em;
+  }
+}

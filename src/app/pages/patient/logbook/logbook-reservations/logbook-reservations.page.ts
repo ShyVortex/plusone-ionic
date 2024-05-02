@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-    IonButton,
-    IonCol,
-    IonContent, IonFooter,
-    IonGrid,
-    IonHeader,
-    IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonText, IonTextarea,
-    IonTitle,
-    IonToolbar
+  IonButton,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonImg,
+  IonLabel, IonTabBar, IonTabButton, IonTabs,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-info',
-  templateUrl: './info.page.html',
-  styleUrls: ['./info.page.scss'],
+  selector: 'app-logbook-reservations',
+  templateUrl: './logbook-reservations.page.html',
+  styleUrls: ['./logbook-reservations.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs]
 })
-export class InfoPage implements OnInit {
+export class LogbookReservationsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
@@ -30,7 +30,7 @@ export class InfoPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("settings");
+    this.navCtrl.navigateBack("patient-logbook");
   }
 
   goToHome() {
