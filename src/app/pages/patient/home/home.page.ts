@@ -65,7 +65,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getAllMediciSubscription = this.medicoService.getAllMedici().subscribe();
     this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.emailPaziente)
-    this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail("mario.bianchi@medico.it")
 
 
   }
@@ -101,9 +100,6 @@ export class HomePage implements OnInit {
   this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
     this.paziente = value
     this.citta = this.paziente.indirizzo.città
-  });
-  this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
-    this.paziente.medico = value
   });
   }
 
