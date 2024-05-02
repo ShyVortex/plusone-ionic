@@ -32,6 +32,16 @@ export const routes: Routes = [
       .then(m => m.LogbookPage)
   },
   {
+    path: 'patient-logbook-prescriptions',
+    loadComponent: () => import('./pages/patient/logbook/logbook-prescriptions/logbook-prescriptions.page')
+      .then(m => m.LogbookPrescriptionsPage)
+  },
+  {
+    path: 'patient-logbook-reservations',
+    loadComponent: () => import('./pages/patient/logbook/logbook-reservations/logbook-reservations.page')
+      .then(m => m.LogbookReservationsPage)
+  },
+  {
     path: 'patient-reservation',
     loadComponent: () => import('./pages/patient/reservation/reservation.page')
       .then(m => m.ReservationPage)
@@ -110,5 +120,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  },
+  }
 ];
