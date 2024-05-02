@@ -17,31 +17,23 @@
 
   <ion-grid>
     <ion-row class="available-appointments">
-      <ion-button (click)="toggleClickedItem()" [ngClass]="{'button-clicked': this.itemClicked}" fill="outline" size="default" class="appointment-button">7:00</ion-button>
-      <ion-button fill="outline" size="default" class="appointment-button">11:00</ion-button>
-      <ion-button fill="outline" size="default" class="appointment-button">15:30</ion-button>
+      <ion-button (click)="toggleClickedItem(0)" [ngClass]="{'button-clicked': this.times[0].clicked}" fill="outline" size="default" class="appointment-button">7:00</ion-button>
+      <ion-button (click)="toggleClickedItem(1)" [ngClass]="{'button-clicked': this.times[1].clicked}" fill="outline" size="default" class="appointment-button">11:00</ion-button>
+      <ion-button (click)="toggleClickedItem(2)" [ngClass]="{'button-clicked': this.times[2].clicked}" fill="outline" size="default" class="appointment-button">15:30</ion-button>
     </ion-row>
     <ion-row class="available-appointments">
-      <ion-button fill="outline" size="default" class="appointment-button">16:15</ion-button>
-      <ion-button fill="outline" size="default" class="appointment-button">18:00</ion-button>
-      <ion-button fill="outline" size="default" class="appointment-button">18:30</ion-button>
+      <ion-button (click)="toggleClickedItem(3)" [ngClass]="{'button-clicked': this.times[3].clicked}" fill="outline" size="default" class="appointment-button">16:15</ion-button>
+      <ion-button (click)="toggleClickedItem(4)" [ngClass]="{'button-clicked': this.times[4].clicked}" fill="outline" size="default" class="appointment-button">18:00</ion-button>
+      <ion-button (click)="toggleClickedItem(5)" [ngClass]="{'button-clicked': this.times[5].clicked}" fill="outline" size="default" class="appointment-button">18:30</ion-button>
     </ion-row>
   </ion-grid>
 
   <ion-item-divider></ion-item-divider>
 
   <h6 class="policy">Eventuali modifiche o annullamenti dovranno essere effettuati attraverso l'applicazione con almeno 24 ore di anticipo rispetto all'orario programmato.</h6>
-
-  <ion-button class="confirm-button" expand="block" fill="solid" id="present-alert">Prenota</ion-button>
-
-  <ion-alert
-  trigger="present-alert"
-  header="Conferma prenotazione"
-  subHeader="Visita generale"
-  message="13/04/2024, alle ore 07:00"
-  [buttons]="alertButtons"
-  ></ion-alert>
 </ion-content>
+
+<ion-button class="confirm-button" (click)="submit()" expand="block" fill="solid" id="present-alert">Prenota</ion-button>
 
 <ion-footer>
   <ion-toolbar>

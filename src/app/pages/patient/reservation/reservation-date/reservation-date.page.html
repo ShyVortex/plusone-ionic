@@ -10,13 +10,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-row style="height: 7%"></ion-row> <!-- spazio vuoto-->
-  <h5>Specificare la <b>data</b></h5>
-  <ion-datetime presentation="date" class="reservation-datetime"></ion-datetime>
-
-  <ion-button class="reservation-button" (click)="routeToReservationContinue()">Verifica disponibilità</ion-button>
-
+  <ion-select label="Reparto" placeholder="Specifica reparto" (ionChange)="storeHospitalWard($event)">
+    <ion-select-option value="Cardiologia">Cardiologia</ion-select-option>
+    <ion-select-option value="Ortopedia">Ortopedia</ion-select-option>
+    <ion-select-option value="Pediatria">Pediatria</ion-select-option>
+    <ion-select-option value="Nefrologia">Nefrologia</ion-select-option>
+  </ion-select>
+  <h6>Specificare la <b>data</b></h6>
+  <ion-datetime presentation="date" class="datetime reservation-datetime" min="{{ this.currentDateTime }}" (ionChange)="storeDate($event)"></ion-datetime>
 </ion-content>
+
+<ion-button class="reservation-button" (click)="submit()" id="check-fields">Verifica disponibilità</ion-button>
 
 <ion-footer>
   <ion-toolbar>

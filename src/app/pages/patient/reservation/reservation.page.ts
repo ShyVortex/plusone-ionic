@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -32,11 +33,10 @@ export class ReservationPage implements OnInit {
     private navCtrl: NavController,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  routeToReservationDate() {
-    this.navCtrl.navigateForward('patient-reservation-date');
+  routeToReservationDate(type: string) {
+    this.navCtrl.navigateForward('patient-reservation-date', { state: { type } });
   }
 
   routeToSettings() {
