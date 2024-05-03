@@ -21,10 +21,18 @@ import {
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText]
 })
 export class SignupPage implements OnInit {
+  protected password: string;
+  protected isPasswordVisible: boolean = false;
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.password = "";
+  }
 
   ngOnInit() {}
+
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 
   routeToLogin() {
     this.navCtrl.navigateBack('login');

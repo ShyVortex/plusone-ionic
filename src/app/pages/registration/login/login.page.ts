@@ -35,6 +35,7 @@ import {ModelUtilities} from "../../../models/ModelUtilities";
 export class LoginPage implements OnInit,OnDestroy {
   protected email: string
   protected password: string
+  protected isPasswordVisible: boolean = false;
   protected isToastOpen: boolean = false;
   private getAllPazientiSubscription: Subscription
 
@@ -59,6 +60,10 @@ export class LoginPage implements OnInit,OnDestroy {
   ngOnInit() {
       console.log(HashingUtilities.HashPassword("pippo"))
       console.log(HashingUtilities.HashPassword("mimmo"))
+  }
+
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 
   routeToSignUp() {
