@@ -69,10 +69,7 @@ export class ReservationContinuePage implements OnInit {
       text  : 'Conferma',
       role: 'confirm',
       handler: async () => {
-        this.terapia.tipologiaTerapia = TipologiaTerapia.GENERALE;
-        this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
-        this.terapia.reparto = this.hospitalWard;
-        console.log(this.terapia)
+        this.setTerapia()
         await firstValueFrom<Terapia>(this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia))
 
 
@@ -89,7 +86,7 @@ export class ReservationContinuePage implements OnInit {
     // actualIndex inital value is a placeholder
     this.actualIndex = 6;
     this.times = [
-      { time: '7:00', clicked: false },
+      { time: '07:00', clicked: false },
       { time: '11:00', clicked: false },
       { time: '15:30', clicked: false },
       { time: '16:15', clicked: false },
@@ -178,5 +175,12 @@ export class ReservationContinuePage implements OnInit {
     this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
       this.patientToPrenote = value
     });
+  }
+  private setTerapia():void{
+    this.terapia.tipologiaTerapia = this.type;
+    this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
+    this.terapia.reparto = this.hospitalWard;
+    this.terapia.attivo = true;
+    console.log(this.terapia)
   }
 }

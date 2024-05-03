@@ -92,22 +92,19 @@ export class LoginPage implements OnInit,OnDestroy {
 
   async loginButton():Promise<void> {
 
-    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
-      this.getPazienteByEmailObservable =  this.pazienteService.getPazienteByEmail(this.email)
-      this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable);
-      console.log(this.personToLogin)
-    }
-    else if(LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE"){
-      this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
-      this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
-    }
-    else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
-      this.getMedicoByEmailObservable =  this.medicoService.getMedicoByEmail(this.email);
-      this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
-    }
-    else if(LoginUtilities.getRuoloByEmail(this.email) === "NON VALIDA"){
-      this.setOpen(true);
-    }
+      if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
+        this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)
+        this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable)
+        console.log(this.personToLogin)
+      } else if (LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE") {
+        this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
+        this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
+      } else if (LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO') {
+        this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail(this.email);
+        this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
+      } else if (LoginUtilities.getRuoloByEmail(this.email) === "NON VALIDA") {
+        this.setOpen(true);
+      }
 
 
 

@@ -49,7 +49,9 @@ export class TerapiaService {
         observer.next(terapiaAdded);
         observer.complete();
       })
-        .catch(error => {console.log(error)}
+        .catch(error => {console.log(error)
+
+        }
         );
     });
   }

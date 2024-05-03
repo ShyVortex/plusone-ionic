@@ -61,6 +61,8 @@ export class Medico extends Person {
     return this._ruolo;
   }
 
+
+
   set ruolo(value: string) {
     this._ruolo = value;
   }
