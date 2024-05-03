@@ -42,6 +42,10 @@ export class LogbookPage implements OnInit {
     this.navCtrl.navigateForward("patient-logbook-reservations");
   }
 
+  routeToLogbookDiagnosis() {
+    this.navCtrl.navigateForward("patient-logbook-diagnosis");
+  }
+
   goToHome() {
     this.navCtrl.navigateBack("patient-home", { animated: false });
   }
