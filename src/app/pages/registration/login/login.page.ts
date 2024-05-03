@@ -24,6 +24,7 @@ import {LoginUtilities} from "./LoginUtilities";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {ModelUtilities} from "../../../models/ModelUtilities";
+import {DataService} from "../../../services/data.service";
 
 @Component({
   selector: 'app-login',
@@ -36,15 +37,19 @@ export class LoginPage implements OnInit,OnDestroy {
   protected email: string
   protected password: string
   protected isToastOpen: boolean = false;
-  private getAllPazientiSubscription: Subscription
 
+  private getAllPazientiSubscription: Subscription
   private getPazienteByEmailObservable:Observable<Paziente>;
   private getInfermiereByEmailObservable:Observable<Infermiere>;
   private getMedicoByEmailObservable:Observable<Medico>;
+  private addPazienteToMedicoObservable:Observable<Medico>;
+
   private hashedPassword:string;
   private personToLogin:any
+  private medicoToAssign!:Medico
 
-  constructor(private navCtrl: NavController, private pazienteService: PazienteService,private infermiereService: InfermiereService,private medicoService :MedicoService) {
+
+  constructor(private navCtrl: NavController, private pazienteService: PazienteService,private infermiereService: InfermiereService,private medicoService :MedicoService,private dataService:DataService) {
     this.email = "";
     this.password = "";
     this.hashedPassword = "";
@@ -54,6 +59,7 @@ export class LoginPage implements OnInit,OnDestroy {
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.getInfermiereByEmailObservable = new Observable<Infermiere>();
+    this.addPazienteToMedicoObservable = new Observable<Medico>()
   }
 
   ngOnInit() {
@@ -91,7 +97,7 @@ export class LoginPage implements OnInit,OnDestroy {
       this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable);
       console.log(this.personToLogin)
     }
-    else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
+    else if(LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE"){
       this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
       this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
     }
@@ -99,7 +105,7 @@ export class LoginPage implements OnInit,OnDestroy {
       this.getMedicoByEmailObservable =  this.medicoService.getMedicoByEmail(this.email);
       this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
     }
-    else if(LoginUtilities.getRuoloByEmail(this.email)=== "NON VALIDA"){
+    else if(LoginUtilities.getRuoloByEmail(this.email) === "NON VALIDA"){
       this.setOpen(true);
     }
 
@@ -109,27 +115,19 @@ export class LoginPage implements OnInit,OnDestroy {
 
   if(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
 
-    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
-      this.navCtrl.navigateForward("patient-home", {
-        state: {
-          pazienteEmail: this.email
-        }
+    this.dataService.sendData(this.email);
 
-      })
+    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
+
+      this.navCtrl.navigateForward("patient-home")
+
     }
     else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
-      this.navCtrl.navigateForward("nurse-home",{
-        state: {
-          infermiereEmail: this.email
-        }
-      })
+      this.navCtrl.navigateForward("nurse-home")
+
     }
     else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
-      this.navCtrl.navigateForward("medic-home", {
-        state: {
-          medicoEmail: this.email
-        }
-      })
+      this.navCtrl.navigateForward("medic-home")
     }
 
 

@@ -1,12 +1,43 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AlertController, IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonIcon, IonSegmentButton, IonLabel, IonButtons, IonBackButton, IonGrid, IonRow, IonCol, IonCard, IonButton, IonItem, IonItemDivider, IonTabs, IonTabBar, IonTabButton, IonImg, NavController, IonFooter, IonAlert } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
-import { text } from 'ionicons/icons';
-import { time } from './times';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {
+  AlertController,
+  IonAlert,
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCol,
+  IonContent,
+  IonFooter,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonItemDivider,
+  IonLabel,
+  IonRow,
+  IonSegment,
+  IonSegmentButton,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonTitle,
+  IonToolbar,
+  NavController
+} from '@ionic/angular/standalone';
+import {time} from './times';
+import {DataService} from "../../../../../services/data.service";
+import {firstValueFrom, Observable, Subscription} from "rxjs";
+import {Paziente} from "../../../../../models/paziente/Paziente";
+import {Terapia} from "../../../../../models/Terapia/Terapia";
+import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
+import {TerapiaService} from "../../../../../services/terapiaService/terapia.service";
+import {TipologiaTerapia} from "../../../../../models/Terapia/tipologia-terapia";
 
 @Component({
   selector: 'app-reservation-continue',
@@ -18,11 +49,16 @@ import { time } from './times';
 export class ReservationContinuePage implements OnInit {
   times!: time[];
   actualIndex!: number;
-  
+
   type!: string;
   hospitalWard!: string;
   date!: string;
-  
+  private dataSubscription!:Subscription;
+  private patientToPrenote!:Paziente;
+  private terapia!:any;
+  private terapiaAdded:Terapia;
+  private getPazienteByEmailObservable:Observable<Paziente>;
+
   public alertButtons = [
     {
       text: 'Annulla',
@@ -32,14 +68,25 @@ export class ReservationContinuePage implements OnInit {
     {
       text  : 'Conferma',
       role: 'confirm',
-      handler: () => {
+      handler: async () => {
+        this.terapia.tipologiaTerapia = TipologiaTerapia.GENERALE;
+        this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
+        this.terapia.reparto = this.hospitalWard;
+        console.log(this.terapia)
+        await firstValueFrom<Terapia>(this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia))
+
+
         this.routeToReservationConfirmed();
       }
     }
   ];
 
-  constructor(private navCtrl: NavController, private route: Router, private alertController: AlertController) {
-    // actualIndex inital value is a placeholder 
+  constructor(private navCtrl: NavController, private route: Router, private alertController: AlertController,private dataService:DataService,private pazienteService:PazienteService,private terapiaService:TerapiaService) {
+    this.terapia = new Terapia()
+    this.getPazienteByEmailObservable = new Observable<Paziente>()
+    this.terapiaAdded = new Terapia()
+    this.terapia = {}
+    // actualIndex inital value is a placeholder
     this.actualIndex = 6;
     this.times = [
       { time: '7:00', clicked: false },
@@ -54,7 +101,13 @@ export class ReservationContinuePage implements OnInit {
     console.log(this.date = history.state.date);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
+        this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(value)
+      }
+    )
+
+  }
 
   async missingTimeAlert() {
     const alert = await this.alertController.create({
@@ -80,7 +133,7 @@ export class ReservationContinuePage implements OnInit {
   toggleClickedItem(clickedIndex: number) {
     if (this.actualIndex < 6) this.times[this.actualIndex].clicked = !this.times[this.actualIndex].clicked;
     /* if (this.actualIndex !== clickedIndex) */ this.actualIndex = clickedIndex;
-    
+
     this.times[clickedIndex].clicked = !this.times[clickedIndex].clicked;
     //console.log(this.actualIndex, clickedIndex);
   }
@@ -101,7 +154,7 @@ export class ReservationContinuePage implements OnInit {
       time: this.times[this.actualIndex].time,
     }});
   }
-  
+
   navigateBack() {
     this.navCtrl.navigateBack('patient-reservation');
   }
@@ -120,5 +173,10 @@ export class ReservationContinuePage implements OnInit {
 
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
+  }
+  ionViewWillEnter() {
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+      this.patientToPrenote = value
+    });
   }
 }

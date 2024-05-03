@@ -19,6 +19,7 @@ import {Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../models/paziente/Paziente";
 import {ModelUtilities} from "../../../models/ModelUtilities";
 import {Medico} from "../../../models/medico/Medico";
+import {DataService} from "../../../services/data.service";
 
 @Component({
   selector: 'app-home',
@@ -43,29 +44,35 @@ export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
   protected paziente: Paziente;
   private getPazienteByEmailObservable:Observable<Paziente>;
-  private emailPaziente:string
-  protected citta :string
+  private emailPaziente!:string
+  protected citta! :string
   private getMedicoByEmailObservable:Observable<Medico>
+  private dataSubscription!:Subscription;
 
   constructor(
     private navCtrl: NavController,
     private pazienteService:PazienteService,
-    private medicoService:MedicoService
+    private medicoService:MedicoService,
+    private dataService: DataService
   ) {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.paziente = new Paziente();
-    this.emailPaziente = history.state.pazienteEmail
-    this.citta = ""
+
+
 
     console.log(history.state.pazienteEmail)
   }
 
   ngOnInit() {
     this.getAllMediciSubscription = this.medicoService.getAllMedici().subscribe();
-    this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.emailPaziente)
 
+    this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
+        this.emailPaziente = value
+        this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.emailPaziente)
+      }
+    )
 
   }
 
@@ -86,18 +93,18 @@ export class HomePage implements OnInit {
   }
 
   goToLogbook() {
-    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+    this.navCtrl.navigateForward("patient-logbook", { animated: false })
   }
 
   goToReservation() {
-    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+    this.navCtrl.navigateForward("patient-reservation", { animated: false })
   }
 
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
   ionViewWillEnter() {
-  this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
     this.paziente = value
     this.citta = this.paziente.indirizzo.città
   });
