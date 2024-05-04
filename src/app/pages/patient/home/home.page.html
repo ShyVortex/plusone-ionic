@@ -50,7 +50,7 @@
     <ion-label class="list-key">
       Esenzione:
       <ion-text class="list-value">
-        {{this.paziente.esenzione}} <br/>
+        {{ paziente.esenzione ? 'SI' : 'NO' }}  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
@@ -65,7 +65,7 @@
     <ion-label class="list-key">
       Donatore organi:
       <ion-text class="list-value">
-        {{this.paziente.donatoreOrgani}} <br/>
+        {{ paziente.donatoreOrgani ? 'SI' : 'NO' }}  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>

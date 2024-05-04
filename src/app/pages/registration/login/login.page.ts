@@ -102,11 +102,9 @@ export class LoginPage implements OnInit,OnDestroy {
       await this.navCtrl.navigateForward("patient-home", this.personToLogin);
     }
     if (this.email === "default@infermiere.it" && this.password === "default") {
-      this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("nurse-home");
     }
     if (this.email === "default@medico.it" && this.password === "default") {
-      this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("medic-home");
     }
 
