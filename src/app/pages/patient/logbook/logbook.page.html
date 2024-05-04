@@ -20,7 +20,7 @@
 </ion-header>
 
 <ion-content class="logbook-content" [fullscreen]="true">
-  <ion-row style="height: 20%"></ion-row> <!-- spazio vuoto-->
+  <ion-row style="height: 10%"></ion-row> <!-- spazio vuoto-->
   <ion-item class="item-title">
     <ion-img class="item-title-icon" src="../../assets/icon/patient/logbook/book-pen.png"></ion-img>
     SELEZIONA LOG
@@ -36,6 +36,12 @@
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/patient/logbook/list-reservations.png"></ion-img>
         <ion-card-title class="card-title">Prenotazioni</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" (click)="routeToLogbookDiagnosis()">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/patient/logbook/diagnosis.png"></ion-img>
+        <ion-card-title class="card-title">Diagnosi</ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>

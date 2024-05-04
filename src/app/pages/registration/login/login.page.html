@@ -19,11 +19,11 @@
   <ion-item fill="transparent" class="ion-margin-top">
     <ion-input
                class="login-labels"
-               type="password"
+               [type]="isPasswordVisible ? 'text' : 'password'"
                label="Password"
                label-placement="floating"
                color="dark" [(ngModel)]="this.password" ></ion-input >
-    <ion-button fill="clear" slot="end" aria-label="Show/hide">
+    <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
       <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
     </ion-button>
   </ion-item>

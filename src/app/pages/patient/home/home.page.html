@@ -22,8 +22,8 @@
 <ion-content class="home-content" [fullscreen]="true">
   <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
   <ion-item class="item-title">
-    <ion-img class="item-title-icon" src="../../assets/icon/home/user-card.png"></ion-img>
-    DETTAGLI UTENTE
+    <ion-img class="item-title-icon" src="../../assets/icon/home/patient.png"></ion-img>
+    PAZIENTE
   </ion-item>
   <div class="home-container">
     <ion-label class="list-key">
@@ -43,14 +43,14 @@
     <ion-label class="list-key">
       Indirizzo:
       <ion-text class="list-value">
-        {{this.paziente.indirizzo.via}} {{this.paziente.indirizzo.numeroCivico}},{{this.citta}}({{this.paziente.indirizzo.cap}})  <br/>
+        {{this.paziente.indirizzo.via}}{{this.paziente.indirizzo.numeroCivico}}, {{this.citta}} ({{this.paziente.indirizzo.cap}})  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Esenzione:
       <ion-text class="list-value">
-        {{this.paziente.esenzione}} <br/>
+        {{ paziente.esenzione ? 'SI' : 'NO' }}  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
@@ -65,7 +65,7 @@
     <ion-label class="list-key">
       Donatore organi:
       <ion-text class="list-value">
-        {{this.paziente.donatoreOrgani}} <br/>
+        {{ paziente.donatoreOrgani ? 'SI' : 'NO' }}  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>

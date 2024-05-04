@@ -36,6 +36,7 @@ import {DataService} from "../../../services/data.service";
 export class LoginPage implements OnInit,OnDestroy {
   protected email: string
   protected password: string
+  protected isPasswordVisible: boolean = false;
   protected isToastOpen: boolean = false;
 
   private getAllPazientiSubscription: Subscription
@@ -67,6 +68,10 @@ export class LoginPage implements OnInit,OnDestroy {
       console.log(HashingUtilities.HashPassword("mimmo"))
   }
 
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
   routeToSignUp() {
     this.navCtrl.navigateForward('signup');
   }
@@ -91,6 +96,17 @@ export class LoginPage implements OnInit,OnDestroy {
 
 
   async loginButton():Promise<void> {
+    // Profili di default placeholder per far funzionare la login su Android Studio
+    if (this.email === "default@paziente.it" && this.password === "default") {
+      this.dataService.sendData(this.email);
+      await this.navCtrl.navigateForward("patient-home", this.personToLogin);
+    }
+    if (this.email === "default@infermiere.it" && this.password === "default") {
+      await this.navCtrl.navigateForward("nurse-home");
+    }
+    if (this.email === "default@medico.it" && this.password === "default") {
+      await this.navCtrl.navigateForward("medic-home");
+    }
 
       if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)

@@ -33,6 +33,23 @@ ion-tab-bar {
   }
 }
 
+// Blocca ion-header e ion-footer dallo scorrimento
+ion-header,
+ion-footer {
+  display: block;
+  position: static;
+  width: 100%;
+  z-index: 1000;
+}
+
+// Evita che ion-content trascini altri componenti nel suo scorrimento
+ion-content {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  display: flow-root;
+  overflow-y: clip;
+}
+
 .top-toolbar {
   // --ion-toolbar-background: #20D77F;  COLORE VECCHIO TEMA
   --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
@@ -104,6 +121,41 @@ ion-tab-bar {
   }
 }
 
+.legacy-toolbar {
+  --ion-toolbar-background: #65eab5;
+  height: 6.5em;
+
+  .container {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-button {
+    --color: #000;
+    margin-top: 1.5em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: xx-large;
+    flex: 0 0 auto;
+  }
+
+  .tab-name {
+    color: #000;
+    text-transform: none;
+    margin-top: 1.85em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
+}
+
+#legacy-settings-icon {
+  font-size: 2.25em;
+  margin-right: 0.2em;
+}
+
 #settings-icon {
   margin-top: -4.5em;
   margin-right: 0.2em;
@@ -118,6 +170,7 @@ ion-tab-bar {
   .home-container {
     margin-top: 1.5em;
     margin-left: 1em;
+    margin-right: 1em;
   }
 
   .item-title {
@@ -134,7 +187,7 @@ ion-tab-bar {
   }
 
   .list-key {
-    font-size: large;
+    font-size: 17px;
     font-weight: bold;
   }
 

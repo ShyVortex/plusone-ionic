@@ -74,6 +74,31 @@ export class HomePage implements OnInit {
       }
     )
 
+    if (!this.paziente.isSet()) {
+      this.paziente = new Paziente();
+      this.paziente.nome = "Mario";
+      this.paziente.cognome = "Giannini";
+      this.paziente.email = "default@paziente.it";
+      this.paziente.password = "default";
+      this.paziente.CF = "GNNMRA02R05E335P";
+      this.paziente.indirizzo.cap = "IS";
+      this.paziente.indirizzo.città = "Pesche";
+      this.citta = this.paziente.indirizzo.città;
+      this.paziente.indirizzo.via = "Contrada Lappone";
+      this.paziente.esenzione = true;
+      this.paziente.medico = new Medico();
+      this.paziente.medico.nome = "Francesco";
+      this.paziente.medico.cognome = "Leone";
+      this.paziente.donatoreOrgani = false;
+    }
+
+  }
+
+  ionViewWillEnter() {
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+      this.paziente = value
+      this.citta = this.paziente.indirizzo.città;
+    });
   }
 
   routeToSettings() {
@@ -103,11 +128,4 @@ export class HomePage implements OnInit {
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
-  ionViewWillEnter() {
-    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
-    this.paziente = value
-    this.citta = this.paziente.indirizzo.città
-  });
-  }
-
 }
