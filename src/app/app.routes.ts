@@ -62,6 +62,10 @@ export const routes: Routes = [
       .then(m => m.ReservationConfirmedPage)
   },
   {
+    path: 'patient-reservation-denied',
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-denied/reservation-denied.page').then( m => m.ReservationDeniedPage)
+  },
+  {
     path: 'patient-sos',
     loadComponent: () => import('./pages/patient/sos/sos.page')
       .then(m => m.SOSPage)
@@ -120,5 +124,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  }
+  },
 ];
