@@ -2,21 +2,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonIcon, IonImg, IonButton, IonTabBar, IonTabs, IonTabButton, IonFooter, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonFooter, IonButton, IonTabBar, IonTabs, IonTabButton, IonImg } from '@ionic/angular/standalone';
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 import { NavController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-reservation-confirmed',
-  templateUrl: './reservation-confirmed.page.html',
-  styleUrls: ['./reservation-confirmed.page.scss'],
+  selector: 'app-reservation-denied',
+  templateUrl: './reservation-denied.page.html',
+  styleUrls: ['./reservation-denied.page.scss'],
   standalone: true,
-  imports: [LottieComponent, IonLabel, IonFooter, IonTabButton, IonTabs, IonTabBar, IonButton, IonImg, IonIcon, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [LottieComponent, IonImg, IonTabButton, IonTabs, IonTabBar, IonButton, IonFooter, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class ReservationConfirmedPage implements OnInit {
+export class ReservationDeniedPage implements OnInit {
   options: AnimationOptions = {
-    path: '../../../assets/animations/green-check.json',
+    path: '../../../assets/animations/error.json',
     loop: false,
   };
 
@@ -24,14 +24,12 @@ export class ReservationConfirmedPage implements OnInit {
     alignItems: 'center',
     marginLeft: 'auto', 
     marginRight: 'auto', 
-    marginTop: '-3em', 
-    marginBottom: '-4em',
-    height: '26em',
+    marginTop: '2em', 
+    marginBottom: '4em',
+    height: '12em',
   }
-
-  constructor(private navCtrl: NavController) {
-    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time); 
-  }
+  
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {}
 
