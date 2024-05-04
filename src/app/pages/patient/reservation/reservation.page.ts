@@ -36,7 +36,10 @@ export class ReservationPage implements OnInit {
   ngOnInit() {}
 
   routeToReservationDate(type: string) {
-    this.navCtrl.navigateForward('patient-reservation-date', { state: { type } });
+    this.navCtrl.navigateForward('patient-reservation-date', { state:
+        { type }
+
+    });
   }
 
   routeToSettings() {

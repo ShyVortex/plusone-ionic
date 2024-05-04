@@ -35,7 +35,7 @@ export class TerapiaService {
         );
     });
   }
-  addTerapia(id_medico:number,id_paziente:number,terapia:any):Observable<Terapia> {
+  addTerapia(id_medico:number,id_paziente:number,terapia:Terapia):Observable<Terapia> {
     let jsonResponse :any
     let terapiaAdded:Terapia = new Terapia();
 
@@ -45,12 +45,13 @@ export class TerapiaService {
         jsonResponse = response.data
         terapiaAdded = ModelUtilities.terapieFromJSON(terapiaAdded);
 
-        console.log(terapiaAdded)
 
         observer.next(terapiaAdded);
         observer.complete();
       })
-        .catch(error => {console.log(error)}
+        .catch(error => {console.log(error)
+
+        }
         );
     });
   }

@@ -12,7 +12,7 @@
       </div>
       <div class="text-container">
         <ion-text class="profile-name" slot="end">
-          <h3>CIAO MARIO</h3>
+          <h3>Ciao {{this.paziente.nome}}</h3>
         </ion-text>
       </div>
     </div>
@@ -29,49 +29,50 @@
     <ion-label class="list-key">
       Nome:
       <ion-text class="list-value">
-        Mario <br/>
+        {{this.paziente.nome}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Cognome:
       <ion-text class="list-value">
-        Giannini <br/>
+        {{this.paziente.cognome}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Indirizzo:
       <ion-text class="list-value">
-        Contrada Lappone, Pesche (IS) <br/>
+        {{this.paziente.indirizzo.via}} {{this.paziente.indirizzo.numeroCivico}},{{this.citta}}({{this.paziente.indirizzo.cap}})  <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Esenzione:
       <ion-text class="list-value">
-        Reddito, E02 <br/>
+        {{this.paziente.esenzione}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Medico curante:
       <ion-text class="list-value">
-        Francesco Leone <br/>
+          {{paziente?.medico?.nome }} {{ paziente?.medico?.cognome }}
+        <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Donatore organi:
       <ion-text class="list-value">
-        NO <br/>
+        {{this.paziente.donatoreOrgani}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Codice fiscale:
       <ion-text class="list-value">
-        GNNMRA02R05E335P <br/><br/>
+        {{this.paziente.CF}} <br/><br/>
       </ion-text>
     </ion-label>
   </div>

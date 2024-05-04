@@ -1,4 +1,4 @@
 export enum TipologiaTerapia {
-  GENERALE,
-  SPECIALISTICA
+  GENERALE="GENERALE",
+  SPECIALISTICA="SPECIALISTICA"
 }
