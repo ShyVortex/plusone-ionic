@@ -71,8 +71,7 @@ export class ReservationContinuePage implements OnInit {
       handler: async () => {
         this.setTerapia()
         await firstValueFrom<Terapia>(this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia))
-
-
+        this.routeToReservationConfirmed();
         this.routeToReservationConfirmed();
       }
     }
@@ -150,6 +149,10 @@ export class ReservationContinuePage implements OnInit {
       date: this.date,
       time: this.times[this.actualIndex].time,
     }});
+  }
+
+  routeToReservationDenied() {
+    this.navCtrl.navigateForward('patient-reservation-denied');
   }
 
   navigateBack() {
