@@ -3,7 +3,7 @@ import {person} from "ionicons/icons";
 export abstract class Person {
 
   protected constructor(
-     id: Number,
+     id: number,
      nome: string,
      cognome: string,
      email: string,
@@ -20,7 +20,7 @@ export abstract class Person {
 
 
 
-  protected _id:Number;
+  protected _id:number;
   protected _nome:string;
   protected _cognome:string;
   protected _email:string;
@@ -28,15 +28,15 @@ export abstract class Person {
   protected _CF :string
 
 
-  get id(): Number {
+  get id(): number {
     return this._id;
   }
 
-  set id(value: Number) {
+  set id(value: number) {
     this._id = value;
   }
 
-  get nome(): string {
+  public get nome(): string {
     return this._nome;
   }
 

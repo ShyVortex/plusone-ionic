@@ -6,37 +6,47 @@ export class Terapia {
 
   constructor() {
     this._id = 0
-    this._orario = new Date()
+    this._orario = ""
     this._informazioneAggiuntive = ""
     this._causa = ""
     this._attivo = false;
     this._medicoCurante = new Medico()
     this._paziente = new Paziente()
     this._tipologiaTerapia = TipologiaTerapia.GENERALE
+    this._reparto = ""
   }
 
-  private _id:Number;
-  private _orario:Date;
+  private _id:number;
+  private _orario:string;
   private _informazioneAggiuntive:string;
   private _causa:string;
   private _attivo:boolean;
   private _medicoCurante:Medico;
   private _paziente:Paziente;
   private _tipologiaTerapia:TipologiaTerapia;
+  private _reparto:string;
 
-  get id(): Number {
+  get reparto(): string {
+    return this._reparto;
+  }
+
+  set reparto(value: string) {
+    this._reparto = value;
+  }
+
+  get id(): number {
     return this._id;
   }
 
-  set id(value: Number) {
+  set id(value: number) {
     this._id = value;
   }
 
-  get orario(): Date {
+  get orario(): string {
     return this._orario;
   }
 
-  set orario(value: Date) {
+  set orario(value: string) {
     this._orario = value;
   }
 

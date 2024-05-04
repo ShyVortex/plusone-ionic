@@ -54,4 +54,22 @@ export class MedicoService {
         );
     });
   }
+  addPazienteToMedico(id_medico:number,id_paziente:number) : Observable<Medico> {
+
+    let jsonResponse:any;
+    let medico:Medico;
+
+    return new Observable<Medico>((observer:Observer<Medico>)  => {
+    axios.put<Medico>(this.medicoURL + "/addPazienteToMedico" + "/"+ id_medico + "/"+ id_paziente).then
+    ((response:AxiosResponse<Medico>)  => {
+      jsonResponse = response.data
+      medico = ModelUtilities.medicoFromJSON(jsonResponse);
+
+      observer.next(medico);
+      observer.complete();
+    })
+      .catch(error => {console.log(error)}
+      );
+  });
+  }
 }
