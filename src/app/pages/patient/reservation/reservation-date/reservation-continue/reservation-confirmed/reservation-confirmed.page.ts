@@ -21,6 +21,15 @@ export class ReservationConfirmedPage implements OnInit {
     loop: false,
   };
 
+  styles: Partial<CSSStyleDeclaration> = {
+    alignItems: 'center',
+    marginLeft: 'auto', 
+    marginRight: 'auto', 
+    marginTop: '-3em', 
+    marginBottom: '-4em',
+    height: '26em',
+  }
+
   constructor(private navCtrl: NavController) {
     console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time); 
   }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonButton,
-  IonContent,
+  IonContent, IonFooter,
   IonHeader,
   IonIcon,
   IonImg, IonItem, IonLabel,
@@ -19,7 +19,7 @@ import {NavController} from "@ionic/angular";
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonText, IonButton, IonLabel]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonText, IonButton, IonLabel, IonFooter]
 })
 export class SettingsPage implements OnInit {
 
@@ -49,5 +49,21 @@ export class SettingsPage implements OnInit {
 
   logout() {
     this.navCtrl.navigateRoot("login");
+  }
+
+  goToHome() {
+    this.navCtrl.navigateBack("patient-home", { animated: false });
+  }
+
+  goToLogbook() {
+    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+  }
+
+  goToReservation() {
+    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+  }
+
+  goToSOS() {
+    this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }

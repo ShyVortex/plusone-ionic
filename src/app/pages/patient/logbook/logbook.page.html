@@ -19,6 +19,28 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="logbook-content" [fullscreen]="true">
+  <ion-row style="height: 20%"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="item-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/patient/logbook/book-pen.png"></ion-img>
+    SELEZIONA LOG
+  </ion-item>
+  <div class="card-container">
+    <ion-card class="select-card" (click)="routeToLogbookPrescriptions()">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/patient/logbook/health-report.png"></ion-img>
+        <ion-card-title class="card-title">Ricette</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" (click)="routeToLogbookReservations()">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/patient/logbook/list-reservations.png"></ion-img>
+        <ion-card-title class="card-title">Prenotazioni</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <ion-tabs class="bottom-bar">
