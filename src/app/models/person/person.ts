@@ -16,6 +16,7 @@ export abstract class Person {
     this._email = email;
     this._password = password;
     this._CF = CF;
+    this._isSet = false;
   }
 
 
@@ -26,7 +27,7 @@ export abstract class Person {
   protected _email:string;
   protected _password:string;
   protected _CF :string
-
+  protected _isSet:boolean;
 
   get id(): number {
     return this._id;
@@ -74,6 +75,14 @@ export abstract class Person {
 
   set CF(value: string) {
     this._CF = value;
+  }
+
+  public isSet():boolean {
+    return this._isSet;
+  }
+
+  public setState(value: boolean) {
+    this._isSet = value;
   }
 
   public isEmpty():boolean{
