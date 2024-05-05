@@ -45,6 +45,8 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
     ((response:AxiosResponse<Infermiere>)  => {
       jsonResponse = response.data
       infermiere = ModelUtilities.infermiereFromJSON(jsonResponse);
+      if (!infermiere.isEmpty())
+        infermiere.setState(true);
       observer.next(infermiere);
       observer.complete();
     })

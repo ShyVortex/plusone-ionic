@@ -20,17 +20,38 @@
                 class="report-select"
                 fill="solid"
                 placeholder="Seleziona">
-      <ion-select-option value="patient-home">
+      <ion-select-option *ngIf="ruolo === 'PAZIENTE'" value="patient-home">
         Home
       </ion-select-option>
-      <ion-select-option value="patient-notifs">
-        Notifiche
+      <ion-select-option *ngIf="ruolo === 'PAZIENTE'" value="patient-logbook">
+        Registro
       </ion-select-option>
-      <ion-select-option value="patient-reservation">
+      <ion-select-option *ngIf="ruolo === 'PAZIENTE'" value="patient-reservation">
         Prenotazione
       </ion-select-option>
-      <ion-select-option value="patient-sos">
+      <ion-select-option *ngIf="ruolo === 'PAZIENTE'" value="patient-sos">
         SOS
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'INFERMIERE'" value="nurse-home">
+        Home
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'INFERMIERE'" value="nurse-drugs">
+        Farmaci
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'INFERMIERE'" value="nurse-shifts">
+        Turni
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'INFERMIERE'" value="nurse-sos">
+        SOS
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-home">
+        Home
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-notifs">
+        Notifiche
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-home">
+        Prescrizioni
       </ion-select-option>
     </ion-select>
   </div>

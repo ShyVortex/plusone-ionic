@@ -45,9 +45,6 @@ export class BugreportPage implements OnInit {
       this.ruolo = "MEDICO";
   }
 
-  /* TODO logica che inserisce all'interno degli ion-select-option
-      le schermate corrette a seconda del tipo di utente */
-
   navigateBack() {
     this.navCtrl.navigateBack("settings");
   }
