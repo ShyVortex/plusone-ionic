@@ -34,6 +34,9 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.infermiere.isEmpty())
+      this.infermiere.setState(false);
+
     if (!this.infermiere.isSet()) {
       this.infermiere.nome = "Mario";
       this.infermiere.cognome = "Giannini";

@@ -77,6 +77,9 @@ export class HomePage implements OnInit {
       }
     )
 
+    if (this.paziente.isEmpty())
+      this.paziente.setState(false);
+
     if (!this.paziente.isSet()) {
       this.paziente.nome = "Mario";
       this.paziente.cognome = "Giannini";
