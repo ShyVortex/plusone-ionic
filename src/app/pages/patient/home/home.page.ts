@@ -20,6 +20,8 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {ModelUtilities} from "../../../models/ModelUtilities";
 import {Medico} from "../../../models/medico/Medico";
 import {DataService} from "../../../services/data.service";
+import {NavigationExtras} from "@angular/router";
+import {PersonaService} from "../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-home',
@@ -51,9 +53,10 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private personaService:PersonaService,
     private pazienteService:PazienteService,
     private medicoService:MedicoService,
-    private dataService: DataService
+    private dataService: DataService,
   ) {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
@@ -75,7 +78,6 @@ export class HomePage implements OnInit {
     )
 
     if (!this.paziente.isSet()) {
-      this.paziente = new Paziente();
       this.paziente.nome = "Mario";
       this.paziente.cognome = "Giannini";
       this.paziente.email = "default@paziente.it";
@@ -102,10 +104,12 @@ export class HomePage implements OnInit {
   }
 
   routeToSettings() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("settings");
   }
 
   routeToSecurity() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("settings-security");
   }
 
