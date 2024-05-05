@@ -16,7 +16,7 @@
         Versione app:
         <br />
         <ion-text class="build-ver">
-          dev-build_tAOpm
+          dev-build_ZGGce
         </ion-text>
       </p>
     </ion-text>
@@ -31,17 +31,37 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToLogbook()">
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'PAZIENTE'" (click)="goToLogbook()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
           Registro
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToReservation()">
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'PAZIENTE'" (click)="goToReservation()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
           Prenota
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
+        <ion-tab-button class="bottom-bar-buttons"  *ngIf="ruolo === 'PAZIENTE'" (click)="goToPatientSOS()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
           SOS
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToDrugs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/drugs.png"></ion-img>
+          Farmaci
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToShifts()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
+          Turni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToNurseSOS()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'MEDICO'" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'MEDICO'" (click)="goToPrescriptions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
+          Prescrizioni
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

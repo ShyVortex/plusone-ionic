@@ -12,7 +12,7 @@
       </div>
       <div class="text-container">
         <ion-text class="profile-name" slot="end">
-          <h3>CIAO MARIO</h3>
+          <h3>CIAO {{this.medico.nome}}</h3>
         </ion-text>
       </div>
     </div>
@@ -29,42 +29,42 @@
     <ion-label class="list-key">
       Nome:
       <ion-text class="list-value">
-        Mario <br/>
+        {{this.medico.nome}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Cognome:
       <ion-text class="list-value">
-        Giannini <br/>
+        {{this.medico.cognome}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Posto di lavoro:
       <ion-text class="list-value">
-        Ospedale Ferdinando Veneziale, Isernia (IS) <br/>
+        {{this.medico.ospedale}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Reparto:
       <ion-text class="list-value">
-        Cardiologia <br/>
+        {{this.medico.reparto}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Ruolo:
       <ion-text class="list-value">
-        Primario <br/>
+        {{this.medico.ruolo}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>
     <ion-label class="list-key">
       Codice fiscale:
       <ion-text class="list-value">
-        GNNMRA02R05E335P <br/><br/>
+        {{this.medico.CF}} <br/><br/>
       </ion-text>
     </ion-label>
   </div>

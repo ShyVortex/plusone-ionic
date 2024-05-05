@@ -47,6 +47,8 @@ export class MedicoService {
       ((response:AxiosResponse<Medico>)  => {
         jsonResponse = response.data
         medico = ModelUtilities.medicoFromJSON(jsonResponse);
+        if (!medico.isEmpty())
+          medico.setState(true);
         observer.next(medico);
         observer.complete();
       })
