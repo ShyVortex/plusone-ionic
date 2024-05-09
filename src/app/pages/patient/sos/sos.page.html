@@ -7,7 +7,7 @@
     </ion-icon>
     <div class="profile-container">
       <div class="images-container">
-        <ion-img class="profile-image" src="../../assets/icon/home/new-user.png"></ion-img>
+        <ion-img class="profile-image" src="../../assets/icon/home/stock-photo.png"></ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
       <div class="text-container">
@@ -18,6 +18,30 @@
     </div>
   </ion-toolbar>
 </ion-header>
+
+<ion-content class="sos-content">
+  <ion-row style="height: 10%"></ion-row> <!-- spazio vuoto-->
+  <div class="warning-container">
+    <ion-item class="warning-sos" lines="none">
+      <ion-img class="warning-sign" src="../../assets/icon/patient/sos/warning-icon.png"></ion-img>
+      <ion-text class="warning-text">Le false dichiarazioni non saranno tollerate.</ion-text>
+    </ion-item>
+  </div>
+  <div class="card-container">
+    <ion-card class="emergency-card">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/patient/sos/emergency.png"></ion-img>
+        <ion-card-title class="card-title">Emergenza</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" (click)="routeToSurvey()">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/patient/sos/survey.png"></ion-img>
+        <ion-card-title class="card-title">Questionario</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
 
 <ion-footer>
   <ion-toolbar>

@@ -76,6 +76,10 @@ export const routes: Routes = [
       .then(m => m.SOSPage)
   },
   {
+    path: 'patient-sos-survey',
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page').then(m => m.SosSurveyPage)
+  },
+  {
     path: 'nurse-home',
     loadComponent: () => import('./pages/nurse/home/home.page')
       .then(m => m.HomePage)
