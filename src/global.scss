@@ -258,32 +258,12 @@ ion-content {
     font-size: large;
   }
 
-  .edit-icon {
-    width: 1.5em;
-    height: auto;
-  }
-}
+  .edit-button {
+    pointer-events: auto !important;
 
-.variables-container-alt {
-  margin-top: 2em;
-
-  .edit-labels {
-    margin-top: 1em;
-    margin-left: 1.1em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
-  }
-
-  .label-textarea {
-    width: 90%;
-    margin-left: 1em;
-    pointer-events: none;
-    font-family: Inter, sans-serif;
-    font-size: large;
-  }
-
-  .edit-icon {
-    width: 1.5em;
-    height: auto;
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
   }
 }

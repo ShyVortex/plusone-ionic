@@ -17,24 +17,68 @@
   </ion-item>
   <div class="variables-container">
     <ion-label class="edit-labels">Email
-      <ion-textarea class="label-textarea"
+      <ion-textarea #emailAreaRef
+                    class="label-textarea"
                     fill="outline"
                     readonly="true"
-                    placeholder="{{this.persona.email}}">
-        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+                    value="{{this.persona.email}}">
+        <ion-button class="edit-button"
+                    *ngIf="!editableMail"
+                    fill="clear"
+                    slot="end"
+                    aria-label="Show/hide"
+                    (click)="editEmail()">
           <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+        <ion-button class="edit-button"
+                    *ngIf="editableMail"
+                    fill="clear"
+                    slot="end"
+                    aria-label="Show/hide"
+                    (click)="cancelEditEmail()">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/cancel.png"></ion-img>
+        </ion-button>
+        <ion-button class="edit-button"
+                    *ngIf="editableMail"
+                    fill="clear"
+                    slot="end"
+                    aria-label="Show/hide"
+                    (click)="confirmEditEmail()">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/check.png"></ion-img>
         </ion-button>
       </ion-textarea>
     </ion-label>
-  </div>
-  <div class="variables-container-alt">
     <ion-label class="edit-labels">Password
-      <ion-textarea class="label-textarea"
+      <ion-textarea #passwordAreaRef
+                    class="label-textarea"
                     fill="outline"
                     readonly="true"
-                    placeholder="........">
-        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+                    value="........">
+        <ion-button class="edit-button"
+                    *ngIf="!editablePass"
+                    fill="clear"
+                    slot="end"
+                    aria-label="Show/hide"
+                    (click)="editPassword()">
           <ion-img class="edit-icon" src="../../assets/icon/settings/edit.png"></ion-img>
+        </ion-button>
+        <ion-button class="edit-button"
+                    *ngIf="editablePass"
+                    fill="clear"
+                    slot="end"
+                    aria-label="Show/hide"
+                    (click)="cancelEditPassword()">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/cancel.png"></ion-img>
+        </ion-button>
+      </ion-textarea>
+    </ion-label>
+    <ion-label class="edit-labels" *ngIf="editablePass">Conferma password
+      <ion-textarea #confirmPassRef
+                    class="confirm-textarea"
+                    fill="outline"
+                    readonly="false">
+        <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="confirmEditPassword()">
+          <ion-img class="edit-icon" src="../../assets/icon/settings/check.png"></ion-img>
         </ion-button>
       </ion-textarea>
     </ion-label>

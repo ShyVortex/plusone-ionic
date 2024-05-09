@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -25,7 +25,16 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
 export class SecurityPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
+  protected passwordArea: string = "";
+  protected editableMail: boolean = false;
+  protected editablePass: boolean = false;
   protected readonly LoginUtilities = LoginUtilities;
+
+  /* Il punto esclamativo assicura a
+  Ionic che la variabile sarà inizializzata prima dell'utilizzo */
+  @ViewChild('emailAreaRef') emailAreaRef!: IonTextarea;
+  @ViewChild('passwordAreaRef') passwordAreaRef!: IonTextarea;
+  @ViewChild('confirmPassRef') confirmPassRef!: IonTextarea;
 
   constructor(
     private navCtrl: NavController,
@@ -46,6 +55,38 @@ export class SecurityPage implements OnInit {
 
   navigateBack() {
     this.navCtrl.navigateBack("settings");
+  }
+
+  async editEmail() {
+    this.editableMail = true;
+    this.emailAreaRef.value = "";
+    this.emailAreaRef.readonly = false;
+  }
+
+  editPassword() {
+    this.editablePass = true;
+    this.passwordAreaRef.value = "";
+    this.passwordAreaRef.readonly = false;
+  }
+
+  async cancelEditEmail() {
+    this.emailAreaRef.value = this.persona.email;
+    this.emailAreaRef.readonly = true;
+    this.editableMail = false;
+  }
+
+  async confirmEditEmail() {
+
+  }
+
+  async cancelEditPassword() {
+    this.passwordAreaRef.value = "........";
+    this.passwordAreaRef.readonly = true;
+    this.editablePass = false;
+  }
+
+  async confirmEditPassword() {
+
   }
 
   goToHome() {
