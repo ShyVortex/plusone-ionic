@@ -40,6 +40,10 @@ export class SOSPage implements OnInit {
     this.navCtrl.navigateForward("settings");
   }
 
+  routeToEmergency() {
+    this.navCtrl.navigateForward("patient-sos-emergency");
+  }
+
   routeToSurvey() {
     this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos-survey");

@@ -4,11 +4,11 @@
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  margin-bottom: 0em;
   text-align: center;
 }
 
 .info-h3 {
+  margin-top: 2.5em;
   color: var(--Black, #000);
   font-style: normal;
   font-weight: 400;
@@ -24,16 +24,7 @@
   width: 85%;
 }
 
-.top-toolbar {
-  height: 6.5em;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-
-  .container {
-    display: flex;
-    align-items: center;
-  }
-
+.legacy-toolbar {
   .tab-name {
     margin-left: 1em;
     margin-top: 2.3em;

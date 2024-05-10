@@ -80,6 +80,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page').then(m => m.SosSurveyPage)
   },
   {
+    path: 'patient-sos-emergency',
+    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page').then(m => m.SosEmergencyPage)
+  },
+  {
+    path: 'patient-sos-survey-confirmed',
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page').then(m => m.SosSurveyConfirmedPage)
+  },
+  {
     path: 'nurse-home',
     loadComponent: () => import('./pages/nurse/home/home.page')
       .then(m => m.HomePage)

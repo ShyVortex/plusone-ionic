@@ -33,6 +33,10 @@ export class SosSurveyPage implements OnInit {
     this.navCtrl.navigateBack("patient-sos");
   }
 
+  routeToSurveyConfirmed() {
+    this.navCtrl.navigateForward("patient-sos-survey-confirmed");
+  }
+
   goToHome() {
     this.navCtrl.navigateBack("patient-home", { animated: false });
   }

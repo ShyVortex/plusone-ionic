@@ -83,8 +83,8 @@ export class HomePage implements OnInit {
     if (!this.paziente.isSet()) {
       this.paziente.nome = "Mario";
       this.paziente.cognome = "Giannini";
-      this.paziente.email = "default@paziente.it";
-      this.paziente.password = "default";
+      this.paziente.email = "mario.giannini@paziente.it";
+      this.paziente.password = "password123";
       this.paziente.CF = "GNNMRA02R05E335P";
       this.paziente.indirizzo.cap = "IS";
       this.paziente.indirizzo.città = "Pesche";
@@ -92,8 +92,8 @@ export class HomePage implements OnInit {
       this.paziente.indirizzo.via = "Contrada Lappone";
       this.paziente.esenzione = true;
       this.paziente.medico = new Medico();
-      this.paziente.medico.nome = "Francesco";
-      this.paziente.medico.cognome = "Leone";
+      this.paziente.medico.nome = "Victor Ivan";
+      this.paziente.medico.cognome = "Conde";
       this.paziente.donatoreOrgani = false;
     }
 

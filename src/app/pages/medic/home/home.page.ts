@@ -61,11 +61,12 @@ export class HomePage implements OnInit {
       this.medico.setState(false);
 
     if (!this.medico.isSet()) {
-      this.medico.nome = "Mario";
-      this.medico.cognome = "Giannini";
-      this.medico.email = "default@medico.it";
+      this.medico.isManager = true;
+      this.medico.nome = "Victor";
+      this.medico.cognome = "Conde";
+      this.medico.email = "victor.conde@medico.it";
       this.medico.password = "default";
-      this.medico.CF = "GNNMRA02R05E335P";
+      this.medico.CF = "CNDVTR85D07E335W";
       this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.medico.reparto = "Cardiologia";
       this.medico.ruolo = "Primario";
