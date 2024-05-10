@@ -46,7 +46,7 @@ export class BugreportPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("settings");
+    this.navCtrl.back();
   }
 
   goToHome() {

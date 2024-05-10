@@ -17,6 +17,7 @@ import {
   IonSegmentButton,
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
+import {PersonaService} from "../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-reservation',
@@ -28,10 +29,14 @@ import {NavController} from "@ionic/angular";
             IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle, IonSegment, IonSegmentButton, IonDatetime,]
 })
 export class ReservationPage implements OnInit {
+  protected paziente: any;
 
   constructor(
     private navCtrl: NavController,
-  ) { }
+    private personaService: PersonaService,
+  ) {
+    this.paziente = personaService.getPersona();
+  }
 
   ngOnInit() {}
 
@@ -43,22 +48,27 @@ export class ReservationPage implements OnInit {
   }
 
   routeToSettings() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("settings");
   }
 
   goToHome() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateBack("patient-home", { animated: false });
   }
 
   goToLogbook() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-logbook", { animated: false });
   }
 
   goToReservation() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-reservation", { animated: false });
   }
 
   goToSOS() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }

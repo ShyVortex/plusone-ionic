@@ -54,7 +54,7 @@ export class SecurityPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("settings");
+    this.navCtrl.back();
   }
 
   async editEmail() {
@@ -63,7 +63,7 @@ export class SecurityPage implements OnInit {
     this.emailAreaRef.readonly = false;
   }
 
-  editPassword() {
+  async editPassword() {
     this.editablePass = true;
     this.passwordAreaRef.value = "";
     this.passwordAreaRef.readonly = false;

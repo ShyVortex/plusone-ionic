@@ -2,7 +2,8 @@
   <ion-toolbar class="top-toolbar">
     <ion-icon id="settings-icon"
               src="../../assets/icon/settings/settings.svg"
-              slot="end">
+              slot="end"
+              (click)="routeToSettings()">
     </ion-icon>
     <div class="profile-container">
       <div class="images-container">
@@ -11,7 +12,7 @@
       </div>
       <div class="text-container">
         <ion-text class="profile-name" slot="end">
-          <h3>CIAO MARIO</h3>
+          <h3>CIAO {{this.medico.nome}}</h3>
         </ion-text>
       </div>
     </div>

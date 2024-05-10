@@ -121,18 +121,22 @@ export class HomePage implements OnInit {
   }
 
   goToHome() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateBack("patient-home", { animated: false });
   }
 
   goToLogbook() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-logbook", { animated: false })
   }
 
   goToReservation() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-reservation", { animated: false })
   }
 
   goToSOS() {
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 }
