@@ -29,16 +29,11 @@
         transform: translateY(-50%);
       }
 
-      .confirm-textarea {
-        margin-top: 0.5em;
-        margin-bottom: 1.5em;
-        height: 1em;
-
-        width: 90%;
-        margin-left: 1em;
-        pointer-events: auto !important;
-        font-family: Inter, sans-serif;
-        font-size: large;
+      .confirm-icon {
+        width: 1.5em;
+        height: auto;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
   }

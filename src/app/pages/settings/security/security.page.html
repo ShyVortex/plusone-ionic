@@ -20,7 +20,7 @@
       <ion-textarea #emailAreaRef
                     class="label-textarea"
                     fill="outline"
-                    readonly="true"
+                    [readonly]=!editableMail
                     value="{{this.persona.email}}">
         <ion-button class="edit-button"
                     *ngIf="!editableMail"
@@ -52,7 +52,7 @@
       <ion-textarea #passwordAreaRef
                     class="label-textarea"
                     fill="outline"
-                    readonly="true"
+                    [readonly]=!editablePass
                     value="........">
         <ion-button class="edit-button"
                     *ngIf="!editablePass"
@@ -74,11 +74,11 @@
     </ion-label>
     <ion-label class="edit-labels" *ngIf="editablePass">Conferma password
       <ion-textarea #confirmPassRef
-                    class="confirm-textarea"
+                    class="label-textarea"
                     fill="outline"
-                    readonly="false">
+                    [readonly]=!editablePass>
         <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="confirmEditPassword()">
-          <ion-img class="edit-icon" src="../../assets/icon/settings/check.png"></ion-img>
+          <ion-img class="confirm-icon" src="../../assets/icon/settings/check.png"></ion-img>
         </ion-button>
       </ion-textarea>
     </ion-label>

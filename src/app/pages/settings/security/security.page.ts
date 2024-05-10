@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -38,7 +38,8 @@ export class SecurityPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private cdr: ChangeDetectorRef
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
@@ -53,6 +54,10 @@ export class SecurityPage implements OnInit {
       this.ruolo = "MEDICO";
   }
 
+  ngAfterViewInit() {
+    console.log('Readonly:', this.emailAreaRef.readonly);
+  }
+
   navigateBack() {
     this.navCtrl.back();
   }
@@ -60,19 +65,19 @@ export class SecurityPage implements OnInit {
   async editEmail() {
     this.editableMail = true;
     this.emailAreaRef.value = "";
-    this.emailAreaRef.readonly = false;
+    this.cdr.detectChanges();
   }
 
   async editPassword() {
     this.editablePass = true;
     this.passwordAreaRef.value = "";
-    this.passwordAreaRef.readonly = false;
+    this.cdr.detectChanges();
   }
 
   async cancelEditEmail() {
     this.emailAreaRef.value = this.persona.email;
-    this.emailAreaRef.readonly = true;
     this.editableMail = false;
+    this.cdr.detectChanges();
   }
 
   async confirmEditEmail() {
@@ -81,8 +86,8 @@ export class SecurityPage implements OnInit {
 
   async cancelEditPassword() {
     this.passwordAreaRef.value = "........";
-    this.passwordAreaRef.readonly = true;
     this.editablePass = false;
+    this.cdr.detectChanges();
   }
 
   async confirmEditPassword() {
