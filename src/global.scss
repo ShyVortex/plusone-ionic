@@ -149,6 +149,18 @@ ion-content {
     font-weight: bold;
     font-size: 25px;
   }
+
+  .tab-name-bl {
+    // bl = button-less
+    color: #000;
+    text-transform: none;
+    margin-left: 1.25em;
+    margin-top: 2.35em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
 }
 
 #legacy-settings-icon {
@@ -266,3 +278,34 @@ ion-content {
     }
   }
 }
+
+// Configurazione schermate animazioni //
+.ion-padding {
+  .info-h6 {
+    color: var(--Black, #000);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align: center;
+  }
+
+  .info-h3 {
+    color: var(--Black, #000);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+  }
+}
+
+.anim-confirm {
+  .confirm-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    width: 85%;
+  }
+}
+/////////////////////////////////////////////

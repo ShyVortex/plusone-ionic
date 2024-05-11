@@ -7,7 +7,7 @@ import {
   IonFooter,
   IonHeader,
   IonImg,
-  IonLabel, IonTabBar, IonTabButton, IonTabs,
+  IonLabel, IonTabBar, IonTabButton, IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -20,7 +20,7 @@ import {AnimationItem} from "lottie-web";
   templateUrl: './bugreport-confirm.page.html',
   styleUrls: ['./bugreport-confirm.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, LottieComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, LottieComponent, IonText]
 })
 export class BugreportConfirmPage implements OnInit {
   options: AnimationOptions = {
