@@ -46,12 +46,7 @@ export class SettingsPage implements OnInit {
   }
 
   navigateBack() {
-    if (this.ruolo === 'PAZIENTE')
-      this.navCtrl.navigateBack("patient-home");
-    else if (this.ruolo === 'INFERMIERE')
-      this.navCtrl.navigateBack("nurse-home");
-    else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("medic-home");
+    this.navCtrl.back();
   }
 
   routeToSecurity() {

@@ -16,7 +16,7 @@
       class="report-text">
       In quale sezione hai riscontrato un errore?
     </ion-label>
-    <ion-select
+    <ion-select #reportSelectRef
                 class="report-select"
                 fill="solid"
                 placeholder="Seleziona">
@@ -60,17 +60,18 @@
       class="report-text">
       Descrivi il problema
     </ion-label>
-    <ion-textarea class="issue-textarea"
+    <ion-textarea #reportAreaRef
+                  class="issue-textarea"
                   fill="outline"
-                  readonly="true">
+                  readonly="false">
     </ion-textarea>
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button class="reset-button">Reset</ion-button>
+          <ion-button class="reset-button" (click)="onReset()">Reset</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button class="confirm-button">Conferma</ion-button>
+          <ion-button class="confirm-button" (click)="onConfirm()">Conferma</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

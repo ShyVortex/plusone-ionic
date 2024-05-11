@@ -76,6 +76,18 @@ export const routes: Routes = [
       .then(m => m.SOSPage)
   },
   {
+    path: 'patient-sos-survey',
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page').then(m => m.SosSurveyPage)
+  },
+  {
+    path: 'patient-sos-emergency',
+    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page').then(m => m.SosEmergencyPage)
+  },
+  {
+    path: 'patient-sos-survey-confirmed',
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page').then(m => m.SosSurveyConfirmedPage)
+  },
+  {
     path: 'nurse-home',
     loadComponent: () => import('./pages/nurse/home/home.page')
       .then(m => m.HomePage)
@@ -124,6 +136,10 @@ export const routes: Routes = [
     path: 'settings-bugreport',
     loadComponent: () => import('./pages/settings/bugreport/bugreport.page')
       .then(m => m.BugreportPage)
+  },
+  {
+    path: 'settings-bugreport-confirm',
+    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page').then(m => m.BugreportConfirmPage)
   },
   {
     path: 'settings-info',

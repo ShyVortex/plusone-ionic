@@ -149,6 +149,18 @@ ion-content {
     font-weight: bold;
     font-size: 25px;
   }
+
+  .tab-name-bl {
+    // bl = button-less
+    color: #000;
+    text-transform: none;
+    margin-left: 1.25em;
+    margin-top: 2.35em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
+    font-weight: bold;
+    font-size: 25px;
+  }
 }
 
 #legacy-settings-icon {
@@ -253,37 +265,51 @@ ion-content {
   .label-textarea {
     width: 90%;
     margin-left: 1em;
-    pointer-events: none;
     font-family: Inter, sans-serif;
     font-size: large;
   }
 
-  .edit-icon {
-    width: 1.5em;
-    height: auto;
+  .edit-button {
+    pointer-events: auto !important;
+
+    .edit-icon {
+      width: 1.5em;
+      height: auto;
+    }
   }
 }
 
-.variables-container-alt {
-  margin-top: 2em;
-
-  .edit-labels {
-    margin-top: 1em;
-    margin-left: 1.1em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
+// Configurazione schermate animazioni //
+.ion-padding {
+  .info-h6 {
+    color: var(--Black, #000);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
   }
 
-  .label-textarea {
-    width: 90%;
-    margin-left: 1em;
-    pointer-events: none;
-    font-family: Inter, sans-serif;
-    font-size: large;
-  }
-
-  .edit-icon {
-    width: 1.5em;
-    height: auto;
+  .info-h3 {
+    color: var(--Black, #000);
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
   }
 }
+
+.anim-confirm {
+  .confirm-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    width: 85%;
+
+    .confirm-button-text {
+      text-shadow: #000 1px 1px;
+    }
+  }
+}
+/////////////////////////////////////////////

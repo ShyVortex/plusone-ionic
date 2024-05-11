@@ -45,7 +45,7 @@ export class InfoPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("settings");
+    this.navCtrl.back();
   }
 
   goToHome() {

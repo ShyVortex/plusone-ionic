@@ -41,5 +41,4 @@ export class SignupPage implements OnInit {
   continueSignUp() {
     this.navCtrl.navigateForward('signup-continue')
   }
-
 }

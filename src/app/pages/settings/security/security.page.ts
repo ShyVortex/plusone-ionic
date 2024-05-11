@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -25,11 +25,21 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
 export class SecurityPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
+  protected passwordArea: string = "";
+  protected editableMail: boolean = false;
+  protected editablePass: boolean = false;
   protected readonly LoginUtilities = LoginUtilities;
+
+  /* Il punto esclamativo assicura a
+  Ionic che la variabile sarà inizializzata prima dell'utilizzo */
+  @ViewChild('emailAreaRef') emailAreaRef!: IonTextarea;
+  @ViewChild('passwordAreaRef') passwordAreaRef!: IonTextarea;
+  @ViewChild('confirmPassRef') confirmPassRef!: IonTextarea;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private cdr: ChangeDetectorRef
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
@@ -44,8 +54,44 @@ export class SecurityPage implements OnInit {
       this.ruolo = "MEDICO";
   }
 
+  ngAfterViewInit() {
+    console.log('Readonly:', this.emailAreaRef.readonly);
+  }
+
   navigateBack() {
-    this.navCtrl.navigateBack("settings");
+    this.navCtrl.back();
+  }
+
+  async editEmail() {
+    this.editableMail = true;
+    this.emailAreaRef.value = "";
+    this.cdr.detectChanges();
+  }
+
+  async editPassword() {
+    this.editablePass = true;
+    this.passwordAreaRef.value = "";
+    this.cdr.detectChanges();
+  }
+
+  async cancelEditEmail() {
+    this.emailAreaRef.value = this.persona.email;
+    this.editableMail = false;
+    this.cdr.detectChanges();
+  }
+
+  async confirmEditEmail() {
+
+  }
+
+  async cancelEditPassword() {
+    this.passwordAreaRef.value = "........";
+    this.editablePass = false;
+    this.cdr.detectChanges();
+  }
+
+  async confirmEditPassword() {
+
   }
 
   goToHome() {

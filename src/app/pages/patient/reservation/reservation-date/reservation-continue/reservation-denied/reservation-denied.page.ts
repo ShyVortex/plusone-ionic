@@ -2,7 +2,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonFooter, IonButton, IonTabBar, IonTabs, IonTabButton, IonImg } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonLabel,
+  IonFooter,
+  IonButton,
+  IonTabBar,
+  IonTabs,
+  IonTabButton,
+  IonImg,
+  IonText
+} from '@ionic/angular/standalone';
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 import { NavController } from "@ionic/angular";
@@ -12,7 +25,7 @@ import { NavController } from "@ionic/angular";
   templateUrl: './reservation-denied.page.html',
   styleUrls: ['./reservation-denied.page.scss'],
   standalone: true,
-  imports: [LottieComponent, IonImg, IonTabButton, IonTabs, IonTabBar, IonButton, IonFooter, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [LottieComponent, IonImg, IonTabButton, IonTabs, IonTabBar, IonButton, IonFooter, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText]
 })
 export class ReservationDeniedPage implements OnInit {
   options: AnimationOptions = {
@@ -22,13 +35,13 @@ export class ReservationDeniedPage implements OnInit {
 
   styles: Partial<CSSStyleDeclaration> = {
     alignItems: 'center',
-    marginLeft: 'auto', 
-    marginRight: 'auto', 
-    marginTop: '2em', 
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '2em',
     marginBottom: '4em',
     height: '12em',
   }
-  
+
   constructor(private navCtrl: NavController) { }
 
   ngOnInit() {}

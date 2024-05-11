@@ -11,6 +11,7 @@ export class Medico extends Person {
     this._tipologiaMedico = TipologiaMedico.OSPEDALIERO
     this._pazienti = []
     this._terapie = []
+    this._isManager = false;
   }
   private _ospedale:string;
 
@@ -23,6 +24,8 @@ export class Medico extends Person {
   private _pazienti : Medico[];
 
   private _terapie : Terapia[];
+
+  private _isManager : boolean;
 
 
   get pazienti(): Medico[] {
@@ -61,10 +64,16 @@ export class Medico extends Person {
     return this._ruolo;
   }
 
-
-
   set ruolo(value: string) {
     this._ruolo = value;
+  }
+
+  get isManager(): boolean {
+    return this._isManager;
+  }
+
+  set isManager(value: boolean) {
+    this._isManager = value;
   }
 
   get tipologiaMedico(): TipologiaMedico {

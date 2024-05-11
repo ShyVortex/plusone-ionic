@@ -2,16 +2,17 @@
   <ion-toolbar class="top-toolbar">
     <ion-icon id="settings-icon"
               src="../../assets/icon/settings/settings.svg"
-              slot="end">
+              slot="end"
+              (click)="routeToSettings()">
     </ion-icon>
     <div class="profile-container">
       <div class="images-container">
-        <ion-img class="profile-image" src="../../assets/icon/home/new-user.png"></ion-img>
+        <ion-img class="profile-image" src="../../assets/icon/home/stock-nurse.png"></ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
       <div class="text-container">
         <ion-text class="profile-name" slot="end">
-          <h3>CIAO MARIO</h3>
+          <h3>CIAO {{this.infermiere.nome}}</h3>
         </ion-text>
       </div>
     </div>
