@@ -13,7 +13,8 @@
   <ion-row style="height: 10%"></ion-row> <!-- spazio vuoto-->
   <div class="survey-container">
     <ion-text class="question-label">Dove ti fa male?</ion-text>
-    <ion-select class="question-select"
+    <ion-select #wherePainRef
+                class="question-select"
                 fill="solid"
                 placeholder="Seleziona">
       <ion-select-option>Testa</ion-select-option>
@@ -25,7 +26,8 @@
     </ion-select>
     <div class="divider"></div>
     <ion-label class="question-label">Come definiresti il dolore?</ion-label>
-    <ion-select class="question-select"
+    <ion-select #painLevelRef
+                class="question-select"
                 fill="solid"
                 placeholder="Seleziona">
       <ion-select-option>Lieve</ion-select-option>
@@ -34,15 +36,15 @@
     </ion-select>
     <div class="divider"></div>
     <ion-label class="question-label">Richiedi aiuto urgente? <br/></ion-label>
-    <ion-radio-group class="radio-group">
+    <ion-radio-group class="radio-group" (ionChange)="handleRadioChange($event)">
       <ion-grid class="radio-grid">
         <ion-row>
           <ion-col>
-            <ion-radio class="radio-option" labelPlacement="end">SI</ion-radio>
+            <ion-radio #radioYesRef class="radio-option" labelPlacement="end">SI</ion-radio>
           </ion-col>
           <ion-col size="1.85"></ion-col>
           <ion-col>
-            <ion-radio class="radio-option" labelPlacement="end">NO</ion-radio>
+            <ion-radio #radioNoRef class="radio-option" labelPlacement="end">NO</ion-radio>
           </ion-col>
         </ion-row>
       </ion-grid>

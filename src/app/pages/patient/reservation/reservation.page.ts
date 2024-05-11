@@ -18,6 +18,8 @@ import {
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
+import {Medico} from "../../../models/medico/Medico";
+import {Paziente} from "../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-reservation',
@@ -36,9 +38,30 @@ export class ReservationPage implements OnInit {
     private personaService: PersonaService,
   ) {
     this.paziente = personaService.getPersona();
+
+    /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
+       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
+    if (!this.paziente)
+      this.paziente = new Paziente();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!this.paziente.isSet()) {
+      this.paziente.nome = "Mario";
+      this.paziente.cognome = "Giannini";
+      this.paziente.email = "mario.giannini@paziente.it";
+      this.paziente.password = "password123";
+      this.paziente.CF = "GNNMRA02R05E335P";
+      this.paziente.indirizzo.cap = "IS";
+      this.paziente.indirizzo.città = "Pesche";
+      this.paziente.indirizzo.via = "Contrada Lappone";
+      this.paziente.esenzione = true;
+      this.paziente.medico = new Medico();
+      this.paziente.medico.nome = "Victor Ivan";
+      this.paziente.medico.cognome = "Conde";
+      this.paziente.donatoreOrgani = false;
+    }
+  }
 
   routeToReservationDate(type: string) {
     this.navCtrl.navigateForward('patient-reservation-date', { state:

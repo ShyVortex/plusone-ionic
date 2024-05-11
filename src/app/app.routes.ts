@@ -138,6 +138,10 @@ export const routes: Routes = [
       .then(m => m.BugreportPage)
   },
   {
+    path: 'settings-bugreport-confirm',
+    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page').then(m => m.BugreportConfirmPage)
+  },
+  {
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
