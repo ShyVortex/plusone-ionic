@@ -9,7 +9,7 @@
 <ion-content class="ion-padding" scroll-y="false">
   <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
   <h3 class="info-h3">SEGNALAZIONE EFFETTUATA</h3>
-  <h6 class="info-h6">La segnalazione è stata inviata al personale competente, ti ringraziamo per il tuo contributo!.</h6>
+  <h6 class="info-h6">La segnalazione è stata inviata al personale competente, ti ringraziamo per il tuo contributo!</h6>
 </ion-content>
 
 <div class="anim-confirm">
@@ -17,7 +17,11 @@
               expand="block"
               fill="solid"
               routerLink="/home"
-              (click)="goToHomeAnimated()">Torna alla home</ion-button>
+              (click)="goToHomeAnimated()">
+    <ion-text class="confirm-button-text">
+      Torna alla home
+    </ion-text>
+  </ion-button>
 </div>
 
 <ion-footer>
