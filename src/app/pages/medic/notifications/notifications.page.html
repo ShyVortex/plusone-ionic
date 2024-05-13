@@ -20,17 +20,19 @@
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-content class="home-content" [fullscreen]="true">
+<ion-content class="notifs-content" [fullscreen]="true">
   <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
-  <ion-item class="item-title">
+  <ion-item lines="none" class="item-title">
     <ion-img class="item-title-icon" src="../../assets/icon/home/notification.png"></ion-img>
     NOTIFICHE
   </ion-item>
   <ion-list>
     <ion-item class="item-title" *ngFor="let prenotazione of prenotazioni  ">
-      <ion-img  class="item-title-icon" slot="start"  src="../../assets/icon/home/calendar.png"></ion-img>
-      <ion-label class = "item-title-list">il paziente {{prenotazione?.paziente?.nome}} {{prenotazione?.paziente?.cognome}} ha prenotato
-      una visita per il {{prenotazione?.orario}}</ion-label>
+      <div class="item-content">
+        <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
+        <ion-text class="item-title-list">Il paziente {{prenotazione?.paziente?.nome}} {{prenotazione?.paziente?.cognome}}
+          ha prenotato una visita per il {{prenotazione?.orario}}</ion-text>
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
