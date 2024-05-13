@@ -50,13 +50,29 @@ export class PatientsPage implements OnInit {
       this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.medico.reparto = "Cardiologia";
       this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
     }
   }
 
   routeToSettings() {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("settings");
+  }
+
+  routeToPrescriptions() {
+    this.navCtrl.navigateForward("medic-patients-prescriptions");
+  }
+
+  routeToDrugs() {
+    this.navCtrl.navigateForward("medic-patients-drugs");
+  }
+
+  routeToRecords() {
+    this.navCtrl.navigateForward("medic-patients-records");
+  }
+
+  routeToSDO() {
+    this.navCtrl.navigateForward("medic-patients-sdo");
   }
 
   goToHome() {

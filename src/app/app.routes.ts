@@ -127,7 +127,27 @@ export const routes: Routes = [
       .then(m => m.PatientsPage)
   },
   {
-      path: 'settings',
+    path: 'medic-patients-prescriptions',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/patients-prescriptions.page')
+      .then( m => m.PatientsPrescriptionsPage)
+  },
+  {
+    path: 'medic-patients-drugs',
+    loadComponent: () => import('./pages/medic/patients/patients-drugs/patients-drugs.page')
+      .then( m => m.PatientsDrugsPage)
+  },
+  {
+    path: 'medic-patients-records',
+    loadComponent: () => import('./pages/medic/patients/patients-records/patients-records.page')
+      .then( m => m.PatientsRecordsPage)
+  },
+  {
+    path: 'medic-patients-sdo',
+    loadComponent: () => import('./pages/medic/patients/patients-sdo/patients-sdo.page')
+      .then( m => m.PatientsSdoPage)
+  },
+  {
+    path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)
   },
@@ -150,5 +170,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  },
+  }
 ];
