@@ -24,7 +24,7 @@ export class Paziente extends Person{
     this._terapie = value;
   }
 
-  private _indirizzo:Indirizzo;
+   private _indirizzo:Indirizzo;
 
    private _esenzione:boolean;
 

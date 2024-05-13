@@ -4,6 +4,7 @@ import {Observable, Observer} from "rxjs";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {Medico} from "../../models/medico/Medico";
+import {Terapia} from "../../models/Terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,27 @@ export class MedicoService {
       .catch(error => {console.log(error)}
       );
   });
+  }
+  getAllPrenotazioniByMedico(id_medico:number):Observable<Terapia[]> {
+    let jsonResponse: any[] = [];
+    let terapie: Terapia[] = [];
+
+    return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
+      axios.get<Terapia[]>(this.medicoURL + "/getAllPrenotazioniByMedico"+"/"+id_medico).then
+      ((response: AxiosResponse<Terapia[]>) => {
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          terapie.push(ModelUtilities.terapieFromJSON(element))
+        })
+        console.log(terapie)
+
+        observer.next(terapie);
+        observer.complete();
+      })
+        .catch(error => {
+            console.log(error)
+          }
+        );
+    });
   }
 }

@@ -111,7 +111,12 @@ export class LoginPage implements OnInit,OnDestroy {
 
       if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)
-        this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable)
+        try {
+          this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable)
+        }
+        catch(error) {
+          this.setOpen(true)
+        }
         console.log(this.personToLogin)
       } else if (LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE") {
         this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)

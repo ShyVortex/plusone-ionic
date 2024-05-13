@@ -1,6 +1,7 @@
 import {Person} from "../person/person";
 import {TipologiaMedico} from "./tipologia-medico";
 import {Terapia} from "../Terapia/Terapia";
+import {Paziente} from "../paziente/Paziente";
 
 export class Medico extends Person {
   constructor() {
@@ -21,18 +22,18 @@ export class Medico extends Person {
 
   private _tipologiaMedico : TipologiaMedico;
 
-  private _pazienti : Medico[];
+  private _pazienti : Paziente[];
 
   private _terapie : Terapia[];
 
   private _isManager : boolean;
 
 
-  get pazienti(): Medico[] {
+  get pazienti(): Paziente[] {
     return this._pazienti;
   }
 
-  set pazienti(value: Medico[]) {
+  set pazienti(value: Paziente[]) {
     this._pazienti = value;
   }
 

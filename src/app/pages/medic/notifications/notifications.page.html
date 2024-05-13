@@ -8,23 +8,32 @@
     <div class="profile-container">
       <div class="images-container">
         <ion-img class="profile-image"
-                 *ngIf="!medico.isManager"
                  src="../../assets/icon/home/new-user.png">
-        </ion-img>
-        <ion-img class="profile-image"
-                 *ngIf="medico.isManager"
-                 src="../../assets/icon/home/elmanager.png">
         </ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
       <div class="text-container">
         <ion-text class="profile-name" slot="end">
-          <h3>CIAO {{this.medico.nome}}</h3>
+          <h3>CIAO {{this.medico?.nome}}</h3>
         </ion-text>
       </div>
     </div>
   </ion-toolbar>
 </ion-header>
+<ion-content class="home-content" [fullscreen]="true">
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="item-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/home/notification.png"></ion-img>
+    NOTIFICHE
+  </ion-item>
+  <ion-list>
+    <ion-item class="item-title" *ngFor="let prenotazione of prenotazioni  ">
+      <ion-img  class="item-title-icon" slot="start"  src="../../assets/icon/home/calendar.png"></ion-img>
+      <ion-label class = "item-title-list">il paziente {{prenotazione?.paziente?.nome}} {{prenotazione?.paziente?.cognome}} ha prenotato
+      una visita per il {{prenotazione?.orario}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
 
 <ion-footer>
   <ion-toolbar>

@@ -52,7 +52,9 @@ export class PazienteService {
         observer.next(paziente);
         observer.complete();
       })
-        .catch(error => {console.log(error)}
+        .catch(error => {console.log(error)
+            observer.error(error)
+        }
         );
     });
   }
