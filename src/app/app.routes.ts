@@ -68,7 +68,8 @@ export const routes: Routes = [
   },
   {
     path: 'patient-reservation-denied',
-    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-denied/reservation-denied.page').then( m => m.ReservationDeniedPage)
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-denied/reservation-denied.page')
+      .then( m => m.ReservationDeniedPage)
   },
   {
     path: 'patient-sos',
@@ -77,15 +78,18 @@ export const routes: Routes = [
   },
   {
     path: 'patient-sos-survey',
-    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page').then(m => m.SosSurveyPage)
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page')
+      .then(m => m.SosSurveyPage)
   },
   {
     path: 'patient-sos-emergency',
-    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page').then(m => m.SosEmergencyPage)
+    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page')
+      .then(m => m.SosEmergencyPage)
   },
   {
     path: 'patient-sos-survey-confirmed',
-    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page').then(m => m.SosSurveyConfirmedPage)
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page')
+      .then(m => m.SosSurveyConfirmedPage)
   },
   {
     path: 'nurse-home',
@@ -118,9 +122,9 @@ export const routes: Routes = [
       .then(m => m.NotificationsPage)
   },
   {
-    path: 'medic-prescriptions',
-    loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
-      .then(m => m.PrescriptionsPage)
+    path: 'medic-patients',
+    loadComponent: () => import('./pages/medic/patients/patients.page')
+      .then(m => m.PatientsPage)
   },
   {
       path: 'settings',
@@ -139,7 +143,8 @@ export const routes: Routes = [
   },
   {
     path: 'settings-bugreport-confirm',
-    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page').then(m => m.BugreportConfirmPage)
+    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page')
+      .then(m => m.BugreportConfirmPage)
   },
   {
     path: 'settings-info',

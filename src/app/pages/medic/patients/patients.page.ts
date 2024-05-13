@@ -2,28 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent, IonFooter,
+  IonCard, IonCardHeader, IonCardTitle,
+  IonContent,
+  IonFooter,
   IonHeader,
   IonIcon,
-  IonImg, IonLabel,
-  IonTabBar,
-  IonTabButton, IonTabs, IonText,
+  IonImg, IonItem, IonRow,
+  IonTabBar, IonTabButton, IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {Medico} from "../../../models/medico/Medico";
+import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 @Component({
-  selector: 'app-prescriptions',
-  templateUrl: './prescriptions.page.html',
-  styleUrls: ['./prescriptions.page.scss'],
+  selector: 'app-patients',
+  templateUrl: './patients.page.html',
+  styleUrls: ['./patients.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFooter, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonText, IonCard, IonCardHeader, IonCardTitle, IonItem, IonRow]
 })
-export class PrescriptionsPage implements OnInit {
+export class PatientsPage implements OnInit {
   protected medico: any;
 
   constructor(
@@ -68,8 +69,10 @@ export class PrescriptionsPage implements OnInit {
     this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
-  goToPrescriptions() {
+  goToPatients() {
     this.personaService.setPersona(this.medico);
-    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
+
+  protected readonly TipologiaMedico = TipologiaMedico;
 }

@@ -1,0 +1,82 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <ion-icon id="settings-icon"
+              src="../../assets/icon/settings/settings.svg"
+              slot="end"
+              (click)="routeToSettings()">
+    </ion-icon>
+    <div class="profile-container">
+      <div class="images-container">
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager"
+                 src="../../assets/icon/home/new-user.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="medico.isManager"
+                 src="../../assets/icon/home/elmanager.png">
+        </ion-img>
+        <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
+      </div>
+      <div class="text-container">
+        <ion-text class="profile-name" slot="end">
+          <h3>CIAO {{this.medico.nome}}</h3>
+        </ion-text>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="patients-content" [fullscreen]="true">
+  <ion-row style="height: 20%"></ion-row> <!-- spazio vuoto-->
+  <ion-item class="item-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/medic/patients/patient-function.png"></ion-img>
+    PAZIENTI
+  </ion-item>
+  <div class="card-container">
+    <ion-card class="select-card" *ngIf="this.medico.tipologiaMedico === TipologiaMedico.DI_BASE">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/medic/patients/therapy.png"></ion-img>
+        <ion-card-title class="card-title">Terapie</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" *ngIf="this.medico.tipologiaMedico === TipologiaMedico.DI_BASE">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/medic/patients/drugs.png"></ion-img>
+        <ion-card-title class="card-title">Farmaci</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" *ngIf="this.medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/medic/patients/medical-records.png"></ion-img>
+        <ion-card-title class="card-title">Cartelle</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card" *ngIf="this.medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/medic/patients/sdo.png"></ion-img>
+        <ion-card-title class="card-title">SDO</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
