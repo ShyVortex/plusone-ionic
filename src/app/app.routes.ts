@@ -132,11 +132,6 @@ export const routes: Routes = [
       .then( m => m.PatientsPrescriptionsPage)
   },
   {
-    path: 'medic-patients-drugs',
-    loadComponent: () => import('./pages/medic/patients/patients-drugs/patients-drugs.page')
-      .then( m => m.PatientsDrugsPage)
-  },
-  {
     path: 'medic-patients-homecare',
     loadComponent: () => import('./pages/medic/patients/patients-homecare/patients-homecare.page')
       .then(m => m.PatientsHomecarePage)

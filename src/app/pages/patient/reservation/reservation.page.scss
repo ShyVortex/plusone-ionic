@@ -24,8 +24,10 @@
     .select-card {
       margin-top: 1em;
       width: 10em;
-      height: auto;
-      display: inline-block;
+      height: 10em;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 10px;
 
       .card-icon {
@@ -35,6 +37,7 @@
       }
 
       .card-line {
+        flex-grow: 1;
         margin-top: 0.5em;
         border-bottom: 1px solid #ccc;
       }

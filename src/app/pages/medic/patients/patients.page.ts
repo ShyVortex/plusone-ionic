@@ -63,10 +63,6 @@ export class PatientsPage implements OnInit {
     this.navCtrl.navigateForward("medic-patients-prescriptions");
   }
 
-  routeToDrugs() {
-    this.navCtrl.navigateForward("medic-patients-drugs");
-  }
-
   routeToHomeCare() {
     this.navCtrl.navigateForward("medic-patients-homecare");
   }
