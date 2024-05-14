@@ -53,7 +53,7 @@ export class PazienteService {
         observer.complete();
       })
         .catch(error => {console.log(error)
-            observer.error(error)
+            observer.next(new Paziente())
         }
         );
     });

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonContent, IonFooter,
   IonHeader, IonIcon,
-  IonImg, IonItem, IonLabel, IonList, IonRow,
+  IonImg, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonRow,
   IonTabBar,
   IonTabButton,
   IonTabs, IonText,
@@ -25,7 +25,7 @@ import {Terapia} from "../../../models/Terapia/Terapia";
   templateUrl: './notifications.page.html',
   styleUrls: ['./notifications.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonItem, IonRow, IonList]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonItem, IonRow, IonList, IonRefresher, IonRefresherContent]
 })
 export class NotificationsPage implements OnInit {
   protected medico!: Medico;
@@ -88,6 +88,14 @@ export class NotificationsPage implements OnInit {
         this.prenotazioni = this.formatPrenotazioni(value)
       })
     });
+  }
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
+        this.prenotazioni = this.formatPrenotazioni(value)
+      })
+      event.target.complete();
+    }, 2000);
   }
    formatPrenotazioni(value: Terapia[]) :Terapia[]  {
     const carattere: string = "T";

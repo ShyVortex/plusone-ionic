@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavController } from '@ionic/angular';
@@ -10,7 +10,7 @@ import {
   IonImg,
   IonItem,
   IonInput,
-  IonButton, IonText
+  IonButton, IonText, IonDatetime, IonDatetimeButton, IonModal, IonLabel, IonButtons, IonSelect, IonSelectOption
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -18,15 +18,45 @@ import {
   templateUrl: './signup-continue.page.html',
   styleUrls: ['./signup-continue.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText, IonDatetime, IonDatetimeButton, IonModal, IonLabel, IonButtons, IonSelect, IonSelectOption]
 })
 export class SignupContinuePage implements OnInit {
+  @ViewChild(IonModal) modal!: IonModal;
 
-  constructor(private navCtrl: NavController) { }
+  private emailPaziente:string;
+  private hashedPassword:string;
+  protected birthday!:string;
 
-  ngOnInit() {}
+  constructor(private navCtrl: NavController) {
+    this.emailPaziente = history.state.emailPaziente;
+    this.hashedPassword = history.state.hashedPassword;
+  }
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(this.birthday, 'confirm');
+    console.log(this.birthday)
+  }
+
+  ngOnInit() {
+
+  }
+
+
 
   routeToLogin() {
     this.navCtrl.navigateRoot('login');
+  }
+
+
+
+  storeDate(event: CustomEvent) {
+    this.birthday = event.detail.value.split('T')[0];
+  }
+
+  handleChange($event: CustomEvent) {
+    console.log($event.detail.value)
   }
 }

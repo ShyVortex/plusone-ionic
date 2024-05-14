@@ -76,12 +76,13 @@ export class MedicoService {
   });
   }
   getAllPrenotazioniByMedico(id_medico:number):Observable<Terapia[]> {
-    let jsonResponse: any[] = [];
-    let terapie: Terapia[] = [];
+
 
     return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
       axios.get<Terapia[]>(this.medicoURL + "/getAllPrenotazioniByMedico"+"/"+id_medico).then
       ((response: AxiosResponse<Terapia[]>) => {
+        let jsonResponse: any[] = [];
+        let terapie: Terapia[] = [];
         jsonResponse = response.data
         jsonResponse.forEach((element: any) => {
           terapie.push(ModelUtilities.terapieFromJSON(element))

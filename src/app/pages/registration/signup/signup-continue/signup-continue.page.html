@@ -24,19 +24,45 @@
   </ion-item>
 
   <ion-item fill="transparent" class="ion-margin-top">
+
     <ion-input class="signup-continue-labels"
-               type="text"
                label="Sesso"
-               label-placement="floating"
+               [readonly]="true"
     ></ion-input>
+    <ion-select
+      (ionChange)="handleChange($event)"
+    >
+      <ion-select-option value="MASCHIO">Maschio</ion-select-option>
+      <ion-select-option value="FEMMINA">Femmina</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <ion-item fill="transparent" class="ion-margin-top">
     <ion-input class="signup-continue-labels"
-               type="text"
                label="Data di nascita"
-               label-placement="floating"
+               [readonly]="true"
+               value="{{this.birthday}}"
     ></ion-input>
+    <ion-button fill="clear" slot="end" aria-label="Show/hide" id="open-modal">
+      <ion-img id="eye-icon" src="../../assets/icon/home/calendar.png"></ion-img>
+    </ion-button>
+    <ion-modal  trigger="open-modal"  >
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()" >Cancella</ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button  (click)="confirm()" [strong]="true">Conferma</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+        <ion-datetime presentation="date" (ionChange)="storeDate($event)"></ion-datetime>
+        </ion-content>
+        </ng-template>
+      </ion-modal>
   </ion-item>
 
   <ion-item fill="transparent" class="ion-margin-top">
