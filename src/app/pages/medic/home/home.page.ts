@@ -65,7 +65,7 @@ export class HomePage implements OnInit {
       this.medico.nome = "Victor";
       this.medico.cognome = "Conde";
       this.medico.email = "victor.conde@medico.it";
-      this.medico.password = "default";
+      this.medico.password = "password123";
       this.medico.CF = "CNDVTR85D07E335W";
       this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.medico.reparto = "Cardiologia";
@@ -98,8 +98,8 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
-  goToPrescriptions() {
+  goToPatients() {
     this.personaService.setPersona(this.medico);
-    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
 }

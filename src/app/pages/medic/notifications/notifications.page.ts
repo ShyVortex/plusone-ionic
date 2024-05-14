@@ -68,8 +68,8 @@ export class NotificationsPage implements OnInit {
     this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
-  goToPrescriptions() {
+  goToPatients() {
     this.personaService.setPersona(this.medico);
-    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
 }
