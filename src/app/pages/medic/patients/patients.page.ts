@@ -67,12 +67,24 @@ export class PatientsPage implements OnInit {
     this.navCtrl.navigateForward("medic-patients-drugs");
   }
 
+  routeToHomeCare() {
+    this.navCtrl.navigateForward("medic-patients-homecare");
+  }
+
+  routeToIllnessCertificate() {
+    this.navCtrl.navigateForward("medic-patients-illcert");
+  }
+
   routeToRecords() {
     this.navCtrl.navigateForward("medic-patients-records");
   }
 
   routeToSDO() {
     this.navCtrl.navigateForward("medic-patients-sdo");
+  }
+
+  routeToAssistance() {
+    this.navCtrl.navigateForward("medic-patients-assistance");
   }
 
   goToHome() {

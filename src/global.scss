@@ -224,6 +224,11 @@ ion-content {
       display: block;
     }
 
+    .card-line {
+      margin-top: 0.75em;
+      border-bottom: 1px solid #000;
+    }
+
     .card-title {
       color: #000;
       margin-left: auto;
@@ -250,6 +255,10 @@ ion-content {
     width: 1.65em;
     height: auto;
   }
+}
+
+.bottom-bar:hover {
+  --ion-color-primary: #0054e9;
 }
 
 .variables-container {
