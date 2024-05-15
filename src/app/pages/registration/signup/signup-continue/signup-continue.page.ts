@@ -26,10 +26,12 @@ export class SignupContinuePage implements OnInit {
   private emailPaziente:string;
   private hashedPassword:string;
   protected birthday!:string;
+  CFValue: string;
 
   constructor(private navCtrl: NavController) {
     this.emailPaziente = history.state.emailPaziente;
     this.hashedPassword = history.state.hashedPassword;
+    this.CFValue =  ""
   }
   cancel() {
     this.modal.dismiss(null, 'cancel');
@@ -56,7 +58,12 @@ export class SignupContinuePage implements OnInit {
     this.birthday = event.detail.value.split('T')[0];
   }
 
+
   handleChange($event: CustomEvent) {
     console.log($event.detail.value)
+  }
+
+  onInputChange($event: any) {
+    this.CFValue = $event.target.value.toUpperCase();
   }
 }

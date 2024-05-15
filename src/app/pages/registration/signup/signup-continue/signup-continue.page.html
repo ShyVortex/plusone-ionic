@@ -70,6 +70,8 @@
                type="text"
                label="Codice fiscale"
                label-placement="floating"
+               [(ngModel)]="CFValue"
+               (input)="onInputChange($event)"
     ></ion-input>
   </ion-item>
 
