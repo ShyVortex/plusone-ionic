@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import axios , { AxiosResponse } from 'axios';
 import { Observable, Observer} from "rxjs";
 import {Paziente} from "../../models/paziente/Paziente";
@@ -11,14 +11,11 @@ export class PazienteService {
   // Android Studio IP address: 10.0.2.2
   private pazienteURL= "http://localhost:8080/api/pazienti";
 
-
-
   constructor() {}
 
   getAllPazienti():Observable<Paziente[]> {
-
-    let jsonResponse :any[] =[];
-    let pazienti:Paziente[] = [];
+    let jsonResponse: any[] =[];
+    let pazienti: Paziente[] = [];
 
     return new Observable<Paziente[]>((observer:Observer<Paziente[]>)  => {
       axios.get<Paziente[]>(this.pazienteURL +"/getAllPazienti").then
@@ -56,8 +53,4 @@ export class PazienteService {
         );
     });
   }
-
-
-
-
 }

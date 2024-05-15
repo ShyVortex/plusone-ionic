@@ -2,23 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonButtons,
-  IonBackButton,
-  IonIcon,
-  IonImg,
-  IonButton,
-  IonTabBar,
-  IonTabs,
-  IonTabButton,
-  IonFooter,
-  IonLabel,
-  IonText
-} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonIcon, IonImg, IonButton, IonTabBar, IonTabs, IonTabButton, IonFooter, IonLabel } from '@ionic/angular/standalone';
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 import { NavController } from "@ionic/angular";
@@ -28,7 +12,7 @@ import { NavController } from "@ionic/angular";
   templateUrl: './reservation-confirmed.page.html',
   styleUrls: ['./reservation-confirmed.page.scss'],
   standalone: true,
-  imports: [LottieComponent, IonLabel, IonFooter, IonTabButton, IonTabs, IonTabBar, IonButton, IonImg, IonIcon, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText]
+  imports: [LottieComponent, IonLabel, IonFooter, IonTabButton, IonTabs, IonTabBar, IonButton, IonImg, IonIcon, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class ReservationConfirmedPage implements OnInit {
   options: AnimationOptions = {
@@ -38,15 +22,15 @@ export class ReservationConfirmedPage implements OnInit {
 
   styles: Partial<CSSStyleDeclaration> = {
     alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '-3em',
+    marginLeft: 'auto', 
+    marginRight: 'auto', 
+    marginTop: '-3em', 
     marginBottom: '-4em',
     height: '26em',
   }
 
   constructor(private navCtrl: NavController) {
-    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time);
+    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time); 
   }
 
   ngOnInit() {}

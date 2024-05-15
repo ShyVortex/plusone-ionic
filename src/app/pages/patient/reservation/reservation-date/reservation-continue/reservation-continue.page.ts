@@ -70,23 +70,14 @@ export class ReservationContinuePage implements OnInit {
       role: 'confirm',
       handler: async () => {
         this.setTerapia()
-        if (this.patientToPrenote != null)
-          await firstValueFrom<Terapia>(
-            this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia)
-          )
+        await firstValueFrom<Terapia>(this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia))
+        this.routeToReservationConfirmed();
         this.routeToReservationConfirmed();
       }
     }
   ];
 
-  constructor(
-    private navCtrl: NavController,
-    private route: Router,
-    private alertController: AlertController,
-    private dataService:DataService,
-    private pazienteService:PazienteService,
-    private terapiaService:TerapiaService,
-  ) {
+  constructor(private navCtrl: NavController, private route: Router, private alertController: AlertController,private dataService:DataService,private pazienteService:PazienteService,private terapiaService:TerapiaService) {
     this.terapia = new Terapia()
     this.getPazienteByEmailObservable = new Observable<Paziente>()
     this.terapiaAdded = new Terapia()
@@ -183,14 +174,12 @@ export class ReservationContinuePage implements OnInit {
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
-
   ionViewWillEnter() {
     this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
       this.patientToPrenote = value
     });
   }
-
-  private setTerapia(): void {
+  private setTerapia():void{
     this.terapia.tipologiaTerapia = this.type;
     this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
     this.terapia.reparto = this.hospitalWard;

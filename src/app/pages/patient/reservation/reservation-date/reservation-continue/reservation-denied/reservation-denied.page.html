@@ -1,8 +1,11 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="top-toolbar">
     <div class="container">
-      <ion-text class="tab-name-bl">Errore</ion-text>
+      <ion-label class="tab-name">Conferma</ion-label>
     </div>
+    <!-- <ion-icon id="settings-icon"
+              src="../../../assets/icon/settings/settings.svg"
+              slot="end"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
 
@@ -12,17 +15,7 @@
   <h6 class="info-h6">L'operazione non è andata a buon fine. Si prega di contattare l'amministratore di sistema.</h6>
 </ion-content>
 
-<div class="anim-confirm">
-  <ion-button class="confirm-button"
-              expand="block"
-              fill="solid"
-              routerLink="/home"
-              (click)="goToHomeAnimated()">
-    <ion-text class="confirm-button-text">
-      Torna alla home
-    </ion-text>
-  </ion-button>
-</div>
+<ion-button class="confirm-button" expand="block" fill="solid" routerLink="/home" (click)="goToHomeAnimated()">Torna alla home</ion-button>
 
 <ion-footer>
   <ion-toolbar>

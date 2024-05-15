@@ -26,7 +26,7 @@ export class ReservationDatePage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Errore',
-      message: 'Compilare tutti i campi.',
+      message: 'Compilare tutti i campi',
       buttons: ['OK'],
     });
 
@@ -44,9 +44,9 @@ export class ReservationDatePage implements OnInit {
   }
 
   submit() {
-    if (!this.hospitalWard || !this.date) {
+    if (!this.hospitalWard || !this.date) { 
       this.presentAlert();
-    } else {
+    } else { 
       this.routeToReservationContinue();
     }
   }
@@ -56,7 +56,7 @@ export class ReservationDatePage implements OnInit {
   }
 
   routeToReservationContinue() {
-    this.navCtrl.navigateForward("patient-reservation-continue", {
+    this.navCtrl.navigateForward("patient-reservation-continue", { 
       state: {
         type: this.type,
         hospitalWard: this.hospitalWard,

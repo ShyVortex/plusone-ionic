@@ -1,4 +1,8 @@
 export class Indirizzo {
+  private _cap: string;
+  private _via: string;
+  private _numeroCivico: string;
+  private _città: string;
 
   constructor() {
     this._cap = ""
@@ -7,37 +11,32 @@ export class Indirizzo {
     this._città = ""
   }
 
-  private _cap:string;
-  private _via:string;
-  private _numeroCivico:string;
-  private _città:string;
-
   get cap(): string {
     return this._cap;
-  }
-
-  set cap(value: string) {
-    this._cap = value;
   }
 
   get via(): string {
     return this._via;
   }
 
-  set via(value: string) {
-    this._via = value;
-  }
-
   get numeroCivico(): string {
     return this._numeroCivico;
   }
 
-  set numeroCivico(value: string) {
-    this._numeroCivico = value;
-  }
-
   get città(): string {
     return this._città;
+  }
+
+  set cap(value: string) {
+    this._cap = value;
+  }
+
+  set via(value: string) {
+    this._via = value;
+  }
+
+  set numeroCivico(value: string) {
+    this._numeroCivico = value;
   }
 
   set città(value: string) {

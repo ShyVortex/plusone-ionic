@@ -46,7 +46,12 @@ export class SettingsPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.back();
+    if (this.ruolo === 'PAZIENTE')
+      this.navCtrl.navigateBack("patient-home");
+    else if (this.ruolo === 'INFERMIERE')
+      this.navCtrl.navigateBack("nurse-home");
+    else if (this.ruolo === 'MEDICO')
+      this.navCtrl.navigateBack("medic-home");
   }
 
   routeToSecurity() {
@@ -71,7 +76,7 @@ export class SettingsPage implements OnInit {
     else if (this.ruolo === 'INFERMIERE')
       this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("medic-home");
+      this.navCtrl.navigateBack("patient-home");
   }
 
   goToLogbook() {

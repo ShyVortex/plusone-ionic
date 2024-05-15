@@ -38,11 +38,11 @@ export class HomePage implements OnInit {
       this.infermiere.setState(false);
 
     if (!this.infermiere.isSet()) {
-      this.infermiere.nome = "Teresa";
-      this.infermiere.cognome = "Nucci";
-      this.infermiere.email = "teresa.nucci@infermiere.it";
-      this.infermiere.password = "password123";
-      this.infermiere.CF = "NCCTRS81M16B519G";
+      this.infermiere.nome = "Mario";
+      this.infermiere.cognome = "Giannini";
+      this.infermiere.email = "default@infermiere.it";
+      this.infermiere.password = "default";
+      this.infermiere.CF = "GNNMRA02R05E335P";
       this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.infermiere.reparto = "Chirurgia";
       this.infermiere.ruolo = "Infermiere assistente";
@@ -64,22 +64,18 @@ export class HomePage implements OnInit {
   }
 
   goToHome() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateBack("nurse-home", { animated: false });
   }
 
   goToDrugs() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-drugs", { animated: false });
   }
 
   goToShifts() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-shifts", { animated: false });
   }
 
   goToSOS() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
 }

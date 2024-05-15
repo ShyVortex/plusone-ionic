@@ -12,8 +12,6 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {Infermiere} from "../../../models/infermiere/Infermiere";
 
 @Component({
   selector: 'app-drugs',
@@ -23,55 +21,27 @@ import {Infermiere} from "../../../models/infermiere/Infermiere";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
 })
 export class DrugsPage implements OnInit {
-  protected infermiere: any;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
-  ) {
-    this.infermiere = personaService.getPersona();
-
-    /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
-       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
-    if (!this.infermiere)
-      this.infermiere = new Infermiere();
-  }
+  ) { }
 
   ngOnInit() {
-    if (!this.infermiere.isSet()) {
-      this.infermiere.nome = "Teresa";
-      this.infermiere.cognome = "Nucci";
-      this.infermiere.email = "teresa.nucci@infermiere.it";
-      this.infermiere.password = "password123";
-      this.infermiere.CF = "NCCTRS81M16B519G";
-      this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.infermiere.reparto = "Chirurgia";
-      this.infermiere.ruolo = "Infermiere assistente";
-    }
-  }
-
-  routeToSettings() {
-    this.personaService.setPersona(this.infermiere);
-    this.navCtrl.navigateForward("settings");
   }
 
   goToHome() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateBack("nurse-home", { animated: false });
   }
 
   goToDrugs() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-drugs", { animated: false });
   }
 
   goToShifts() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-shifts", { animated: false });
   }
 
   goToSOS() {
-    this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
 }

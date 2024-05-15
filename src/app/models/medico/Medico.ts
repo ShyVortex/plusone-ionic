@@ -1,86 +1,71 @@
-import {Person} from "../person/person";
-import {TipologiaMedico} from "./tipologia-medico";
-import {Terapia} from "../Terapia/Terapia";
+import { Person } from "../person/person";
+import { TipologiaMedico } from "./tipologia-medico";
+import { Terapia } from "../Terapia/Terapia";
 
 export class Medico extends Person {
+  private _ospedale: string;
+  private _reparto: string;
+  private _ruolo: string;
+  private _tipologiaMedico: TipologiaMedico;
+  private _pazienti: Medico[];
+  private _terapie: Terapia[];
+
   constructor() {
-    super(0,"","","","","");
-    this._ospedale = ""
-    this._reparto = ""
-    this._ruolo = ""
-    this._tipologiaMedico = TipologiaMedico.OSPEDALIERO
-    this._pazienti = []
-    this._terapie = []
-    this._isManager = false;
+    super(0, "", "", "", "", "");
+    
+    this._ospedale = "";
+    this._reparto = "";
+    this._ruolo = "";
+    this._tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+    this._pazienti = [];
+    this._terapie = [];
   }
-  private _ospedale:string;
-
-  private _reparto:string;
-
-  private _ruolo:string;
-
-  private _tipologiaMedico : TipologiaMedico;
-
-  private _pazienti : Medico[];
-
-  private _terapie : Terapia[];
-
-  private _isManager : boolean;
-
-
-  get pazienti(): Medico[] {
-    return this._pazienti;
-  }
-
-  set pazienti(value: Medico[]) {
-    this._pazienti = value;
-  }
-
-  get terapie(): Terapia[] {
-    return this._terapie;
-  }
-
-  set terapie(value: Terapia[]) {
-    this._terapie = value;
-  }
-
-  get ospedale(): string {
+  
+  public get ospedale(): string {
     return this._ospedale;
   }
 
-  set ospedale(value: string) {
-    this._ospedale = value;
-  }
-
-  get reparto(): string {
+  public get reparto(): string {
     return this._reparto;
   }
 
-  set reparto(value: string) {
-    this._reparto = value;
-  }
-
-  get ruolo(): string {
+  public get ruolo(): string {
     return this._ruolo;
   }
 
-  set ruolo(value: string) {
-    this._ruolo = value;
-  }
-
-  get isManager(): boolean {
-    return this._isManager;
-  }
-
-  set isManager(value: boolean) {
-    this._isManager = value;
-  }
-
-  get tipologiaMedico(): TipologiaMedico {
+  public get tipologiaMedico(): TipologiaMedico {
     return this._tipologiaMedico;
   }
 
-  set tipologiaMedico(value: TipologiaMedico) {
+  public get pazienti(): Medico[] {
+    return this._pazienti;
+  }
+
+  public get terapie(): Terapia[] {
+    return this._terapie;
+  }
+
+  public set pazienti(value: Medico[]) {
+    this._pazienti = value;
+  }
+
+  public set terapie(value: Terapia[]) {
+    this._terapie = value;
+  }
+
+  public set ospedale(value: string) {
+    this._ospedale = value;
+  }
+
+  public set reparto(value: string) {
+    this._reparto = value;
+  }
+
+  public set ruolo(value: string) {
+    this._ruolo = value;
+  } 
+
+  public set tipologiaMedico(value: TipologiaMedico) {
     this._tipologiaMedico = value;
   }
 }

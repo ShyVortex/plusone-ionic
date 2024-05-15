@@ -1,40 +1,12 @@
-.security-content {
-  .item-text {
-    font-size: x-large;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
+.item-text {
+  font-size: x-large;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
 
-    .item-text-icon {
-      width: 1.5em;
-      height: auto;
-      margin-right: 0.5em;
-    }
-  }
-
-  .variables-container {
-    margin-top: 1em;
-
-    .edit-labels {
-      .label-textarea {
-        margin-top: 0.5em;
-        margin-bottom: 1.5em;
-        height: 1em;
-      }
-
-      .edit-icon {
-        // In qualche modo questi tre parametri centrano l'icona
-        position: absolute;
-        top: 15%;
-        transform: translateY(-50%);
-      }
-
-      .confirm-icon {
-        width: 1.5em;
-        height: auto;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
+  .item-text-icon {
+    width: 1.5em;
+    height: auto;
+    margin-right: 0.5em;
   }
 }

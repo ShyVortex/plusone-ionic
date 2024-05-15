@@ -55,8 +55,8 @@ ion-content {
   --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
   // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
   height: 12.5em;
-  border-bottom-left-radius: 2em;
-  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 3em;
+  border-bottom-right-radius: 3em;
 
   .back-button {
     --color: #000;
@@ -149,18 +149,6 @@ ion-content {
     font-weight: bold;
     font-size: 25px;
   }
-
-  .tab-name-bl {
-    // bl = button-less
-    color: #000;
-    text-transform: none;
-    margin-left: 1.25em;
-    margin-top: 2.35em;
-    font-family: Inter, sans-serif;
-    letter-spacing: 0;
-    font-weight: bold;
-    font-size: 25px;
-  }
 }
 
 #legacy-settings-icon {
@@ -224,12 +212,6 @@ ion-content {
       display: block;
     }
 
-    .card-line {
-      flex-grow: 1;
-      margin-top: 0.75em;
-      border-bottom: 1px solid #000;
-    }
-
     .card-title {
       color: #000;
       margin-left: auto;
@@ -242,7 +224,7 @@ ion-content {
 .bottom-bar {
   .bottom-tab-bar {
     // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
-    --ion-background-color: #a6f3d4; //  COLORE NUOVO TEMA
+    --ion-background-color: #65eab5; //  COLORE NUOVO TEMA
   }
 
   .bottom-bar-buttons {
@@ -258,10 +240,6 @@ ion-content {
   }
 }
 
-.bottom-bar:hover {
-  --ion-color-primary: #0054e9;
-}
-
 .variables-container {
   margin-top: 1em;
 
@@ -275,51 +253,37 @@ ion-content {
   .label-textarea {
     width: 90%;
     margin-left: 1em;
+    pointer-events: none;
     font-family: Inter, sans-serif;
     font-size: large;
   }
 
-  .edit-button {
-    pointer-events: auto !important;
-
-    .edit-icon {
-      width: 1.5em;
-      height: auto;
-    }
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
   }
 }
 
-// Configurazione schermate animazioni //
-.ion-padding {
-  .info-h6 {
-    color: var(--Black, #000);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-align: center;
+.variables-container-alt {
+  margin-top: 2em;
+
+  .edit-labels {
+    margin-top: 1em;
+    margin-left: 1.1em;
+    font-family: Inter, sans-serif;
+    letter-spacing: 0;
   }
 
-  .info-h3 {
-    color: var(--Black, #000);
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-align: center;
+  .label-textarea {
+    width: 90%;
+    margin-left: 1em;
+    pointer-events: none;
+    font-family: Inter, sans-serif;
+    font-size: large;
   }
-}
 
-.anim-confirm {
-  .confirm-button {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1.5em;
-    width: 85%;
-
-    .confirm-button-text {
-      text-shadow: #000 1px 1px;
-    }
+  .edit-icon {
+    width: 1.5em;
+    height: auto;
   }
 }
-/////////////////////////////////////////////

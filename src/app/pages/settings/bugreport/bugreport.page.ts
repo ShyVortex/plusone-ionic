@@ -1,17 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  AlertController,
-  IonButton, IonCol,
-  IonContent, IonFooter, IonGrid,
-  IonHeader,
-  IonIcon,
-  IonImg, IonLabel, IonRow, IonSelect, IonSelectOption,
-  IonTabBar,
-  IonTabButton, IonTabs, IonText, IonTextarea,
-  IonTitle,
-  IonToolbar
+    IonButton, IonCol,
+    IonContent, IonFooter, IonGrid,
+    IonHeader,
+    IonIcon,
+    IonImg, IonLabel, IonRow, IonSelect, IonSelectOption,
+    IonTabBar,
+    IonTabButton, IonTabs, IonText, IonTextarea,
+    IonTitle,
+    IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../../registration/login/LoginUtilities";
@@ -29,13 +28,9 @@ export class BugreportPage implements OnInit {
   protected ruolo: String;
   protected readonly LoginUtilities = LoginUtilities;
 
-  @ViewChild('reportSelectRef') reportSelectRef!: IonSelect;
-  @ViewChild('reportAreaRef') reportAreaRef!: IonTextarea;
-
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
-    private alertController: AlertController,
+    private personaService: PersonaService
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
@@ -50,30 +45,8 @@ export class BugreportPage implements OnInit {
       this.ruolo = "MEDICO";
   }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Errore',
-      message: 'Compilare tutti i campi.',
-      buttons: ['OK'],
-    });
-
-    await alert.present();
-  }
-
   navigateBack() {
-    this.navCtrl.back();
-  }
-
-  onReset() {
-    this.reportAreaRef.value = "";
-  }
-
-  onConfirm() {
-    // @ts-ignore
-    if (this.reportSelectRef.value != null && this.reportAreaRef.value.length > 0)
-      this.navCtrl.navigateForward("settings-bugreport-confirm");
-    else
-      this.presentAlert();
+    this.navCtrl.navigateBack("settings");
   }
 
   goToHome() {

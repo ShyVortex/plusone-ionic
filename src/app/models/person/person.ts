@@ -1,6 +1,13 @@
-import {person} from "ionicons/icons";
+import { person } from "ionicons/icons";
 
 export abstract class Person {
+  private _id: number;
+  private _nome: string;
+  private _cognome: string;
+  private _email: string;
+  private _password: string;
+  private _CF: string
+  private _isSet: boolean;
 
   protected constructor(
      id: number,
@@ -8,9 +15,9 @@ export abstract class Person {
      cognome: string,
      email: string,
      password: string,
-     CF:string
+     CF: string
   ) {
-    this._id= id;
+    this._id = id;
     this._nome = nome;
     this._cognome = cognome;
     this._email = email;
@@ -19,76 +26,73 @@ export abstract class Person {
     this._isSet = false;
   }
 
-
-
-  protected _id:number;
-  protected _nome:string;
-  protected _cognome:string;
-  protected _email:string;
-  protected _password:string;
-  protected _CF :string
-  protected _isSet:boolean;
-
-  get id(): number {
+  public get id(): number {
     return this._id;
-  }
-
-  set id(value: number) {
-    this._id = value;
   }
 
   public get nome(): string {
     return this._nome;
   }
 
-  set nome(value: string) {
-    this._nome = value;
-  }
-
-  get cognome(): string {
+  public get cognome(): string {
     return this._cognome;
   }
 
-  set cognome(value: string) {
-    this._cognome = value;
-  }
-
-  get email(): string {
+  public get email(): string {
     return this._email;
   }
 
-  set email(value: string) {
-    this._email = value;
-  }
-
-  get password(): string {
+  public get password(): string {
     return this._password;
   }
 
-  set password(value: string) {
-    this._password = value;
-  }
-
-  get CF(): string {
+  public get CF(): string {
     return this._CF;
   }
 
-  set CF(value: string) {
-    this._CF = value;
+  public isSet(): boolean {
+    return this._isSet;
   }
 
-  public isSet():boolean {
-    return this._isSet;
+  public set id(value: number) {
+    this._id = value;
+  }
+
+  public set nome(value: string) {
+    this._nome = value;
+  }
+
+  public set cognome(value: string) {
+    this._cognome = value;
+  }
+
+  public set email(value: string) {
+    this._email = value;
+  }
+
+  public set password(value: string) {
+    this._password = value;
+  }
+
+  public set CF(value: string) {
+    this._CF = value;
   }
 
   public setState(value: boolean) {
     this._isSet = value;
   }
 
-  public isEmpty():boolean{
-    if(this._nome==undefined && this._cognome==undefined && this._email==undefined && this._password==undefined && this._CF==undefined){
+  public isEmpty(): boolean {
+    if (
+      this._nome == undefined && 
+      this._cognome == undefined && 
+      this._email == undefined && 
+      this._password == undefined && 
+      this._CF == undefined
+    ) {
       return true;
-    }
-    else return false;
+    } else { 
+      return false 
+    };
   }
 }

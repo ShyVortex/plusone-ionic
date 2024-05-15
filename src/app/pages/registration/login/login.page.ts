@@ -97,16 +97,15 @@ export class LoginPage implements OnInit,OnDestroy {
 
   async loginButton():Promise<void> {
     // Profili di default placeholder per far funzionare la login su Android Studio
-    if (this.email === "mario.giannini@paziente.it" && this.password === "password123") {
+    if (this.email === "default@paziente.it" && this.password === "default") {
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("patient-home", this.personToLogin);
     }
-    if (this.email === "teresa.nucci@infermiere.it" && this.password === "password123") {
+    if (this.email === "default@infermiere.it" && this.password === "default") {
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("nurse-home");
     }
-    if (this.email === "victor.conde@medico.it" && this.password === "password123") {
-      this.dataService.sendData(this.email);
+    if (this.email === "default@medico.it" && this.password === "default") {
       await this.navCtrl.navigateForward("medic-home");
     }
 
