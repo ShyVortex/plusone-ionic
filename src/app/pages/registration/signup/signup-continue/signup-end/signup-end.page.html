@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="signup-continue-toolbar">
+    <ion-title id="signup-continue-title">Registrazione</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-continue-content" [fullscreen]="true">
+  <ion-img id="plusone-logo" src="../../assets/icon/plusone-logo.png"></ion-img>
+
+  <ion-item fill="transparent">
+    <ion-input class="signup-continue-labels"
+               type="text"
+               label="Città"
+               label-placement="floating"
+               [(ngModel)]="this.citta"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item fill="transparent" class="ion-margin-top">
+    <ion-input class="signup-continue-labels"
+               type="text"
+               label="CAP"
+               label-placement="floating"
+               [(ngModel)]="this.cap"
+               maxlength = "5"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item fill="transparent" class="ion-margin-top">
+
+    <ion-input class="signup-continue-labels"
+               label="Indirizzo"
+               label-placement="floating"
+               type="text"
+               [(ngModel)]="this.indirizzo"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item fill="transparent" class="ion-margin-top">
+    <ion-input class="signup-continue-labels"
+               label="N.Civico"
+               label-placement="floating"
+               type="text"
+               maxlength = "4"
+               [(ngModel)]="this.numeroCivico"
+    ></ion-input>
+  </ion-item>
+
+
+  <ion-button id="confirm-button"
+              size="default"
+              (click)="confirmRegistration()"
+              [disabled]="isEnable()">
+    <ion-text id="confirm-button-text">Conferma</ion-text>
+  </ion-button>
+
+  <ion-button class="clear-button"
+              id="login-button"
+              size="small"
+              fill="clear"
+              (click)="routeToLogin()">
+    <ion-text class="clear-button-text">Hai già un account? Effettua il login</ion-text>
+  </ion-button>
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="{{this.message}}"
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
+
+</ion-content>

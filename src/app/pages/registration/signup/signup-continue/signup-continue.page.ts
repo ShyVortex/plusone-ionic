@@ -25,13 +25,21 @@ export class SignupContinuePage implements OnInit {
 
   private emailPaziente:string;
   private hashedPassword:string;
-  protected birthday!:string;
-  CFValue: string;
+  protected birthday:string;
+  protected CFValue: string;
+  protected nome:string;
+  protected cognome:string;
+  protected sesso:string
+
 
   constructor(private navCtrl: NavController) {
     this.emailPaziente = history.state.emailPaziente;
     this.hashedPassword = history.state.hashedPassword;
+    this.birthday = ""
     this.CFValue =  ""
+    this.nome = ""
+    this.cognome = ""
+    this.sesso = ""
   }
   cancel() {
     this.modal.dismiss(null, 'cancel');
@@ -49,7 +57,22 @@ export class SignupContinuePage implements OnInit {
 
 
   routeToLogin() {
-    this.navCtrl.navigateRoot('login');
+    console.log(this.birthday)
+    console.log(this.CFValue)
+    console.log(this.nome)
+    console.log(this.cognome)
+    console.log(this.sesso)
+    this.navCtrl.navigateRoot('signup-end',{
+      state:{
+        emailPaziente: this.emailPaziente,
+        hashedPassword: this.hashedPassword,
+        nome:this.nome,
+        cognome:this.cognome,
+        sesso:this.sesso,
+        birthday:this.birthday,
+        CFValue:this.CFValue
+      }
+    });
   }
 
 
@@ -60,10 +83,13 @@ export class SignupContinuePage implements OnInit {
 
 
   handleChange($event: CustomEvent) {
-    console.log($event.detail.value)
+    this.sesso = $event.detail.value
   }
 
   onInputChange($event: any) {
     this.CFValue = $event.target.value.toUpperCase();
+  }
+  isEnable():boolean{
+    return this.nome === "" || this.cognome === "" ||this.sesso === ""|| this.birthday === ""||this.CFValue=== ""
   }
 }

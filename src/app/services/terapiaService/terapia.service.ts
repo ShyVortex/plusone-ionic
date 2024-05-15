@@ -43,7 +43,7 @@ export class TerapiaService {
       axios.post<Terapia>(this.terapiaURL +"/addTerapia" +"/"+id_medico + "/" + id_paziente,terapia).then
       ((response:AxiosResponse<Terapia>)  => {
         jsonResponse = response.data
-        terapiaAdded = ModelUtilities.terapieFromJSON(terapiaAdded);
+        terapiaAdded = ModelUtilities.terapieFromJSON(jsonResponse);
 
 
         observer.next(terapiaAdded);

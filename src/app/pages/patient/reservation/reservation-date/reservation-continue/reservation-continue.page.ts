@@ -55,7 +55,7 @@ export class ReservationContinuePage implements OnInit {
   date!: string;
   private dataSubscription!:Subscription;
   private patientToPrenote!:Paziente;
-  private terapia!:any;
+  private terapia:any;
   private terapiaAdded:Terapia;
   private getPazienteByEmailObservable:Observable<Paziente>;
 
@@ -72,7 +72,7 @@ export class ReservationContinuePage implements OnInit {
         this.setTerapia()
         if (this.patientToPrenote != null)
           await firstValueFrom<Terapia>(
-            this.terapiaService.addTerapia(6, this.patientToPrenote.id, this.terapia)
+            this.terapiaService.addTerapia(10, this.patientToPrenote.id, this.terapia)
           )
         this.routeToReservationConfirmed();
       }
@@ -87,7 +87,6 @@ export class ReservationContinuePage implements OnInit {
     private pazienteService:PazienteService,
     private terapiaService:TerapiaService,
   ) {
-    this.terapia = new Terapia()
     this.getPazienteByEmailObservable = new Observable<Paziente>()
     this.terapiaAdded = new Terapia()
     this.terapia = {}

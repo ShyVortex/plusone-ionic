@@ -12,6 +12,7 @@
                type="text"
                label="Nome"
                label-placement="floating"
+               [(ngModel)]="nome"
     ></ion-input>
   </ion-item>
 
@@ -20,6 +21,7 @@
                type="text"
                label="Cognome"
                label-placement="floating"
+               [(ngModel)]="cognome"
     ></ion-input>
   </ion-item>
 
@@ -77,7 +79,8 @@
 
   <ion-button id="confirm-button"
               size="default"
-              (click)="routeToLogin()">
+              (click)="routeToLogin()"
+              [disabled]="isEnable()">
     <ion-text id="confirm-button-text">Conferma</ion-text>
   </ion-button>
 
