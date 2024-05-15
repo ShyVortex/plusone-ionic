@@ -1,20 +1,24 @@
-import {Person} from "../person/person";
-import {Indirizzo} from "../person/Indirizzo";
-import {Medico} from "../medico/Medico";
-import {Terapia} from "../Terapia/Terapia";
+import { Person } from "../person/person";
+import { Indirizzo } from "../person/Indirizzo";
+import { Medico } from "../medico/Medico";
+import { Terapia } from "../Terapia/Terapia";
 
 export class Paziente extends Person{
   constructor() {
+    super(0, "", "", "", "", "");
 
-    super(0,"","","","","");
-
-    this._indirizzo = new Indirizzo()
+    this._indirizzo = new Indirizzo();
     this._esenzione = false;
-    this._donatoreOrgani = false
-    this._medico = new Medico()
-    this._terapie = []
+    this._donatoreOrgani = false;
+    this._medico = new Medico();
+    this._terapie = [];
   }
 
+  private _indirizzo: Indirizzo;
+  private _esenzione: boolean;
+  private _donatoreOrgani: boolean;
+  private _medico: Medico;
+  private _terapie: Terapia[];
 
   get terapie(): Terapia[] {
     return this._terapie;
@@ -23,18 +27,7 @@ export class Paziente extends Person{
   set terapie(value: Terapia[]) {
     this._terapie = value;
   }
-
-  private _indirizzo:Indirizzo;
-
-   private _esenzione:boolean;
-
-   private _donatoreOrgani:boolean;
-
-   private _medico:Medico;
-
-   private _terapie:Terapia[]
-
-
+  
   get indirizzo(): Indirizzo {
     return this._indirizzo;
   }
