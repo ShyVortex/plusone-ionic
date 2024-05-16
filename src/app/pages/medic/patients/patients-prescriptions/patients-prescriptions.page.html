@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Pazienti seguiti</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar 
+  placeholder="Cerca paziente..."
+  (input)="search($event)"
+></ion-searchbar>
+
+<ion-content>
+  <ion-list>
+    @for (item of filteredPatients; track item.CF) {
+      <ion-item button (click)="goToUserDetails(item)">
+        <ion-avatar slot="start">
+          <img src="../../../../assets/sunflower.jpg" alt="Foto profilo paziente">
+        </ion-avatar>
+
+        <ion-label>
+          <h2>{{item.nome}} {{item.cognome}}</h2>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

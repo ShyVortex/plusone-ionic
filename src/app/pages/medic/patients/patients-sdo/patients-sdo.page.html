@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">SDO</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">patients-sdo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

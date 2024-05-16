@@ -71,7 +71,7 @@ export class SettingsPage implements OnInit {
     else if (this.ruolo === 'INFERMIERE')
       this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateBack("medic-home");
   }
 
   goToLogbook() {

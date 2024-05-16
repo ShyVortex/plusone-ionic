@@ -68,7 +68,8 @@ export const routes: Routes = [
   },
   {
     path: 'patient-reservation-denied',
-    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-denied/reservation-denied.page').then( m => m.ReservationDeniedPage)
+    loadComponent: () => import('./pages/patient/reservation/reservation-date/reservation-continue/reservation-denied/reservation-denied.page')
+      .then( m => m.ReservationDeniedPage)
   },
   {
     path: 'patient-sos',
@@ -77,15 +78,18 @@ export const routes: Routes = [
   },
   {
     path: 'patient-sos-survey',
-    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page').then(m => m.SosSurveyPage)
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey.page')
+      .then(m => m.SosSurveyPage)
   },
   {
     path: 'patient-sos-emergency',
-    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page').then(m => m.SosEmergencyPage)
+    loadComponent: () => import('./pages/patient/sos/sos-emergency/sos-emergency.page')
+      .then(m => m.SosEmergencyPage)
   },
   {
     path: 'patient-sos-survey-confirmed',
-    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page').then(m => m.SosSurveyConfirmedPage)
+    loadComponent: () => import('./pages/patient/sos/sos-survey/sos-survey-confirmed/sos-survey-confirmed.page')
+      .then(m => m.SosSurveyConfirmedPage)
   },
   {
     path: 'nurse-home',
@@ -118,12 +122,52 @@ export const routes: Routes = [
       .then(m => m.NotificationsPage)
   },
   {
-    path: 'medic-prescriptions',
-    loadComponent: () => import('./pages/medic/prescriptions/prescriptions.page')
-      .then(m => m.PrescriptionsPage)
+    path: 'medic-patients',
+    loadComponent: () => import('./pages/medic/patients/patients.page')
+      .then(m => m.PatientsPage)
   },
   {
-      path: 'settings',
+    path: 'medic-patients-prescriptions',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/patients-prescriptions.page')
+      .then( m => m.PatientsPrescriptionsPage)
+  },
+  {
+    path: 'medic-patients-user-details',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/user-details.page')
+      .then( m => m.UserDetailsPage)
+  },
+  {
+    path: 'medic-patients-user-details-new-therapy',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/new-therapy.page')
+      .then( m => m.NewTherapyPage)
+  },
+  {
+    path: 'medic-patients-homecare',
+    loadComponent: () => import('./pages/medic/patients/patients-homecare/patients-homecare.page')
+      .then(m => m.PatientsHomecarePage)
+  },
+  {
+    path: 'medic-patients-illcert',
+    loadComponent: () => import('./pages/medic/patients/patients-illcert/patients-illcert.page')
+      .then(m => m.PatientsIllcertPage)
+  },
+  {
+    path: 'medic-patients-records',
+    loadComponent: () => import('./pages/medic/patients/patients-records/patients-records.page')
+      .then( m => m.PatientsRecordsPage)
+  },
+  {
+    path: 'medic-patients-sdo',
+    loadComponent: () => import('./pages/medic/patients/patients-sdo/patients-sdo.page')
+      .then( m => m.PatientsSdoPage)
+  },
+  {
+    path: 'medic-patients-assistance',
+    loadComponent: () => import('./pages/medic/patients/patients-assistance/patients-assistance.page')
+      .then(m => m.PatientsAssistancePage)
+  },
+  {
+    path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)
   },
@@ -139,7 +183,8 @@ export const routes: Routes = [
   },
   {
     path: 'settings-bugreport-confirm',
-    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page').then(m => m.BugreportConfirmPage)
+    loadComponent: () => import('./pages/settings/bugreport/bugreport-confirm/bugreport-confirm.page')
+      .then(m => m.BugreportConfirmPage)
   },
   {
     path: 'settings-info',
@@ -154,6 +199,5 @@ export const routes: Routes = [
     path: 'signup-confirmed',
     loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-confirmed/signup-confirmed.page').then(m => m.SignupConfirmedPage)
   },
-
-
+  }
 ];

@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli paziente</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+    <ion-avatar>
+      <img src="../../../../assets/sunflower.jpg" alt="Foto profilo paziente">
+    </ion-avatar>
+    <ion-card-title>{{this.patient._nome}} {{this.patient._cognome}}</ion-card-title>
+    <ion-card-subtitle>{{this.patient._CF}}</ion-card-subtitle>
+    <ion-card-subtitle>{{this.patient._email}}</ion-card-subtitle>
+    </ion-card-content> 
+  
+    <ion-card-content>
+    <ion-card-title>Diagnosi</ion-card-title>
+    <ion-card-subtitle>Asma eosinofila, rinite allergica</ion-card-subtitle>
+    </ion-card-content>
+  
+    <ion-card-content>
+    <ion-card-title>Lista farmaci assegnati</ion-card-title>
+    <!-- <ion-button class="assigned-drugs-button" shape="round">Lista farmaci assegnati</ion-button> -->
+    </ion-card-content> 
+  </ion-card>
+  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Assegna terapia</ion-button>
+</ion-content>
+  
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

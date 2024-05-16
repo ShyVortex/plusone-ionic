@@ -1,30 +1,29 @@
-import {Medico} from "../medico/Medico";
-import {Paziente} from "../paziente/Paziente";
-import {TipologiaTerapia} from "./tipologia-terapia";
+import { Medico } from "../medico/Medico";
+import { Paziente } from "../paziente/Paziente";
+import { TipologiaTerapia } from "./tipologia-terapia";
 
 export class Terapia {
-
   constructor() {
-    this._id = 0
-    this._orario = ""
-    this._informazioneAggiuntive = ""
-    this._causa = ""
+    this._id = 0;
+    this._orario = "";
+    this._informazioneAggiuntive = "";
+    this._causa = "";
     this._attivo = false;
-    this._medicoCurante = new Medico()
-    this._paziente = new Paziente()
-    this._tipologiaTerapia = TipologiaTerapia.GENERALE
-    this._reparto = ""
+    this._medicoCurante = new Medico();
+    this._paziente = new Paziente();
+    this._tipologiaTerapia = TipologiaTerapia.GENERALE;
+    this._reparto = "";
   }
 
-  private _id:number;
-  private _orario:string;
-  private _informazioneAggiuntive:string;
-  private _causa:string;
-  private _attivo:boolean;
-  private _medicoCurante:Medico;
-  private _paziente:Paziente;
-  private _tipologiaTerapia:TipologiaTerapia;
-  private _reparto:string;
+  private _id: number;
+  private _orario: string;
+  private _informazioneAggiuntive: string;
+  private _causa: string;
+  private _attivo: boolean;
+  private _medicoCurante: Medico;
+  private _paziente: Paziente;
+  private _tipologiaTerapia: TipologiaTerapia;
+  private _reparto: string;
 
   get reparto(): string {
     return this._reparto;

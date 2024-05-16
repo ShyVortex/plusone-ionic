@@ -106,6 +106,7 @@ export class LoginPage implements OnInit,OnDestroy {
       await this.navCtrl.navigateForward("nurse-home");
     }
     if (this.email === "victor.conde@medico.it" && this.password === "password123") {
+      this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("medic-home");
     }
 
