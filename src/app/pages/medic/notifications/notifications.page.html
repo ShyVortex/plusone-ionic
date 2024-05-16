@@ -8,12 +8,16 @@
     <div class="profile-container">
       <div class="images-container">
         <ion-img class="profile-image"
-                 *ngIf="!medico.isManager"
-                 src="../../assets/icon/home/new-user.png">
-        </ion-img>
-        <ion-img class="profile-image"
                  *ngIf="medico.isManager"
                  src="../../assets/icon/home/elmanager.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.MASCHIO"
+                 src="../../assets/icon/home/stock-medic-male.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.FEMMINA"
+                 src="../../assets/icon/home/stock-medic-female.png">
         </ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>

@@ -13,8 +13,8 @@ import {
 import {NavController} from "@ionic/angular";
 import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
 import {firstValueFrom} from "rxjs";
-import {Terapia} from "../../../../../models/Terapia/Terapia";
 import {Paziente} from "../../../../../models/paziente/Paziente";
+import {Sesso} from "../../../../../models/person/sesso";
 
 @Component({
   selector: 'app-signup-end',
@@ -30,7 +30,7 @@ export class SignupEndPage implements OnInit {
   private CF: string;
   private nome:string;
   private cognome:string;
-  private sesso:string
+  private sesso: Sesso;
   protected citta:string
   protected cap:string
   protected indirizzo:string

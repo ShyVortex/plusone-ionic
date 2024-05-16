@@ -14,6 +14,7 @@ import {
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
+import {Sesso} from "../../../models/person/sesso";
 
 @Component({
   selector: 'app-sos',
@@ -41,6 +42,7 @@ export class SOSPage implements OnInit {
     if (!this.infermiere.isSet()) {
       this.infermiere.nome = "Teresa";
       this.infermiere.cognome = "Nucci";
+      this.infermiere.sesso = Sesso.FEMMINA;
       this.infermiere.email = "teresa.nucci@infermiere.it";
       this.infermiere.password = "password123";
       this.infermiere.CF = "NCCTRS81M16B519G";
@@ -74,4 +76,6 @@ export class SOSPage implements OnInit {
     this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }

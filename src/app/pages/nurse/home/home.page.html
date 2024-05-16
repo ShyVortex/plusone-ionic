@@ -7,7 +7,12 @@
     </ion-icon>
     <div class="profile-container">
       <div class="images-container">
-        <ion-img class="profile-image" src="../../assets/icon/home/stock-nurse.png"></ion-img>
+        <ion-img *ngIf="infermiere.sesso === Sesso.MASCHIO"
+                 class="profile-image"
+                 src="../../assets/icon/home/stock-nurse-male.png"></ion-img>
+        <ion-img *ngIf="infermiere.sesso === Sesso.FEMMINA"
+                 class="profile-image"
+                 src="../../assets/icon/home/stock-nurse-female.png"></ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
       <div class="text-container">
@@ -37,6 +42,13 @@
       Cognome:
       <ion-text class="list-value">
         {{this.infermiere.cognome}} <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Sesso:
+      <ion-text class="list-value">
+        {{this.infermiere.sesso}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>

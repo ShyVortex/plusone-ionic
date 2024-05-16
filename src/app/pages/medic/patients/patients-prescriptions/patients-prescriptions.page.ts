@@ -10,6 +10,7 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { Medico } from 'src/app/models/medico/Medico';
 import { delay } from 'rxjs';
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
+import {Sesso} from "../../../../models/person/sesso";
 
 @Component({
   selector: 'app-prescriptions',
@@ -82,4 +83,6 @@ export class PatientsPrescriptionsPage implements OnInit {
   goToPatients() {
     this.navCtrl.navigateForward('medic-patients', { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }
