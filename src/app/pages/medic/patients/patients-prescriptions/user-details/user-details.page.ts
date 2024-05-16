@@ -32,7 +32,7 @@ export class UserDetailsPage {
   }
 
   goToNewTherapy() {
-    this.navCtrl.navigateForward('new-therapy');
+    this.navCtrl.navigateForward('medic-patients-user-details-new-therapy');
   }
 
   goToHome() {

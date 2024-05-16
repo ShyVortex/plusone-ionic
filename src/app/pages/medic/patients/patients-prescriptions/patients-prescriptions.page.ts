@@ -63,7 +63,7 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   goToUserDetails(paziente: any) {
-    this.navCtrl.navigateForward('user-details', {
+    this.navCtrl.navigateForward('medic-patients-user-details', {
       state: {
         paziente: paziente,
       },
