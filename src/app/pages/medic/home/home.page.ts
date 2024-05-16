@@ -27,6 +27,10 @@ import {NavController} from "@ionic/angular";
 import {Medico} from "../../../models/medico/Medico";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
+import {Observable, Subscription} from "rxjs";
+import {DataService} from "../../../services/data.service";
+import {MedicoService} from "../../../services/MedicoService/medico.service";
+import {Paziente} from "../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-home',
@@ -48,15 +52,26 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 })
 export class HomePage implements OnInit {
   protected medico: Medico;
+  private getMedicoByEmailObservable!:Observable<Medico>
+  private dataSubscription!:Subscription;
+  private medicoEmail!:string;
 
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
+    private dataService:DataService,
+    private medicoService:MedicoService
   ) {
     this.medico = new Medico();
   }
 
   ngOnInit() {
+    this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
+        this.medicoEmail = value
+        this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail(this.medicoEmail)
+      }
+    )
+
     if (this.medico.isEmpty())
       this.medico.setState(false);
 
@@ -101,5 +116,10 @@ export class HomePage implements OnInit {
   goToPatients() {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
+  }
+  ionViewWillEnter(){
+    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+      this.medico = value
+    });
   }
 }

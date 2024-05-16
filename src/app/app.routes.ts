@@ -190,5 +190,14 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
+  },
+  {
+    path: 'signup-end',
+    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-end.page').then(m => m.SignupEndPage)
+  },
+  {
+    path: 'signup-confirmed',
+    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-confirmed/signup-confirmed.page').then(m => m.SignupConfirmedPage)
+  },
   }
 ];

@@ -27,7 +27,7 @@ export class Paziente extends Person{
   set terapie(value: Terapia[]) {
     this._terapie = value;
   }
-  
+
   get indirizzo(): Indirizzo {
     return this._indirizzo;
   }

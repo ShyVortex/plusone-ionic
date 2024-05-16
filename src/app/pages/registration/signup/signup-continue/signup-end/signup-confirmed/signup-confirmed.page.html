@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-text class="tab-name-bl">Conferma</ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" scroll-y="false">
+  <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h3 class="info-h3">REGISTRAZIONE EFFETUATA</h3>
+  <h6 class="info-h6">La registrazione è stata effettuata con successo.</h6>
+</ion-content>
+
+<div class="anim-confirm">
+  <ion-button class="confirm-button"
+              expand="block"
+              fill="solid"
+              (click)="goToHomeAnimated()">
+    <ion-text class="confirm-button-text">
+      ACCEDI
+    </ion-text>
+  </ion-button>
+</div>

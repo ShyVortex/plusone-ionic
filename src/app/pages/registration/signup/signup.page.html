@@ -7,12 +7,14 @@
 <ion-content class="signup-content" [fullscreen]="true">
   <ion-img id="plusone-logo" src="../../assets/icon/plusone-logo.png"></ion-img>
 
-  <ion-item fill="transparent">
+  <ion-item fill="transparent" >
     <ion-input class="signup-labels"
-               type="text"
+               type="email"
                label="Email"
                label-placement="floating"
+               [(ngModel)]="this.email"
     ></ion-input>
+
   </ion-item>
 
   <ion-item fill="transparent" class="ion-margin-top">
@@ -21,16 +23,30 @@
       [type]="isPasswordVisible ? 'text' : 'password'"
       label="Password"
       label-placement="floating"
-      color="dark" ngModel password>
+      color="dark" [(ngModel)]="this.password">
     </ion-input>
     <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
       <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
     </ion-button>
   </ion-item>
+  <ion-item fill="transparent" class="ion-margin-top">
+    <ion-input
+      class="signup-labels"
+      [type]="isPasswordVisible ? 'text' : 'password'"
+      label="Conferma Password"
+      label-placement="floating"
+      color="dark" [(ngModel)]="this.password2">
+    </ion-input>
+    <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
+      <ion-img id="eye-icon2" src="../../assets/icon/eye.png"></ion-img>
+    </ion-button>
+  </ion-item>
 
   <ion-button id="continue-button"
               size="default"
-              (click)="continueSignUp()">
+              (click)="continueSignUp()"
+              [disabled]="isEnable()"
+  >
     <ion-text id="continue-button-text">Prosegui</ion-text>
   </ion-button>
 
@@ -38,8 +54,16 @@
               id="login-button"
               size="small"
               fill="clear"
-              (click)="routeToLogin()">
+              (click)="routeToLogin()"
+
+  >
     <ion-text class="clear-button-text">Hai già un account? Effettua il login</ion-text>
   </ion-button>
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="{{this.message}}"
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
 
 </ion-content>

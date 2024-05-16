@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Paziente } from "../../models/paziente/Paziente";
-import { Observable, Observer } from "rxjs";
-import axios, { AxiosResponse } from "axios";
-import { ModelUtilities } from "../../models/ModelUtilities";
-import { Medico } from "../../models/medico/Medico";
+import {Paziente} from "../../models/paziente/Paziente";
+import {Observable, Observer} from "rxjs";
+import axios, {AxiosResponse} from "axios";
+import {ModelUtilities} from "../../models/ModelUtilities";
+import {Medico} from "../../models/medico/Medico";
+import {Terapia} from "../../models/Terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +87,29 @@ export class MedicoService {
           observer.complete();
         }
       ).catch(error => {console.log(error)});
+    });
+  }
+  getAllPrenotazioniByMedico(id_medico:number):Observable<Terapia[]> {
+
+
+    return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
+      axios.get<Terapia[]>(this.medicoURL + "/getAllPrenotazioniByMedico"+"/"+id_medico).then
+      ((response: AxiosResponse<Terapia[]>) => {
+        let jsonResponse: any[] = [];
+        let terapie: Terapia[] = [];
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          terapie.push(ModelUtilities.terapieFromJSON(element))
+        })
+        console.log(terapie)
+
+        observer.next(terapie);
+        observer.complete();
+      })
+        .catch(error => {
+            console.log(error)
+          }
+        );
     });
   }
 }
