@@ -9,6 +9,7 @@ import { MedicoService } from 'src/app/services/MedicoService/medico.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { Medico } from 'src/app/models/medico/Medico';
 import { delay } from 'rxjs';
+import {PersonaService} from "../../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-prescriptions',
@@ -24,11 +25,14 @@ export class PatientsPrescriptionsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private medicoService: MedicoService
-  ) {}
+    private personaService: PersonaService,
+    private medicoService: MedicoService,
+  ) {
+    this.medico = personaService.getPersona();
+  }
 
   ngOnInit() {
-    this.medicoService.getMedicoByEmail("mario.rascato@example.com").subscribe((result: Medico) => {
+    this.medicoService.getMedicoByEmail(this.medico.email).subscribe((result: Medico) => {
       this.medico = result;
       this.medicoService.getAllPazientiByMedico(this.medico.id).subscribe((result: Paziente[]) => {
         this.patients = result;
@@ -39,7 +43,7 @@ export class PatientsPrescriptionsPage implements OnInit {
 
   search(event: any) {
     if (event.target.value === "") {
-      this.filteredPatients = this.patients; 
+      this.filteredPatients = this.patients;
       return;
     }
 
