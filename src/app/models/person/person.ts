@@ -1,16 +1,13 @@
-import {person} from "ionicons/icons";
-
 export abstract class Person {
-
   protected constructor(
      id: number,
      nome: string,
      cognome: string,
      email: string,
      password: string,
-     CF:string
+     CF: string
   ) {
-    this._id= id;
+    this._id = id;
     this._nome = nome;
     this._cognome = cognome;
     this._email = email;
@@ -19,15 +16,13 @@ export abstract class Person {
     this._isSet = false;
   }
 
-
-
-  protected _id:number;
-  protected _nome:string;
-  protected _cognome:string;
-  protected _email:string;
-  protected _password:string;
-  protected _CF :string
-  protected _isSet:boolean;
+  protected _id: number;
+  protected _nome: string;
+  protected _cognome: string;
+  protected _email: string;
+  protected _password: string;
+  protected _CF: string
+  protected _isSet: boolean;
 
   get id(): number {
     return this._id;
@@ -77,7 +72,7 @@ export abstract class Person {
     this._CF = value;
   }
 
-  public isSet():boolean {
+  public isSet(): boolean {
     return this._isSet;
   }
 
@@ -85,10 +80,17 @@ export abstract class Person {
     this._isSet = value;
   }
 
-  public isEmpty():boolean{
-    if(this._nome==undefined && this._cognome==undefined && this._email==undefined && this._password==undefined && this._CF==undefined){
+  public isEmpty(): boolean{
+    if(
+      this._nome == undefined && 
+      this._cognome == undefined && 
+      this._email == undefined && 
+      this._password == undefined && 
+      this._CF == undefined
+    ) {
       return true;
+    } else {
+      return false;
     }
-    else return false;
   }
 }

@@ -1,0 +1,167 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Assegna terapia</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-label><h1>Farmaci</h1></ion-label>
+  <ion-card>
+    <ion-grid class="drug-grid">
+      <ion-col size="auto">
+        <ion-row>
+          <ion-label class="drug drug-name">Aspirina</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="drug drug-info">Quantità: 1</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="drug drug-notes">Da assumere con un bicchiere d'acqua</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+    <!-- <ion-button slot="end">ciao</ion-button> -->
+  </ion-card>
+  
+  <ion-item-divider></ion-item-divider>
+  
+  <ion-card>
+  <ion-label><h1>Esami</h1></ion-label>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="auto">
+          <!-- Icona -->
+          <ion-card-header>Icona</ion-card-header>
+        </ion-col>
+        <ion-col size="auto">
+          <!-- Divisore -->
+          <div class="divider-vertical"></div>
+        </ion-col>
+        <ion-col>
+          <!-- Nome -->
+          <ion-card-header>Aspirina</ion-card-header>
+          <!-- Descrizione -->
+          <ion-card-content>
+            1 compressa
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="auto">
+          <!-- Icona -->
+          <ion-card-header>Icona</ion-card-header>
+        </ion-col>
+        <ion-col size="auto">
+          <!-- Divisore -->
+          <div class="divider-vertical"></div>
+        </ion-col>
+        <ion-col>
+          <!-- Nome -->
+          <ion-card-header>Aspirina</ion-card-header>
+          <!-- Descrizione -->
+          <ion-card-content>
+            1 compressa
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-item-divider></ion-item-divider>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item-sliding>
+        <ion-item [button]="true">
+          <ion-avatar aria-hidden="true" slot="end">
+            <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>Leeroy Jenkins</ion-label>
+        </ion-item>
+        <ion-item-options slot="end">
+          <ion-item-option color="warning">
+            <ion-icon slot="icon-only" name="pin"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="tertiary">
+            <ion-icon slot="icon-only" name="share"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" expandable="true">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-item>
+        <ion-label>Ciao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+        <ion-button slot="end">ciao</ion-button>
+      </ion-item>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid class="drug-grid">
+        <ion-col size="auto">
+          <ion-row>
+            <ion-label class="drug drug-name">Aspirina</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label class="drug drug-info">Quantità: 1</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label class="drug drug-notes">Da assumere con un bicchiere d'acqua</ion-label>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="drug drug-name">Aspirina<br>Quantità: 1<br>Da assumere con un bicchiere d'acqua</ion-label>
+      <ion-button slot="end">TEST</ion-button>
+    </ion-item>
+  </ion-card>
+  
+</ion-content>
+
+<ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <ion-fab-button color="primary" class="assign-button">
+        <ion-icon name="chevron-up">Prescrivi farmaco</ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="primary" class="assign-button">
+        <ion-icon name="chevron-up"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+</ion-fab>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

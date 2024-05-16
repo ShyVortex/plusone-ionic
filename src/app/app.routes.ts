@@ -132,6 +132,16 @@ export const routes: Routes = [
       .then( m => m.PatientsPrescriptionsPage)
   },
   {
+    path: 'medic-patients-user-details',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/user-details.page')
+      .then( m => m.UserDetailsPage)
+  },
+  {
+    path: 'medic-patients-user-details-new-therapy',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/new-therapy.page')
+      .then( m => m.NewTherapyPage)
+  },
+  {
     path: 'medic-patients-homecare',
     loadComponent: () => import('./pages/medic/patients/patients-homecare/patients-homecare.page')
       .then(m => m.PatientsHomecarePage)
