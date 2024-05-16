@@ -19,13 +19,16 @@
       height: 2em;
     }
 
-    .radio-group {
-      .radio-grid {
-        margin-left: -0.5em;
-      }
+    .code-title {
+      font-size: x-large;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
 
-      .radio-option {
-        margin-top: 0.1em;
+      .code-icon {
+        width: 2em;
+        height: auto;
+        margin-right: 0.75em;
       }
     }
 
