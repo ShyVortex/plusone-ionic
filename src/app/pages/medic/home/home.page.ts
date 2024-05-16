@@ -86,7 +86,7 @@ export class HomePage implements OnInit {
       this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.medico.reparto = "Cardiologia";
       this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
     }
   }
 
@@ -125,4 +125,5 @@ export class HomePage implements OnInit {
   }
 
   protected readonly Sesso = Sesso;
+  protected readonly TipologiaMedico = TipologiaMedico;
 }

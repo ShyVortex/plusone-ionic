@@ -34,7 +34,12 @@
   <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
   <ion-item class="item-title">
     <ion-img class="item-title-icon" src="../../assets/icon/home/medic.png"></ion-img>
-    MEDICO
+    <ion-label *ngIf="medico.tipologiaMedico === TipologiaMedico.DI_BASE">
+      MEDICO DI BASE
+    </ion-label>
+    <ion-label *ngIf="medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO">
+      MEDICO OSPEDALIERO
+    </ion-label>
   </ion-item>
   <div class="home-container">
     <ion-label class="list-key">
