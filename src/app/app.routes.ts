@@ -22,6 +22,16 @@ export const routes: Routes = [
       .then(m => m.SignupContinuePage)
   },
   {
+    path: 'signup-end',
+    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-end.page')
+      .then(m => m.SignupEndPage)
+  },
+  {
+    path: 'signup-confirmed',
+    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-confirmed/signup-confirmed.page')
+      .then(m => m.SignupConfirmedPage)
+  },
+  {
     path: 'patient-home',
     loadComponent: () => import('./pages/patient/home/home.page')
       .then(m => m.HomePage)
@@ -190,14 +200,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  },
-  {
-    path: 'signup-end',
-    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-end.page').then(m => m.SignupEndPage)
-  },
-  {
-    path: 'signup-confirmed',
-    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-confirmed/signup-confirmed.page').then(m => m.SignupConfirmedPage)
-  },
   }
 ];

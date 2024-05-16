@@ -63,8 +63,6 @@ export class HomePage implements OnInit {
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.paziente = new Paziente();
 
-
-
     console.log(history.state.pazienteEmail)
   }
 
@@ -100,10 +98,12 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
-      this.paziente = value
-      this.citta = this.paziente.indirizzo.città;
-    });
+    if (this.paziente.isSet()) {
+      this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+        this.paziente = value
+        this.citta = this.paziente.indirizzo.città;
+      });
+    }
   }
 
   routeToSettings() {

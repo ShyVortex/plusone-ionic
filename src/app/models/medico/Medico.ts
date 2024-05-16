@@ -19,7 +19,7 @@ export class Medico extends Person {
   private _reparto: string;
   private _ruolo: string;
   private _tipologiaMedico: TipologiaMedico;
-  private _pazienti: Medico[];
+  private _pazienti: Paziente[];
   private _terapie: Terapia[];
   private _isManager: boolean;
 

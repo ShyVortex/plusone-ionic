@@ -42,15 +42,12 @@ export class NotificationsPage implements OnInit {
     private dataService:DataService,
     private medicoService:MedicoService
   ) {
-   /* this.medico = personaService.getPersona();
+     this.medico = personaService.getPersona();
 
-     Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
-       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati
-    if (!this.medico)
-      this.medico = new Medico();
-
-    */
-
+     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
+       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
+      if (!this.medico)
+        this.medico = new Medico();
   }
 
   ngOnInit() {
@@ -59,6 +56,22 @@ export class NotificationsPage implements OnInit {
         this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail(this.medicoEmail)
       }
     )
+
+    if (this.medico.isEmpty())
+      this.medico.setState(false);
+
+    if (!this.medico.isSet()) {
+      this.medico.isManager = true;
+      this.medico.nome = "Victor";
+      this.medico.cognome = "Conde";
+      this.medico.email = "victor.conde@medico.it";
+      this.medico.password = "password123";
+      this.medico.CF = "CNDVTR85D07E335W";
+      this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
+      this.medico.reparto = "Cardiologia";
+      this.medico.ruolo = "Primario";
+      this.medico.tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+    }
   }
 
   routeToSettings() {
