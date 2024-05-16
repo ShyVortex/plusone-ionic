@@ -1,4 +1,4 @@
 export enum TipologiaMedico {
-  DI_BASE,
-  OSPEDALIERO
+  DI_BASE = "DI_BASE",
+  OSPEDALIERO = "OSPEDALIERO"
 }
