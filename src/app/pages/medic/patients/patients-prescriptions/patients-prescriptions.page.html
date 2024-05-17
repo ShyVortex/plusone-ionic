@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
 
 <ion-searchbar
   placeholder="Cerca paziente..."
