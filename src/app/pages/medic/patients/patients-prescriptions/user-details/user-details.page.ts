@@ -6,8 +6,9 @@ import { NavController } from "@ionic/angular";
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
 import { DataService } from 'src/app/services/data.service';
-import {Sesso} from "../../../../../models/person/sesso";
-import {StorageService} from "../../../../../services/StorageService/storage.service";
+import { AlertController } from '@ionic/angular';
+import { Sesso } from "../../../../../models/person/sesso";
+import { StorageService } from "../../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-user-details',
@@ -29,8 +30,17 @@ export class UserDetailsPage {
     console.log(this.patient.sesso);
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'In sviluppo!',
+      buttons: ['Ok'],
+    });
+
+    await alert.present();
+  }
+
   navigateBack() {
-    this.navCtrl.navigateBack('medic-prescriptions', {
+    this.navCtrl.navigateBack('medic-patients-prescriptions', {
       // animated: false,
     });
   }

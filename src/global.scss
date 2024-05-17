@@ -58,8 +58,8 @@ ion-content {
   --ion-toolbar-background: #65eab5; // COLORE NUOVO TEMA - VAR. 1
   // --ion-toolbar-background: #72d4a0; // COLORE NUOVO TEMA - VAR. 2
   height: 12.5em;
-  border-bottom-left-radius: 2em;
-  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 3em;
+  border-bottom-right-radius: 3em;
 
   .back-button {
     --color: #000;
@@ -249,7 +249,7 @@ ion-content {
 .bottom-bar {
   .bottom-tab-bar {
     // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
-    --ion-background-color: #a6f3d4; //  COLORE NUOVO TEMA
+    --ion-background-color: #65eab5; //  COLORE NUOVO TEMA
   }
 
   .bottom-bar-buttons {

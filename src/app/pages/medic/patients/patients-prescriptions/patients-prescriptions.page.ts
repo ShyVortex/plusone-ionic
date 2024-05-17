@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { NavController } from "@ionic/angular";
-import { IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonText, IonTitle, IonToolbar, IonButton, IonList, IonItem, IonAvatar, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonText, IonTitle, IonToolbar, IonButton, IonList, IonItem, IonAvatar, IonSearchbar, IonProgressBar } from '@ionic/angular/standalone';
 
 import { MedicoService } from 'src/app/services/MedicoService/medico.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
@@ -18,9 +18,10 @@ import {StorageService} from "../../../../services/StorageService/storage.servic
   templateUrl: './patients-prescriptions.page.html',
   styleUrls: ['./patients-prescriptions.page.scss'],
   standalone: true,
-  imports: [IonSearchbar, IonAvatar, IonItem, IonList, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
+  imports: [IonProgressBar, IonSearchbar, IonAvatar, IonItem, IonList, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
 })
 export class PatientsPrescriptionsPage implements OnInit {
+  protected isLoading: boolean = true;
   protected medico!: Medico;
   protected patients!: Paziente[];
   protected filteredPatients!: Paziente[];
@@ -35,13 +36,20 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.medicoService.getMedicoByEmail(this.medico.email).subscribe((result: Medico) => {
-      this.medico = result;
-      this.medicoService.getAllPazientiByMedico(this.medico.id).subscribe((result: Paziente[]) => {
-        this.patients = result;
-        this.filteredPatients = this.patients;
+    this.loadItems();
+  }
+
+  async loadItems() {
+    setTimeout(() => {
+      this.medicoService.getMedicoByEmail(this.medico.email).subscribe((result: Medico) => {
+        this.medico = result;
+        this.medicoService.getAllPazientiByMedico(this.medico.id).subscribe((result: Paziente[]) => {
+          this.patients = result;
+          this.filteredPatients = this.patients;
+        });
       });
-    });
+      this.isLoading = false;
+    }, 2000);
   }
 
   search(event: any) {
@@ -66,7 +74,7 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack('medic-home');
+    this.navCtrl.navigateBack('medic-patients');
   }
 
   goToUserDetails(paziente: any) {
