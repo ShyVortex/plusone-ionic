@@ -25,6 +25,9 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+/* Additional CSS utils not related to Ionic */
+@import "@fortawesome/fontawesome-free/css/all.css";
+
 
 /** LIGHT MODE GLOBAL THEME **/
 ion-tab-bar {
@@ -196,6 +199,7 @@ ion-content {
       height: auto;
       margin-right: 0.5em;
     }
+
     .item-title-list {
       font-weight: normal;
     }

@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-searchbar 
+<ion-searchbar
   placeholder="Cerca paziente..."
   (input)="search($event)"
 ></ion-searchbar>
@@ -19,7 +19,14 @@
     @for (item of filteredPatients; track item.CF) {
       <ion-item button (click)="goToUserDetails(item)">
         <ion-avatar slot="start">
-          <img src="../../../../assets/sunflower.jpg" alt="Foto profilo paziente">
+          <ion-img *ngIf="item.sesso === Sesso.MASCHIO"
+                   src="../../assets/icon/home/stock-patient-male.png"
+                   alt="Foto profilo paziente">
+          </ion-img>
+          <ion-img *ngIf="item.sesso === Sesso.FEMMINA"
+                   src="../../assets/icon/home/stock-patient-female.png"
+                   alt="Foto profilo paziente">
+          </ion-img>
         </ion-avatar>
 
         <ion-label>

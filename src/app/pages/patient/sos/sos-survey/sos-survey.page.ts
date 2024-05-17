@@ -7,27 +7,28 @@ import {
   IonContent,
   IonFooter, IonGrid,
   IonHeader,
-  IonImg,
+  IonImg, IonItem,
   IonLabel, IonRadio, IonRadioGroup, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
+import {CodiciTriage} from "../../../../models/paziente/codici-triage";
 
 @Component({
   selector: 'app-sos-survey',
   templateUrl: './sos-survey.page.html',
   styleUrls: ['./sos-survey.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonRow, IonSelect, IonSelectOption, IonRadio, IonRadioGroup, IonText, IonGrid, IonCol]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonRow, IonSelect, IonSelectOption, IonRadio, IonRadioGroup, IonText, IonGrid, IonCol, IonItem]
 })
 export class SosSurveyPage implements OnInit {
-  selectedValue: any;
+  codiceTriage: string = "";
+  isPainSelectable: boolean = false;
+  isCodiceVisible: boolean = false;
 
   @ViewChild('wherePainRef') wherePainRef!: IonSelect;
   @ViewChild('painLevelRef') painLevelRef!: IonSelect;
-  @ViewChild('radioYesRef') radioYesRef!: IonRadio;
-  @ViewChild('radioNoRef') radioNoRef!: IonRadio;
 
   constructor(
     private navCtrl: NavController,
@@ -37,12 +38,7 @@ export class SosSurveyPage implements OnInit {
   ngOnInit() {
   }
 
-  handleRadioChange(event: CustomEvent) {
-    this.selectedValue = event.detail.value;
-    console.log('Selected value:', this.selectedValue);
-  }
-
-  async presentAlert() {
+  async showAlert() {
     const alert = await this.alertController.create({
       header: 'Errore',
       message: 'Compilare tutti i campi.',
@@ -63,15 +59,32 @@ export class SosSurveyPage implements OnInit {
       return false;
   }
 
+  unlockPainLevel() {
+    this.isPainSelectable = true;
+  }
+
+  updateAccessCode(event: CustomEvent) {
+    this.isCodiceVisible = true;
+
+    if (event.detail.value === "Minimo")
+      this.codiceTriage = CodiciTriage.BIANCO;
+    else if (event.detail.value === "Lieve")
+      this.codiceTriage = CodiciTriage.VERDE;
+    else if (event.detail.value === "Sofferto")
+      this.codiceTriage = CodiciTriage.AZZURRO;
+    else if (event.detail.value === "A rischio")
+      this.codiceTriage = CodiciTriage.ARANCIONE;
+  }
+
   routeToSurveyConfirmed() {
     if (this.checkFields()) {
-      if (this.selectedValue === this.radioNoRef.value)
+      if (this.codiceTriage != CodiciTriage.ARANCIONE)
         this.navCtrl.navigateForward("patient-sos-survey-confirmed");
       else
         this.navCtrl.navigateForward("patient-sos-emergency");
     }
     else
-      this.presentAlert();
+      this.showAlert();
   }
 
   goToHome() {
@@ -89,4 +102,6 @@ export class SosSurveyPage implements OnInit {
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
+
+  protected readonly CodiciTriage = CodiciTriage;
 }

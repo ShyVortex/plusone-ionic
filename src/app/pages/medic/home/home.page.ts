@@ -30,7 +30,7 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {Paziente} from "../../../models/paziente/Paziente";
+import {Sesso} from "../../../models/person/sesso";
 
 @Component({
   selector: 'app-home',
@@ -79,13 +79,14 @@ export class HomePage implements OnInit {
       this.medico.isManager = true;
       this.medico.nome = "Victor";
       this.medico.cognome = "Conde";
+      this.medico.sesso = Sesso.MASCHIO;
       this.medico.email = "victor.conde@medico.it";
       this.medico.password = "password123";
       this.medico.CF = "CNDVTR85D07E335W";
       this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
       this.medico.reparto = "Cardiologia";
       this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
     }
   }
 
@@ -122,4 +123,7 @@ export class HomePage implements OnInit {
       this.medico = value
     });
   }
+
+  protected readonly Sesso = Sesso;
+  protected readonly TipologiaMedico = TipologiaMedico;
 }

@@ -8,12 +8,16 @@
     <div class="profile-container">
       <div class="images-container">
         <ion-img class="profile-image"
-                 *ngIf="!medico.isManager"
-                 src="../../assets/icon/home/new-user.png">
-        </ion-img>
-        <ion-img class="profile-image"
                  *ngIf="medico.isManager"
                  src="../../assets/icon/home/elmanager.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.MASCHIO"
+                 src="../../assets/icon/home/stock-medic-male.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.FEMMINA"
+                 src="../../assets/icon/home/stock-medic-female.png">
         </ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
@@ -66,7 +70,7 @@
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/medic/patients/medical-records.png"></ion-img>
         <ion-row class="card-line"></ion-row>
-        <ion-card-title class="card-title">Cartelle</ion-card-title>
+        <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;Cartelle&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
     <ion-card class="select-card"
@@ -75,7 +79,7 @@
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/medic/patients/sdo.png"></ion-img>
         <ion-row class="card-line"></ion-row>
-        <ion-card-title class="card-title">SDO</ion-card-title>
+        <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
     <ion-card class="select-card"
@@ -84,7 +88,7 @@
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/medic/patients/assistance.png"></ion-img>
         <ion-row class="card-line"></ion-row>
-        <ion-card-title class="card-title">Assistenza</ion-card-title>
+        <ion-card-title class="card-title">&nbsp;Assistenza&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>

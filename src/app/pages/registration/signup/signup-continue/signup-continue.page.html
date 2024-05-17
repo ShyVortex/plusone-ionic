@@ -28,14 +28,15 @@
   <ion-item fill="transparent" class="ion-margin-top">
 
     <ion-input class="signup-continue-labels"
+               id="signup-sesso"
                label="Sesso"
+               label-placement="floating"
                [readonly]="true"
-    ></ion-input>
-    <ion-select
-      (ionChange)="handleChange($event)"
-    >
-      <ion-select-option value="MASCHIO">Maschio</ion-select-option>
-      <ion-select-option value="FEMMINA">Femmina</ion-select-option>
+               [(ngModel)]="sesso">
+    </ion-input>
+    <ion-select (ionChange)="handleChange($event)">
+      <ion-select-option value="Maschio">Maschio</ion-select-option>
+      <ion-select-option value="Femmina">Femmina</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -79,7 +80,7 @@
 
   <ion-button id="confirm-button"
               size="default"
-              (click)="routeToLogin()"
+              (click)="routeToSignupEnd()"
               [disabled]="isEnable()">
     <ion-text id="confirm-button-text">Conferma</ion-text>
   </ion-button>

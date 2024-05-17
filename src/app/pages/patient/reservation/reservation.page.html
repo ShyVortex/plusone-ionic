@@ -7,7 +7,12 @@
     </ion-icon>
     <div class="profile-container">
       <div class="images-container">
-        <ion-img class="profile-image" src="../../assets/icon/home/stock-patient.png"></ion-img>
+        <ion-img *ngIf="paziente.sesso === Sesso.MASCHIO"
+                 class="profile-image"
+                 src="../../assets/icon/home/stock-patient-male.png"></ion-img>
+        <ion-img *ngIf="paziente.sesso === Sesso.FEMMINA"
+                 class="profile-image"
+                 src="../../assets/icon/home/stock-patient-femmina.png"></ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
       <div class="text-container">

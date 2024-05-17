@@ -1,3 +1,5 @@
+import {Sesso} from "./sesso";
+
 export abstract class Person {
   protected constructor(
      id: number,
@@ -10,6 +12,7 @@ export abstract class Person {
     this._id = id;
     this._nome = nome;
     this._cognome = cognome;
+    this._sesso = Sesso.MASCHIO;
     this._email = email;
     this._password = password;
     this._CF = CF;
@@ -19,6 +22,7 @@ export abstract class Person {
   protected _id: number;
   protected _nome: string;
   protected _cognome: string;
+  protected _sesso: Sesso;
   protected _email: string;
   protected _password: string;
   protected _CF: string
@@ -46,6 +50,14 @@ export abstract class Person {
 
   set cognome(value: string) {
     this._cognome = value;
+  }
+
+  get sesso(): Sesso {
+    return this._sesso;
+  }
+
+  set sesso(value: Sesso) {
+    this._sesso = value;
   }
 
   get email(): string {
@@ -82,10 +94,10 @@ export abstract class Person {
 
   public isEmpty(): boolean{
     if(
-      this._nome == undefined && 
-      this._cognome == undefined && 
-      this._email == undefined && 
-      this._password == undefined && 
+      this._nome == undefined &&
+      this._cognome == undefined &&
+      this._email == undefined &&
+      this._password == undefined &&
       this._CF == undefined
     ) {
       return true;

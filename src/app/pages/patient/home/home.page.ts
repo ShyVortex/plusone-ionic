@@ -1,14 +1,27 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
-  IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
-  IonContent, IonFooter,
-  IonHeader, IonIcon, IonImg, IonItem, IonLabel,
-  IonNav, IonRow,
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonNav,
+  IonRow,
   IonTabBar,
   IonTabButton,
-  IonTabs, IonText, IonTextarea,
+  IonTabs,
+  IonText,
+  IonTextarea,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -17,11 +30,10 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
 import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../models/paziente/Paziente";
-import {ModelUtilities} from "../../../models/ModelUtilities";
 import {Medico} from "../../../models/medico/Medico";
 import {DataService} from "../../../services/data.service";
-import {NavigationExtras} from "@angular/router";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
+import {Sesso} from "../../../models/person/sesso";
 
 @Component({
   selector: 'app-home',
@@ -81,6 +93,7 @@ export class HomePage implements OnInit {
     if (!this.paziente.isSet()) {
       this.paziente.nome = "Mario";
       this.paziente.cognome = "Giannini";
+      this.paziente.sesso = Sesso.MASCHIO;
       this.paziente.email = "mario.giannini@paziente.it";
       this.paziente.password = "password123";
       this.paziente.CF = "GNNMRA02R05E335P";
@@ -139,4 +152,6 @@ export class HomePage implements OnInit {
     this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }

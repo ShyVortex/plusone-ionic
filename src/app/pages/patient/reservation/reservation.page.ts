@@ -20,6 +20,7 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Medico} from "../../../models/medico/Medico";
 import {Paziente} from "../../../models/paziente/Paziente";
+import {Sesso} from "../../../models/person/sesso";
 
 @Component({
   selector: 'app-reservation',
@@ -49,6 +50,7 @@ export class ReservationPage implements OnInit {
     if (!this.paziente.isSet()) {
       this.paziente.nome = "Mario";
       this.paziente.cognome = "Giannini";
+      this.paziente.sesso = Sesso.MASCHIO;
       this.paziente.email = "mario.giannini@paziente.it";
       this.paziente.password = "password123";
       this.paziente.CF = "GNNMRA02R05E335P";
@@ -94,4 +96,6 @@ export class ReservationPage implements OnInit {
     this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }

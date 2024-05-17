@@ -12,6 +12,7 @@ import {
   IonInput,
   IonButton, IonText, IonDatetime, IonDatetimeButton, IonModal, IonLabel, IonButtons, IonSelect, IonSelectOption
 } from '@ionic/angular/standalone';
+import {Sesso} from "../../../../models/person/sesso";
 
 @Component({
   selector: 'app-signup-continue',
@@ -23,13 +24,13 @@ import {
 export class SignupContinuePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
-  private emailPaziente:string;
-  private hashedPassword:string;
-  protected birthday:string;
+  private emailPaziente: string;
+  private hashedPassword: string;
+  protected birthday: string;
   protected CFValue: string;
-  protected nome:string;
-  protected cognome:string;
-  protected sesso:string
+  protected nome: string;
+  protected cognome: string;
+  protected sesso: string;
 
 
   constructor(private navCtrl: NavController) {
@@ -41,6 +42,7 @@ export class SignupContinuePage implements OnInit {
     this.cognome = ""
     this.sesso = ""
   }
+
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
@@ -54,15 +56,13 @@ export class SignupContinuePage implements OnInit {
 
   }
 
-
-
-  routeToLogin() {
+  routeToSignupEnd() {
     console.log(this.birthday)
     console.log(this.CFValue)
     console.log(this.nome)
     console.log(this.cognome)
     console.log(this.sesso)
-    this.navCtrl.navigateRoot('signup-end',{
+    this.navCtrl.navigateForward('signup-end',{
       state:{
         emailPaziente: this.emailPaziente,
         hashedPassword: this.hashedPassword,
@@ -75,12 +75,13 @@ export class SignupContinuePage implements OnInit {
     });
   }
 
-
+  routeToLogin() {
+    this.navCtrl.navigateRoot('login');
+  }
 
   storeDate(event: CustomEvent) {
     this.birthday = event.detail.value.split('T')[0];
   }
-
 
   handleChange($event: CustomEvent) {
     this.sesso = $event.detail.value
@@ -89,6 +90,7 @@ export class SignupContinuePage implements OnInit {
   onInputChange($event: any) {
     this.CFValue = $event.target.value.toUpperCase();
   }
+
   isEnable():boolean{
     return this.nome === "" || this.cognome === "" ||this.sesso === ""|| this.birthday === ""||this.CFValue=== ""
   }
