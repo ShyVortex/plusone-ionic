@@ -22,6 +22,7 @@ export class UserDetailsPage {
 
   constructor(
     private navCtrl: NavController,
+    private alertController: AlertController,
     private dataService: DataService,
     private storageService: StorageService
   ) {
