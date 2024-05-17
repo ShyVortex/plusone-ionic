@@ -17,6 +17,8 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../models/paziente/Paziente";
 import {Medico} from "../../../models/medico/Medico";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sos',
@@ -30,7 +32,9 @@ export class SOSPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private router: Router,
     private personaService: PersonaService,
+    private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
 
@@ -61,6 +65,7 @@ export class SOSPage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.paziente);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 

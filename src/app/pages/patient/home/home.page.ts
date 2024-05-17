@@ -34,6 +34,9 @@ import {Medico} from "../../../models/medico/Medico";
 import {DataService} from "../../../services/data.service";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {routes} from "../../../app.routes";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -65,10 +68,12 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private router: Router,
     private personaService:PersonaService,
     private pazienteService:PazienteService,
     private medicoService:MedicoService,
     private dataService: DataService,
+    private storageService: StorageService
   ) {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
@@ -76,6 +81,7 @@ export class HomePage implements OnInit {
     this.paziente = new Paziente();
 
     console.log(history.state.pazienteEmail)
+    console.log(router.url);
   }
 
   ngOnInit() {
@@ -121,11 +127,13 @@ export class HomePage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.paziente);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 
   routeToSecurity() {
     this.personaService.setPersona(this.paziente);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings-security");
   }
 
