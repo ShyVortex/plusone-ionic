@@ -26,6 +26,8 @@ import {NavController} from "@ionic/angular";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -39,7 +41,9 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService
+    private router: Router,
+    private personaService: PersonaService,
+    private storageService: StorageService
   ) {
     this.infermiere = new Infermiere();
   }
@@ -63,11 +67,13 @@ export class HomePage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.infermiere);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 
   routeToSecurity() {
     this.personaService.setPersona(this.infermiere);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings-security");
   }
 

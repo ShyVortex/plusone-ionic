@@ -11,11 +11,13 @@ export class StorageService {
   private paziente: Paziente;
   private infermiere: Infermiere;
   private medico: Medico;
+  private route: string;
 
   constructor() {
     this.paziente = new Paziente();
     this.infermiere = new Infermiere();
     this.medico = new Medico();
+    this.route = "";
   }
 
   setPaziente(paziente: Paziente) {
@@ -40,5 +42,13 @@ export class StorageService {
 
   getMedico() {
     return this.medico;
+  }
+
+  getRoute() {
+    return this.route;
+  }
+
+  setRoute(value: string) {
+    this.route = value;
   }
 }

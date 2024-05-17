@@ -31,6 +31,8 @@ import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -58,9 +60,11 @@ export class HomePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private router: Router,
     private personaService: PersonaService,
     private dataService:DataService,
-    private medicoService:MedicoService
+    private medicoService:MedicoService,
+    private storageService: StorageService
   ) {
     this.medico = new Medico();
   }
@@ -92,11 +96,13 @@ export class HomePage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.medico);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 
   routeToSecurity() {
     this.personaService.setPersona(this.medico);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings-security");
   }
 

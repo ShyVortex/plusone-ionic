@@ -15,6 +15,7 @@ import {
 import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../registration/login/LoginUtilities";
 import {PersonaService} from "../../services/PersonaService/persona.service";
+import {StorageService} from "../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-settings',
@@ -26,14 +27,17 @@ import {PersonaService} from "../../services/PersonaService/persona.service";
 export class SettingsPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
+  protected route: any;
   protected readonly LoginUtilities = LoginUtilities;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private storageService: StorageService
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
+    this.route = storageService.getRoute();
   }
 
   ngOnInit() {
@@ -46,7 +50,7 @@ export class SettingsPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.back();
+    this.navCtrl.navigateBack(this.route);
   }
 
   routeToSecurity() {

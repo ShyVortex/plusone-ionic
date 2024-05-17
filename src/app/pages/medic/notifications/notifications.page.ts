@@ -20,6 +20,8 @@ import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {Terapia} from "../../../models/Terapia/Terapia";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-logbook',
@@ -39,9 +41,11 @@ export class NotificationsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private router: Router,
     private personaService: PersonaService,
     private dataService:DataService,
-    private medicoService:MedicoService
+    private medicoService:MedicoService,
+    private storageService: StorageService
   ) {
      this.medico = personaService.getPersona();
 
@@ -78,6 +82,7 @@ export class NotificationsPage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.medico);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 

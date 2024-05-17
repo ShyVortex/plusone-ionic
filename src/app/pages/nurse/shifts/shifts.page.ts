@@ -15,6 +15,8 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
 import {Sesso} from "../../../models/person/sesso";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shifts',
@@ -28,7 +30,9 @@ export class ShiftsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private router: Router,
     private personaService: PersonaService,
+    private storageService: StorageService
   ) {
     this.infermiere = personaService.getPersona();
 
@@ -54,6 +58,7 @@ export class ShiftsPage implements OnInit {
 
   routeToSettings() {
     this.personaService.setPersona(this.infermiere);
+    this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
   }
 
