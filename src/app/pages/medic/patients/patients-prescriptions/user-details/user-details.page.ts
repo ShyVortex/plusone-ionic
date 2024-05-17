@@ -7,6 +7,8 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
 import { DataService } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
+import { Sesso } from "../../../../../models/person/sesso";
+import { StorageService } from "../../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-user-details',
@@ -21,10 +23,11 @@ export class UserDetailsPage {
   constructor(
     private navCtrl: NavController,
     private dataService: DataService,
-    private alertController: AlertController
-  ) { 
-    this.patient = history.state.paziente;
+    private storageService: StorageService
+  ) {
+    this.patient = storageService.getPaziente();
     console.log(this.patient);
+    console.log(this.patient.sesso);
   }
 
   async presentAlert() {
@@ -57,4 +60,6 @@ export class UserDetailsPage {
   goToPatients() {
     this.navCtrl.navigateForward('medic-patients', { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }

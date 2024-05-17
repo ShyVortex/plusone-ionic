@@ -16,7 +16,8 @@
     <ion-select #wherePainRef
                 class="question-select"
                 fill="solid"
-                placeholder="Seleziona">
+                placeholder="Seleziona"
+                (ionChange)="unlockPainLevel()">
       <ion-select-option>Testa</ion-select-option>
       <ion-select-option>Braccia</ion-select-option>
       <ion-select-option>Cuore</ion-select-option>
@@ -29,26 +30,36 @@
     <ion-select #painLevelRef
                 class="question-select"
                 fill="solid"
-                placeholder="Seleziona">
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Minimo</ion-select-option>
       <ion-select-option>Lieve</ion-select-option>
-      <ion-select-option>Medio</ion-select-option>
-      <ion-select-option>Forte</ion-select-option>
+      <ion-select-option>Sofferto</ion-select-option>
+      <ion-select-option>A rischio</ion-select-option>
     </ion-select>
     <div class="divider"></div>
-    <ion-label class="question-label">Richiedi aiuto urgente? <br/></ion-label>
-    <ion-radio-group class="radio-group" (ionChange)="handleRadioChange($event)">
-      <ion-grid class="radio-grid">
-        <ion-row>
-          <ion-col>
-            <ion-radio #radioYesRef class="radio-option" labelPlacement="end">SI</ion-radio>
-          </ion-col>
-          <ion-col size="1.85"></ion-col>
-          <ion-col>
-            <ion-radio #radioNoRef class="radio-option" labelPlacement="end">NO</ion-radio>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-radio-group>
+    <ion-item *ngIf="isCodiceVisible" lines="none" class="code-title">
+      <ion-img *ngIf = "codiceTriage === CodiciTriage.BIANCO"
+               class="code-icon"
+               src="../../assets/icon/shared/codes/white-code.png">
+      </ion-img>
+      <ion-img *ngIf = "codiceTriage === CodiciTriage.VERDE"
+               class="code-icon"
+               src="../../assets/icon/shared/codes/green-code.png">
+      </ion-img>
+      <ion-img *ngIf = "codiceTriage === CodiciTriage.AZZURRO"
+               class="code-icon"
+               src="../../assets/icon/shared/codes/blue-code.png">
+      </ion-img>
+      <ion-img *ngIf = "codiceTriage === CodiciTriage.ARANCIONE"
+               class="code-icon"
+               src="../../assets/icon/shared/codes/orange-code.png">
+      </ion-img>
+      <ion-text>
+        CODICE {{this.codiceTriage}}
+      </ion-text>
+    </ion-item>
     <div class="divider"></div>
     <div style="display: flex; justify-content: flex-end;">
       <ion-button class="send-button" (click)="routeToSurveyConfirmed()">Invia</ion-button>

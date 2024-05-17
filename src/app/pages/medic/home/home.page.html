@@ -8,12 +8,16 @@
     <div class="profile-container">
       <div class="images-container">
         <ion-img class="profile-image"
-                 *ngIf="!medico.isManager"
-                 src="../../assets/icon/home/new-user.png">
-        </ion-img>
-        <ion-img class="profile-image"
                  *ngIf="medico.isManager"
                  src="../../assets/icon/home/elmanager.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.MASCHIO"
+                 src="../../assets/icon/home/stock-medic-male.png">
+        </ion-img>
+        <ion-img class="profile-image"
+                 *ngIf="!medico.isManager && medico.sesso === Sesso.FEMMINA"
+                 src="../../assets/icon/home/stock-medic-female.png">
         </ion-img>
         <ion-img class="change-pic-image" src="../../assets/icon/home/camera.png"></ion-img>
       </div>
@@ -30,7 +34,12 @@
   <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
   <ion-item class="item-title">
     <ion-img class="item-title-icon" src="../../assets/icon/home/medic.png"></ion-img>
-    MEDICO
+    <ion-label *ngIf="medico.tipologiaMedico === TipologiaMedico.DI_BASE">
+      MEDICO DI BASE
+    </ion-label>
+    <ion-label *ngIf="medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO">
+      MEDICO OSPEDALIERO
+    </ion-label>
   </ion-item>
   <div class="home-container">
     <ion-label class="list-key">
@@ -44,6 +53,13 @@
       Cognome:
       <ion-text class="list-value">
         {{this.medico.cognome}} <br/>
+      </ion-text>
+    </ion-label>
+    <ion-row style="height: 0.5em"></ion-row>
+    <ion-label class="list-key">
+      Sesso:
+      <ion-text class="list-value">
+        {{this.medico.sesso}} <br/>
       </ion-text>
     </ion-label>
     <ion-row style="height: 0.5em"></ion-row>

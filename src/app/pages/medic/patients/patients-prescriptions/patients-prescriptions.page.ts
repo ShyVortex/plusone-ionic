@@ -10,6 +10,8 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { Medico } from 'src/app/models/medico/Medico';
 import { delay } from 'rxjs';
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
+import {Sesso} from "../../../../models/person/sesso";
+import {StorageService} from "../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-prescriptions',
@@ -28,6 +30,7 @@ export class PatientsPrescriptionsPage implements OnInit {
     private navCtrl: NavController,
     private personaService: PersonaService,
     private medicoService: MedicoService,
+    private storageService: StorageService
   ) {
     this.medico = personaService.getPersona();
   }
@@ -60,7 +63,11 @@ export class PatientsPrescriptionsPage implements OnInit {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) || reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
+      if (fullName.replace(/\s+/g, '')
+        .includes(searchValue.replace(/\s+/g, '')) ||
+        reversedFullName.replace(/\s+/g, '')
+          .includes(searchValue.replace(/\s+/g, '')))
+      {
         this.filteredPatients.push(element);
       }
     });
@@ -71,12 +78,8 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   goToUserDetails(paziente: any) {
-    this.navCtrl.navigateForward('medic-patients-user-details', {
-      state: {
-        paziente: paziente,
-      },
-      // animated: false,
-    },);
+    this.storageService.setPaziente(paziente);
+    this.navCtrl.navigateForward('medic-patients-user-details');
   }
 
   goToHome() {
@@ -90,4 +93,6 @@ export class PatientsPrescriptionsPage implements OnInit {
   goToPatients() {
     this.navCtrl.navigateForward('medic-patients', { animated: false });
   }
+
+  protected readonly Sesso = Sesso;
 }

@@ -16,6 +16,7 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Medico} from "../../../models/medico/Medico";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
+import {Sesso} from "../../../models/person/sesso";
 
 @Component({
   selector: 'app-patients',
@@ -44,6 +45,7 @@ export class PatientsPage implements OnInit {
       this.medico.isManager = true;
       this.medico.nome = "Victor";
       this.medico.cognome = "Conde";
+      this.medico.sesso = Sesso.MASCHIO;
       this.medico.email = "victor.conde@medico.it";
       this.medico.password = "default";
       this.medico.CF = "CNDVTR85D07E335W";
@@ -99,4 +101,5 @@ export class PatientsPage implements OnInit {
   }
 
   protected readonly TipologiaMedico = TipologiaMedico;
+  protected readonly Sesso = Sesso;
 }
