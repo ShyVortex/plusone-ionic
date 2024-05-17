@@ -6,6 +6,7 @@ import { NavController } from "@ionic/angular";
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
 import { DataService } from 'src/app/services/data.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-details',
@@ -20,9 +21,19 @@ export class UserDetailsPage {
   constructor(
     private navCtrl: NavController,
     private dataService: DataService,
+    private alertController: AlertController
   ) { 
     this.patient = history.state.paziente;
     console.log(this.patient);
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'In sviluppo!',
+      buttons: ['Ok'],
+    });
+
+    await alert.present();
   }
 
   navigateBack() {
