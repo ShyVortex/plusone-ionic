@@ -31,23 +31,39 @@
   
   <ion-item-divider></ion-item-divider>
   
-  <ion-card>
   <ion-label><h1>Esami</h1></ion-label>
+  <ion-card>
+    <ion-grid class="drug-grid">
+      <ion-col size="auto">
+        <ion-row>
+          <ion-label class="drug drug-name">Riduzione volume turbinati</ion-label>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-label class="drug drug-info">Quantità: 1</ion-label>
+        </ion-row> -->
+        <ion-row>
+          <ion-label class="drug drug-notes">Dettagli esame</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+    <!-- <ion-button slot="end">ciao</ion-button> -->
+  </ion-card>
 
-    <ion-grid>
+  <!-- <ion-item-divider></ion-item-divider> -->
+
+  <!-- <ion-card>
+  <ion-label><h1>Esami</h1></ion-label> -->
+
+    <!-- <ion-grid>
       <ion-row>
         <ion-col size="auto">
-          <!-- Icona -->
           <ion-card-header>Icona</ion-card-header>
         </ion-col>
         <ion-col size="auto">
-          <!-- Divisore -->
           <div class="divider-vertical"></div>
         </ion-col>
         <ion-col>
-          <!-- Nome -->
           <ion-card-header>Aspirina</ion-card-header>
-          <!-- Descrizione -->
           <ion-card-content>
             1 compressa
           </ion-card-content>
@@ -55,28 +71,24 @@
       </ion-row>
       <ion-row>
         <ion-col size="auto">
-          <!-- Icona -->
           <ion-card-header>Icona</ion-card-header>
         </ion-col>
         <ion-col size="auto">
-          <!-- Divisore -->
           <div class="divider-vertical"></div>
         </ion-col>
         <ion-col>
-          <!-- Nome -->
           <ion-card-header>Aspirina</ion-card-header>
-          <!-- Descrizione -->
           <ion-card-content>
             1 compressa
           </ion-card-content>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
+  </ion-card> -->
 
   <ion-item-divider></ion-item-divider>
 
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-content>
       <ion-item-sliding>
         <ion-item [button]="true">
@@ -97,16 +109,16 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    </ion-card-content>
+    </ion-card-content> -->
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-item>
         <ion-label>Ciao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
         <ion-button slot="end">ciao</ion-button>
       </ion-item>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-grid class="drug-grid">
         <ion-col size="auto">
           <ion-row>
@@ -120,15 +132,17 @@
           </ion-row>
         </ion-col>
       </ion-grid>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label class="drug drug-name">Aspirina<br>Quantità: 1<br>Da assumere con un bicchiere d'acqua</ion-label>
       <ion-button slot="end">TEST</ion-button>
     </ion-item>
-  </ion-card>
-  
+  </ion-card> -->
+
+  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Conferma terapia</ion-button>
 </ion-content>
+
 
 <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button color="primary">

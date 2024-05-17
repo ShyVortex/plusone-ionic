@@ -18,7 +18,7 @@ export class NewTherapyPage {
   ) { }
 
   navigateBack() {
-    this.navCtrl.navigateBack('medic-home', {
+    this.navCtrl.navigateBack('medic-patients-prescriptions', {
       // animated: false,
     });
   }

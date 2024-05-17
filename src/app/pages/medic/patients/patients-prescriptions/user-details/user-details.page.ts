@@ -26,7 +26,7 @@ export class UserDetailsPage {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack('medic-prescriptions', {
+    this.navCtrl.navigateBack('medic-patients-prescriptions', {
       // animated: false,
     });
   }

@@ -59,7 +59,7 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack('medic-home');
+    this.navCtrl.navigateBack('medic-patients');
   }
 
   goToUserDetails(paziente: any) {
