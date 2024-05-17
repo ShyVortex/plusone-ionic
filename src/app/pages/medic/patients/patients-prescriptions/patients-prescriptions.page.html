@@ -9,13 +9,14 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+
 <ion-searchbar
   placeholder="Cerca paziente..."
   (input)="search($event)"
 ></ion-searchbar>
 
 <ion-content>
-  <ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
   <ion-list *ngIf="!isLoading">
     @for (item of filteredPatients; track item.CF) {
       <ion-item button (click)="goToUserDetails(item)">
