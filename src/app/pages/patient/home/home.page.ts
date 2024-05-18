@@ -57,8 +57,8 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
     IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonFooter],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class HomePage implements OnInit {
 
+export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
   protected paziente: Paziente;
   private getPazienteByEmailObservable:Observable<Paziente>;
@@ -97,8 +97,10 @@ export class HomePage implements OnInit {
     if (this.paziente.isEmpty())
       this.paziente.setState(false);
 
-    if (!this.paziente.isSet())
-      this.offlineSetPaziente();
+    if (!this.paziente.isSet()) {
+      this.pazienteService.offlineSetPaziente(this.paziente);
+      this.citta = this.paziente.indirizzo.città;
+    }
   }
 
   ionViewWillEnter() {
@@ -108,40 +110,6 @@ export class HomePage implements OnInit {
         this.citta = this.paziente.indirizzo.città;
       });
     }
-  }
-
-  offlineSetPaziente() {
-    this.paziente.nome = "Mario";
-    this.paziente.cognome = "Giannini";
-    this.paziente.sesso = Sesso.MASCHIO;
-    this.paziente.email = "mario.giannini@paziente.it";
-    this.paziente.password = "password123";
-    this.paziente.CF = "GNNMRA02R05E335P";
-    this.paziente.indirizzo.cap = "IS";
-    this.paziente.indirizzo.città = "Pesche";
-    this.citta = this.paziente.indirizzo.città;
-    this.paziente.indirizzo.via = "Contrada Lappone";
-    this.paziente.esenzione = true;
-    this.paziente.medico = this.offlineSetMedicoCurante();
-    this.paziente.donatoreOrgani = false;
-  }
-
-  offlineSetMedicoCurante(): Medico {
-    let medico = new Medico();
-
-    medico.isManager = true;
-    medico.nome = "Victor";
-    medico.cognome = "Conde";
-    medico.sesso = Sesso.MASCHIO;
-    medico.email = "victor.conde@medico.it";
-    medico.password = "password123";
-    medico.CF = "CNDVTR85D07E335W";
-    medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-    medico.reparto = "Cardiologia";
-    medico.ruolo = "Primario";
-    medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-
-    return medico;
   }
 
   routeToSettings() {

@@ -28,6 +28,7 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Sesso} from "../../../models/person/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
 
 @Component({
   selector: 'app-home',
@@ -43,6 +44,7 @@ export class HomePage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private infermiereService: InfermiereService,
     private storageService: StorageService
   ) {
     this.infermiere = new Infermiere();
@@ -53,19 +55,7 @@ export class HomePage implements OnInit {
       this.infermiere.setState(false);
 
     if (!this.infermiere.isSet())
-      this.offlineSetInfermiere();
-  }
-
-  offlineSetInfermiere() {
-    this.infermiere.nome = "Teresa";
-    this.infermiere.cognome = "Nucci";
-    this.infermiere.sesso = Sesso.FEMMINA;
-    this.infermiere.email = "teresa.nucci@infermiere.it";
-    this.infermiere.password = "password123";
-    this.infermiere.CF = "NCCTRS81M16B519G";
-    this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-    this.infermiere.reparto = "Chirurgia";
-    this.infermiere.ruolo = "Infermiere assistente";
+      this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
   routeToSettings() {

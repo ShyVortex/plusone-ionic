@@ -20,6 +20,7 @@ import {Sesso} from "../../../models/person/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
+import {PazienteService} from "../../../services/PazienteService/paziente.service";
 
 @Component({
   selector: 'app-logbook',
@@ -35,6 +36,7 @@ export class LogbookPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
@@ -47,40 +49,7 @@ export class LogbookPage implements OnInit {
 
   ngOnInit() {
     if (!this.paziente.isSet())
-      this.offlineSetPaziente();
-  }
-
-  offlineSetPaziente() {
-    this.paziente.nome = "Mario";
-    this.paziente.cognome = "Giannini";
-    this.paziente.sesso = Sesso.MASCHIO;
-    this.paziente.email = "mario.giannini@paziente.it";
-    this.paziente.password = "password123";
-    this.paziente.CF = "GNNMRA02R05E335P";
-    this.paziente.indirizzo.cap = "IS";
-    this.paziente.indirizzo.città = "Pesche";
-    this.paziente.indirizzo.via = "Contrada Lappone";
-    this.paziente.esenzione = true;
-    this.paziente.medico = this.offlineSetMedicoCurante();
-    this.paziente.donatoreOrgani = false;
-  }
-
-  offlineSetMedicoCurante(): Medico {
-    let medico = new Medico();
-
-    medico.isManager = true;
-    medico.nome = "Victor";
-    medico.cognome = "Conde";
-    medico.sesso = Sesso.MASCHIO;
-    medico.email = "victor.conde@medico.it";
-    medico.password = "password123";
-    medico.CF = "CNDVTR85D07E335W";
-    medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-    medico.reparto = "Cardiologia";
-    medico.ruolo = "Primario";
-    medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-
-    return medico;
+      this.pazienteService.offlineSetPaziente(this.paziente);
   }
 
   routeToSettings() {

@@ -4,13 +4,16 @@ import { Observable, Observer} from "rxjs";
 import {Paziente} from "../../models/paziente/Paziente";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {Terapia} from "../../models/Terapia/Terapia";
+import {Medico} from "../../models/medico/Medico";
+import {TipologiaMedico} from "../../models/medico/tipologia-medico";
+import {Sesso} from "../../models/person/sesso";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class PazienteService {
   // Android Studio IP address: 10.0.2.2
-
   private pazienteURL= "http://localhost:8080/api/pazienti";
 
   constructor() {}
@@ -59,12 +62,12 @@ export class PazienteService {
   }
 
   addPaziente(paziente:Paziente):Observable<Paziente> {
-    let jsonResponse :any
-    let pazienteAdded:Paziente = new Paziente();
+    let jsonResponse: any
+    let pazienteAdded: Paziente = new Paziente();
 
-    return new Observable<Paziente>((observer:Observer<Paziente>)  => {
-      axios.post<Paziente>(this.pazienteURL +"/addPaziente" ,paziente).then
-      ((response:AxiosResponse<Paziente>)  => {
+    return new Observable<Paziente>((observer: Observer<Paziente>) => {
+      axios.post<Paziente>(this.pazienteURL + "/addPaziente", paziente).then
+      ((response: AxiosResponse<Paziente>) => {
         jsonResponse = response.data
         pazienteAdded = ModelUtilities.pazienteFromJSON(jsonResponse);
 
@@ -72,14 +75,44 @@ export class PazienteService {
         observer.next(pazienteAdded);
         observer.complete();
       })
-        .catch(error => {console.log(error)
+        .catch(error => {
+            console.log(error)
 
           }
         );
     });
   }
 
+  offlineSetPaziente(paziente: Paziente) {
+    paziente.nome = "Mario";
+    paziente.cognome = "Giannini";
+    paziente.sesso = Sesso.MASCHIO;
+    paziente.email = "mario.giannini@paziente.it";
+    paziente.password = "password123";
+    paziente.CF = "GNNMRA02R05E335P";
+    paziente.indirizzo.cap = "IS";
+    paziente.indirizzo.città = "Pesche";
+    paziente.indirizzo.via = "Contrada Lappone";
+    paziente.esenzione = true;
+    paziente.medico = this.offlineSetMedicoCurante();
+    paziente.donatoreOrgani = false;
+  }
 
+  offlineSetMedicoCurante(): Medico {
+    let medico = new Medico();
 
+    medico.isManager = true;
+    medico.nome = "Victor";
+    medico.cognome = "Conde";
+    medico.sesso = Sesso.MASCHIO;
+    medico.email = "victor.conde@medico.it";
+    medico.password = "password123";
+    medico.CF = "CNDVTR85D07E335W";
+    medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
+    medico.reparto = "Cardiologia";
+    medico.ruolo = "Primario";
+    medico.tipologiaMedico = TipologiaMedico.DI_BASE;
 
+    return medico;
+  }
 }

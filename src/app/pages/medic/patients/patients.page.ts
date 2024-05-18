@@ -20,6 +20,7 @@ import {Sesso} from "../../../models/person/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Paziente} from "../../../models/paziente/Paziente";
+import {MedicoService} from "../../../services/MedicoService/medico.service";
 
 @Component({
   selector: 'app-patients',
@@ -35,6 +36,7 @@ export class PatientsPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private medicoService: MedicoService,
     private storageService: StorageService
   ) {
     this.medico = personaService.getPersona();
@@ -47,40 +49,7 @@ export class PatientsPage implements OnInit {
 
   ngOnInit() {
     if (!this.medico.isSet())
-      this.offlineSetMedico();
-  }
-
-  offlineSetMedico() {
-    this.medico.isManager = true;
-    this.medico.nome = "Victor";
-    this.medico.cognome = "Conde";
-    this.medico.sesso = Sesso.MASCHIO;
-    this.medico.email = "victor.conde@medico.it";
-    this.medico.password = "password123";
-    this.medico.CF = "CNDVTR85D07E335W";
-    this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-    this.medico.reparto = "Cardiologia";
-    this.medico.ruolo = "Primario";
-    this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-    this.medico.pazienti.push(this.offlineAddPaziente());
-  }
-
-  offlineAddPaziente(): Paziente {
-    let paziente: Paziente = new Paziente();
-
-    paziente.nome = "Mario";
-    paziente.cognome = "Giannini";
-    paziente.sesso = Sesso.MASCHIO;
-    paziente.email = "mario.giannini@paziente.it";
-    paziente.password = "password123";
-    paziente.CF = "GNNMRA02R05E335P";
-    paziente.indirizzo.cap = "IS";
-    paziente.indirizzo.città = "Pesche";
-    paziente.indirizzo.via = "Contrada Lappone";
-    paziente.esenzione = true;
-    paziente.donatoreOrgani = false;
-
-    return paziente;
+      this.medicoService.offlineSetMedico(this.medico);
   }
 
   routeToSettings() {
