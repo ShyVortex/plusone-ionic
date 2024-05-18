@@ -49,7 +49,7 @@ export class MedicoService {
           observer.complete();
         }
       ).catch(error => {console.log(error)});
-    }); 
+    });
   }
 
   getMedicoByEmail(email: string) : Observable<Medico> {
@@ -89,9 +89,8 @@ export class MedicoService {
       ).catch(error => {console.log(error)});
     });
   }
+
   getAllPrenotazioniByMedico(id_medico:number):Observable<Terapia[]> {
-
-
     return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
       axios.get<Terapia[]>(this.medicoURL + "/getAllPrenotazioniByMedico"+"/"+id_medico).then
       ((response: AxiosResponse<Terapia[]>) => {

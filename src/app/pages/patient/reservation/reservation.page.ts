@@ -23,6 +23,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {Sesso} from "../../../models/person/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 @Component({
   selector: 'app-reservation',
@@ -51,22 +52,41 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.paziente.isSet()) {
-      this.paziente.nome = "Mario";
-      this.paziente.cognome = "Giannini";
-      this.paziente.sesso = Sesso.MASCHIO;
-      this.paziente.email = "mario.giannini@paziente.it";
-      this.paziente.password = "password123";
-      this.paziente.CF = "GNNMRA02R05E335P";
-      this.paziente.indirizzo.cap = "IS";
-      this.paziente.indirizzo.città = "Pesche";
-      this.paziente.indirizzo.via = "Contrada Lappone";
-      this.paziente.esenzione = true;
-      this.paziente.medico = new Medico();
-      this.paziente.medico.nome = "Victor Ivan";
-      this.paziente.medico.cognome = "Conde";
-      this.paziente.donatoreOrgani = false;
-    }
+    if (!this.paziente.isSet())
+      this.offlineSetPaziente();
+  }
+
+  offlineSetPaziente() {
+    this.paziente.nome = "Mario";
+    this.paziente.cognome = "Giannini";
+    this.paziente.sesso = Sesso.MASCHIO;
+    this.paziente.email = "mario.giannini@paziente.it";
+    this.paziente.password = "password123";
+    this.paziente.CF = "GNNMRA02R05E335P";
+    this.paziente.indirizzo.cap = "IS";
+    this.paziente.indirizzo.città = "Pesche";
+    this.paziente.indirizzo.via = "Contrada Lappone";
+    this.paziente.esenzione = true;
+    this.paziente.medico = this.offlineSetMedicoCurante();
+    this.paziente.donatoreOrgani = false;
+  }
+
+  offlineSetMedicoCurante(): Medico {
+    let medico = new Medico();
+
+    medico.isManager = true;
+    medico.nome = "Victor";
+    medico.cognome = "Conde";
+    medico.sesso = Sesso.MASCHIO;
+    medico.email = "victor.conde@medico.it";
+    medico.password = "password123";
+    medico.CF = "CNDVTR85D07E335W";
+    medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
+    medico.reparto = "Cardiologia";
+    medico.ruolo = "Primario";
+    medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+
+    return medico;
   }
 
   routeToReservationDate(type: string) {

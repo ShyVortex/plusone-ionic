@@ -1,32 +1,66 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
-  IonContent,
-  IonFooter,
-  IonHeader,
-  IonImg,
-  IonLabel, IonTabBar, IonTabButton, IonTabs,
-  IonTitle,
-  IonToolbar
+    IonButton,
+    IonContent,
+    IonFooter,
+    IonHeader,
+    IonImg, IonItem,
+    IonLabel, IonList, IonRefresher, IonRefresherContent, IonRow, IonTabBar, IonTabButton, IonTabs, IonText,
+    IonTitle,
+    IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
+import {Terapia} from "../../../../models/Terapia/Terapia";
+import {PersonaService} from "../../../../services/PersonaService/persona.service";
+import {Paziente} from "../../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-logbook-reservations',
   templateUrl: './logbook-reservations.page.html',
   styleUrls: ['./logbook-reservations.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs]
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonText]
 })
+
 export class LogbookReservationsPage implements OnInit {
+  protected paziente!: Paziente;
+  protected prenotazioni!: Terapia[];
 
   constructor(
     private navCtrl: NavController,
-  ) { }
+    private personaService: PersonaService,
+  ) {
+    this.paziente = personaService.getPersona();
+  }
 
   ngOnInit() {
+    console.clear();
+    console.log(this.paziente);
+
+    if (this.paziente && this.paziente.terapie) {
+      this.prenotazioni = this.formatPrenotazioni(this.paziente.terapie);
+      console.log(this.prenotazioni);
+    }
+  }
+
+  formatPrenotazioni(value: Terapia[]) :Terapia[]  {
+    const carattere: string = "T";
+    let prenotazioni:Terapia[] = []
+    let prenotazione: Terapia = new Terapia();
+    for (const terapia of value) {
+      if (terapia.orario !== undefined && terapia.orario !== null) {
+        let posizione: number = terapia.orario.indexOf(carattere);
+        let sottostringa: string = terapia.orario.substring(0, posizione);
+        prenotazione = terapia;
+        prenotazione.orario = sottostringa;
+        prenotazioni.push(prenotazione);
+      }
+      else
+        prenotazioni.push(terapia);
+    }
+    return prenotazioni
   }
 
   navigateBack() {

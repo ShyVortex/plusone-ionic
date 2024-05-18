@@ -22,6 +22,7 @@ import {Terapia} from "../../../models/Terapia/Terapia";
 import {Sesso} from "../../../models/person/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {Paziente} from "../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-logbook',
@@ -65,19 +66,41 @@ export class NotificationsPage implements OnInit {
     if (this.medico.isEmpty())
       this.medico.setState(false);
 
-    if (!this.medico.isSet()) {
-      this.medico.isManager = true;
-      this.medico.nome = "Victor";
-      this.medico.cognome = "Conde";
-      this.medico.sesso = Sesso.MASCHIO;
-      this.medico.email = "victor.conde@medico.it";
-      this.medico.password = "password123";
-      this.medico.CF = "CNDVTR85D07E335W";
-      this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.medico.reparto = "Cardiologia";
-      this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-    }
+    if (!this.medico.isSet())
+      this.offlineSetMedico();
+  }
+
+  offlineSetMedico() {
+    this.medico.isManager = true;
+    this.medico.nome = "Victor";
+    this.medico.cognome = "Conde";
+    this.medico.sesso = Sesso.MASCHIO;
+    this.medico.email = "victor.conde@medico.it";
+    this.medico.password = "password123";
+    this.medico.CF = "CNDVTR85D07E335W";
+    this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
+    this.medico.reparto = "Cardiologia";
+    this.medico.ruolo = "Primario";
+    this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    this.medico.pazienti.push(this.offlineAddPaziente());
+  }
+
+  offlineAddPaziente(): Paziente {
+    let paziente: Paziente = new Paziente();
+
+    paziente.nome = "Mario";
+    paziente.cognome = "Giannini";
+    paziente.sesso = Sesso.MASCHIO;
+    paziente.email = "mario.giannini@paziente.it";
+    paziente.password = "password123";
+    paziente.CF = "GNNMRA02R05E335P";
+    paziente.indirizzo.cap = "IS";
+    paziente.indirizzo.città = "Pesche";
+    paziente.indirizzo.via = "Contrada Lappone";
+    paziente.esenzione = true;
+    paziente.donatoreOrgani = false;
+
+    return paziente;
   }
 
   routeToSettings() {
@@ -100,6 +123,7 @@ export class NotificationsPage implements OnInit {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
+
   ionViewWillEnter(){
     this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
       this.medico = value
@@ -109,6 +133,7 @@ export class NotificationsPage implements OnInit {
       })
     });
   }
+
   handleRefresh(event:any) {
     setTimeout(() => {
       this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
@@ -117,6 +142,7 @@ export class NotificationsPage implements OnInit {
       event.target.complete();
     }, 2000);
   }
+
    formatPrenotazioni(value: Terapia[]) :Terapia[]  {
     const carattere: string = "T";
     let prenotazioni:Terapia[] = []

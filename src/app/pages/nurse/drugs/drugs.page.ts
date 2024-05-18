@@ -43,17 +43,20 @@ export class DrugsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.infermiere.isSet()) {
-      this.infermiere.nome = "Teresa";
-      this.infermiere.cognome = "Nucci";
-      this.infermiere.sesso = Sesso.FEMMINA;
-      this.infermiere.email = "teresa.nucci@infermiere.it";
-      this.infermiere.password = "password123";
-      this.infermiere.CF = "NCCTRS81M16B519G";
-      this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.infermiere.reparto = "Chirurgia";
-      this.infermiere.ruolo = "Infermiere assistente";
-    }
+    if (!this.infermiere.isSet())
+      this.offlineSetInfermiere();
+  }
+
+  offlineSetInfermiere() {
+    this.infermiere.nome = "Teresa";
+    this.infermiere.cognome = "Nucci";
+    this.infermiere.sesso = Sesso.FEMMINA;
+    this.infermiere.email = "teresa.nucci@infermiere.it";
+    this.infermiere.password = "password123";
+    this.infermiere.CF = "NCCTRS81M16B519G";
+    this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
+    this.infermiere.reparto = "Chirurgia";
+    this.infermiere.ruolo = "Infermiere assistente";
   }
 
   routeToSettings() {

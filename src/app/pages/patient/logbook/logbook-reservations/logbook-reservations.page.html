@@ -9,6 +9,18 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="reservations-content" [fullscreen]="true">
+  <ion-list>
+    <ion-item class="item-title" *ngFor="let prenotazione of prenotazioni">
+      <div class="item-content">
+        <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
+        <ion-text class="item-title-list">Prenotazione {{prenotazione.orario}}
+          appuntamento con {{paziente.medico.nome}} {{paziente.medico.cognome}}</ion-text>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <ion-tabs class="bottom-bar">

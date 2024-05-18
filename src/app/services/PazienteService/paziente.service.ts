@@ -13,14 +13,9 @@ export class PazienteService {
 
   private pazienteURL= "http://localhost:8080/api/pazienti";
 
-
-
   constructor() {}
 
-
-
   getAllPazienti():Observable<Paziente[]> {
-
     let jsonResponse :any[] =[];
     let pazienti:Paziente[] = [];
 
@@ -62,6 +57,7 @@ export class PazienteService {
         );
     });
   }
+
   addPaziente(paziente:Paziente):Observable<Paziente> {
     let jsonResponse :any
     let pazienteAdded:Paziente = new Paziente();
