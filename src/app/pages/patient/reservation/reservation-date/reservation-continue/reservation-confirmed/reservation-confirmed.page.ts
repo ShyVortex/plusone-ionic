@@ -22,6 +22,7 @@ import {
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 import { NavController } from "@ionic/angular";
+import {PersonaService} from "../../../../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-reservation-confirmed',
@@ -45,11 +46,16 @@ export class ReservationConfirmedPage implements OnInit {
     height: '26em',
   }
 
-  constructor(private navCtrl: NavController) {
+  constructor(
+    private navCtrl: NavController,
+    private personaService: PersonaService,
+  ) {
     console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.personaService.getPersona());
+  }
 
   animationCreated(animationItem: AnimationItem): void {
     //console.log("Animazione renderizzata. \n\n", animationItem);
