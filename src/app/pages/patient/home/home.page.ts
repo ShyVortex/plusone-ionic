@@ -33,7 +33,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {Medico} from "../../../models/medico/Medico";
 import {DataService} from "../../../services/data.service";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {routes} from "../../../app.routes";
 import {Router} from "@angular/router";
@@ -79,7 +79,10 @@ export class HomePage implements OnInit {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
-    this.paziente = new Paziente();
+    this.paziente = personaService.getPersona();
+
+    if (!this.paziente)
+      this.paziente = new Paziente();
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);
@@ -97,7 +100,7 @@ export class HomePage implements OnInit {
     if (this.paziente.isEmpty())
       this.paziente.setState(false);
 
-    if (!this.paziente.isSet()) {
+    if (this.paziente != undefined && !this.paziente.isSet()) {
       this.pazienteService.offlineSetPaziente(this.paziente);
       this.citta = this.paziente.indirizzo.città;
     }
@@ -125,6 +128,8 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    if (!this.paziente.isSet())
+      this.storageService.cacheState(this.paziente);
     this.navCtrl.navigateRoot("login");
   }
 

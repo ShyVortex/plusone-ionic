@@ -30,7 +30,7 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Paziente} from "../../../models/paziente/Paziente";

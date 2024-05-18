@@ -20,7 +20,7 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Medico} from "../../../models/medico/Medico";
 import {Paziente} from "../../../models/paziente/Paziente";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
@@ -54,7 +54,7 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.paziente.isSet())
+    if (this.paziente != undefined && !this.paziente.isSet())
       this.pazienteService.offlineSetPaziente(this.paziente);
   }
 

@@ -1,9 +1,9 @@
-import { Person } from "../person/person";
-import { Indirizzo } from "../person/Indirizzo";
+import { Persona } from "../persona/persona";
+import { Indirizzo } from "../persona/Indirizzo";
 import { Medico } from "../medico/Medico";
 import { Terapia } from "../Terapia/Terapia";
 
-export class Paziente extends Person{
+export class Paziente extends Persona{
   constructor() {
     super(0, "", "", "", "", "");
 

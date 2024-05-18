@@ -1,6 +1,6 @@
-import { Person } from "../person/person";
+import { Persona } from "../persona/persona";
 
-export class Infermiere extends Person {
+export class Infermiere extends Persona {
   constructor() {
     super(0, "", "", "", "", "");
     this._ospedale = "";

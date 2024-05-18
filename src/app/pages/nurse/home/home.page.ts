@@ -25,7 +25,7 @@ import {
 import {NavController} from "@ionic/angular";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";

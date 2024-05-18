@@ -1,6 +1,6 @@
 import { Paziente } from "./paziente/Paziente";
 import { Medico } from "./medico/Medico";
-import { Person } from "./person/person";
+import { Persona } from "./persona/persona";
 import { Infermiere } from "./infermiere/Infermiere";
 import { Terapia } from "./Terapia/Terapia";
 
@@ -45,7 +45,7 @@ export class ModelUtilities {
     return infermiere;
   }
 
-  private static personFromJSON(json: any, persona: Person) {
+  private static personFromJSON(json: any, persona: Persona) {
     persona.id = json.id;
     persona.nome = json.nome;
     persona.cognome = json.cognome;

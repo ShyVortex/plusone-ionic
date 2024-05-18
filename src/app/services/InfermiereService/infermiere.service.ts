@@ -3,7 +3,7 @@ import {Observable, Observer} from "rxjs";
 import {Infermiere} from "../../models/infermiere/Infermiere";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
-import {Sesso} from "../../models/person/sesso";
+import {Sesso} from "../../models/persona/sesso";
 
 @Injectable({
   providedIn: 'root'

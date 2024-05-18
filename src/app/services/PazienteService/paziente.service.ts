@@ -6,7 +6,7 @@ import {ModelUtilities} from "../../models/ModelUtilities";
 import {Terapia} from "../../models/Terapia/Terapia";
 import {Medico} from "../../models/medico/Medico";
 import {TipologiaMedico} from "../../models/medico/tipologia-medico";
-import {Sesso} from "../../models/person/sesso";
+import {Sesso} from "../../models/persona/sesso";
 
 @Injectable({
   providedIn: 'root'

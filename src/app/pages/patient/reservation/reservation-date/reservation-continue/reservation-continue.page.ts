@@ -36,7 +36,7 @@ import {firstValueFrom, Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../../../models/paziente/Paziente";
 import {Terapia} from "../../../../../models/Terapia/Terapia";
 import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
-import {TerapiaService} from "../../../../../services/terapiaService/terapia.service";
+import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
 import {TipologiaTerapia} from "../../../../../models/Terapia/tipologia-terapia";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 

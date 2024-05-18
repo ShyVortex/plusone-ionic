@@ -10,7 +10,7 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { Medico } from 'src/app/models/medico/Medico';
 import { delay } from 'rxjs';
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
-import {Sesso} from "../../../../models/person/sesso";
+import {Sesso} from "../../../../models/persona/sesso";
 import {StorageService} from "../../../../services/StorageService/storage.service";
 
 @Component({

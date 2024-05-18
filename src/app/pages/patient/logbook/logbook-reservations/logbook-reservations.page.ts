@@ -25,7 +25,7 @@ import {Paziente} from "../../../../models/paziente/Paziente";
 })
 
 export class LogbookReservationsPage implements OnInit {
-  protected paziente!: Paziente;
+  protected paziente: Paziente;
   protected prenotazioni!: Terapia[];
 
   constructor(
@@ -40,27 +40,9 @@ export class LogbookReservationsPage implements OnInit {
     console.log(this.paziente);
 
     if (this.paziente && this.paziente.terapie) {
-      this.prenotazioni = this.formatPrenotazioni(this.paziente.terapie);
+      this.prenotazioni = this.paziente.terapie;
       console.log(this.prenotazioni);
     }
-  }
-
-  formatPrenotazioni(value: Terapia[]) :Terapia[]  {
-    const carattere: string = "T";
-    let prenotazioni:Terapia[] = []
-    let prenotazione: Terapia = new Terapia();
-    for (const terapia of value) {
-      if (terapia.orario !== undefined && terapia.orario !== null) {
-        let posizione: number = terapia.orario.indexOf(carattere);
-        let sottostringa: string = terapia.orario.substring(0, posizione);
-        prenotazione = terapia;
-        prenotazione.orario = sottostringa;
-        prenotazioni.push(prenotazione);
-      }
-      else
-        prenotazioni.push(terapia);
-    }
-    return prenotazioni
   }
 
   navigateBack() {
