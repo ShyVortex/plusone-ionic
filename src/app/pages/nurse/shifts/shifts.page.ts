@@ -45,7 +45,7 @@ export class ShiftsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.infermiere != undefined && !this.infermiere.isSet())
+    if (this.infermiere.nome === "" && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 

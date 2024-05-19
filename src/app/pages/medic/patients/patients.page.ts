@@ -48,7 +48,7 @@ export class PatientsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.medico != undefined && !this.medico.isSet())
+    if (!this.medico.isManager && !this.medico.isSet())
       this.medicoService.offlineSetMedico(this.medico);
   }
 

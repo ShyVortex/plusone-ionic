@@ -78,6 +78,7 @@ export class StorageService {
           return this.loginCache[index];
       } else {
         console.error('Cannot GET: email not found in cache,', value);
+        return undefined;
       }
     }
     else

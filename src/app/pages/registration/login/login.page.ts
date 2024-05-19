@@ -109,6 +109,8 @@ export class LoginPage implements OnInit,OnDestroy {
       this.personToLogin = this.storageService.getState(this.email);
       if (this.personToLogin != undefined)
         this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Paziente());
 
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("patient-home");
@@ -117,6 +119,8 @@ export class LoginPage implements OnInit,OnDestroy {
       this.personToLogin = this.storageService.getState(this.email);
       if (this.personToLogin != undefined)
         this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Infermiere());
 
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("nurse-home");
@@ -125,6 +129,8 @@ export class LoginPage implements OnInit,OnDestroy {
       this.personToLogin = this.storageService.getState(this.email);
       if (this.personToLogin != undefined)
         this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Medico());
 
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("medic-home");

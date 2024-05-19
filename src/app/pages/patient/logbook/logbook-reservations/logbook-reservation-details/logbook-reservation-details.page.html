@@ -24,16 +24,10 @@
   </div>
   <ion-row style="height: 2.5em"></ion-row>
   <div class="details-container">
-    <ion-text *ngIf="prenotazione.tipologiaTerapia === TipologiaTerapia.GENERALE"
-              class="reservation-details-text">
-      Questa prenotazione prevede un appuntamento con il suo medico di famiglia <b>{{paziente.medico.nome}}
-      {{paziente.medico.cognome}}</b> alle ore {{prenotazione.orario | date: 'shortTime'}}.
-    </ion-text>
-    <ion-text *ngIf="prenotazione.tipologiaTerapia === TipologiaTerapia.SPECIALISTICA"
-              class="reservation-details-text">
+    <ion-text class="reservation-details-text">
       Questa prenotazione prevede un appuntamento con il dot. <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
-      presso il reparto di <b>{{prenotazione.reparto}}</b> dell'<b>Ospedale Riuniti</b> di Foggia
-      alle ore {{prenotazione.orario | date: 'shortTime'}}.
+      per una visita {{prenotazione.tipologiaTerapia}} presso il reparto di <b>{{prenotazione.reparto}}</b>
+      dell'<b>Ospedale Riuniti</b> di Foggia alle ore {{prenotazione.orario | date: 'HH:mm'}}.
     </ion-text>
   </div>
   <ion-row style="height: 2.5em"></ion-row>

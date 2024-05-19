@@ -36,7 +36,10 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadItems();
+    if (this.medico.isSet())
+      this.loadItems();
+    else
+      this.offlineLoadItems();
   }
 
   async loadItems() {
@@ -50,6 +53,15 @@ export class PatientsPrescriptionsPage implements OnInit {
       });
       this.isLoading = false;
     }, 2000);
+  }
+
+  async offlineLoadItems() {
+    setTimeout(() => {
+      console.log(this.medico.pazienti);
+      this.patients = this.medico.pazienti;
+      this.filteredPatients = this.patients;
+      this.isLoading = false;
+    }, 2000)
   }
 
   search(event: any) {

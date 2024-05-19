@@ -83,8 +83,15 @@ export class HomePage implements OnInit {
     if (this.medico.isEmpty())
       this.medico.setState(false);
 
-    if (this.medico != undefined && !this.medico.isSet())
+    if (!this.medico.isManager && !this.medico.isSet())
       this.medicoService.offlineSetMedico(this.medico);
+  }
+
+  ionViewWillEnter(){
+    if (this.medico.isSet())
+      this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+        this.medico = value
+      });
   }
 
   routeToSettings() {
@@ -116,11 +123,6 @@ export class HomePage implements OnInit {
   goToPatients() {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
-  }
-  ionViewWillEnter(){
-    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
-      this.medico = value
-    });
   }
 
   protected readonly Sesso = Sesso;

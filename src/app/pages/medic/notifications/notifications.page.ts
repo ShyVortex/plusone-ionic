@@ -63,8 +63,11 @@ export class NotificationsPage implements OnInit {
       }
     )
 
-    if (this.medico != undefined && !this.medico.isSet())
+    if (!this.medico.isManager && !this.medico.isSet())
       this.medicoService.offlineSetMedico(this.medico);
+
+    if (!this.medico.isSet())
+      this.prenotazioni = this.medico.pazienti[0].terapie;
   }
 
   routeToSettings() {
@@ -93,37 +96,21 @@ export class NotificationsPage implements OnInit {
       this.medico = value
       this.getAllprenotazioniByMedico = this.medicoService.getAllPrenotazioniByMedico(this.medico.id)
       this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
-        this.prenotazioni = this.formatPrenotazioni(value)
+        this.prenotazioni = value;
       })
     });
   }
 
-  handleRefresh(event:any) {
+  handleRefresh(event: any) {
     setTimeout(() => {
-      this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
-        this.prenotazioni = this.formatPrenotazioni(value)
-      })
+      if (this.medico.isSet())
+        this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
+          this.prenotazioni = value;
+        })
+      else
+        this.prenotazioni = this.medico.pazienti[0].terapie;
       event.target.complete();
     }, 2000);
-  }
-
-   formatPrenotazioni(value: Terapia[]) :Terapia[]  {
-    const carattere: string = "T";
-    let prenotazioni:Terapia[] = []
-     let prenotazione: Terapia = new Terapia();
-    for (const terapia of value) {
-      if(terapia.orario!=undefined  || terapia.orario!=null) {
-        let posizione: number = terapia.orario.indexOf(carattere);
-        let sottostringa: string = terapia.orario.substring(0, posizione);
-        prenotazione = terapia;
-        prenotazione.orario = sottostringa;
-        prenotazioni.push(prenotazione);
-      }
-      else{
-        prenotazioni.push(terapia)
-      }
-    }
-    return prenotazioni
   }
 
   protected readonly Sesso = Sesso;

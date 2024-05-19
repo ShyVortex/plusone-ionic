@@ -7,6 +7,7 @@ import {Medico} from "../../models/medico/Medico";
 import {Terapia} from "../../models/Terapia/Terapia";
 import {TipologiaMedico} from "../../models/medico/tipologia-medico";
 import {Sesso} from "../../models/persona/sesso";
+import {StorageService} from "../StorageService/storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ import {Sesso} from "../../models/persona/sesso";
 export class MedicoService {
   private medicoURL = "http://localhost:8080/api/medici"
 
-  constructor() {}
+  constructor(
+    private storageService: StorageService
+  ) {}
 
   getAllMedici(): Observable<Medico[]> {
     let jsonResponse: any[] = [];
@@ -126,24 +129,32 @@ export class MedicoService {
     medico.reparto = "Cardiologia";
     medico.ruolo = "Primario";
     medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    medico.pazienti = [];
     medico.pazienti.push(this.offlineAddPaziente());
   }
 
   offlineAddPaziente(): Paziente {
-    let paziente: Paziente = new Paziente();
+    let paziente: Paziente = this.storageService.getState("mario.giannini@paziente.it");
 
-    paziente.nome = "Mario";
-    paziente.cognome = "Giannini";
-    paziente.sesso = Sesso.MASCHIO;
-    paziente.email = "mario.giannini@paziente.it";
-    paziente.password = "password123";
-    paziente.CF = "GNNMRA02R05E335P";
-    paziente.indirizzo.cap = "IS";
-    paziente.indirizzo.città = "Pesche";
-    paziente.indirizzo.via = "Contrada Lappone";
-    paziente.esenzione = true;
-    paziente.donatoreOrgani = false;
+    if (paziente !== undefined && !paziente.isSet())
+      return paziente;
 
-    return paziente;
+    else {
+      paziente = new Paziente();
+
+      paziente.nome = "Mario";
+      paziente.cognome = "Giannini";
+      paziente.sesso = Sesso.MASCHIO;
+      paziente.email = "mario.giannini@paziente.it";
+      paziente.password = "password123";
+      paziente.CF = "GNNMRA02R05E335P";
+      paziente.indirizzo.cap = "IS";
+      paziente.indirizzo.città = "Pesche";
+      paziente.indirizzo.via = "Contrada Lappone";
+      paziente.esenzione = true;
+      paziente.donatoreOrgani = false;
+
+      return paziente;
+    }
   }
 }

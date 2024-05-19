@@ -48,7 +48,7 @@ export class LogbookPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.paziente != undefined && !this.paziente.isSet())
+    if (this.paziente.nome === "" && !this.paziente.isSet())
       this.pazienteService.offlineSetPaziente(this.paziente);
   }
 

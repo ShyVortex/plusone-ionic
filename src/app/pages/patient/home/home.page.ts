@@ -100,7 +100,7 @@ export class HomePage implements OnInit {
     if (this.paziente.isEmpty())
       this.paziente.setState(false);
 
-    if (this.paziente != undefined && !this.paziente.isSet()) {
+    if (this.paziente.nome === "" && !this.paziente.isSet()) {
       this.pazienteService.offlineSetPaziente(this.paziente);
       this.citta = this.paziente.indirizzo.città;
     }
