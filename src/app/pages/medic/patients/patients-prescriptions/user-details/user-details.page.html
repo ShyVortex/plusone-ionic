@@ -12,19 +12,19 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-    <ion-avatar>
-      <ion-img *ngIf="patient.sesso === Sesso.MASCHIO"
-               src="../../assets/icon/home/stock-patient-male.png"
-               alt="Foto profilo paziente">
-      </ion-img>
-      <ion-img *ngIf="patient.sesso === Sesso.FEMMINA"
-               src="../../assets/icon/home/stock-patient-female.png"
-               alt="Foto profilo paziente">
-      </ion-img>
-    </ion-avatar>
-    <ion-card-title>{{this.patient._nome}} {{this.patient._cognome}}</ion-card-title>
-    <ion-card-subtitle>{{this.patient._CF}}</ion-card-subtitle>
-    <ion-card-subtitle>{{this.patient._email}}</ion-card-subtitle>
+      <ion-avatar slot="start">
+        <ion-img *ngIf="patient.sesso === Sesso.MASCHIO"
+                 src="../../assets/icon/home/avatar/av-patient-male.png"
+                 alt="Foto profilo paziente">
+        </ion-img>
+        <ion-img *ngIf="patient.sesso === Sesso.FEMMINA"
+                 src="../../assets/icon/home/avatar/av-patient-female.png"
+                 alt="Foto profilo paziente">
+        </ion-img>
+      </ion-avatar>
+      <ion-card-title>{{this.patient._nome}} {{this.patient._cognome}}</ion-card-title>
+      <ion-card-subtitle>{{this.patient._CF}}</ion-card-subtitle>
+      <ion-card-subtitle>{{this.patient._email}}</ion-card-subtitle>
     </ion-card-content>
 
     <ion-card-content>
