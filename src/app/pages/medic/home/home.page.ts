@@ -88,10 +88,9 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter(){
-    if (this.medico.isSet())
-      this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
-        this.medico = value
-      });
+    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+      this.medico = value
+    });
   }
 
   routeToSettings() {
