@@ -15,6 +15,7 @@ import {NavController} from "@ionic/angular";
 import {Terapia} from "../../../../models/Terapia/Terapia";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
+import {StorageService} from "../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-logbook-reservations',
@@ -31,6 +32,7 @@ export class LogbookReservationsPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
+    private storageService: StorageService,
   ) {
     this.paziente = personaService.getPersona();
   }
@@ -47,6 +49,11 @@ export class LogbookReservationsPage implements OnInit {
 
   navigateBack() {
     this.navCtrl.navigateBack("patient-logbook");
+  }
+
+  routeToReservationDetails(prenotazione: Terapia) {
+    this.storageService.setTerapia(prenotazione);
+    this.navCtrl.navigateForward("patient-logbook-reservation-details");
   }
 
   goToHome() {

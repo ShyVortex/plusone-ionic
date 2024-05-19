@@ -3,6 +3,7 @@ import {Paziente} from "../../models/paziente/Paziente";
 import {Infermiere} from "../../models/infermiere/Infermiere";
 import {Medico} from "../../models/medico/Medico";
 import { cloneDeep, isEqual } from 'lodash';
+import {Terapia} from "../../models/Terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class StorageService {
   private medico: Medico;
   private route: string;
   private loginCache: any[];
+  private terapia!: Terapia;
 
   constructor() {
     this.paziente = new Paziente();
@@ -53,6 +55,14 @@ export class StorageService {
 
   setRoute(value: string) {
     this.route = value;
+  }
+
+  getTerapia() {
+    return this.terapia;
+  }
+
+  setTerapia(value: Terapia) {
+    this.terapia = value;
   }
 
   getAllStates() {
