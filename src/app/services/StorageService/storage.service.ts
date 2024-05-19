@@ -78,7 +78,7 @@ export class StorageService {
     if (value && value.id !== undefined) {
       if (value instanceof Paziente || value instanceof Infermiere || value instanceof Medico) {
         if (!this.loginCache.includes(value)) {
-          // this.loginCache[index] = value; --> Shallow Copy
+          // this.loginCache.push(value); --> Shallow Copy
           this.loginCache.push(cloneDeep(value)); // --> Deep Copy
           /* Una deep Copy salva correttamente non solo l'oggetto ma tutte le sue proprietà innestate,
              mentre una Shallow Copy aggiorna solo l'oggetto */

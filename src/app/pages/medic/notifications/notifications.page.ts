@@ -63,10 +63,7 @@ export class NotificationsPage implements OnInit {
       }
     )
 
-    if (this.medico.isEmpty())
-      this.medico.setState(false);
-
-    if (!this.medico.isSet())
+    if (this.medico != undefined && !this.medico.isSet())
       this.medicoService.offlineSetMedico(this.medico);
   }
 

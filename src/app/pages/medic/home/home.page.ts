@@ -67,7 +67,10 @@ export class HomePage implements OnInit {
     private medicoService:MedicoService,
     private storageService: StorageService
   ) {
-    this.medico = new Medico();
+    this.medico = this.personaService.getPersona();
+
+    if (!this.medico)
+      this.medico = new Medico();
   }
 
   ngOnInit() {
@@ -80,7 +83,7 @@ export class HomePage implements OnInit {
     if (this.medico.isEmpty())
       this.medico.setState(false);
 
-    if (!this.medico.isSet())
+    if (this.medico != undefined && !this.medico.isSet())
       this.medicoService.offlineSetMedico(this.medico);
   }
 

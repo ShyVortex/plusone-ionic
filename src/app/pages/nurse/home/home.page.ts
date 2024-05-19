@@ -47,14 +47,17 @@ export class HomePage implements OnInit {
     private infermiereService: InfermiereService,
     private storageService: StorageService
   ) {
-    this.infermiere = new Infermiere();
+    this.infermiere = this.personaService.getPersona();
+
+    if (!this.infermiere)
+      this.infermiere = new Infermiere();
   }
 
   ngOnInit() {
     if (this.infermiere.isEmpty())
       this.infermiere.setState(false);
 
-    if (!this.infermiere.isSet())
+    if (this.infermiere != undefined && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 

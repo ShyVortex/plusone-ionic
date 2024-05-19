@@ -45,7 +45,7 @@ export class DrugsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.infermiere.isSet())
+    if (this.infermiere != undefined && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
