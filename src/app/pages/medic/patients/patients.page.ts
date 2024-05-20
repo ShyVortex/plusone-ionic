@@ -16,9 +16,11 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Medico} from "../../../models/medico/Medico";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {Paziente} from "../../../models/paziente/Paziente";
+import {MedicoService} from "../../../services/MedicoService/medico.service";
 
 @Component({
   selector: 'app-patients',
@@ -34,6 +36,7 @@ export class PatientsPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private medicoService: MedicoService,
     private storageService: StorageService
   ) {
     this.medico = personaService.getPersona();
@@ -45,19 +48,8 @@ export class PatientsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.medico.isSet()) {
-      this.medico.isManager = true;
-      this.medico.nome = "Victor";
-      this.medico.cognome = "Conde";
-      this.medico.sesso = Sesso.MASCHIO;
-      this.medico.email = "victor.conde@medico.it";
-      this.medico.password = "default";
-      this.medico.CF = "CNDVTR85D07E335W";
-      this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.medico.reparto = "Cardiologia";
-      this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-    }
+    if (!this.medico.isManager && !this.medico.isSet())
+      this.medicoService.offlineSetMedico(this.medico);
   }
 
   routeToSettings() {

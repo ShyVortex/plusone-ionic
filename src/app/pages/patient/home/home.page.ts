@@ -33,10 +33,11 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {Medico} from "../../../models/medico/Medico";
 import {DataService} from "../../../services/data.service";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {routes} from "../../../app.routes";
 import {Router} from "@angular/router";
+import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 @Component({
   selector: 'app-home',
@@ -56,8 +57,8 @@ import {Router} from "@angular/router";
     IonIcon, IonImg, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonFooter],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class HomePage implements OnInit {
 
+export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
   protected paziente: Paziente;
   private getPazienteByEmailObservable:Observable<Paziente>;
@@ -78,7 +79,10 @@ export class HomePage implements OnInit {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
-    this.paziente = new Paziente();
+    this.paziente = personaService.getPersona();
+
+    if (!this.paziente)
+      this.paziente = new Paziente();
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);
@@ -96,24 +100,10 @@ export class HomePage implements OnInit {
     if (this.paziente.isEmpty())
       this.paziente.setState(false);
 
-    if (!this.paziente.isSet()) {
-      this.paziente.nome = "Mario";
-      this.paziente.cognome = "Giannini";
-      this.paziente.sesso = Sesso.MASCHIO;
-      this.paziente.email = "mario.giannini@paziente.it";
-      this.paziente.password = "password123";
-      this.paziente.CF = "GNNMRA02R05E335P";
-      this.paziente.indirizzo.cap = "IS";
-      this.paziente.indirizzo.città = "Pesche";
+    if (this.paziente.nome === "" && !this.paziente.isSet()) {
+      this.pazienteService.offlineSetPaziente(this.paziente);
       this.citta = this.paziente.indirizzo.città;
-      this.paziente.indirizzo.via = "Contrada Lappone";
-      this.paziente.esenzione = true;
-      this.paziente.medico = new Medico();
-      this.paziente.medico.nome = "Victor Ivan";
-      this.paziente.medico.cognome = "Conde";
-      this.paziente.donatoreOrgani = false;
     }
-
   }
 
   ionViewWillEnter() {
@@ -138,6 +128,8 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    if (!this.paziente.isSet())
+      this.storageService.cacheState(this.paziente);
     this.navCtrl.navigateRoot("login");
   }
 

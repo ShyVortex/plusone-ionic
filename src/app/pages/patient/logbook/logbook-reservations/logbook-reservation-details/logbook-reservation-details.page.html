@@ -1,0 +1,75 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli prenotazione</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="reservation-details-content" [fullscreen]="true">
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <div class="summary-container">
+    <ion-item lines="none">
+      <ion-img class="reservation-summary-icon"
+               src="../../assets/icon/patient/logbook/reservations/reservation.png">
+      </ion-img>
+      <ion-text class="reservation-summary-text">Prenotazione n. 1 <br/>
+        appuntamento con <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b> <br/>
+                in data {{prenotazione.orario | date: 'yyyy-MM-dd'}}
+      </ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="details-container">
+    <ion-text class="reservation-details-text">
+      Questa prenotazione prevede un appuntamento con il dot. <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
+      per una visita {{prenotazione.tipologiaTerapia}} presso il reparto di <b>{{prenotazione.reparto}}</b>
+      dell'<b>Ospedale Riuniti</b> di Foggia alle ore {{prenotazione.orario | date: 'HH:mm'}}.
+    </ion-text>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="confirmation-container">
+    <ion-item lines="none">
+      <ion-icon class="hourglass"
+                src="../../assets/icon/patient/logbook/reservations/hourglass.svg"
+                slot="start">
+      </ion-icon>
+      <ion-text class="confirmation-text">IN ATTESA DI CONFERMA</ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="buttons-container">
+    <ion-button class="reservation-buttons"
+                color="danger"
+                (click)="cancelReservation(prenotazione)">Cancella
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToLogbook()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/logbook.png"></ion-img>
+          Registro
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToReservation()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
+          Prenota
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

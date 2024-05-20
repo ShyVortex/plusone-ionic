@@ -4,6 +4,7 @@ import {Paziente} from "../../models/paziente/Paziente";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {Terapia} from "../../models/Terapia/Terapia";
+import {Medico} from "../../models/medico/Medico";
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class TerapiaService {
         );
     });
   }
+
   addTerapia(id_medico:number,id_paziente:number,terapia:Terapia):Observable<Terapia> {
     let jsonResponse :any
     let terapiaAdded:Terapia = new Terapia();
@@ -54,5 +56,10 @@ export class TerapiaService {
         }
         );
     });
+  }
+
+  addTerapiaOffline(paziente: Paziente, medico: Medico, terapia: Terapia) {
+    paziente.terapie.push(terapia);
+    medico.terapie.push(terapia);
   }
 }

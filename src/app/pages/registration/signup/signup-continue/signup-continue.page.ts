@@ -12,7 +12,7 @@ import {
   IonInput,
   IonButton, IonText, IonDatetime, IonDatetimeButton, IonModal, IonLabel, IonButtons, IonSelect, IonSelectOption
 } from '@ionic/angular/standalone';
-import {Sesso} from "../../../../models/person/sesso";
+import {Sesso} from "../../../../models/persona/sesso";
 
 @Component({
   selector: 'app-signup-continue',

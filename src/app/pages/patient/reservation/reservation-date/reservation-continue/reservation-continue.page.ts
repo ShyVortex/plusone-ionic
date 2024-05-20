@@ -36,8 +36,9 @@ import {firstValueFrom, Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../../../models/paziente/Paziente";
 import {Terapia} from "../../../../../models/Terapia/Terapia";
 import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
-import {TerapiaService} from "../../../../../services/terapiaService/terapia.service";
+import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
 import {TipologiaTerapia} from "../../../../../models/Terapia/tipologia-terapia";
+import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-reservation-continue',
@@ -70,11 +71,22 @@ export class ReservationContinuePage implements OnInit {
       role: 'confirm',
       handler: async () => {
         this.setTerapia()
-        if (this.patientToPrenote != null)
+
+        if (this.patientToPrenote != null && this.patientToPrenote.isSet())
           await firstValueFrom<Terapia>(
             this.terapiaService.addTerapia(10, this.patientToPrenote.id, this.terapia)
-          )
-        this.routeToReservationConfirmed();
+          );
+
+        else {
+          this.patientToPrenote = this.personaService.getPersona();
+
+          this.terapiaService.addTerapiaOffline(
+            this.patientToPrenote, this.patientToPrenote.medico, this.terapia
+          );
+
+          this.personaService.setPersona(this.patientToPrenote);
+          this.routeToReservationConfirmed();
+        }
       }
     }
   ];
@@ -84,6 +96,7 @@ export class ReservationContinuePage implements OnInit {
     private route: Router,
     private alertController: AlertController,
     private dataService:DataService,
+    private personaService: PersonaService,
     private pazienteService:PazienteService,
     private terapiaService:TerapiaService,
   ) {

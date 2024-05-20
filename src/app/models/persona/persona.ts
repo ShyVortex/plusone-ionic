@@ -1,6 +1,6 @@
 import {Sesso} from "./sesso";
 
-export abstract class Person {
+export abstract class Persona {
   protected constructor(
      id: number,
      nome: string,

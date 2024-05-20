@@ -24,6 +24,7 @@ import {StorageService} from "../../services/StorageService/storage.service";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonText, IonButton, IonLabel, IonFooter]
 })
+
 export class SettingsPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
@@ -66,6 +67,8 @@ export class SettingsPage implements OnInit {
   }
 
   logout() {
+    if (!this.persona.isSet())
+      this.storageService.cacheState(this.persona);
     this.navCtrl.navigateRoot("login");
   }
 

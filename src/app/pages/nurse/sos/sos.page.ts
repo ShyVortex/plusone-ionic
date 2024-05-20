@@ -14,9 +14,10 @@ import {
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
 
 @Component({
   selector: 'app-sos',
@@ -32,6 +33,7 @@ export class SOSPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private infermiereService: InfermiereService,
     private storageService: StorageService
   ) {
     this.infermiere = personaService.getPersona();
@@ -43,17 +45,8 @@ export class SOSPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.infermiere.isSet()) {
-      this.infermiere.nome = "Teresa";
-      this.infermiere.cognome = "Nucci";
-      this.infermiere.sesso = Sesso.FEMMINA;
-      this.infermiere.email = "teresa.nucci@infermiere.it";
-      this.infermiere.password = "password123";
-      this.infermiere.CF = "NCCTRS81M16B519G";
-      this.infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.infermiere.reparto = "Chirurgia";
-      this.infermiere.ruolo = "Infermiere assistente";
-    }
+    if (this.infermiere != undefined && !this.infermiere.isSet())
+      this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
   routeToSettings() {

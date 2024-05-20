@@ -17,7 +17,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
 import {LoginUtilities} from "../LoginUtilities";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
-import {Person} from "../../../models/person/person";
+import {Persona} from "../../../models/persona/persona";
 import {HashingUtilities} from "../hashing-utilities";
 import {exit} from "ionicons/icons";
 

@@ -14,7 +14,6 @@ import {
   IonToolbar, IonToast, IonText
 } from '@ionic/angular/standalone';
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
-import {Person} from "../../../models/person/person";
 import {Observable, Subscriber, Subscription,firstValueFrom} from "rxjs";
 import {HashingUtilities} from "../hashing-utilities";
 import {Paziente} from "../../../models/paziente/Paziente";
@@ -23,8 +22,9 @@ import {Medico} from "../../../models/medico/Medico";
 import {LoginUtilities} from "./LoginUtilities";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {ModelUtilities} from "../../../models/ModelUtilities";
 import {DataService} from "../../../services/data.service";
+import {StorageService} from "../../../services/StorageService/storage.service";
+import {PersonaService} from "../../../services/PersonaService/persona.service";
 
 @Component({
   selector: 'app-login',
@@ -40,17 +40,25 @@ export class LoginPage implements OnInit,OnDestroy {
   protected isToastOpen: boolean = false;
 
   private getAllPazientiSubscription: Subscription
-  private getPazienteByEmailObservable:Observable<Paziente>;
-  private getInfermiereByEmailObservable:Observable<Infermiere>;
-  private getMedicoByEmailObservable:Observable<Medico>;
-  private addPazienteToMedicoObservable:Observable<Medico>;
+  private getPazienteByEmailObservable: Observable<Paziente>;
+  private getInfermiereByEmailObservable: Observable<Infermiere>;
+  private getMedicoByEmailObservable: Observable<Medico>;
+  private addPazienteToMedicoObservable: Observable<Medico>;
 
-  private hashedPassword:string;
-  private personToLogin:any
-  private medicoToAssign!:Medico
+  private hashedPassword: string;
+  private personToLogin: any;
+  private medicoToAssign!: Medico;
 
 
-  constructor(private navCtrl: NavController, private pazienteService: PazienteService,private infermiereService: InfermiereService,private medicoService :MedicoService,private dataService:DataService) {
+  constructor(
+    private navCtrl: NavController,
+    private personaService: PersonaService,
+    private pazienteService: PazienteService,
+    private infermiereService: InfermiereService,
+    private medicoService: MedicoService,
+    private dataService:DataService,
+    private storageService: StorageService
+  ) {
     this.email = "";
     this.password = "";
     this.hashedPassword = "";
@@ -64,8 +72,8 @@ export class LoginPage implements OnInit,OnDestroy {
   }
 
   ngOnInit() {
-      console.log(HashingUtilities.HashPassword("pippo"))
-      console.log(HashingUtilities.HashPassword("mimmo"))
+    console.log(HashingUtilities.HashPassword("pippo"))
+    console.log(HashingUtilities.HashPassword("mimmo"))
   }
 
   togglePasswordVisibility() {
@@ -96,16 +104,34 @@ export class LoginPage implements OnInit,OnDestroy {
 
 
   async loginButton():Promise<void> {
-    // Profili di default placeholder per far funzionare la login su Android Studio
+    // Profili di default per far funzionare la login sul file .apk
     if (this.email === "mario.giannini@paziente.it" && this.password === "password123") {
+      this.personToLogin = this.storageService.getState(this.email);
+      if (this.personToLogin != undefined)
+        this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Paziente());
+
       this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("patient-home", this.personToLogin);
+      await this.navCtrl.navigateForward("patient-home");
     }
     if (this.email === "teresa.nucci@infermiere.it" && this.password === "password123") {
+      this.personToLogin = this.storageService.getState(this.email);
+      if (this.personToLogin != undefined)
+        this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Infermiere());
+
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("nurse-home");
     }
     if (this.email === "victor.conde@medico.it" && this.password === "password123") {
+      this.personToLogin = this.storageService.getState(this.email);
+      if (this.personToLogin != undefined)
+        this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Medico());
+
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("medic-home");
     }

@@ -1,9 +1,9 @@
-import {Person} from "../person/person";
+import {Persona} from "../persona/persona";
 import {TipologiaMedico} from "./tipologia-medico";
 import {Terapia} from "../Terapia/Terapia";
 import {Paziente} from "../paziente/Paziente";
 
-export class Medico extends Person {
+export class Medico extends Persona {
   constructor() {
     super(0, "", "", "", "", "");
     this._ospedale = "";

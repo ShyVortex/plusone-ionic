@@ -10,7 +10,7 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { Medico } from 'src/app/models/medico/Medico';
 import { delay } from 'rxjs';
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
-import {Sesso} from "../../../../models/person/sesso";
+import {Sesso} from "../../../../models/persona/sesso";
 import {StorageService} from "../../../../services/StorageService/storage.service";
 
 @Component({
@@ -36,7 +36,10 @@ export class PatientsPrescriptionsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadItems();
+    if (this.medico.isSet())
+      this.loadItems();
+    else
+      this.offlineLoadItems();
   }
 
   async loadItems() {
@@ -50,6 +53,15 @@ export class PatientsPrescriptionsPage implements OnInit {
       });
       this.isLoading = false;
     }, 2000);
+  }
+
+  async offlineLoadItems() {
+    setTimeout(() => {
+      console.log(this.medico.pazienti);
+      this.patients = this.medico.pazienti;
+      this.filteredPatients = this.patients;
+      this.isLoading = false;
+    }, 2000)
   }
 
   search(event: any) {

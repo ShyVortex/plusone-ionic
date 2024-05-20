@@ -20,9 +20,11 @@ import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Medico} from "../../../models/medico/Medico";
 import {Paziente} from "../../../models/paziente/Paziente";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
+import {PazienteService} from "../../../services/PazienteService/paziente.service";
 
 @Component({
   selector: 'app-reservation',
@@ -40,6 +42,7 @@ export class ReservationPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
+    private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
@@ -51,22 +54,8 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.paziente.isSet()) {
-      this.paziente.nome = "Mario";
-      this.paziente.cognome = "Giannini";
-      this.paziente.sesso = Sesso.MASCHIO;
-      this.paziente.email = "mario.giannini@paziente.it";
-      this.paziente.password = "password123";
-      this.paziente.CF = "GNNMRA02R05E335P";
-      this.paziente.indirizzo.cap = "IS";
-      this.paziente.indirizzo.città = "Pesche";
-      this.paziente.indirizzo.via = "Contrada Lappone";
-      this.paziente.esenzione = true;
-      this.paziente.medico = new Medico();
-      this.paziente.medico.nome = "Victor Ivan";
-      this.paziente.medico.cognome = "Conde";
-      this.paziente.donatoreOrgani = false;
-    }
+    if (this.paziente.nome === "" && !this.paziente.isSet())
+      this.pazienteService.offlineSetPaziente(this.paziente);
   }
 
   routeToReservationDate(type: string) {

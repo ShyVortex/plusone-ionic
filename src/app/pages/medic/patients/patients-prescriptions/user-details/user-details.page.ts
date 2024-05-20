@@ -7,7 +7,7 @@ import { Paziente } from 'src/app/models/paziente/Paziente';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
 import { DataService } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
-import { Sesso } from "../../../../../models/person/sesso";
+import { Sesso } from "../../../../../models/persona/sesso";
 import { StorageService } from "../../../../../services/StorageService/storage.service";
 
 @Component({

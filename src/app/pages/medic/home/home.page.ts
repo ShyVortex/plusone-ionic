@@ -30,9 +30,10 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {Paziente} from "../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-home',
@@ -66,7 +67,10 @@ export class HomePage implements OnInit {
     private medicoService:MedicoService,
     private storageService: StorageService
   ) {
-    this.medico = new Medico();
+    this.medico = this.personaService.getPersona();
+
+    if (!this.medico)
+      this.medico = new Medico();
   }
 
   ngOnInit() {
@@ -79,19 +83,14 @@ export class HomePage implements OnInit {
     if (this.medico.isEmpty())
       this.medico.setState(false);
 
-    if (!this.medico.isSet()) {
-      this.medico.isManager = true;
-      this.medico.nome = "Victor";
-      this.medico.cognome = "Conde";
-      this.medico.sesso = Sesso.MASCHIO;
-      this.medico.email = "victor.conde@medico.it";
-      this.medico.password = "password123";
-      this.medico.CF = "CNDVTR85D07E335W";
-      this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.medico.reparto = "Cardiologia";
-      this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-    }
+    if (!this.medico.isManager && !this.medico.isSet())
+      this.medicoService.offlineSetMedico(this.medico);
+  }
+
+  ionViewWillEnter(){
+    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+      this.medico = value
+    });
   }
 
   routeToSettings() {
@@ -123,11 +122,6 @@ export class HomePage implements OnInit {
   goToPatients() {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
-  }
-  ionViewWillEnter(){
-    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
-      this.medico = value
-    });
   }
 
   protected readonly Sesso = Sesso;

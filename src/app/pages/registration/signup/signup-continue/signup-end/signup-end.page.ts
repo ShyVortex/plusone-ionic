@@ -14,7 +14,7 @@ import {NavController} from "@ionic/angular";
 import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
 import {firstValueFrom} from "rxjs";
 import {Paziente} from "../../../../../models/paziente/Paziente";
-import {Sesso} from "../../../../../models/person/sesso";
+import {Sesso} from "../../../../../models/persona/sesso";
 
 @Component({
   selector: 'app-signup-end',

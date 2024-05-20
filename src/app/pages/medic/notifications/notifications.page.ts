@@ -19,9 +19,10 @@ import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {Terapia} from "../../../models/Terapia/Terapia";
-import {Sesso} from "../../../models/person/sesso";
+import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {Paziente} from "../../../models/paziente/Paziente";
 
 @Component({
   selector: 'app-logbook',
@@ -62,22 +63,11 @@ export class NotificationsPage implements OnInit {
       }
     )
 
-    if (this.medico.isEmpty())
-      this.medico.setState(false);
+    if (!this.medico.isManager && !this.medico.isSet())
+      this.medicoService.offlineSetMedico(this.medico);
 
-    if (!this.medico.isSet()) {
-      this.medico.isManager = true;
-      this.medico.nome = "Victor";
-      this.medico.cognome = "Conde";
-      this.medico.sesso = Sesso.MASCHIO;
-      this.medico.email = "victor.conde@medico.it";
-      this.medico.password = "password123";
-      this.medico.CF = "CNDVTR85D07E335W";
-      this.medico.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
-      this.medico.reparto = "Cardiologia";
-      this.medico.ruolo = "Primario";
-      this.medico.tipologiaMedico = TipologiaMedico.DI_BASE;
-    }
+    if (!this.medico.isSet())
+      this.prenotazioni = this.medico.pazienti[0].terapie;
   }
 
   routeToSettings() {
@@ -100,40 +90,27 @@ export class NotificationsPage implements OnInit {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
+
   ionViewWillEnter(){
     this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
       this.medico = value
       this.getAllprenotazioniByMedico = this.medicoService.getAllPrenotazioniByMedico(this.medico.id)
       this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
-        this.prenotazioni = this.formatPrenotazioni(value)
+        this.prenotazioni = value;
       })
     });
   }
-  handleRefresh(event:any) {
+
+  handleRefresh(event: any) {
     setTimeout(() => {
-      this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
-        this.prenotazioni = this.formatPrenotazioni(value)
-      })
+      if (this.medico.isSet())
+        this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
+          this.prenotazioni = value;
+        })
+      else
+        this.prenotazioni = this.medico.pazienti[0].terapie;
       event.target.complete();
     }, 2000);
-  }
-   formatPrenotazioni(value: Terapia[]) :Terapia[]  {
-    const carattere: string = "T";
-    let prenotazioni:Terapia[] = []
-     let prenotazione: Terapia = new Terapia();
-    for (const terapia of value) {
-      if(terapia.orario!=undefined  || terapia.orario!=null) {
-        let posizione: number = terapia.orario.indexOf(carattere);
-        let sottostringa: string = terapia.orario.substring(0, posizione);
-        prenotazione = terapia;
-        prenotazione.orario = sottostringa;
-        prenotazioni.push(prenotazione);
-      }
-      else{
-        prenotazioni.push(terapia)
-      }
-    }
-    return prenotazioni
   }
 
   protected readonly Sesso = Sesso;
