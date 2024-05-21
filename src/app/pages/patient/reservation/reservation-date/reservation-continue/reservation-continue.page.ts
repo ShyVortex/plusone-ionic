@@ -72,14 +72,12 @@ export class ReservationContinuePage implements OnInit {
       handler: async () => {
         this.setTerapia()
 
-        if (this.patientToPrenote != null && this.patientToPrenote.isSet())
+        if (this.patientToPrenote !== undefined && this.patientToPrenote.isSet())
           await firstValueFrom<Terapia>(
             this.terapiaService.addTerapia(10, this.patientToPrenote.id, this.terapia)
           );
 
         else {
-          this.patientToPrenote = this.personaService.getPersona();
-
           this.terapiaService.addTerapiaOffline(
             this.patientToPrenote, this.patientToPrenote.medico, this.terapia
           );
@@ -207,6 +205,10 @@ export class ReservationContinuePage implements OnInit {
     this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
     this.terapia.reparto = this.hospitalWard;
     this.terapia.attivo = true;
+    if (!this.patientToPrenote.isSet()) {
+      this.patientToPrenote = this.personaService.getPersona();
+      this.terapia.paziente = this.patientToPrenote;
+    }
     console.log(this.terapia)
   }
 }
