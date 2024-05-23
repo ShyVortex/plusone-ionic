@@ -36,9 +36,34 @@
   <ion-list>
     <ion-item class="item-title" *ngFor="let richiesta of richieste">
       <div class="item-content">
-        <ion-img class="alarm-icon" slot="start" src="../../assets/icon/nurse/sos/alarm.png"></ion-img>
-        <ion-text class="item-title-list">Richiesta n. {{richiesta.id}}
-          {{richiesta.paziente.nome}} {{richiesta.paziente.cognome}}</ion-text>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.BIANCO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/white-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.VERDE"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/green-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.AZZURRO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/blue-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.ARANCIONE"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/orange-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.ROSSO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/red-code.png">
+        </ion-img>
+        <div class="text-container">
+          <ion-text class="item-title-list">Richiesta n. {{richiesta.id}} <br/>
+            {{richiesta.paziente.nome}} {{richiesta.paziente.cognome}}
+          </ion-text>
+        </div>
+        <ion-button class="arrow-button" slot="end" fill="clear" (click)="routeToRequestDetails(richiesta)">
+          <ion-text class="arrow-button-text">></ion-text>
+        </ion-button>
       </div>
     </ion-item>
   </ion-list>

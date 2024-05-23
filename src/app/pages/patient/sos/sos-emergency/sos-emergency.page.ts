@@ -15,6 +15,12 @@ import {AnimationOptions, LottieComponent} from "ngx-lottie";
 import {NavController} from "@ionic/angular";
 import {AnimationItem} from "lottie-web";
 import {Geolocation} from "@capacitor/geolocation";
+import {Triage} from "../../../../models/triage/Triage";
+import {CodiciTriage} from "../../../../models/triage/codici-triage";
+import {PersonaService} from "../../../../services/PersonaService/persona.service";
+import {TriageService} from "../../../../services/TriageService/triage.service";
+import {Paziente} from "../../../../models/paziente/Paziente";
+import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-sos-emergency',
@@ -24,8 +30,10 @@ import {Geolocation} from "@capacitor/geolocation";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, LottieComponent, IonText]
 })
 export class SosEmergencyPage implements OnInit {
+  private paziente: Paziente;
   private latitude!: number;
   private longitude!: number;
+  private codiceTriage: CodiciTriage;
 
   options: AnimationOptions = {
     path: '../../../assets/animations/ambulance.json',
@@ -41,8 +49,13 @@ export class SosEmergencyPage implements OnInit {
     height: '26em',
   }
 
-  constructor(private navCtrl: NavController) {
-    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time);
+  constructor(
+    private navCtrl: NavController,
+    private personaService: PersonaService,
+    private triageService: TriageService
+  ) {
+    this.paziente = personaService.getPersona();
+    console.log(this.codiceTriage = history.state.codiceTriage);
   }
 
   ngOnInit() {
@@ -69,25 +82,48 @@ export class SosEmergencyPage implements OnInit {
   async sendRequest() {
     await this.getCurrentLocation();
 
+    let richiesta = new Triage();
+    richiesta.id = 12345;
+    richiesta.codice = this.codiceTriage;
+    richiesta.paziente = this.paziente;
+    richiesta.posizione.latitudine  = this.latitude;
+    richiesta.posizione.longitudine = this.longitude;
+
+    this.triageService.addRichiestaOffline(this.paziente, richiesta);
   }
 
-  goToHomeAnimated() {
+  async goToHomeAnimated() {
+    waitForAsync(this.sendRequest);
+
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateBack("patient-home", { animated: true });
   }
 
-  goToHome() {
+  async goToHome() {
+    waitForAsync(this.sendRequest);
+
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateBack("patient-home", { animated: false });
   }
 
-  goToLogbook() {
+  async goToLogbook() {
+    waitForAsync(this.sendRequest);
+
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-logbook", { animated: false });
   }
 
-  goToReservation() {
+  async goToReservation() {
+    waitForAsync(this.sendRequest);
+
+    this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-reservation", { animated: false });
   }
 
-  goToSOS() {
-    this.navCtrl.navigateForward("patient-sos", { animated: false });
+  async goToSOS() {
+    waitForAsync(this.sendRequest);
+
+    this.personaService.setPersona(this.paziente);
+    this.navCtrl.navigateForward("patient-sos",{ animated: false });
   }
 }

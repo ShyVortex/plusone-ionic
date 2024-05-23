@@ -2,12 +2,9 @@ export class Posizione {
   private _latitudine: number;
   private _longitudine: number;
 
-  constructor(
-    private latitude: number,
-    private longitude: number
-  ) {
-    this._latitudine = latitude;
-    this._longitudine = longitude;
+  constructor() {
+    this._latitudine = 0;
+    this._longitudine = 0;
   }
 
   get latitudine(): number {

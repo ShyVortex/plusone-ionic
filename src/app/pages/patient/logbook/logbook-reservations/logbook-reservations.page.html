@@ -15,7 +15,8 @@
       <div class="item-content">
         <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
         <ion-text class="item-title-list">Prenotazione {{prenotazione.orario | date: 'yyyy-MM-dd'}}
-          appuntamento con {{paziente.medico.nome}} {{paziente.medico.cognome}}</ion-text>
+          appuntamento con {{paziente.medico.nome}} {{paziente.medico.cognome}}
+        </ion-text>
         <ion-button slot="end" fill="clear" (click)="routeToReservationDetails(prenotazione)">
           <ion-text class="button-arrow">></ion-text>
         </ion-button>

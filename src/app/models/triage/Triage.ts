@@ -1,5 +1,5 @@
 import {Paziente} from "../paziente/Paziente";
-import {Posizione} from "../posizione/posizione";
+import {Posizione} from "../paziente/Posizione";
 import {CodiciTriage} from "./codici-triage";
 
 export class Triage {
@@ -8,26 +8,19 @@ export class Triage {
   private _paziente: Paziente;
   private _posizione: Posizione;
 
-  constructor(
-    private code: CodiciTriage,
-    private patient: Paziente,
-    private position: Posizione,
-  ) {
-    this._id = this.setId();
-    this._codice = code;
-    this._paziente = patient;
-    this._posizione = position;
+  constructor() {
+    this._id = 0;
+    this._codice = CodiciTriage.UNDEFINED;
+    this._paziente = new Paziente();
+    this._posizione = new Posizione();
   }
 
   get id(): number {
     return this._id;
   }
 
-  setId(): number {
-    if (this._id === undefined)
-      return 0;
-
-    return this._id++;
+  set id(value: number) {
+    this._id = value;
   }
 
   get codice(): CodiciTriage {
@@ -39,7 +32,7 @@ export class Triage {
   }
 
   get paziente(): Paziente {
-    return this.paziente;
+    return this._paziente;
   }
 
   set paziente(value: Paziente) {
