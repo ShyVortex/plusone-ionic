@@ -127,6 +127,11 @@ export const routes: Routes = [
       .then(m => m.SOSPage)
   },
   {
+    path: 'nurse-sos-request',
+    loadComponent: () => import('./pages/nurse/sos/sos-request/sos-request.page')
+      .then(m => m.SosRequestPage)
+  },
+  {
     path: 'medic-home',
     loadComponent: () => import('./pages/medic/home/home.page')
       .then(m => m.HomePage)

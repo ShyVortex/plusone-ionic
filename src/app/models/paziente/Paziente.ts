@@ -1,7 +1,7 @@
 import { Persona } from "../persona/persona";
 import { Indirizzo } from "../persona/Indirizzo";
 import { Medico } from "../medico/Medico";
-import { Terapia } from "../Terapia/Terapia";
+import { Terapia } from "../terapia/Terapia";
 
 export class Paziente extends Persona{
   constructor() {

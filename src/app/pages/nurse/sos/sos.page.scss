@@ -1,0 +1,32 @@
+.sos-list-content {
+  .item-content {
+    margin-top: 8.5px;
+    margin-bottom: 8.5px;
+    display: inline-flex;
+
+    .alarm-icon {
+      margin-left: 0.3em;
+      margin-right: 0.5em;
+      width: 0.85em;
+      height: auto;
+    }
+  }
+
+  .item-title {
+    font-size: x-large;
+    font-weight: bold;
+
+    .item-title-icon {
+      width: 1.5em;
+      height: auto;
+      margin-right: 0.5em;
+    }
+
+    .item-title-list {
+      flex: 1;
+      margin-left: 0.25em;
+      font-size: medium;
+      font-weight: normal;
+    }
+  }
+}

@@ -18,7 +18,7 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {MedicoService} from "../../../services/MedicoService/medico.service";
-import {Terapia} from "../../../models/Terapia/Terapia";
+import {Terapia} from "../../../models/terapia/Terapia";
 import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";

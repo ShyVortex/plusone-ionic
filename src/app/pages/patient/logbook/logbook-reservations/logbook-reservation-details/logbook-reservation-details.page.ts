@@ -15,8 +15,8 @@ import {NavController} from "@ionic/angular";
 import {StorageService} from "../../../../../services/StorageService/storage.service";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../../../models/paziente/Paziente";
-import {Terapia} from "../../../../../models/Terapia/Terapia";
-import {TipologiaTerapia} from "../../../../../models/Terapia/tipologia-terapia";
+import {Terapia} from "../../../../../models/terapia/Terapia";
+import {TipologiaTerapia} from "../../../../../models/terapia/tipologia-terapia";
 import {isEqual} from "lodash";
 
 @Component({

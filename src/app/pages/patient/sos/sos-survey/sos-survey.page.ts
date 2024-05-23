@@ -13,7 +13,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {CodiciTriage} from "../../../../models/paziente/codici-triage";
+import {CodiciTriage} from "../../../../models/triage/codici-triage";
 
 @Component({
   selector: 'app-sos-survey',

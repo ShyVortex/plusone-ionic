@@ -1,6 +1,6 @@
 import {Persona} from "../persona/persona";
 import {TipologiaMedico} from "./tipologia-medico";
-import {Terapia} from "../Terapia/Terapia";
+import {Terapia} from "../terapia/Terapia";
 import {Paziente} from "../paziente/Paziente";
 
 export class Medico extends Persona {

@@ -3,7 +3,7 @@ import {Paziente} from "../../models/paziente/Paziente";
 import {Infermiere} from "../../models/infermiere/Infermiere";
 import {Medico} from "../../models/medico/Medico";
 import { cloneDeep, isEqual } from 'lodash';
-import {Terapia} from "../../models/Terapia/Terapia";
+import {Terapia} from "../../models/terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'

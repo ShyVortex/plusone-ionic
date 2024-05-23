@@ -12,7 +12,7 @@ import {
     IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {Terapia} from "../../../../models/Terapia/Terapia";
+import {Terapia} from "../../../../models/terapia/Terapia";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {StorageService} from "../../../../services/StorageService/storage.service";

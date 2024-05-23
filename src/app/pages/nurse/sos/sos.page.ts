@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent, IonFooter,
-  IonHeader,
-  IonIcon,
-  IonImg, IonLabel,
-  IonTabBar,
-  IonTabButton, IonTabs, IonText,
-  IonTitle,
-  IonToolbar
+    IonContent, IonFooter,
+    IonHeader,
+    IonIcon,
+    IonImg, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonRow,
+    IonTabBar,
+    IonTabButton, IonTabs, IonText,
+    IonTitle,
+    IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
@@ -18,16 +18,19 @@ import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
+import {Richiesta} from "../../../models/triage/Richiesta";
 
 @Component({
   selector: 'app-sos',
   templateUrl: './sos.page.html',
   styleUrls: ['./sos.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow]
 })
 export class SOSPage implements OnInit {
   protected infermiere: any;
+  protected richiesta!: Richiesta;
+  protected richieste!: Richiesta[];
 
   constructor(
     private navCtrl: NavController,
@@ -47,6 +50,10 @@ export class SOSPage implements OnInit {
   ngOnInit() {
     if (this.infermiere != undefined && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
+  }
+
+  handleRefresh(event: any) {
+
   }
 
   routeToSettings() {

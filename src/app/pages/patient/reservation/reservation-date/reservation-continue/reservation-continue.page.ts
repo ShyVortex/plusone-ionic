@@ -34,10 +34,10 @@ import {time} from './times';
 import {DataService} from "../../../../../services/data.service";
 import {firstValueFrom, Observable, Subscription} from "rxjs";
 import {Paziente} from "../../../../../models/paziente/Paziente";
-import {Terapia} from "../../../../../models/Terapia/Terapia";
+import {Terapia} from "../../../../../models/terapia/Terapia";
 import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
 import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
-import {TipologiaTerapia} from "../../../../../models/Terapia/tipologia-terapia";
+import {TipologiaTerapia} from "../../../../../models/terapia/tipologia-terapia";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 
 @Component({

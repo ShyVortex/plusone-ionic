@@ -48,6 +48,11 @@ export class SosEmergencyPage implements OnInit {
   ngOnInit() {
     console.clear();
     this.getCurrentLocation();
+    this.sendRequest();
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    //console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
   async getCurrentLocation() {
@@ -61,8 +66,9 @@ export class SosEmergencyPage implements OnInit {
     }
   }
 
-  animationCreated(animationItem: AnimationItem): void {
-    //console.log("Animazione renderizzata. \n\n", animationItem);
+  async sendRequest() {
+    await this.getCurrentLocation();
+
   }
 
   goToHomeAnimated() {
