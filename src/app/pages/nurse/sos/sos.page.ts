@@ -18,7 +18,7 @@ import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
-import {Richiesta} from "../../../models/triage/Richiesta";
+import {Triage} from "../../../models/triage/Triage";
 
 @Component({
   selector: 'app-sos',
@@ -29,8 +29,8 @@ import {Richiesta} from "../../../models/triage/Richiesta";
 })
 export class SOSPage implements OnInit {
   protected infermiere: any;
-  protected richiesta!: Richiesta;
-  protected richieste!: Richiesta[];
+  protected richiesta!: Triage;
+  protected richieste!: Triage[];
 
   constructor(
     private navCtrl: NavController,

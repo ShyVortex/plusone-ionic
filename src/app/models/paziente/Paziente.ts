@@ -1,4 +1,4 @@
-import { Persona } from "../persona/persona";
+import { Persona } from "../persona/Persona";
 import { Indirizzo } from "../persona/Indirizzo";
 import { Medico } from "../medico/Medico";
 import { Terapia } from "../terapia/Terapia";

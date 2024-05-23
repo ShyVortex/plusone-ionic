@@ -1,4 +1,4 @@
-import { Persona } from "../persona/persona";
+import { Persona } from "../persona/Persona";
 
 export class Infermiere extends Persona {
   constructor() {

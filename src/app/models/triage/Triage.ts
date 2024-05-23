@@ -2,7 +2,7 @@ import {Paziente} from "../paziente/Paziente";
 import {Posizione} from "../posizione/posizione";
 import {CodiciTriage} from "./codici-triage";
 
-export class Richiesta {
+export class Triage {
   private _id: number;
   private _codice: CodiciTriage;
   private _paziente: Paziente;

@@ -1,6 +1,6 @@
 import { Paziente } from "./paziente/Paziente";
 import { Medico } from "./medico/Medico";
-import { Persona } from "./persona/persona";
+import { Persona } from "./persona/Persona";
 import { Infermiere } from "./infermiere/Infermiere";
 import { Terapia } from "./terapia/Terapia";
 
