@@ -29,6 +29,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
   standalone: true,
     imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonCard, IonCardHeader, IonCardTitle, IonItem, IonRow]
 })
+
 export class LogbookPage implements OnInit {
   protected paziente: any;
 

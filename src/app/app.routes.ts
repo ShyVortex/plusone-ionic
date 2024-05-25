@@ -132,6 +132,16 @@ export const routes: Routes = [
       .then(m => m.SosRequestPage)
   },
   {
+    path: 'nurse-sos-request-accepted',
+    loadComponent: () => import('./pages/nurse/sos/sos-request/sos-request-accepted/sos-request-accepted.page')
+      .then(m => m.SosRequestAcceptedPage)
+  },
+  {
+    path: 'nurse-sos-request-denied',
+    loadComponent: () => import('./pages/nurse/sos/sos-request/sos-request-denied/sos-request-denied.page')
+      .then(m => m.SosRequestDeniedPage)
+  },
+  {
     path: 'medic-home',
     loadComponent: () => import('./pages/medic/home/home.page')
       .then(m => m.HomePage)

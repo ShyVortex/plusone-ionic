@@ -21,6 +21,7 @@ import {Sesso} from "../../../../models/persona/sesso";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText, IonDatetime, IonDatetimeButton, IonModal, IonLabel, IonButtons, IonSelect, IonSelectOption]
 })
+
 export class SignupContinuePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 

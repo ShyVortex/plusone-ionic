@@ -28,9 +28,8 @@ import {exit} from "ionicons/icons";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText, IonToast]
 })
+
 export class SignupPage implements OnInit {
-
-
   protected password!: string;
   protected email!: string;
   protected message!:string

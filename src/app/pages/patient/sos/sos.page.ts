@@ -30,6 +30,7 @@ import {CodiciTriage} from "../../../models/triage/codici-triage";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonFooter, IonLabel, IonText, IonRow, IonItem, IonCard, IonCardHeader, IonCardTitle]
 })
+
 export class SOSPage implements OnInit {
   protected paziente: any;
 

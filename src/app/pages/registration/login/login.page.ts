@@ -33,6 +33,7 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
   standalone: true,
   imports: [IonToast, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonLabel, IonInput, IonItem, IonIcon, IonButton, IonList, IonCheckbox, IonText]
 })
+
 export class LoginPage implements OnInit,OnDestroy {
   protected email: string
   protected password: string

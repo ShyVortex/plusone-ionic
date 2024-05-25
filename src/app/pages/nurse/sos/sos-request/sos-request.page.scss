@@ -1,0 +1,58 @@
+.triage-request-content {
+  .summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .code-icon {
+      margin-right: 0.5em;
+      width: 1.5em;
+      height: auto;
+    }
+
+    .text-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .item-title-list {
+        margin-left: 0.25em;
+        font-size: medium;
+      }
+    }
+  }
+
+  .map-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .request-details-text {
+      font-size: large;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .triage-buttons {
+      text-transform: none;
+      font-family: Inter, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0;
+      margin: 0 1.5em;
+    }
+  }
+}

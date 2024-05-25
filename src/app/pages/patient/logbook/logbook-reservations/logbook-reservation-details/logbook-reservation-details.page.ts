@@ -26,6 +26,7 @@ import {isEqual} from "lodash";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonText, IonRow, IonIcon]
 })
+
 export class LogbookReservationDetailsPage implements OnInit {
   protected paziente: Paziente;
   protected prenotazione: Terapia;

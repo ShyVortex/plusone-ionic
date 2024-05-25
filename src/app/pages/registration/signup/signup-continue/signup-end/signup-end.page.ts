@@ -23,6 +23,7 @@ import {Sesso} from "../../../../../models/persona/sesso";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonButtons, IonDatetime, IonImg, IonInput, IonItem, IonModal, IonSelect, IonSelectOption, IonText, IonToast]
 })
+
 export class SignupEndPage implements OnInit {
   private email:string;
   private password:string;

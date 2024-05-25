@@ -12,7 +12,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {AnimationOptions, LottieComponent} from "ngx-lottie";
-import {NavController} from "@ionic/angular";
+import {AlertController, NavController} from "@ionic/angular";
 import {AnimationItem} from "lottie-web";
 import {Geolocation} from "@capacitor/geolocation";
 import {Triage} from "../../../../../models/triage/Triage";
@@ -20,7 +20,6 @@ import {Paziente} from "../../../../../models/paziente/Paziente";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 import {TriageService} from "../../../../../services/TriageService/triage.service";
 import {CodiciTriage} from "../../../../../models/triage/codici-triage";
-import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-sos-survey-confirmed',
@@ -34,6 +33,8 @@ export class SosSurveyConfirmedPage implements OnInit {
   private latitude!: number;
   private longitude!: number;
   private codiceTriage: CodiciTriage;
+  private isSendingRequest: boolean = false;
+  private sentStatus: string = "";
 
   options: AnimationOptions = {
     path: '../../../assets/animations/hospital.json',
@@ -51,6 +52,7 @@ export class SosSurveyConfirmedPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private alertController: AlertController,
     private personaService: PersonaService,
     private triageService: TriageService,
   ) {
@@ -68,6 +70,16 @@ export class SosSurveyConfirmedPage implements OnInit {
     //console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
+  async showAlert() {
+    const alert = await this.alertController.create({
+      header: 'Errore',
+      message: 'Attendi l\'invio della posizione.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
   async getCurrentLocation() {
     try {
       const coordinates = await Geolocation.getCurrentPosition();
@@ -80,50 +92,71 @@ export class SosSurveyConfirmedPage implements OnInit {
   }
 
   async sendRequest() {
-    await this.getCurrentLocation();
+    if (this.isSendingRequest)
+      this.sentStatus = 'BUSY';
+
+    this.isSendingRequest = true;
 
     let richiesta = new Triage();
     richiesta.id = 12345;
     richiesta.codice = this.codiceTriage;
     richiesta.paziente = this.paziente;
-    richiesta.posizione.latitudine  = this.latitude;
-    richiesta.posizione.longitudine = this.longitude;
 
-    this.triageService.addRichiestaOffline(this.paziente, richiesta);
+    try {
+      await this.getCurrentLocation();
+
+      richiesta.posizione.latitudine = this.latitude;
+      richiesta.posizione.longitudine = this.longitude;
+
+      this.triageService.addRichiestaOffline(this.paziente, richiesta);
+
+      this.sentStatus = 'OK';
+
+    } catch (error) {
+      console.log(error);
+      this.sentStatus = 'ERROR';
+    } finally {
+      this.isSendingRequest = false;
+    }
   }
 
   async goToHomeAnimated() {
-    await this.sendRequest();
-
-    this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateBack("patient-home", { animated: true });
+    if (this.sentStatus === 'OK') {
+      this.personaService.setPersona(this.paziente);
+      this.navCtrl.navigateBack("patient-home", { animated: true });
+    } else
+      await this.showAlert();
   }
 
   async goToHome() {
-    waitForAsync(this.sendRequest);
-
-    this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    if (this.sentStatus === 'OK') {
+      this.personaService.setPersona(this.paziente);
+      this.navCtrl.navigateBack("patient-home", { animated: false });
+    } else
+      await this.showAlert();
   }
 
   async goToLogbook() {
-    waitForAsync(this.sendRequest);
-
-    this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateForward("patient-logbook", { animated: false });
+    if (this.sentStatus === 'OK') {
+      this.personaService.setPersona(this.paziente);
+      this.navCtrl.navigateForward("patient-logbook", { animated: false });
+    } else
+      await this.showAlert();
   }
 
   async goToReservation() {
-    waitForAsync(this.sendRequest);
-
-    this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateForward("patient-reservation", { animated: false });
+    if (this.sentStatus === 'OK') {
+      this.personaService.setPersona(this.paziente);
+      this.navCtrl.navigateForward("patient-reservation", { animated: false });
+    } else
+      this.showAlert();
   }
 
   async goToSOS() {
-    waitForAsync(this.sendRequest);
-
-    this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateForward("patient-sos",{ animated: false });
+    if (this.sentStatus === 'OK') {
+      this.personaService.setPersona(this.paziente);
+      this.navCtrl.navigateForward("patient-sos",{ animated: false });
+    } else
+      this.showAlert();
   }
 }
