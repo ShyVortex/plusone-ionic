@@ -1,9 +1,17 @@
-import { Persona } from "../persona/persona";
+import { Persona } from "../persona/Persona";
 import { Indirizzo } from "../persona/Indirizzo";
 import { Medico } from "../medico/Medico";
-import { Terapia } from "../Terapia/Terapia";
+import { Terapia } from "../terapia/Terapia";
+import {Triage} from "../triage/Triage";
 
-export class Paziente extends Persona{
+export class Paziente extends Persona {
+  private _indirizzo: Indirizzo;
+  private _esenzione: boolean;
+  private _donatoreOrgani: boolean;
+  private _medico: Medico;
+  private _terapie: Terapia[];
+  private _richieste: Triage[];
+
   constructor() {
     super(0, "", "", "", "", "");
 
@@ -12,13 +20,8 @@ export class Paziente extends Persona{
     this._donatoreOrgani = false;
     this._medico = new Medico();
     this._terapie = [];
+    this._richieste = [];
   }
-
-  private _indirizzo: Indirizzo;
-  private _esenzione: boolean;
-  private _donatoreOrgani: boolean;
-  private _medico: Medico;
-  private _terapie: Terapia[];
 
   get terapie(): Terapia[] {
     return this._terapie;
@@ -26,6 +29,14 @@ export class Paziente extends Persona{
 
   set terapie(value: Terapia[]) {
     this._terapie = value;
+  }
+
+  get richieste(): Triage[] {
+    return this._richieste;
+  }
+
+  set richieste(value: Triage[]) {
+    this._richieste = value;
   }
 
   get indirizzo(): Indirizzo {

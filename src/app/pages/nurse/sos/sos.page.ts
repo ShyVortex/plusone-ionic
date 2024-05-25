@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent, IonFooter,
+  IonButton, IonCol,
+  IonContent, IonFooter, IonGrid,
   IonHeader,
   IonIcon,
-  IonImg, IonLabel,
+  IonImg, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonRow,
   IonTabBar,
   IonTabButton, IonTabs, IonText,
   IonTitle,
@@ -18,16 +19,20 @@ import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
+import {Triage} from "../../../models/triage/Triage";
+import {CodiciTriage} from "../../../models/triage/codici-triage";
 
 @Component({
   selector: 'app-sos',
   templateUrl: './sos.page.html',
   styleUrls: ['./sos.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton, IonGrid, IonCol]
 })
 export class SOSPage implements OnInit {
-  protected infermiere: any;
+  protected infermiere: Infermiere;
+  protected paziente: any;
+  protected richieste!: Triage[];
 
   constructor(
     private navCtrl: NavController,
@@ -37,6 +42,7 @@ export class SOSPage implements OnInit {
     private storageService: StorageService
   ) {
     this.infermiere = personaService.getPersona();
+    this.paziente = storageService.getState("mario.giannini@paziente.it");
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
@@ -47,6 +53,16 @@ export class SOSPage implements OnInit {
   ngOnInit() {
     if (this.infermiere != undefined && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
+
+    if (this.infermiere && this.paziente.richieste)
+      this.richieste = this.paziente.richieste;
+  }
+
+  handleRefresh(event: any) {}
+
+  routeToRequestDetails(richiesta: Triage) {
+    this.storageService.setTriage(richiesta);
+    this.navCtrl.navigateForward("nurse-sos-request");
   }
 
   routeToSettings() {
@@ -76,4 +92,5 @@ export class SOSPage implements OnInit {
   }
 
   protected readonly Sesso = Sesso;
+  protected readonly CodiciTriage = CodiciTriage;
 }

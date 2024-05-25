@@ -21,6 +21,7 @@ import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
+import {CodiciTriage} from "../../../models/triage/codici-triage";
 
 @Component({
   selector: 'app-sos',
@@ -29,6 +30,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonFooter, IonLabel, IonText, IonRow, IonItem, IonCard, IonCardHeader, IonCardTitle]
 })
+
 export class SOSPage implements OnInit {
   protected paziente: any;
 
@@ -59,7 +61,11 @@ export class SOSPage implements OnInit {
   }
 
   routeToEmergency() {
-    this.navCtrl.navigateForward("patient-sos-emergency");
+    this.navCtrl.navigateForward("patient-sos-emergency", {
+      state: {
+        codiceTriage: CodiciTriage.ROSSO
+      }
+    });
   }
 
   routeToSurvey() {

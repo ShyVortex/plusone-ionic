@@ -23,6 +23,52 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="sos-list-content" [fullscreen]="true">
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <ion-item lines="none" class="item-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/nurse/sos/alarm.png"></ion-img>
+    RICHIESTE SOS
+  </ion-item>
+  <ion-list>
+    <ion-item class="item-title" *ngFor="let richiesta of richieste">
+      <div class="item-content">
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.BIANCO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/white-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.VERDE"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/green-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.AZZURRO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/blue-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.ARANCIONE"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/orange-code.png">
+        </ion-img>
+        <ion-img *ngIf="richiesta.codice === CodiciTriage.ROSSO"
+                 class="code-icon"
+                 slot="start" src="../../assets/icon/shared/codes/red-code.png">
+        </ion-img>
+        <div class="text-container">
+          <ion-text class="item-title-list">Richiesta n. {{richiesta.id}} <br/>
+            {{richiesta.paziente.nome}} {{richiesta.paziente.cognome}}
+          </ion-text>
+        </div>
+        <ion-button class="arrow-button" slot="end" fill="clear" (click)="routeToRequestDetails(richiesta)">
+          <ion-text class="arrow-button-text">></ion-text>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <ion-tabs class="bottom-bar">

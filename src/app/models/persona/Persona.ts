@@ -1,6 +1,15 @@
 import {Sesso} from "./sesso";
 
 export abstract class Persona {
+  protected _id: number;
+  protected _nome: string;
+  protected _cognome: string;
+  protected _sesso: Sesso;
+  protected _email: string;
+  protected _password: string;
+  protected _CF: string
+  protected _isSet: boolean;
+
   protected constructor(
      id: number,
      nome: string,
@@ -18,15 +27,6 @@ export abstract class Persona {
     this._CF = CF;
     this._isSet = false;
   }
-
-  protected _id: number;
-  protected _nome: string;
-  protected _cognome: string;
-  protected _sesso: Sesso;
-  protected _email: string;
-  protected _password: string;
-  protected _CF: string
-  protected _isSet: boolean;
 
   get id(): number {
     return this._id;

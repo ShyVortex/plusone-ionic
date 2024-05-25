@@ -13,7 +13,7 @@ import {
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {CodiciTriage} from "../../../../models/paziente/codici-triage";
+import {CodiciTriage} from "../../../../models/triage/codici-triage";
 
 @Component({
   selector: 'app-sos-survey',
@@ -79,9 +79,17 @@ export class SosSurveyPage implements OnInit {
   routeToSurveyConfirmed() {
     if (this.checkFields()) {
       if (this.codiceTriage != CodiciTriage.ARANCIONE)
-        this.navCtrl.navigateForward("patient-sos-survey-confirmed");
+        this.navCtrl.navigateForward("patient-sos-survey-confirmed", {
+          state: {
+            codiceTriage: this.codiceTriage
+          }
+        });
       else
-        this.navCtrl.navigateForward("patient-sos-emergency");
+        this.navCtrl.navigateForward("patient-sos-emergency", {
+          state: {
+            codiceTriage: this.codiceTriage
+          }
+        });
     }
     else
       this.showAlert();

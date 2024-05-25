@@ -1,0 +1,53 @@
+.sos-list-content {
+  .item-content {
+    margin-top: 8.5px;
+    margin-bottom: 8.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .code-icon {
+      margin-left: 0.3em;
+      margin-right: 0.5em;
+      width: 1.5em;
+      height: auto;
+    }
+
+    .text-container {
+      // Permette al testo racchiuso nel container di occupare tutto lo spazio disponibile
+      flex-grow: 1;
+    }
+
+    .arrow-button {
+      margin-left: auto; // spinge il pulsante alla fine della riga
+
+      .arrow-button-text {
+        color: #000;
+        font-size: x-large;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .item-title {
+    font-size: x-large;
+    font-weight: bold;
+
+    .item-title-icon {
+      width: 1.5em;
+      height: auto;
+      margin-right: 0.5em;
+    }
+
+    .item-title-list {
+      // Assicura che il testo può andare alla riga successiva
+      display: block;
+      width: 100%;
+
+      margin-left: 0.25em;
+      font-size: medium;
+      font-weight: normal;
+    }
+  }
+}

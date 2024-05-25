@@ -3,12 +3,13 @@ import {Observable, Observer} from "rxjs";
 import {Paziente} from "../../models/paziente/Paziente";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
-import {Terapia} from "../../models/Terapia/Terapia";
+import {Terapia} from "../../models/terapia/Terapia";
 import {Medico} from "../../models/medico/Medico";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TerapiaService {
   private terapiaURL = "http://localhost:8080/api/terapie";
 

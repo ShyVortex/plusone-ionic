@@ -1,9 +1,17 @@
-import {Persona} from "../persona/persona";
+import {Persona} from "../persona/Persona";
 import {TipologiaMedico} from "./tipologia-medico";
-import {Terapia} from "../Terapia/Terapia";
+import {Terapia} from "../terapia/Terapia";
 import {Paziente} from "../paziente/Paziente";
 
 export class Medico extends Persona {
+  private _ospedale: string;
+  private _reparto: string;
+  private _ruolo: string;
+  private _tipologiaMedico: TipologiaMedico;
+  private _pazienti: Paziente[];
+  private _terapie: Terapia[];
+  private _isManager: boolean;
+
   constructor() {
     super(0, "", "", "", "", "");
     this._ospedale = "";
@@ -14,14 +22,6 @@ export class Medico extends Persona {
     this._terapie = [];
     this._isManager = false;
   }
-
-  private _ospedale: string;
-  private _reparto: string;
-  private _ruolo: string;
-  private _tipologiaMedico: TipologiaMedico;
-  private _pazienti: Paziente[];
-  private _terapie: Terapia[];
-  private _isManager: boolean;
 
   get pazienti(): Paziente[] {
     return this._pazienti;

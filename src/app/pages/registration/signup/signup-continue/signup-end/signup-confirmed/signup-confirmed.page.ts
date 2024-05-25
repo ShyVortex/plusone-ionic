@@ -13,6 +13,7 @@ import {NavController} from "@ionic/angular";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonText, LottieComponent]
 })
+
 export class SignupConfirmedPage implements OnInit {
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',

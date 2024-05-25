@@ -22,6 +22,7 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
   standalone: true,
     imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter]
 })
+
 export class InfoPage implements OnInit {
   protected persona: any;
   protected ruolo: String;

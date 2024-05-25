@@ -1,15 +1,15 @@
 export class Indirizzo {
+  private _cap: string;
+  private _via: string;
+  private _numeroCivico: string;
+  private _città: string;
+
   constructor() {
     this._cap = "";
     this._via = "";
     this._numeroCivico = "";
     this._città = "";
   }
-
-  private _cap: string;
-  private _via: string;
-  private _numeroCivico: string;
-  private _città: string;
 
   get cap(): string {
     return this._cap;

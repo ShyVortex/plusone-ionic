@@ -1,16 +1,16 @@
-import { Persona } from "../persona/persona";
+import { Persona } from "../persona/Persona";
 
 export class Infermiere extends Persona {
+  private _ospedale: string;
+  private _reparto: string;
+  private _ruolo: string;
+
   constructor() {
     super(0, "", "", "", "", "");
     this._ospedale = "";
     this._reparto = "";
     this._ruolo = "";
   }
-
-  private _ospedale: string;
-  private _reparto: string;
-  private _ruolo: string;
 
   get ospedale(): string {
     return this._ospedale;

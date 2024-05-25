@@ -17,7 +17,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
 import {LoginUtilities} from "../LoginUtilities";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
-import {Persona} from "../../../models/persona/persona";
+import {Persona} from "../../../models/persona/Persona";
 import {HashingUtilities} from "../hashing-utilities";
 import {exit} from "ionicons/icons";
 
@@ -28,9 +28,8 @@ import {exit} from "ionicons/icons";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonItem, IonInput, IonButton, IonText, IonToast]
 })
+
 export class SignupPage implements OnInit {
-
-
   protected password!: string;
   protected email!: string;
   protected message!:string

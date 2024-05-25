@@ -3,6 +3,16 @@ import { Paziente } from "../paziente/Paziente";
 import { TipologiaTerapia } from "./tipologia-terapia";
 
 export class Terapia {
+  private _id: number;
+  private _orario: string;
+  private _informazioneAggiuntive: string;
+  private _causa: string;
+  private _attivo: boolean;
+  private _medicoCurante: Medico;
+  private _paziente: Paziente;
+  private _tipologiaTerapia: TipologiaTerapia;
+  private _reparto: string;
+
   constructor() {
     this._id = 0;
     this._orario = "";
@@ -14,16 +24,6 @@ export class Terapia {
     this._tipologiaTerapia = TipologiaTerapia.GENERALE;
     this._reparto = "";
   }
-
-  private _id: number;
-  private _orario: string;
-  private _informazioneAggiuntive: string;
-  private _causa: string;
-  private _attivo: boolean;
-  private _medicoCurante: Medico;
-  private _paziente: Paziente;
-  private _tipologiaTerapia: TipologiaTerapia;
-  private _reparto: string;
 
   get reparto(): string {
     return this._reparto;

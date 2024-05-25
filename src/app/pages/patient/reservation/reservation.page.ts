@@ -35,6 +35,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel,
             IonFooter, IonText, IonButton, IonItem, IonRow, IonCard, IonCardHeader, IonCardTitle, IonSegment, IonSegmentButton, IonDatetime,]
 })
+
 export class ReservationPage implements OnInit {
   protected paziente: any;
 

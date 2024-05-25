@@ -20,6 +20,7 @@ import {NavController} from "@ionic/angular";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs]
 })
+
 export class LogbookPrescriptionsPage implements OnInit {
 
   constructor(
