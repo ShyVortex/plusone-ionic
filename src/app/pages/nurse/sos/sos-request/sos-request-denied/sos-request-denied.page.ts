@@ -19,6 +19,8 @@ import {NavController} from "@ionic/angular";
 import {StorageService} from "../../../../../services/StorageService/storage.service";
 import {isEqual} from "lodash";
 import {AnimationItem} from "lottie-web";
+import {TriageService} from "../../../../../services/TriageService/triage.service";
+import {Conferma} from "../../../../../models/triage/Conferma";
 
 @Component({
   selector: 'app-sos-request-denied',
@@ -29,8 +31,8 @@ import {AnimationItem} from "lottie-web";
 })
 
 export class SosRequestDeniedPage implements OnInit {
-  private paziente: Paziente;
-  protected richiesta: Triage;
+  private paziente!: Paziente;
+  protected richiesta!: Triage;
 
   options: AnimationOptions = {
     path: '../../../assets/animations/error.json',
@@ -48,16 +50,20 @@ export class SosRequestDeniedPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private triageService:TriageService
   ) {
-    this.richiesta = storageService.getTriage();
-    this.paziente = this.richiesta.paziente;
+
   }
 
   ngOnInit() {
+    this.richiesta = this.storageService.getTriage();
+    this.paziente = this.richiesta.paziente;
   }
 
   ionViewDidLeave() {
+
+    /*
     const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
     if (index !== -1) {
       if (isEqual(this.paziente.richieste[index], this.richiesta)) {
@@ -70,6 +76,8 @@ export class SosRequestDeniedPage implements OnInit {
     }
     else
       console.error('Reservation not found.');
+      */
+
   }
 
   animationCreated(animationItem: AnimationItem): void {
@@ -94,5 +102,8 @@ export class SosRequestDeniedPage implements OnInit {
 
   goToSOS() {
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
+  }
+  ionViewWillEnter(){
+    this.triageService.setState(this.richiesta.id,Conferma.NO).subscribe()
   }
 }

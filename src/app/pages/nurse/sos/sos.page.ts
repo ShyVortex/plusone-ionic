@@ -21,6 +21,9 @@ import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
 import {Triage} from "../../../models/triage/Triage";
 import {CodiciTriage} from "../../../models/triage/codici-triage";
+import {TriageService} from "../../../services/TriageService/triage.service";
+import {Observable} from "rxjs";
+import {Conferma} from "../../../models/triage/Conferma";
 
 @Component({
   selector: 'app-sos',
@@ -30,35 +33,57 @@ import {CodiciTriage} from "../../../models/triage/codici-triage";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonLabel, IonFooter, IonText, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton, IonGrid, IonCol]
 })
 export class SOSPage implements OnInit {
-  protected infermiere: Infermiere;
+  protected infermiere!: Infermiere;
   protected paziente: any;
   protected richieste!: Triage[];
+  private getAllTriagesObservable!:Observable<Triage[]> ;
 
   constructor(
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
     private infermiereService: InfermiereService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private triageService: TriageService
   ) {
+    /*
     this.infermiere = personaService.getPersona();
     this.paziente = storageService.getState("mario.giannini@paziente.it");
 
-    /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
-       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
+
+
+     Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
+       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati
     if (!this.infermiere)
       this.infermiere = new Infermiere();
+
+     */
   }
 
+
+
   ngOnInit() {
+    this.infermiere = this.storageService.getInfermiere()
+    this.getAllTriagesObservable = this.triageService.getAllTriages();
+    /*
     if (this.infermiere != undefined && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
 
     if (this.infermiere && this.paziente.richieste)
       this.richieste = this.paziente.richieste;
+
+  */
   }
 
-  handleRefresh(event: any) {}
+  handleRefresh(event: any) {
+    setTimeout(() => {
+    this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
+      this.richieste = value;
+    })
+      event.target.complete();
+    },2000)
+
+  }
 
   routeToRequestDetails(richiesta: Triage) {
     this.storageService.setTriage(richiesta);
@@ -90,7 +115,13 @@ export class SOSPage implements OnInit {
     this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
+  ionViewWillEnter(){
+    this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
+      this.richieste = value;
+    })
+  }
 
   protected readonly Sesso = Sesso;
   protected readonly CodiciTriage = CodiciTriage;
+  protected readonly Conferma = Conferma;
 }

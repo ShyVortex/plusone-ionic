@@ -18,6 +18,8 @@ import {NavController} from "@ionic/angular";
 import {StorageService} from "../../../../../services/StorageService/storage.service";
 import {Paziente} from "../../../../../models/paziente/Paziente";
 import {isEqual} from "lodash";
+import {TriageService} from "../../../../../services/TriageService/triage.service";
+import {Conferma} from "../../../../../models/triage/Conferma";
 
 @Component({
   selector: 'app-sos-request-accepted',
@@ -28,8 +30,8 @@ import {isEqual} from "lodash";
 })
 
 export class SosRequestAcceptedPage implements OnInit {
-  private paziente: Paziente;
-  protected richiesta: Triage;
+  private paziente!: Paziente;
+  protected richiesta!: Triage;
 
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
@@ -47,16 +49,21 @@ export class SosRequestAcceptedPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private triageService:TriageService
   ) {
-    this.richiesta = storageService.getTriage();
-    this.paziente = this.richiesta.paziente;
+
   }
 
   ngOnInit() {
+    this.richiesta = this.storageService.getTriage();
+    this.paziente = this.richiesta.paziente;
+
   }
 
   ionViewDidLeave() {
+
+    /*
     const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
     if (index !== -1) {
       if (isEqual(this.paziente.richieste[index], this.richiesta)) {
@@ -69,6 +76,8 @@ export class SosRequestAcceptedPage implements OnInit {
     }
     else
       console.error('Reservation not found.');
+
+     */
   }
 
   animationCreated(animationItem: AnimationItem): void {
@@ -93,5 +102,8 @@ export class SosRequestAcceptedPage implements OnInit {
 
   goToSOS() {
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
+  }
+  ionViewWillEnter(){
+    this.triageService.setState(this.richiesta.id,Conferma.SI).subscribe()
   }
 }

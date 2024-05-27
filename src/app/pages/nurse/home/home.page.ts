@@ -29,6 +29,9 @@ import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {InfermiereService} from "../../../services/InfermiereService/infermiere.service";
+import {Observable, Subscription} from "rxjs";
+import {DataService} from "../../../services/data.service";
+import {Medico} from "../../../models/medico/Medico";
 
 @Component({
   selector: 'app-home',
@@ -39,13 +42,17 @@ import {InfermiereService} from "../../../services/InfermiereService/infermiere.
 })
 export class HomePage implements OnInit {
   protected infermiere: Infermiere;
+  private infermiereEmail!:string;
+  private getInfermiereByEmailObservable!:Observable<Infermiere>;
+  private dataSubscription!: Subscription;
 
   constructor(
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
     private infermiereService: InfermiereService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private dataService:DataService
   ) {
     this.infermiere = this.personaService.getPersona();
 
@@ -54,11 +61,18 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.infermiere.isEmpty())
+    /*if (this.infermiere.isEmpty())
       this.infermiere.setState(false);
 
     if (this.infermiere.nome === "" && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
+
+
+     */
+    this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
+      this.infermiereEmail = value
+      this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.infermiereEmail)
+    })
   }
 
   routeToSettings() {
@@ -93,8 +107,13 @@ export class HomePage implements OnInit {
   }
 
   goToSOS() {
-    this.personaService.setPersona(this.infermiere);
+    this.storageService.setInfermiere(this.infermiere)
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
+  }
+  ionViewWillEnter(){
+    this.getInfermiereByEmailObservable.subscribe((value:Infermiere) =>{
+      this.infermiere = value
+    });
   }
 
   protected readonly Sesso = Sesso;

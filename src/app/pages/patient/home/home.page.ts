@@ -107,7 +107,7 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if (this.paziente.isSet()) {
+    if (!this.paziente.isSet()) {
       this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
         this.paziente = value
         this.citta = this.paziente.indirizzo.città;
@@ -149,6 +149,7 @@ export class HomePage implements OnInit {
   }
 
   goToSOS() {
+    this.storageService.setPaziente(this.paziente);
     this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
