@@ -1,3 +1,5 @@
+
+
 ion-icon {
     color: black;
 }
@@ -17,31 +19,13 @@ ion-card {
 }
 
 ion-fab {
-    margin-right: 0.7em;
-    margin-bottom: 4em;
+    margin-right: 0.2em;
+    margin-bottom: 3.7em;
 }
 
 ion-item-divider {
     margin-top: 0.5em;
     margin-bottom: 2em;
-}
-
-button[ion-fab] {
-    overflow: visible;
-    position: relative;
-
-    ion-label {
-        position: absolute;
-        top: -8px;
-        right: 40px;
-
-        color: white;
-        background-color: rgba(0,0,0,0.7);
-        line-height: 24px;
-        padding: 4px 8px;
-        border-radius: 4px;
-    }
-    contain: layout;
 }
 
 .divider-vertical {
@@ -62,6 +46,14 @@ h4 {
     margin-bottom: 0;
 }
 
+/* .confirm-button {
+    width: 88%;
+    margin-left: 2em;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    bottom: 0;
+} */
+
 .drug {
     margin-left: 1em;
 }
@@ -69,4 +61,40 @@ h4 {
 .drug-name {
     font-size: 1.1em;
     color: #000;
+}
+
+.drug-grid {
+  display: flex;
+  align-items: center;
+
+  .drug-details {
+    flex-grow: 10;
+  }
+
+  .drug-actions {
+    flex-grow: 1;
+  }
+}
+
+ion-fab-button[data-desc] {
+    position: relative;
+}
+
+ion-fab-button[data-desc]::after {
+    position: absolute;
+    content: attr(data-desc);
+    z-index: 1;
+    right: 50px;
+    bottom: 7px;
+    color: var(--ion-color-contrast, #fff);
+    background-color: var(--ion-color-base, #fff);
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.bottom-elements {
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
