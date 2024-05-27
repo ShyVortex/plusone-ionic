@@ -53,6 +53,8 @@ export class SecurityPage implements OnInit {
       this.ruolo = "INFERMIERE";
     else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'MEDICO')
       this.ruolo = "MEDICO";
+    else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'ADMIN')
+      this.ruolo = "ADMIN";
   }
 
   ngAfterViewInit() {
@@ -134,5 +136,9 @@ export class SecurityPage implements OnInit {
 
   goToPrescriptions() {
     this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+  }
+
+  goToFunctions() {
+    this.navCtrl.navigateForward("admin-functions", { animated: false });
   }
 }

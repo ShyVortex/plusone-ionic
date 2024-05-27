@@ -2,32 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonCard, IonCardHeader, IonCardTitle,
-  IonContent, IonFooter,
-  IonHeader, IonIcon,
-  IonImg,
-  IonItem,
-  IonLabel, IonRow, IonTabBar, IonTabButton, IonTabs,
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonImg, IonTabBar, IonTabButton, IonTabs,
   IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {Admin} from "../../../models/admin/Admin";
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
-import {Router} from "@angular/router";
+import {Admin} from "../../../models/admin/Admin";
 import {AdminService} from "../../../services/AdminService/admin.service";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-functions',
+  templateUrl: './functions.page.html',
+  styleUrls: ['./functions.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonText, IonLabel, IonItem, IonRow, IonCard, IonIcon, IonCardHeader, IonCardTitle, IonFooter, IonTabs, IonTabBar, IonTabButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs]
 })
-
-export class HomePage implements OnInit {
+export class FunctionsPage implements OnInit {
   protected admin: Admin;
 
   constructor(
@@ -35,18 +33,17 @@ export class HomePage implements OnInit {
     private router: Router,
     private personaService: PersonaService,
     private adminService: AdminService,
-    private storageService: StorageService,
+    private storageService: StorageService
   ) {
-    this.admin = personaService.getPersona();
+    this.admin = this.personaService.getPersona();
 
+    /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
+       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
     if (!this.admin)
       this.admin = new Admin();
   }
 
   ngOnInit() {
-    if (this.admin.isEmpty())
-      this.admin.setState(false);
-
     if (!this.admin.isSet())
       this.adminService.offlineSetAdmin(this.admin);
   }
@@ -55,16 +52,6 @@ export class HomePage implements OnInit {
     this.personaService.setPersona(this.admin);
     this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
-  }
-
-  routeToSecurity() {
-    this.personaService.setPersona(this.admin);
-    this.storageService.setRoute(this.router.url);
-    this.navCtrl.navigateForward("settings-security");
-  }
-
-  logout() {
-    this.navCtrl.navigateRoot("login");
   }
 
   goToHome() {

@@ -197,6 +197,16 @@ export const routes: Routes = [
       .then(m => m.PatientsAssistancePage)
   },
   {
+    path: 'admin-home',
+    loadComponent: () => import('./pages/admin/home/home.page')
+      .then(m => m.HomePage)
+  },
+  {
+    path: 'admin-functions',
+    loadComponent: () => import('./pages/admin/functions/functions.page')
+      .then(m => m.FunctionsPage)
+  },
+  {
     path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)

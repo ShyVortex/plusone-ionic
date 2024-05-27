@@ -136,6 +136,16 @@ export class LoginPage implements OnInit,OnDestroy {
       this.dataService.sendData(this.email);
       await this.navCtrl.navigateForward("medic-home");
     }
+    if (this.email === "bruno.strati@admin.it" && this.password === "password123") {
+      this.personToLogin = this.storageService.getState(this.email);
+      if (this.personToLogin != undefined)
+        this.personaService.setPersona(this.personToLogin);
+      else
+        this.personaService.setPersona(new Medico());
+
+      this.dataService.sendData(this.email);
+      await this.navCtrl.navigateForward("admin-home");
+    }
 
       if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)
