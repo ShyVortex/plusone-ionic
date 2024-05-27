@@ -64,6 +64,8 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    if (!this.admin.isSet())
+      this.storageService.cacheState(this.admin);
     this.navCtrl.navigateRoot("login");
   }
 
