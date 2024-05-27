@@ -74,6 +74,11 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward("admin-home", { animated: false });
   }
 
+  goToRequests() {
+    this.personaService.setPersona(this.admin);
+    this.navCtrl.navigateForward("admin-requests", { animated: false });
+  }
+
   goToFunctions() {
     this.personaService.setPersona(this.admin);
     this.navCtrl.navigateForward("admin-functions", { animated: false });

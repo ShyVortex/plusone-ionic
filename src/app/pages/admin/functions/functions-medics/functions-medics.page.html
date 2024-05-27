@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Lista medici</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
+
+<ion-searchbar
+  placeholder="Cerca medico..."
+  (input)="search($event)"
+></ion-searchbar>
+
+<ion-content>
+  <ion-list *ngIf="!isLoading">
+    @for (item of filteredMedics; track item.CF) {
+      <ion-item button (click)="goToUserDetails(item)">
+        <ion-avatar slot="start">
+          <ion-img *ngIf="item.sesso === Sesso.MASCHIO"
+                   src="../../assets/icon/home/avatar/av-doctor-male.png"
+                   alt="Foto profilo medico">
+          </ion-img>
+          <ion-img *ngIf="item.sesso === Sesso.FEMMINA"
+                   src="../../assets/icon/home/avatar/av-doctor-female.png"
+                   alt="Foto profilo medico">
+          </ion-img>
+        </ion-avatar>
+
+        <ion-label>
+          <h2>{{item.nome}} {{item.cognome}}</h2>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

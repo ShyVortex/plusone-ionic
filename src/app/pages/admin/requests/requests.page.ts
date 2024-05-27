@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-    IonCard, IonCardHeader, IonCardTitle,
-    IonContent,
-    IonFooter,
-    IonHeader,
-    IonIcon,
-    IonImg, IonItem, IonRow, IonTabBar, IonTabButton, IonTabs,
-    IonText,
-    IonTitle,
-    IonToolbar
+  IonContent,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonImg, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonTabBar, IonTabButton, IonTabs,
+  IonText,
+  IonTitle,
+  IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {StorageService} from "../../../services/StorageService/storage.service";
 import {Admin} from "../../../models/admin/Admin";
 import {AdminService} from "../../../services/AdminService/admin.service";
+import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-functions',
-  templateUrl: './functions.page.html',
-  styleUrls: ['./functions.page.scss'],
+  selector: 'app-requests',
+  templateUrl: './requests.page.html',
+  styleUrls: ['./requests.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonCard, IonCardHeader, IonCardTitle, IonItem, IonRow]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow]
 })
-export class FunctionsPage implements OnInit {
+export class RequestsPage implements OnInit {
   protected admin: Admin;
+  //protected richieste: Richiesta[]
 
   constructor(
     private navCtrl: NavController,
@@ -44,6 +44,10 @@ export class FunctionsPage implements OnInit {
       this.admin = new Admin();
   }
 
+  handleRefresh(customEvent: any) {
+
+  }
+
   ngOnInit() {
     if (!this.admin.isSet())
       this.adminService.offlineSetAdmin(this.admin);
@@ -53,18 +57,6 @@ export class FunctionsPage implements OnInit {
     this.personaService.setPersona(this.admin);
     this.storageService.setRoute(this.router.url);
     this.navCtrl.navigateForward("settings");
-  }
-
-  routeToMedicsList() {
-    this.navCtrl.navigateForward("admin-functions-medics");
-  }
-
-  routeToNursesList() {
-    this.navCtrl.navigateForward("admin-functions-nurses");
-  }
-
-  routeToPatientsList() {
-    this.navCtrl.navigateForward("admin-functions-patients");
   }
 
   goToHome() {

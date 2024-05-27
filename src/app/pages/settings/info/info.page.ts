@@ -92,6 +92,10 @@ export class InfoPage implements OnInit {
     this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
   }
 
+  goToRequests() {
+    this.navCtrl.navigateForward("admin-requests", { animated: false });
+  }
+
   goToFunctions() {
     this.navCtrl.navigateForward("admin-functions", { animated: false });
   }

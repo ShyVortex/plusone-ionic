@@ -125,6 +125,10 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
           Prescrizioni
         </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToFunctions()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
           Funzioni

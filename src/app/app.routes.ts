@@ -202,9 +202,29 @@ export const routes: Routes = [
       .then(m => m.HomePage)
   },
   {
+    path: 'admin-requests',
+    loadComponent: () => import('./pages/admin/requests/requests.page')
+      .then(m => m.RequestsPage)
+  },
+  {
     path: 'admin-functions',
     loadComponent: () => import('./pages/admin/functions/functions.page')
       .then(m => m.FunctionsPage)
+  },
+  {
+    path: 'admin-functions-medics',
+    loadComponent: () => import('./pages/admin/functions/functions-medics/functions-medics.page')
+      .then(m => m.FunctionsMedicsPage)
+  },
+  {
+    path: 'admin-functions-nurses',
+    loadComponent: () => import('./pages/admin/functions/functions-nurses/functions-nurses.page')
+      .then(m => m.FunctionsNursesPage)
+  },
+  {
+    path: 'admin-functions-patients',
+    loadComponent: () => import('./pages/admin/functions/functions-patients/functions-patients.page')
+      .then(m => m.FunctionsPatientsPage)
   },
   {
     path: 'settings',
