@@ -41,6 +41,7 @@ export class SOSPage implements OnInit {
     private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
+    this.paziente = personaService.getPersona();
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
@@ -49,8 +50,6 @@ export class SOSPage implements OnInit {
   }
 
   ngOnInit() {
-    this.paziente = this.storageService.getPaziente()
-    console.log(this.paziente);
     if (this.paziente.nome === "" && !this.paziente.isSet())
       this.pazienteService.offlineSetPaziente(this.paziente);
   }

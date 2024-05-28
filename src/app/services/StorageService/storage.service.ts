@@ -17,7 +17,9 @@ export class StorageService {
   private route: string;
   private loginCache: any[];
   private terapia!: Terapia;
+  private terapie!: Terapia[];
   private triage!: Triage;
+  private richieste!: Triage[];
 
   constructor() {
     this.paziente = new Paziente();
@@ -67,12 +69,31 @@ export class StorageService {
     this.terapia = value;
   }
 
+  getTerapie() {
+    if (this.terapie)
+      return this.terapie;
+    else
+      return [];
+  }
+
+  cacheTerapie(value: Terapia[]) {
+    this.terapie = value;
+  }
+
   getTriage() {
     return this.triage;
   }
 
   setTriage(value: Triage) {
     this.triage = value;
+  }
+
+  getRichieste() {
+    return this.richieste;
+  }
+
+  cacheRichieste(value: Triage[]) {
+    this.richieste = value;
   }
 
   getAllStates() {

@@ -22,8 +22,6 @@ export class TriageService {
   }
 
   getAllTriages(): Observable<Triage[]> {
-
-
     let jsonResponse: any[] = [];
     let richieste: Triage[] = [];
 

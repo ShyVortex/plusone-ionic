@@ -5,7 +5,7 @@ import { NavController } from "@ionic/angular";
 import { IonSelect, IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonLabel, IonImg, IonTabBar, IonTabs, IonTabButton, IonFooter, IonFab, IonFabButton, IonIcon, IonFabList, IonList, IonItem, IonItemDivider, IonRow, IonGrid, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonCardTitle, IonItemSliding, IonItemOption, IonItemOptions, IonAvatar, IonModal, IonButtons, IonSearchbar } from '@ionic/angular/standalone';
 import { ActionSheetController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { Farmaco } from 'src/app/models/farmaco/farmaco';
+import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 
@@ -23,13 +23,13 @@ export class NewTherapyPage implements OnInit{
 
   protected drugs!: Farmaco[];
   protected drug: Farmaco = new Farmaco(1, 'codice', 'nome', 'categoria', 'principioattivo', 'azienda');
-  
+
   protected exams!: Farmaco[];
   protected exam: Farmaco = new Farmaco(1, 'codice', 'nome', 'categoria', 'principioattivo', 'azienda');
-  
+
   protected name!: string;
   protected message = 'Message';
-  
+
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
@@ -38,7 +38,7 @@ export class NewTherapyPage implements OnInit{
     this.drugs = [];
     this.exams = [];
   }
-  
+
   ngOnInit() {
     this.drugs.push(this.drug);
   }

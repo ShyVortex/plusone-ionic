@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonTabButton, IonTabs, IonTabBar, IonImg, IonFooter, IonItem, IonAvatar, IonList, IonSearchbar } from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
-import { Farmaco } from 'src/app/models/farmaco/farmaco';
+import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { PersonaService } from 'src/app/services/PersonaService/persona.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
@@ -25,7 +25,7 @@ export class AddDrugPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
-  ) { 
+  ) {
     this.paziente = storageService.getPaziente();
   }
 

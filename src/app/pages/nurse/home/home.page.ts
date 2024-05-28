@@ -61,18 +61,16 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    /*if (this.infermiere.isEmpty())
-      this.infermiere.setState(false);
-
-    if (this.infermiere.nome === "" && !this.infermiere.isSet())
-      this.infermiereService.offlineSetInfermiere(this.infermiere);
-
-
-     */
     this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
       this.infermiereEmail = value
       this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.infermiereEmail)
     })
+
+    if (this.infermiere.isEmpty())
+      this.infermiere.setState(false);
+
+    if (this.infermiere.nome === "" && !this.infermiere.isSet())
+      this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
   routeToSettings() {
@@ -107,9 +105,10 @@ export class HomePage implements OnInit {
   }
 
   goToSOS() {
-    this.storageService.setInfermiere(this.infermiere)
-    this.navCtrl.navigateForward("nurse-sos", { animated: false });
+    this.personaService.setPersona(this.infermiere);
+    this.navCtrl.navigateForward("nurse-sos", {animated: false});
   }
+
   ionViewWillEnter(){
     this.getInfermiereByEmailObservable.subscribe((value:Infermiere) =>{
       this.infermiere = value

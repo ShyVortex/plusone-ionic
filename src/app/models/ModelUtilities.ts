@@ -3,7 +3,7 @@ import { Medico } from "./medico/Medico";
 import { Persona } from "./persona/Persona";
 import { Infermiere } from "./infermiere/Infermiere";
 import { Terapia } from "./terapia/Terapia";
-import { Farmaco } from "./farmaco/farmaco";
+import { Farmaco } from "./farmaco/Farmaco";
 import {Triage} from "./triage/Triage";
 
 export class ModelUtilities {
@@ -83,7 +83,7 @@ export class ModelUtilities {
 
     return farmaco;
   }
-  
+
     public static triageFromJSON(json:any): Triage{
     let triage: Triage = new Triage();
 

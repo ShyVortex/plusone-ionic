@@ -46,43 +46,45 @@ export class SOSPage implements OnInit {
     private storageService: StorageService,
     private triageService: TriageService
   ) {
-    /*
     this.infermiere = personaService.getPersona();
-    this.paziente = storageService.getState("mario.giannini@paziente.it");
+    if (!this.infermiere.isSet()) {
+      this.paziente = storageService.getState("mario.giannini@paziente.it");
+      this.paziente.richieste = storageService.getRichieste();
+      console.log(this.paziente);
+      console.log(this.paziente.richieste);
+    }
 
 
-
-     Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
-       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati
+    /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
+       bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
     if (!this.infermiere)
       this.infermiere = new Infermiere();
-
-     */
   }
 
-
-
   ngOnInit() {
-    this.infermiere = this.storageService.getInfermiere()
     this.getAllTriagesObservable = this.triageService.getAllTriages();
-    /*
-    if (this.infermiere != undefined && !this.infermiere.isSet())
+
+    if (this.infermiere.nome === "" && !this.infermiere.isSet())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
+  }
 
-    if (this.infermiere && this.paziente.richieste)
-      this.richieste = this.paziente.richieste;
-
-  */
+  ionViewWillEnter(){
+    this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
+      this.richieste = value;
+      if (this.infermiere && !this.infermiere.isSet() && this.paziente.richieste)
+        this.richieste = this.paziente.richieste;
+    })
   }
 
   handleRefresh(event: any) {
     setTimeout(() => {
-    this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
-      this.richieste = value;
-    })
+      if (this.infermiere.isSet()) {
+        this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
+          this.richieste = value;
+        })
+      }
       event.target.complete();
-    },2000)
-
+    },2000);
   }
 
   routeToRequestDetails(richiesta: Triage) {
@@ -114,11 +116,6 @@ export class SOSPage implements OnInit {
   goToSOS() {
     this.personaService.setPersona(this.infermiere);
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
-  }
-  ionViewWillEnter(){
-    this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
-      this.richieste = value;
-    })
   }
 
   protected readonly Sesso = Sesso;

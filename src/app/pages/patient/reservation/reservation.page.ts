@@ -62,7 +62,6 @@ export class ReservationPage implements OnInit {
   routeToReservationDate(type: string) {
     this.navCtrl.navigateForward('patient-reservation-date', { state:
         { type }
-
     });
   }
 

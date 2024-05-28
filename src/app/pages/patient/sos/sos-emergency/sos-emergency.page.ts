@@ -38,7 +38,7 @@ export class SosEmergencyPage implements OnInit {
   private codiceTriage: CodiciTriage;
   private isSendingRequest: boolean = false;
   private sentStatus: string = "";
-  private richiesta:any = {}
+  private richiesta: any = {}
 
   options: AnimationOptions = {
     path: '../../../assets/animations/ambulance.json',
@@ -59,9 +59,9 @@ export class SosEmergencyPage implements OnInit {
     private alertController: AlertController,
     private personaService: PersonaService,
     private triageService: TriageService,
-    private storageService: StorageService,
+    private storageService: StorageService
   ) {
-    this.paziente = this.storageService.getPaziente()
+    this.paziente = this.personaService.getPersona();
     console.log(this.codiceTriage = history.state.codiceTriage);
   }
 
@@ -96,25 +96,35 @@ export class SosEmergencyPage implements OnInit {
     }
   }
 
+  setRichiesta(): void {
+    this.richiesta.colore = this.codiceTriage;
+    this.richiesta.latitudine = this.latitude;
+    this.richiesta.longitudine = this.longitude;
+    this.richiesta.descrizione = "EMERGENZA"
+    this.richiesta.conferma = "IN_ATTESA";
+    if (!this.paziente.isSet()) {
+      this.richiesta.codice = this.richiesta.colore;
+      this.richiesta.id = 0;
+      this.richiesta.paziente = this.paziente;
+    }
+  }
+
   async sendRequest() {
     if (this.isSendingRequest)
       this.sentStatus = 'BUSY';
 
     this.isSendingRequest = true;
 
-
-
     try {
       await this.getCurrentLocation();
       this.setRichiesta()
-      await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
 
+      if (this.paziente.isSet())
+        await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
+      else
+        this.triageService.addRichiestaOffline(this.paziente, this.richiesta);
 
-/*
-      this.triageService.addRichiestaOffline(this.paziente, richiesta);
-
-
- */
+      this.storageService.cacheRichieste(this.paziente.richieste);
       this.sentStatus = 'OK';
 
     } catch (error) {
@@ -163,12 +173,5 @@ export class SosEmergencyPage implements OnInit {
       this.navCtrl.navigateForward("patient-sos",{ animated: false });
     } else
       this.showAlert();
-  }
-  setRichiesta():void{
-    this.richiesta.colore = this.codiceTriage;
-    this.richiesta.latitudine = this.latitude;
-    this.richiesta.longitudine = this.longitude;
-    this.richiesta.descrizione = "EMERGENZA"
-    this.richiesta.conferma = "IN_ATTESA";
   }
 }
