@@ -99,20 +99,18 @@ export class HomePage implements OnInit {
 
     if (this.paziente.isEmpty())
       this.paziente.setState(false);
-
-    if (this.paziente.nome === "" && !this.paziente.isSet()) {
-      this.pazienteService.offlineSetPaziente(this.paziente);
-      this.citta = this.paziente.indirizzo.città;
-    }
   }
 
   ionViewWillEnter() {
-    if (this.paziente.isSet()) {
-      this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
-        this.paziente = value
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+      this.paziente = value
+      this.citta = this.paziente.indirizzo.città;
+      if (this.paziente.nome === "" && !this.paziente.isSet()) {
+        this.pazienteService.offlineSetPaziente(this.paziente);
         this.citta = this.paziente.indirizzo.città;
-      });
-    }
+        this.paziente.terapie = this.storageService.getTerapie();
+      }
+    });
   }
 
   routeToSettings() {
@@ -149,6 +147,7 @@ export class HomePage implements OnInit {
   }
 
   goToSOS() {
+    this.storageService.setPaziente(this.paziente);
     this.personaService.setPersona(this.paziente);
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }

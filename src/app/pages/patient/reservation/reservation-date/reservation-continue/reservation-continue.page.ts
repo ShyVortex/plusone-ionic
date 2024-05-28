@@ -39,6 +39,7 @@ import {PazienteService} from "../../../../../services/PazienteService/paziente.
 import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
 import {TipologiaTerapia} from "../../../../../models/terapia/tipologia-terapia";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
+import {StorageService} from "../../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-reservation-continue',
@@ -72,10 +73,13 @@ export class ReservationContinuePage implements OnInit {
       handler: async () => {
         this.setTerapia()
 
-        if (this.patientToPrenote !== undefined && this.patientToPrenote.isSet())
+        if (this.patientToPrenote !== undefined && this.patientToPrenote.isSet()) {
+          console.clear();
+          console.log("patientToPrenote:", this.patientToPrenote);
           await firstValueFrom<Terapia>(
-            this.terapiaService.addTerapia(10, this.patientToPrenote.id, this.terapia)
+            this.terapiaService.addTerapia(1, this.patientToPrenote.id, this.terapia)
           );
+        }
 
         else {
           this.terapiaService.addTerapiaOffline(
@@ -83,8 +87,10 @@ export class ReservationContinuePage implements OnInit {
           );
 
           this.personaService.setPersona(this.patientToPrenote);
-          this.routeToReservationConfirmed();
+          this.storageService.cacheTerapie(this.patientToPrenote.terapie);
         }
+
+        this.routeToReservationConfirmed();
       }
     }
   ];
@@ -97,10 +103,11 @@ export class ReservationContinuePage implements OnInit {
     private personaService: PersonaService,
     private pazienteService:PazienteService,
     private terapiaService:TerapiaService,
+    private storageService: StorageService
   ) {
-    this.getPazienteByEmailObservable = new Observable<Paziente>()
-    this.terapiaAdded = new Terapia()
-    this.terapia = {}
+    this.getPazienteByEmailObservable = new Observable<Paziente>();
+    this.terapiaAdded = new Terapia();
+    this.terapia = {};
     // actualIndex inital value is a placeholder
     this.actualIndex = 6;
     this.times = [
@@ -121,7 +128,15 @@ export class ReservationContinuePage implements OnInit {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(value)
       }
     )
+  }
 
+  ionViewWillEnter() {
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+      this.patientToPrenote = value
+      if (!this.patientToPrenote) {
+        this.patientToPrenote = this.personaService.getPersona();
+      }
+    });
   }
 
   async missingTimeAlert() {
@@ -143,6 +158,18 @@ export class ReservationContinuePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  private setTerapia(): void {
+    this.terapia.tipologiaTerapia = this.type;
+    this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
+    this.terapia.reparto = this.hospitalWard;
+    this.terapia.attivo = true;
+    if (!this.patientToPrenote.isSet()) {
+      this.patientToPrenote = this.personaService.getPersona();
+      this.terapia.paziente = this.patientToPrenote;
+    }
+    console.log(this.terapia)
   }
 
   toggleClickedItem(clickedIndex: number) {
@@ -192,23 +219,5 @@ export class ReservationContinuePage implements OnInit {
 
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
-  }
-
-  ionViewWillEnter() {
-    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
-      this.patientToPrenote = value
-    });
-  }
-
-  private setTerapia(): void {
-    this.terapia.tipologiaTerapia = this.type;
-    this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
-    this.terapia.reparto = this.hospitalWard;
-    this.terapia.attivo = true;
-    if (!this.patientToPrenote.isSet()) {
-      this.patientToPrenote = this.personaService.getPersona();
-      this.terapia.paziente = this.patientToPrenote;
-    }
-    console.log(this.terapia)
   }
 }

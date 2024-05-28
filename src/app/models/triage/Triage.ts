@@ -1,18 +1,38 @@
 import {Paziente} from "../paziente/Paziente";
-import {Posizione} from "../paziente/Posizione";
 import {CodiciTriage} from "./codici-triage";
+import {Conferma} from "./Conferma";
 
 export class Triage {
+  get conferma(): Conferma {
+    return this._conferma;
+  }
+
+  set conferma(value: Conferma) {
+    this._conferma = value;
+  }
+  get descrizione(): string {
+    return this._descrizione;
+  }
+
+  set descrizione(value: string) {
+    this._descrizione = value;
+  }
   private _id: number;
   private _codice: CodiciTriage;
   private _paziente: Paziente;
-  private _posizione: Posizione;
+  private _latitudine:number;
+  private _longitudine:number;
+  private _descrizione:string;
+  private _conferma:Conferma;
 
   constructor() {
     this._id = 0;
     this._codice = CodiciTriage.UNDEFINED;
     this._paziente = new Paziente();
-    this._posizione = new Posizione();
+    this._latitudine = 0.00
+    this._longitudine = 0.00
+    this._descrizione = ""
+    this._conferma = Conferma.IN_ATTESA;
   }
 
   get id(): number {
@@ -39,11 +59,20 @@ export class Triage {
     this._paziente = value;
   }
 
-  get posizione(): Posizione {
-    return this._posizione;
+  get latitudine(): number {
+    return this._latitudine;
   }
 
-  set posizione(value: Posizione) {
-    this._posizione = value;
+  set latitudine(value: number) {
+    this._latitudine = value;
   }
+
+  get longitudine(): number {
+    return this._longitudine;
+  }
+
+  set longitudine(value: number) {
+    this._longitudine = value;
+  }
+
 }

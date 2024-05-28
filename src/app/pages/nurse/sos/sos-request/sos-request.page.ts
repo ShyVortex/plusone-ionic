@@ -36,15 +36,16 @@ export class SosRequestPage implements OnInit {
 
   ngOnInit() {
     this.checkValidPosition();
-    this.updateMap(this.richiesta.posizione.latitudine, this.richiesta.posizione.longitudine);
+    this.updateMap(this.richiesta.latitudine, this.richiesta.longitudine);
   }
 
   checkValidPosition() {
-    if (!this.richiesta.posizione.latitudine && !this.richiesta.posizione.longitudine) {
+    if (!this.richiesta.latitudine && !this.richiesta.longitudine) {
       // In caso di errore setta posizione ad Isernia
-      this.richiesta.posizione.latitudine = 41.5972;
-      this.richiesta.posizione.longitudine = 14.2345;
-      console.log(this.richiesta.posizione);
+      this.richiesta.latitudine = 41.5972;
+      this.richiesta.longitudine = 14.2345;
+      console.log(this.richiesta.latitudine);
+      console.log(this.richiesta.longitudine);
     }
   }
 

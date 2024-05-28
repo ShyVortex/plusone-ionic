@@ -21,6 +21,8 @@ import {PersonaService} from "../../../../services/PersonaService/persona.servic
 import {TriageService} from "../../../../services/TriageService/triage.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {waitForAsync} from "@angular/core/testing";
+import {StorageService} from "../../../../services/StorageService/storage.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-sos-emergency',
@@ -36,6 +38,7 @@ export class SosEmergencyPage implements OnInit {
   private codiceTriage: CodiciTriage;
   private isSendingRequest: boolean = false;
   private sentStatus: string = "";
+  private richiesta: any = {}
 
   options: AnimationOptions = {
     path: '../../../assets/animations/ambulance.json',
@@ -55,9 +58,10 @@ export class SosEmergencyPage implements OnInit {
     private navCtrl: NavController,
     private alertController: AlertController,
     private personaService: PersonaService,
-    private triageService: TriageService
+    private triageService: TriageService,
+    private storageService: StorageService
   ) {
-    this.paziente = personaService.getPersona();
+    this.paziente = this.personaService.getPersona();
     console.log(this.codiceTriage = history.state.codiceTriage);
   }
 
@@ -92,25 +96,35 @@ export class SosEmergencyPage implements OnInit {
     }
   }
 
+  setRichiesta(): void {
+    this.richiesta.colore = this.codiceTriage;
+    this.richiesta.latitudine = this.latitude;
+    this.richiesta.longitudine = this.longitude;
+    this.richiesta.descrizione = "EMERGENZA"
+    this.richiesta.conferma = "IN_ATTESA";
+    if (!this.paziente.isSet()) {
+      this.richiesta.codice = this.richiesta.colore;
+      this.richiesta.id = 0;
+      this.richiesta.paziente = this.paziente;
+    }
+  }
+
   async sendRequest() {
     if (this.isSendingRequest)
       this.sentStatus = 'BUSY';
 
     this.isSendingRequest = true;
 
-    let richiesta = new Triage();
-    richiesta.id = 12345;
-    richiesta.codice = this.codiceTriage;
-    richiesta.paziente = this.paziente;
-
     try {
       await this.getCurrentLocation();
+      this.setRichiesta()
 
-      richiesta.posizione.latitudine = this.latitude;
-      richiesta.posizione.longitudine = this.longitude;
+      if (this.paziente.isSet())
+        await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
+      else
+        this.triageService.addRichiestaOffline(this.paziente, this.richiesta);
 
-      this.triageService.addRichiestaOffline(this.paziente, richiesta);
-
+      this.storageService.cacheRichieste(this.paziente.richieste);
       this.sentStatus = 'OK';
 
     } catch (error) {

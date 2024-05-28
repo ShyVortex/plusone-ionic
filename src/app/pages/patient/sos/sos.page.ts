@@ -90,6 +90,7 @@ export class SOSPage implements OnInit {
 
   goToSOS() {
     this.personaService.setPersona(this.paziente);
+    this.storageService.setPaziente(this.paziente)
     this.navCtrl.navigateForward("patient-sos",{ animated: false });
   }
 

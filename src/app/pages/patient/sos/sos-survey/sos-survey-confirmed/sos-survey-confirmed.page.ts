@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   IonButton,
   IonContent,
   IonFooter,
   IonHeader,
   IonImg,
-  IonLabel, IonTabBar, IonTabButton, IonTabs, IonText,
+  IonLabel,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -15,11 +19,12 @@ import {AnimationOptions, LottieComponent} from "ngx-lottie";
 import {AlertController, NavController} from "@ionic/angular";
 import {AnimationItem} from "lottie-web";
 import {Geolocation} from "@capacitor/geolocation";
-import {Triage} from "../../../../../models/triage/Triage";
 import {Paziente} from "../../../../../models/paziente/Paziente";
 import {PersonaService} from "../../../../../services/PersonaService/persona.service";
 import {TriageService} from "../../../../../services/TriageService/triage.service";
 import {CodiciTriage} from "../../../../../models/triage/codici-triage";
+import {firstValueFrom} from "rxjs";
+import {StorageService} from "../../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-sos-survey-confirmed',
@@ -35,6 +40,7 @@ export class SosSurveyConfirmedPage implements OnInit {
   private codiceTriage: CodiciTriage;
   private isSendingRequest: boolean = false;
   private sentStatus: string = "";
+  private richiesta: any = {}
 
   options: AnimationOptions = {
     path: '../../../assets/animations/hospital.json',
@@ -55,6 +61,7 @@ export class SosSurveyConfirmedPage implements OnInit {
     private alertController: AlertController,
     private personaService: PersonaService,
     private triageService: TriageService,
+    private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
     console.log(this.codiceTriage = history.state.codiceTriage);
@@ -91,25 +98,41 @@ export class SosSurveyConfirmedPage implements OnInit {
     }
   }
 
+  setRichiesta(): void {
+    this.richiesta.colore = this.codiceTriage;
+    this.richiesta.latitudine = this.latitude;
+    this.richiesta.longitudine = this.longitude;
+
+    if (this.codiceTriage === CodiciTriage.ARANCIONE)
+      this.richiesta.descrizione = "EMERGENZA";
+    else
+      this.richiesta.descrizione = "TRIAGE";
+
+    this.richiesta.conferma = "IN_ATTESA";
+
+    if (!this.paziente.isSet()) {
+      this.richiesta.codice = this.richiesta.colore;
+      this.richiesta.id = 0;
+      this.richiesta.paziente = this.paziente;
+    }
+  }
+
   async sendRequest() {
     if (this.isSendingRequest)
       this.sentStatus = 'BUSY';
 
     this.isSendingRequest = true;
 
-    let richiesta = new Triage();
-    richiesta.id = 12345;
-    richiesta.codice = this.codiceTriage;
-    richiesta.paziente = this.paziente;
-
     try {
       await this.getCurrentLocation();
+      this.setRichiesta()
 
-      richiesta.posizione.latitudine = this.latitude;
-      richiesta.posizione.longitudine = this.longitude;
+      if (this.paziente.isSet())
+        await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
+      else
+        this.triageService.addRichiestaOffline(this.paziente, this.richiesta);
 
-      this.triageService.addRichiestaOffline(this.paziente, richiesta);
-
+      this.storageService.cacheRichieste(this.paziente.richieste);
       this.sentStatus = 'OK';
 
     } catch (error) {
