@@ -9,12 +9,18 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding" [fullscreen]="true">
   <ion-label><h1>Farmaci</h1></ion-label>
   <ion-card>
-    <ion-grid class="drug-grid">
-      <ion-col size="auto">
+    <ion-grid class="drug-grid" *ngIf="drugs.length <= 0">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug-info">Nessun farmaco prescritto</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+    <ion-grid class="drug-grid" *ngFor="let drug of drugs; let i = index">
+      <ion-col class="drug-details">
         <ion-row>
           <ion-label class="drug drug-name">Aspirina</ion-label>
         </ion-row>
@@ -25,140 +31,63 @@
           <ion-label class="drug drug-notes">Da assumere con un bicchiere d'acqua</ion-label>
         </ion-row>
       </ion-col>
+      <ion-col class="drug-actions">
+        <ion-row>
+          <div (click)="goToHome()" style="cursor: pointer;">
+            <ion-icon class="fas fa-xmark" style="color:black"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-col>
     </ion-grid>
-    <!-- <ion-button slot="end">ciao</ion-button> -->
   </ion-card>
 
   <ion-item-divider></ion-item-divider>
   
   <ion-label><h1>Esami</h1></ion-label>
   <ion-card>
-    <ion-grid class="drug-grid">
-      <ion-col size="auto">
+    <ion-grid class="drug-grid" *ngIf="exams.length <= 0">
+      <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug drug-name">Riduzione volume turbinati</ion-label>
+          <ion-label class="drug-info">Nessun esame prescritto</ion-label>
         </ion-row>
-        <!-- <ion-row>
-          <ion-label class="drug drug-info">Quantità: 1</ion-label>
-        </ion-row> -->
+      </ion-col>
+    </ion-grid>
+    <ion-grid class="drug-grid" *ngFor="let exam of exams; let i = index">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug drug-name">Spirometria</ion-label>
+        </ion-row>
         <ion-row>
           <ion-label class="drug drug-notes">Dettagli esame</ion-label>
         </ion-row>
       </ion-col>
+      <ion-col class="drug-actions">
+        <ion-row>
+          <div (click)="goToHome()" style="cursor: pointer;">
+            <ion-icon class="fas fa-xmark" style="color:black"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-col>
     </ion-grid>
-    <!-- <ion-button slot="end">ciao</ion-button> -->
   </ion-card>
 
-  <!-- <ion-item-divider></ion-item-divider> -->
-
-  <!-- <ion-card>
-  <ion-label><h1>Esami</h1></ion-label> -->
-
-    <!-- <ion-grid>
-      <ion-row>
-        <ion-col size="auto">
-          <ion-card-header>Icona</ion-card-header>
-        </ion-col>
-        <ion-col size="auto">
-          <div class="divider-vertical"></div>
-        </ion-col>
-        <ion-col>
-          <ion-card-header>Aspirina</ion-card-header>
-          <ion-card-content>
-            1 compressa
-          </ion-card-content>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="auto">
-          <ion-card-header>Icona</ion-card-header>
-        </ion-col>
-        <ion-col size="auto">
-          <div class="divider-vertical"></div>
-        </ion-col>
-        <ion-col>
-          <ion-card-header>Aspirina</ion-card-header>
-          <ion-card-content>
-            1 compressa
-          </ion-card-content>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card> -->
-
-  <ion-item-divider></ion-item-divider>
-
-  <!-- <ion-card>
-    <ion-card-content>
-      <ion-item-sliding>
-        <ion-item [button]="true">
-          <ion-avatar aria-hidden="true" slot="end">
-            <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-          <ion-label>Leeroy Jenkins</ion-label>
-        </ion-item>
-        <ion-item-options slot="end">
-          <ion-item-option color="warning">
-            <ion-icon slot="icon-only" name="pin"></ion-icon>
-          </ion-item-option>
-          <ion-item-option color="tertiary">
-            <ion-icon slot="icon-only" name="share"></ion-icon>
-          </ion-item-option>
-          <ion-item-option color="danger" expandable="true">
-            <ion-icon slot="icon-only" name="trash"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-card-content> -->
-
-    <!-- <ion-item>
-      <ion-item>
-        <ion-label>Ciao&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
-        <ion-button slot="end">ciao</ion-button>
-      </ion-item>
-    </ion-item> -->
-
-    <!-- <ion-item>
-      <ion-grid class="drug-grid">
-        <ion-col size="auto">
-          <ion-row>
-            <ion-label class="drug drug-name">Aspirina</ion-label>
-          </ion-row>
-          <ion-row>
-            <ion-label class="drug drug-info">Quantità: 1</ion-label>
-          </ion-row>
-          <ion-row>
-            <ion-label class="drug drug-notes">Da assumere con un bicchiere d'acqua</ion-label>
-          </ion-row>
-        </ion-col>
-      </ion-grid>
-    </ion-item> -->
-
-    <!-- <ion-item>
-      <ion-label class="drug drug-name">Aspirina<br>Quantità: 1<br>Da assumere con un bicchiere d'acqua</ion-label>
-      <ion-button slot="end">TEST</ion-button>
-    </ion-item>
-  </ion-card> -->
-
-  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Conferma terapia</ion-button>
-
+  <div slot="fixed" style="width: 100%; padding: 25px; padding-left: 13; bottom: 0;">
+    <ion-button shape="round" style="width: 75%; margin-right: 1.8em; margin-top: 11px;">Conferma terapia</ion-button>
+    <ion-fab id="open-modal">
+      <ion-fab-button>
+        <ion-icon class="fas fa-add" style="color:white"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button data-desc="Aggiungi farmaco" color="primary" (click)="goToAddDrug()">
+          <ion-icon class="fas fa-pills" style="color:white"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button data-desc="Aggiungi esame" color="primary" (click)="goToAddExam()">
+          <ion-icon class="fas fa-notes-medical" style="color:white"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
 </ion-content>
-
-
-<ion-fab slot="fixed" horizontal="end" vertical="bottom">
-    <ion-fab-button color="primary">
-      <ion-icon class="fas fa-add" style="color: white"></ion-icon>
-    </ion-fab-button>
-
-    <ion-fab-list side="top">
-      <ion-fab-button color="primary" class="assign-button">
-        <ion-icon class="fas fa-chevron-up" style="color: white">Prescrivi farmaco</ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="primary" class="assign-button">
-        <ion-icon class="fas fa-chevron-up" style="color: white"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
-</ion-fab>
 
 <ion-footer>
   <ion-toolbar>

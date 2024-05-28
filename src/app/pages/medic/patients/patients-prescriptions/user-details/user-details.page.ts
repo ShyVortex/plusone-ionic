@@ -32,12 +32,12 @@ export class UserDetailsPage {
   }
 
   async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'In sviluppo!',
-      buttons: ['Ok'],
-    });
+      const alert = await this.alertController.create({
+        header: 'In sviluppo!',
+        buttons: ['Ok'],
+      });
 
-    await alert.present();
+      await alert.present();
   }
 
   navigateBack() {

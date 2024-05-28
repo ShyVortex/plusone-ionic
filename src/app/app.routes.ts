@@ -172,6 +172,14 @@ export const routes: Routes = [
       .then( m => m.NewTherapyPage)
   },
   {
+    path: 'medic-patients-user-details-add-drug',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/add-drug/add-drug.page').then( m => m.AddDrugPage)
+  },
+  {
+    path: 'medic-patients-user-details-add-exam',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/add-exam/add-exam.page').then( m => m.AddExamPage)
+  },
+  {
     path: 'medic-patients-homecare',
     loadComponent: () => import('./pages/medic/patients/patients-homecare/patients-homecare.page')
       .then(m => m.PatientsHomecarePage)
@@ -220,5 +228,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  }
+  },
 ];
