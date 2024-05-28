@@ -33,9 +33,11 @@
     <ion-img class="item-title-icon" src="../../assets/icon/nurse/sos/alarm.png"></ion-img>
     RICHIESTE SOS
   </ion-item>
-  <ion-list>
-    <ion-item class="item-title" *ngFor="let richiesta of richieste">
-      <div class="item-content">
+  <div *ngFor="let richiesta of richieste">
+    <div *ngIf="richiesta.conferma===Conferma.IN_ATTESA">
+  <ion-list >
+    <ion-item class="item-title"  >
+      <div class="item-content"  >
         <ion-img *ngIf="richiesta.codice === CodiciTriage.BIANCO"
                  class="code-icon"
                  slot="start" src="../../assets/icon/shared/codes/white-code.png">
@@ -67,6 +69,8 @@
       </div>
     </ion-item>
   </ion-list>
+      </div>
+  </div>
 </ion-content>
 
 <ion-footer>
