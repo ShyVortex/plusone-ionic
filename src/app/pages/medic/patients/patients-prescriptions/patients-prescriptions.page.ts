@@ -52,7 +52,7 @@ export class PatientsPrescriptionsPage implements OnInit {
         });
       });
       this.isLoading = false;
-    }, 2000);
+    }, 1000);
   }
 
   async offlineLoadItems() {
@@ -61,7 +61,7 @@ export class PatientsPrescriptionsPage implements OnInit {
       this.patients = this.medico.pazienti;
       this.filteredPatients = this.patients;
       this.isLoading = false;
-    }, 2000)
+    }, 1000)
   }
 
   search(event: any) {

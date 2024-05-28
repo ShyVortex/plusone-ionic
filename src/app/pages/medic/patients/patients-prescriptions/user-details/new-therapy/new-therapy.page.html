@@ -12,6 +12,13 @@
 <ion-content class="ion-padding" [fullscreen]="true">
   <ion-label><h1>Farmaci</h1></ion-label>
   <ion-card>
+    <ion-grid class="drug-grid" *ngIf="drugs.length <= 0">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug-info">Nessun farmaco prescritto</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
     <ion-grid class="drug-grid" *ngFor="let drug of drugs; let i = index">
       <ion-col class="drug-details">
         <ion-row>
@@ -38,28 +45,39 @@
   
   <ion-label><h1>Esami</h1></ion-label>
   <ion-card>
-    <ion-grid class="drug-grid">
-      <ion-col size="auto">
+    <ion-grid class="drug-grid" *ngIf="exams.length <= 0">
+      <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug drug-name">Riduzione volume turbinati</ion-label>
+          <ion-label class="drug-info">Nessun esame prescritto</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+    <ion-grid class="drug-grid" *ngFor="let exam of exams; let i = index">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug drug-name">Spirometria</ion-label>
         </ion-row>
         <ion-row>
           <ion-label class="drug drug-notes">Dettagli esame</ion-label>
         </ion-row>
       </ion-col>
+      <ion-col class="drug-actions">
+        <ion-row>
+          <div (click)="goToHome()" style="cursor: pointer;">
+            <ion-icon class="fas fa-xmark" style="color:black"></ion-icon>
+          </div>
+        </ion-row>
+      </ion-col>
     </ion-grid>
   </ion-card>
 
-  <div class="bottom-elements" slot="fixed">
-    <ion-button class="confirm-button" shape="round" fill="solid" slot="fixed">Conferma terapia</ion-button>
-    <ion-fab vertical="bottom" horizontal="end">
+  <div slot="fixed" style="width: 100%; padding: 25px; padding-left: 13; bottom: 0;">
+    <ion-button shape="round" style="width: 75%; margin-right: 1.8em; margin-top: 11px;">Conferma terapia</ion-button>
+    <ion-fab id="open-modal">
       <ion-fab-button>
         <ion-icon class="fas fa-add" style="color:white"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">
-        <!--  <ion-fab-button data-desc="Conferma terapia" color="primary">
-          <ion-icon class="fas fa-check" style="color:white"></ion-icon>
-        </ion-fab-button> -->
         <ion-fab-button data-desc="Aggiungi farmaco" color="primary" (click)="goToAddDrug()">
           <ion-icon class="fas fa-pills" style="color:white"></ion-icon>
         </ion-fab-button>
@@ -70,8 +88,6 @@
     </ion-fab>
   </div>
 </ion-content>
-
-
 
 <ion-footer>
   <ion-toolbar>

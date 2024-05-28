@@ -1,5 +1,3 @@
-
-
 ion-icon {
     color: black;
 }
@@ -46,16 +44,8 @@ h4 {
     margin-bottom: 0;
 }
 
-/* .confirm-button {
-    width: 88%;
-    margin-left: 2em;
-    margin-right: auto;
-    margin-bottom: 1.5em;
-    bottom: 0;
-} */
-
 .drug {
-    margin-left: 1em;
+    margin-left: 0.5em;
 }
 
 .drug-name {
@@ -76,6 +66,12 @@ h4 {
   }
 }
 
+.center-items {
+    display: flex;
+    align-items: center;
+}
+  
+
 ion-fab-button[data-desc] {
     position: relative;
 }
@@ -93,8 +89,18 @@ ion-fab-button[data-desc]::after {
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }
 
-.bottom-elements {
-    bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
+ion-modal {
+    --height: 50%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  
+  ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+  
+  ion-modal ion-toolbar {
+    --background: rgb(101, 234, 181);
+    --color: white;
+  }
