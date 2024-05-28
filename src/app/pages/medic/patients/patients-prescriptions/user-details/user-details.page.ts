@@ -22,9 +22,9 @@ export class UserDetailsPage {
 
   constructor(
     private navCtrl: NavController,
-    private alertController: AlertController,
     private dataService: DataService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private alertController: AlertController
   ) {
     this.patient = storageService.getPaziente();
     console.log(this.patient);

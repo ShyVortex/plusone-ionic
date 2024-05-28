@@ -42,7 +42,7 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
   let infermiere:Infermiere;
 
   return new Observable<Infermiere>((observer:Observer<Infermiere>)  => {
-    axios.get<Infermiere>(this.infermiereURL +"/GetInfermiereByEmail/" + email).then
+    axios.get<Infermiere>(this.infermiereURL +"/getInfermiereByEmail/" + email).then
     ((response:AxiosResponse<Infermiere>)  => {
       jsonResponse = response.data
       infermiere = ModelUtilities.infermiereFromJSON(jsonResponse);

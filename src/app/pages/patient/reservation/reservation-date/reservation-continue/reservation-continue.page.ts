@@ -72,19 +72,13 @@ export class ReservationContinuePage implements OnInit {
       handler: async () => {
         this.setTerapia()
 
-        if (this.patientToPrenote !== undefined && this.patientToPrenote.isSet())
           await firstValueFrom<Terapia>(
-            this.terapiaService.addTerapia(10, this.patientToPrenote.id, this.terapia)
+            this.terapiaService.addTerapia(1, this.patientToPrenote.id, this.terapia)
           );
 
-        else {
-          this.terapiaService.addTerapiaOffline(
-            this.patientToPrenote, this.patientToPrenote.medico, this.terapia
-          );
 
-          this.personaService.setPersona(this.patientToPrenote);
           this.routeToReservationConfirmed();
-        }
+
       }
     }
   ];

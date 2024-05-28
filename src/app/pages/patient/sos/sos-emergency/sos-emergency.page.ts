@@ -21,6 +21,8 @@ import {PersonaService} from "../../../../services/PersonaService/persona.servic
 import {TriageService} from "../../../../services/TriageService/triage.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {waitForAsync} from "@angular/core/testing";
+import {StorageService} from "../../../../services/StorageService/storage.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-sos-emergency',
@@ -36,6 +38,7 @@ export class SosEmergencyPage implements OnInit {
   private codiceTriage: CodiciTriage;
   private isSendingRequest: boolean = false;
   private sentStatus: string = "";
+  private richiesta:any = {}
 
   options: AnimationOptions = {
     path: '../../../assets/animations/ambulance.json',
@@ -55,9 +58,10 @@ export class SosEmergencyPage implements OnInit {
     private navCtrl: NavController,
     private alertController: AlertController,
     private personaService: PersonaService,
-    private triageService: TriageService
+    private triageService: TriageService,
+    private storageService: StorageService,
   ) {
-    this.paziente = personaService.getPersona();
+    this.paziente = this.storageService.getPaziente()
     console.log(this.codiceTriage = history.state.codiceTriage);
   }
 
@@ -98,19 +102,19 @@ export class SosEmergencyPage implements OnInit {
 
     this.isSendingRequest = true;
 
-    let richiesta = new Triage();
-    richiesta.id = 12345;
-    richiesta.codice = this.codiceTriage;
-    richiesta.paziente = this.paziente;
+
 
     try {
       await this.getCurrentLocation();
+      this.setRichiesta()
+      await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
 
-      richiesta.posizione.latitudine = this.latitude;
-      richiesta.posizione.longitudine = this.longitude;
 
+/*
       this.triageService.addRichiestaOffline(this.paziente, richiesta);
 
+
+ */
       this.sentStatus = 'OK';
 
     } catch (error) {
@@ -159,5 +163,12 @@ export class SosEmergencyPage implements OnInit {
       this.navCtrl.navigateForward("patient-sos",{ animated: false });
     } else
       this.showAlert();
+  }
+  setRichiesta():void{
+    this.richiesta.colore = this.codiceTriage;
+    this.richiesta.latitudine = this.latitude;
+    this.richiesta.longitudine = this.longitude;
+    this.richiesta.descrizione = "EMERGENZA"
+    this.richiesta.conferma = "IN_ATTESA";
   }
 }
