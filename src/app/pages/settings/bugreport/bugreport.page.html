@@ -126,6 +126,10 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
           Funzioni
         </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+          Segnalazioni
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>

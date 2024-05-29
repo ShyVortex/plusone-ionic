@@ -235,6 +235,11 @@ export const routes: Routes = [
       .then(m => m.FunctionsPatientsPage)
   },
   {
+    path: 'admin-reports',
+    loadComponent: () => import('./pages/admin/reports/reports.page')
+      .then(m => m.ReportsPage)
+  },
+  {
     path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)
@@ -258,5 +263,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  },
+  }
 ];

@@ -20,23 +20,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="requests-content" [fullscreen]="true">
+<ion-content class="reports-content" [fullscreen]="true">
   <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
   <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
   <ion-item lines="none" class="item-title">
-    <ion-img class="item-title-icon" src="../../assets/icon/admin/requests/request.png"></ion-img>
-    RICHIESTE
+    <ion-img class="item-title-icon" src="../../assets/icon/settings/bug.png"></ion-img>
+    SEGNALAZIONI
   </ion-item>
   <ion-list>
     <!--
-    <ion-item class="item-title" *ngFor="let richiesta of richieste">
+    <ion-item class="item-title" *ngFor="let segnalazione of segnalazioni">
       <div class="item-content">
         <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
-        <ion-text class="item-title-list">Il paziente {{richiesta?.paziente?.nome}} {{richiesta?.paziente?.cognome}}
-          ha richiesto di registrarsi in data {{richiesta?.orario | date: 'yyyy-MM-dd'}}</ion-text>
+        <ion-text class="item-title-list">L'utente {{segnalazione?.persona?.nome}} {{segnalazione?.persona?.cognome}}
+          ha segnalato un errore relativo alla schermata {{segnalazione?.schermata}}</ion-text>
       </div>
     </ion-item> !-->
   </ion-list>
@@ -50,20 +50,19 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToRequests()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/requests.png"></ion-img>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
           Richieste
         </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" (click)="goToFunctions()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
           Funzioni
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToReports()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/bug-report.png"></ion-img>
           Segnalazioni
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>
 </ion-footer>
-

@@ -27,7 +27,6 @@ import {Router} from "@angular/router";
 })
 export class RequestsPage implements OnInit {
   protected admin: Admin;
-  //protected richieste: Richiesta[]
 
   constructor(
     private navCtrl: NavController,
@@ -44,13 +43,13 @@ export class RequestsPage implements OnInit {
       this.admin = new Admin();
   }
 
-  handleRefresh(customEvent: any) {
-
-  }
-
   ngOnInit() {
     if (!this.admin.isSet())
       this.adminService.offlineSetAdmin(this.admin);
+  }
+
+  handleRefresh(customEvent: any) {
+
   }
 
   routeToSettings() {
@@ -72,5 +71,10 @@ export class RequestsPage implements OnInit {
   goToFunctions() {
     this.personaService.setPersona(this.admin);
     this.navCtrl.navigateForward("admin-functions", { animated: false });
+  }
+
+  goToReports() {
+    this.personaService.setPersona(this.admin);
+    this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
 }

@@ -58,26 +58,23 @@ export class SosRequestAcceptedPage implements OnInit {
   ngOnInit() {
     this.richiesta = this.storageService.getTriage();
     this.paziente = this.richiesta.paziente;
-
   }
 
   ionViewDidLeave() {
-
-    /*
-    const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
-    if (index !== -1) {
-      if (isEqual(this.paziente.richieste[index], this.richiesta)) {
-        // splice === rimuovi
-        this.paziente.richieste.splice(index, 1);
-        console.log(`Request for ${this.richiesta} has been cancelled.`);
+    if (!this.paziente.isSet()) {
+      const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
+      if (index !== -1) {
+        if (isEqual(this.paziente.richieste[index], this.richiesta)) {
+          this.paziente.richieste[index].conferma = Conferma.SI;
+          console.log(`Request for ${this.richiesta.descrizione} by ${this.richiesta.paziente.nome}
+           ${this.richiesta.paziente.cognome} has been accepted.`);
+        }
+        else
+          console.error('The reservation details do not match.');
       }
       else
-        console.error('The reservation details do not match.');
+        console.error('Reservation not found.');
     }
-    else
-      console.error('Reservation not found.');
-
-     */
   }
 
   animationCreated(animationItem: AnimationItem): void {

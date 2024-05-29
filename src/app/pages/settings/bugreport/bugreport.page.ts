@@ -127,4 +127,8 @@ export class BugreportPage implements OnInit {
   goToFunctions() {
     this.navCtrl.navigateForward("admin-functions", { animated: false });
   }
+
+  goToReports() {
+    this.navCtrl.navigateForward("admin-reports", { animated: false });
+  }
 }

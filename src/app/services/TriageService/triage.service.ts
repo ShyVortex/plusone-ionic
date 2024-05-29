@@ -6,6 +6,7 @@ import {Terapia} from "../../models/terapia/Terapia";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {Conferma} from "../../models/triage/Conferma";
+import {StorageService} from "../StorageService/storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,14 @@ import {Conferma} from "../../models/triage/Conferma";
 export class TriageService {
   private triageURL = "http://localhost:8080/api/triage";
 
-  constructor() {
+  constructor(
+    private storageService: StorageService
+  ) {
   }
 
   addRichiestaOffline(paziente: Paziente, richiesta: Triage) {
     paziente.richieste.push(richiesta);
+    this.storageService.cacheRichieste(paziente.richieste);
   }
 
   getAllTriages(): Observable<Triage[]> {

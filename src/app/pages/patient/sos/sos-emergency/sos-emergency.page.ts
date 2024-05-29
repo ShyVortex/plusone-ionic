@@ -124,7 +124,6 @@ export class SosEmergencyPage implements OnInit {
       else
         this.triageService.addRichiestaOffline(this.paziente, this.richiesta);
 
-      this.storageService.cacheRichieste(this.paziente.richieste);
       this.sentStatus = 'OK';
 
     } catch (error) {

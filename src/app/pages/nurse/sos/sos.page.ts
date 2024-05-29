@@ -50,6 +50,7 @@ export class SOSPage implements OnInit {
     if (!this.infermiere.isSet()) {
       this.paziente = storageService.getState("mario.giannini@paziente.it");
       this.paziente.richieste = storageService.getRichieste();
+      this.richieste = this.paziente.richieste;
       console.log(this.paziente);
       console.log(this.paziente.richieste);
     }
@@ -71,8 +72,6 @@ export class SOSPage implements OnInit {
   ionViewWillEnter(){
     this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
       this.richieste = value;
-      if (this.infermiere && !this.infermiere.isSet() && this.paziente.richieste)
-        this.richieste = this.paziente.richieste;
     })
   }
 
@@ -82,9 +81,10 @@ export class SOSPage implements OnInit {
         this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
           this.richieste = value;
         })
-      }
+      } else
+        this.richieste = this.paziente.richieste;
       event.target.complete();
-    },2000);
+    },1000);
   }
 
   routeToRequestDetails(richiesta: Triage) {

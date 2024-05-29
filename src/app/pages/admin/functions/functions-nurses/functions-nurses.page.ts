@@ -75,5 +75,9 @@ export class FunctionsNursesPage implements OnInit {
     this.navCtrl.navigateForward("admin-functions", { animated: false });
   }
 
+  goToReports() {
+    this.navCtrl.navigateForward("admin-reports", { animated: false });
+  }
+
   protected readonly Sesso = Sesso;
 }
