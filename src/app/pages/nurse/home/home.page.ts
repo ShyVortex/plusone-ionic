@@ -86,6 +86,8 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    if (!this.infermiere.isSet())
+      this.storageService.cacheState(this.infermiere);
     this.navCtrl.navigateRoot("login");
   }
 

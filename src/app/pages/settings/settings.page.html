@@ -14,7 +14,7 @@
     <ion-img class="settings-image" src="../../assets/icon/settings/security.png"></ion-img>
     <ion-text class="settings-text">Sicurezza</ion-text>
   </ion-item>
-  <ion-item fill="transparent" (click)="routeToBugReport()">
+  <ion-item fill="transparent" *ngIf="ruolo !== 'ADMIN'" (click)="routeToBugReport()">
     <ion-img class="settings-image" src="../../assets/icon/settings/bug.png"></ion-img>
     <ion-text class="settings-text">Segnalazione errori</ion-text>
   </ion-item>
@@ -67,6 +67,18 @@
         <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'MEDICO'" (click)="goToPrescriptions()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
           Prescrizioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+          Segnalazioni
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

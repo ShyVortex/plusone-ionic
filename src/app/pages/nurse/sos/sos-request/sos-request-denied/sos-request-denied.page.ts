@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {
   IonButton,
   IonContent,
   IonFooter,
   IonHeader,
   IonImg,
-  IonTabBar, IonTabButton, IonTabs, IonText,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonText,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {AnimationOptions, LottieComponent} from "ngx-lottie";
-import {options} from "ionicons/icons";
 import {Paziente} from "../../../../../models/paziente/Paziente";
 import {Triage} from "../../../../../models/triage/Triage";
 import {NavController} from "@ionic/angular";
@@ -62,22 +64,20 @@ export class SosRequestDeniedPage implements OnInit {
   }
 
   ionViewDidLeave() {
-
-    /*
-    const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
-    if (index !== -1) {
-      if (isEqual(this.paziente.richieste[index], this.richiesta)) {
-        // splice === rimuovi
-        this.paziente.richieste.splice(index, 1);
-        console.log(`Request for ${this.richiesta} has been cancelled.`);
+    if (!this.paziente.isSet()) {
+      const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
+      if (index !== -1) {
+        if (isEqual(this.paziente.richieste[index], this.richiesta)) {
+          this.paziente.richieste[index].conferma = Conferma.NO;
+          console.log(`Request for ${this.richiesta.descrizione} by ${this.richiesta.paziente.nome}
+           ${this.richiesta.paziente.cognome} has been denied.`);
+        }
+        else
+          console.error('The reservation details do not match.');
       }
       else
-        console.error('The reservation details do not match.');
+        console.error('Reservation not found.');
     }
-    else
-      console.error('Reservation not found.');
-      */
-
   }
 
   animationCreated(animationItem: AnimationItem): void {

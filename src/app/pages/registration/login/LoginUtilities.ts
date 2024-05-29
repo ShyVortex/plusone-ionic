@@ -7,6 +7,8 @@ export class LoginUtilities {
         return "MEDICO";
       else if(email.includes("@infermiere.it"))
         return "INFERMIERE";
+      else if(email.includes("@admin.it"))
+        return "ADMIN";
       else
         return "NON VALIDA";
     }

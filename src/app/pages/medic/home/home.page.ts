@@ -106,6 +106,8 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    if (!this.medico.isSet())
+      this.storageService.cacheState(this.medico);
     this.navCtrl.navigateRoot("login");
   }
 

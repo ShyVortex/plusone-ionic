@@ -110,7 +110,7 @@ export class NotificationsPage implements OnInit {
       else
         this.prenotazioni = this.medico.pazienti[0].terapie;
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   protected readonly Sesso = Sesso;

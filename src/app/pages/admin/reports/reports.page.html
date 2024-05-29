@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="top-toolbar">
+    <ion-icon id="settings-icon"
+              src="../../assets/icon/settings/settings.svg"
+              slot="end"
+              (click)="routeToSettings()">
+    </ion-icon>
+    <div class="profile-container">
+      <div class="images-container">
+        <ion-img class="profile-image"
+                 src="../../assets/icon/home/new-user.png">
+        </ion-img>
+      </div>
+      <div class="text-container">
+        <ion-text class="profile-name" slot="end">
+          <h3>CIAO {{this.admin.nome}}</h3>
+        </ion-text>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="reports-content" [fullscreen]="true">
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <ion-item lines="none" class="item-title">
+    <ion-img class="item-title-icon" src="../../assets/icon/settings/bug.png"></ion-img>
+    SEGNALAZIONI
+  </ion-item>
+  <ion-list>
+    <!--
+    <ion-item class="item-title" *ngFor="let segnalazione of segnalazioni">
+      <div class="item-content">
+        <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
+        <ion-text class="item-title-list">L'utente {{segnalazione?.persona?.nome}} {{segnalazione?.persona?.cognome}}
+          ha segnalato un errore relativo alla schermata {{segnalazione?.schermata}}</ion-text>
+      </div>
+    </ion-item> !-->
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/bug-report.png"></ion-img>
+          Segnalazioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

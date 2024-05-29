@@ -48,6 +48,8 @@ export class SettingsPage implements OnInit {
       this.ruolo = "INFERMIERE";
     else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'MEDICO')
       this.ruolo = "MEDICO";
+    else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'ADMIN')
+      this.ruolo = "ADMIN";
   }
 
   navigateBack() {
@@ -111,5 +113,17 @@ export class SettingsPage implements OnInit {
 
   goToPrescriptions() {
     this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+  }
+
+  goToRequests() {
+    this.navCtrl.navigateForward("admin-requests", { animated: false });
+  }
+
+  goToFunctions() {
+    this.navCtrl.navigateForward("admin-functions", { animated: false });
+  }
+
+  goToReports() {
+    this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
 }
