@@ -18,21 +18,21 @@
 
 <ion-content>
   <ion-list *ngIf="!isLoading">
-    @for (item of filteredNurses; track item.CF) {
-      <ion-item button (click)="goToUserDetails(item)">
+    @for (nurse of filteredNurses; track nurse.CF) {
+      <ion-item button (click)="goToUserDetails(nurse)">
         <ion-avatar slot="start">
-          <ion-img *ngIf="item.sesso === Sesso.MASCHIO"
+          <ion-img *ngIf="nurse.sesso === Sesso.MASCHIO"
                    src="../../assets/icon/home/avatar/av-doctor-male.png"
                    alt="Foto profilo medico">
           </ion-img>
-          <ion-img *ngIf="item.sesso === Sesso.FEMMINA"
+          <ion-img *ngIf="nurse.sesso === Sesso.FEMMINA"
                    src="../../assets/icon/home/avatar/av-doctor-female.png"
                    alt="Foto profilo medico">
           </ion-img>
         </ion-avatar>
 
         <ion-label>
-          <h2>{{item.nome}} {{item.cognome}}</h2>
+          <h2>{{nurse.nome}} {{nurse.cognome}}</h2>
         </ion-label>
       </ion-item>
     }

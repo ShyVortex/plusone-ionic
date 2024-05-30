@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import {
 import {NavController} from "@ionic/angular";
 import {Sesso} from "../../../../models/persona/sesso";
 import {Paziente} from "../../../../models/paziente/Paziente";
+import { PazienteService } from 'src/app/services/PazienteService/paziente.service';
 
 @Component({
   selector: 'app-functions-patients',
@@ -29,9 +31,21 @@ export class FunctionsPatientsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private pazienteService: PazienteService
   ) { }
 
   ngOnInit() {
+    this.loadItems();
+  }
+
+  async loadItems() {
+    setTimeout(() => {
+      this.pazienteService.getAllPazienti().subscribe((result: Paziente[]) => {
+        this.patients = result;
+        this.filteredPatients = this.patients;
+      });
+      this.isLoading = false;
+    }, 1000);
   }
 
   navigateBack() {
@@ -49,11 +63,11 @@ export class FunctionsPatientsPage implements OnInit {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
+
       if (fullName.replace(/\s+/g, '')
           .includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+          .includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredPatients.push(element);
       }
     });

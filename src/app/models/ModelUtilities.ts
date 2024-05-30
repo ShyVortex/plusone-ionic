@@ -4,7 +4,8 @@ import { Persona } from "./persona/Persona";
 import { Infermiere } from "./infermiere/Infermiere";
 import { Terapia } from "./terapia/Terapia";
 import { Farmaco } from "./farmaco/Farmaco";
-import {Triage} from "./triage/Triage";
+import { Triage } from "./triage/Triage";
+import { Esame } from "./esame/Esame";
 
 export class ModelUtilities {
   static pazienteFromJSON(json: any): Paziente {
@@ -84,7 +85,17 @@ export class ModelUtilities {
     return farmaco;
   }
 
-    public static triageFromJSON(json:any): Triage{
+  public static esameFromJSON(json: any): Esame {
+    let esame: Esame = new Esame();
+
+    esame.id = json.id;
+    esame.codice = json.codice;
+    esame.nome = json.nome;
+
+    return esame;
+  }
+
+  public static triageFromJSON(json:any): Triage{
     let triage: Triage = new Triage();
 
     triage.id = json.id;

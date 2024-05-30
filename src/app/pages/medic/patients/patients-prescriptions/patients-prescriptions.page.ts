@@ -75,11 +75,13 @@ export class PatientsPrescriptionsPage implements OnInit {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '')
+      
+      if (
+        fullName.replace(/\s+/g, '')
         .includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+        .includes(searchValue.replace(/\s+/g, ''))
+      ) {
         this.filteredPatients.push(element);
       }
     });

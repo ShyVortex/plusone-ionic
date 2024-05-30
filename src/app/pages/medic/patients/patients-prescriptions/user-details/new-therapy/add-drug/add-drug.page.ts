@@ -8,6 +8,7 @@ import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { PersonaService } from 'src/app/services/PersonaService/persona.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
+import { FarmacoService } from 'src/app/services/FarmacoService/farmaco.service';
 
 @Component({
   selector: 'app-add-drug',
@@ -25,11 +26,23 @@ export class AddDrugPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
+    private farmacoService: FarmacoService
   ) {
     this.paziente = storageService.getPaziente();
   }
 
   ngOnInit() {
+    this.loadItems();
+  }
+
+  async loadItems() {
+    setTimeout(() => {
+      this.farmacoService.getAllFarmaci().subscribe((result: Farmaco[]) => {
+        this.drugs = result;
+        this.filteredDrugs = this.drugs;
+      });
+      this.isLoading = false;
+    }, 1000);
   }
 
   search(event: any) {
@@ -42,12 +55,8 @@ export class AddDrugPage implements OnInit {
     this.drugs.forEach(element => {
       const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
-      const reversedFullName = `${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '')
-        .includes(searchValue.replace(/\s+/g, '')) ||
-        reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+      
+      if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredDrugs.push(element);
       }
     });
