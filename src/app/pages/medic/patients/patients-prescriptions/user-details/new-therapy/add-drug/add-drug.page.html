@@ -16,13 +16,13 @@
 
 <ion-content>
   <ion-list *ngIf="!isLoading">
-    <!-- @for (drug of drugs; track drug.id) {
+    @for (drug of drugs; track drug.id) {
       <ion-item button>
         <ion-label>
-          <h2>{{drug.nome_farmaco}}</h2>
+          <h2>{{drug.nome}}</h2>
         </ion-label>
       </ion-item>
-    } -->
+    }
   </ion-list>
 </ion-content>
 
