@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +12,11 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {search} from "ionicons/icons";
-import {Sesso} from "../../../../models/persona/sesso";
-import {NavController} from "@ionic/angular";
-import {Medico} from "../../../../models/medico/Medico";
+import { search } from "ionicons/icons";
+import { Sesso } from "../../../../models/persona/sesso";
+import { NavController } from "@ionic/angular";
+import { Medico } from "../../../../models/medico/Medico";
+import { MedicoService } from 'src/app/services/MedicoService/medico.service';
 
 @Component({
   selector: 'app-functions-medics',
@@ -25,14 +27,27 @@ import {Medico} from "../../../../models/medico/Medico";
 })
 export class FunctionsMedicsPage implements OnInit {
   protected isLoading: boolean = true;
+  
   protected medics!: Medico[];
   protected filteredMedics!: Medico[];
 
   constructor(
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private medicoService: MedicoService
   ) { }
 
   ngOnInit() {
+    this.loadItems();
+  }
+
+  async loadItems() {
+    setTimeout(() => {
+      this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
+        this.medics = result;
+        this.filteredMedics = this.medics;
+      });
+      this.isLoading = false;
+    }, 1000);
   }
 
   navigateBack() {
@@ -50,19 +65,21 @@ export class FunctionsMedicsPage implements OnInit {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')) ||
+      
+      if (
+        fullName.replace(/\s+/g, '')
+        .includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+        .includes(searchValue.replace(/\s+/g, ''))
+      ) {
         this.filteredMedics.push(element);
       }
     });
   }
 
-  goToUserDetails(item: any) {
+  /* goToUserDetails(item: any) {
 
-  }
+  } */
 
   goToHome() {
     this.navCtrl.navigateForward("admin-home", { animated: false });

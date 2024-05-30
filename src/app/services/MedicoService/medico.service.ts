@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Paziente} from "../../models/paziente/Paziente";
-import {Observable, Observer} from "rxjs";
-import axios, {AxiosResponse} from "axios";
-import {ModelUtilities} from "../../models/ModelUtilities";
-import {Medico} from "../../models/medico/Medico";
-import {Terapia} from "../../models/terapia/Terapia";
-import {TipologiaMedico} from "../../models/medico/tipologia-medico";
-import {Sesso} from "../../models/persona/sesso";
-import {StorageService} from "../StorageService/storage.service";
+import { Paziente} from "../../models/paziente/Paziente";
+import { Observable, Observer } from "rxjs";
+import axios, { AxiosResponse } from "axios";
+import { ModelUtilities } from "../../models/ModelUtilities";
+import { Medico } from "../../models/medico/Medico";
+import { Terapia } from "../../models/terapia/Terapia";
+import { TipologiaMedico } from "../../models/medico/tipologia-medico";
+import { Sesso } from "../../models/persona/sesso";
+import { StorageService } from "../StorageService/storage.service";
 
 @Injectable({
   providedIn: 'root'

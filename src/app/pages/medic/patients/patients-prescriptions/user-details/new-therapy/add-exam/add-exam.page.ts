@@ -38,6 +38,7 @@ export class AddExamPage implements OnInit {
     setTimeout(() => {
       this.esameService.getAllEsami().subscribe((result: Esame[]) => {
         this.exams = result;
+        this.filteredExams = this.exams;
       });
       this.isLoading = false;
     }, 1000);

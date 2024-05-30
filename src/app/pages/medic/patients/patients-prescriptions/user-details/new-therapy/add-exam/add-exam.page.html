@@ -18,7 +18,7 @@
 
 <ion-content>
   <ion-list *ngIf="!isLoading">
-    @for (exam of exams; track exam.id) {
+    @for (exam of filteredExams; track exam.id) {
       <ion-item button>
         <ion-label>
           <h2>{{exam.nome}}</h2>

@@ -39,6 +39,7 @@ export class AddDrugPage implements OnInit {
     setTimeout(() => {
       this.farmacoService.getAllFarmaci().subscribe((result: Farmaco[]) => {
         this.drugs = result;
+        this.filteredDrugs = this.drugs;
       });
       this.isLoading = false;
     }, 1000);
