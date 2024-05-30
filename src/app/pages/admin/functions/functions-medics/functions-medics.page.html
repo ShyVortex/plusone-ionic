@@ -19,7 +19,7 @@
 <ion-content>
   <ion-list *ngIf="!isLoading">
     @for (medic of filteredMedics; track medic.CF) {
-      <ion-item button>
+      <ion-item button (click)="goToMedicDetails(medic)">
         <ion-avatar slot="start">
           <ion-img *ngIf="medic.sesso === Sesso.MASCHIO"
                    src="../../assets/icon/home/avatar/av-doctor-male.png"

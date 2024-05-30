@@ -16,6 +16,7 @@ import {NavController} from "@ionic/angular";
 import {Sesso} from "../../../../models/persona/sesso";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import { PazienteService } from 'src/app/services/PazienteService/paziente.service';
+import { StorageService } from 'src/app/services/StorageService/storage.service';
 
 @Component({
   selector: 'app-functions-patients',
@@ -31,7 +32,8 @@ export class FunctionsPatientsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private pazienteService: PazienteService
+    private pazienteService: PazienteService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -48,33 +50,35 @@ export class FunctionsPatientsPage implements OnInit {
     }, 1000);
   }
 
-  navigateBack() {
-    this.navCtrl.navigateBack("admin-functions");
-  }
-
+  
   search(event: any) {
     if (event.target.value === "") {
       this.filteredPatients = this.patients;
       return;
     }
-
+    
     this.filteredPatients = [];
     this.patients.forEach(element => {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-
-      if (fullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')) ||
-        reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, ''))) {
+      
+      if (
+        fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
+        reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))
+      ) {
         this.filteredPatients.push(element);
       }
     });
   }
+  
+  navigateBack() {
+    this.navCtrl.navigateBack("admin-functions");
+  }
 
-  goToUserDetails(item: any) {
-
+  goToPatientDetails(patient: any) {
+    this.storageService.setPaziente(patient);
+    this.navCtrl.navigateForward("admin-patient-details");
   }
 
   goToHome() {

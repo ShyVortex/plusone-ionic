@@ -4,39 +4,30 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Lista infermieri</ion-label>
+      <ion-label class="tab-name">Dettagli medico</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
-
-<ion-searchbar
-  placeholder="Cerca infermiere..."
-  (input)="search($event)"
-></ion-searchbar>
-
 <ion-content>
-  <ion-list *ngIf="!isLoading">
-    @for (nurse of filteredNurses; track nurse.CF) {
-      <ion-item button (click)="goToNurseDetails(nurse)">
-        <ion-avatar slot="start">
-          <ion-img *ngIf="nurse.sesso === Sesso.MASCHIO"
-                   src="../../assets/icon/home/avatar/av-nurse-male.png"
-                   alt="Foto profilo medico">
-          </ion-img>
-          <ion-img *ngIf="nurse.sesso === Sesso.FEMMINA"
-                   src="../../assets/icon/home/avatar/av-nurse-female.png"
-                   alt="Foto profilo medico">
-          </ion-img>
-        </ion-avatar>
-
-        <ion-label>
-          <h2>{{nurse.nome}} {{nurse.cognome}}</h2>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
+  <ion-card>
+    <ion-card-content>
+      <ion-avatar slot="start">
+        <ion-img *ngIf="medic.sesso === Sesso.MASCHIO"
+                 src="../../../../../../assets/icon/home/avatar/av-doctor-male.png"
+                 alt="Foto profilo paziente">
+        </ion-img>
+        <ion-img *ngIf="medic.sesso === Sesso.FEMMINA"
+                 src="../../../../../../assets/icon/home/avatar/av-doctor-female.png"
+                 alt="Foto profilo paziente">
+        </ion-img>
+      </ion-avatar>
+      <ion-card-title>{{this.medic._nome}} {{this.medic._cognome}}</ion-card-title>
+      <ion-card-subtitle>{{this.medic._CF}}</ion-card-subtitle>
+      <ion-card-subtitle>{{this.medic._email}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToModifyDetails()">Modifica dettagli</ion-button>
 </ion-content>
 
 <ion-footer>
@@ -63,3 +54,4 @@
     </ion-tabs>
   </ion-toolbar>
 </ion-footer>
+

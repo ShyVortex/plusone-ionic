@@ -17,6 +17,7 @@ import { Sesso } from "../../../../models/persona/sesso";
 import { NavController } from "@ionic/angular";
 import { Medico } from "../../../../models/medico/Medico";
 import { MedicoService } from 'src/app/services/MedicoService/medico.service';
+import { StorageService } from 'src/app/services/StorageService/storage.service';
 
 @Component({
   selector: 'app-functions-medics',
@@ -33,7 +34,8 @@ export class FunctionsMedicsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private medicoService: MedicoService
+    private medicoService: MedicoService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -50,10 +52,7 @@ export class FunctionsMedicsPage implements OnInit {
     }, 1000);
   }
 
-  navigateBack() {
-    this.navCtrl.navigateBack("admin-functions");
-  }
-
+  
   search(event: any) {
     if (event.target.value === "") {
       this.filteredMedics = this.medics;
@@ -67,20 +66,23 @@ export class FunctionsMedicsPage implements OnInit {
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
       
       if (
-        fullName.replace(/\s+/g, '')
-        .includes(searchValue.replace(/\s+/g, '')) ||
-        reversedFullName.replace(/\s+/g, '')
-        .includes(searchValue.replace(/\s+/g, ''))
+        fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
+        reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))
       ) {
         this.filteredMedics.push(element);
       }
     });
   }
+  
+  navigateBack() {
+    this.navCtrl.navigateBack("admin-functions");
+  }
 
-  /* goToUserDetails(item: any) {
-
-  } */
-
+  goToMedicDetails(medico: any) {
+    this.storageService.setMedico(medico);
+    this.navCtrl.navigateForward("admin-medic-details");
+  }
+  
   goToHome() {
     this.navCtrl.navigateForward("admin-home", { animated: false });
   }
