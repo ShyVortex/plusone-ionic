@@ -7,6 +7,7 @@ import { NavController } from "@ionic/angular";
 import { Esame } from 'src/app/models/esame/Esame';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
+import { EsameService } from 'src/app/services/EsameService/esame.service';
 
 @Component({
   selector: 'app-add-exam',
@@ -24,6 +25,7 @@ export class AddExamPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
+    private esameService: EsameService
   ) { 
     this.paziente = storageService.getPaziente();
   }
