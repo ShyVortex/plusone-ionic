@@ -9,20 +9,22 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-searchbar
+<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
+
+<ion-searchbar
   placeholder="Cerca paziente..."
   (input)="search($event)"
-></ion-searchbar> -->
+></ion-searchbar>
 
 <ion-content>
   <ion-list *ngIf="!isLoading">
-    <!-- @for (exam of exams; track drug.id) {
+    @for (exam of filteredExams; track exam.id) {
       <ion-item button>
         <ion-label>
-          <h2>{{exam.nome_esame}}</h2>
+          <h2>{{exam.nome}}</h2>
         </ion-label>
       </ion-item>
-    } -->
+    }
   </ion-list>
 </ion-content>
 

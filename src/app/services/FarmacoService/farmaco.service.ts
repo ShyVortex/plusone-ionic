@@ -3,7 +3,7 @@ import { StorageService } from '../StorageService/storage.service';
 import { Observable, Observer } from 'rxjs';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
 import axios, { AxiosResponse } from 'axios';
-import { Farmaco } from 'src/app/models/farmaco/farmaco';
+import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 
 @Injectable({
   providedIn: 'root'
