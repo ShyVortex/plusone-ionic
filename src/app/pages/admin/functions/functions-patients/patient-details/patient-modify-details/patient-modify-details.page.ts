@@ -2,27 +2,35 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonTabs, IonTabBar, IonTabButton, IonImg } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonTabs, IonTabBar, IonTabButton, IonImg, IonLabel, IonButton, IonItem, IonInput, IonAlert } from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
+import { StorageService } from 'src/app/services/StorageService/storage.service';
 
 @Component({
   selector: 'app-patient-modify-details',
   templateUrl: './patient-modify-details.page.html',
   styleUrls: ['./patient-modify-details.page.scss'],
   standalone: true,
-  imports: [IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class PatientModifyDetailsPage implements OnInit {
+  protected patient: any;
+  protected confirmButtons = ['Annulla', 'Conferma'];
+  protected deleteButtons = ['Annulla', 'Elimina'];
 
   constructor(
     private navCtrl: NavController,
-  ) { }
+    private storageService: StorageService
+  ) {
+    this.patient = this.storageService.getPaziente();
+  }
 
   ngOnInit() {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack("admin-functions/patient-details");
+    this.storageService.setPaziente(this.patient);
+    this.navCtrl.navigateBack("admin-patient-details");
   }
 
   goToHome() {

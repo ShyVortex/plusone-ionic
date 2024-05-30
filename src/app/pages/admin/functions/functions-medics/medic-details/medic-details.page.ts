@@ -51,6 +51,6 @@ export class MedicDetailsPage implements OnInit {
   }
 
   goToModifyDetails() {
-    this.navCtrl.navigateForward("admin-medic-modify-details", { animated: false });
+    this.navCtrl.navigateForward("admin-medic-modify-details");
   }
 }
