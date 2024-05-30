@@ -1,8 +1,7 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonFooter, IonTabs, IonTabBar, IonTabButton, IonImg, IonList, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonFooter, IonTabs, IonTabBar, IonTabButton, IonImg, IonList, IonSearchbar, IonItem } from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
 import { Esame } from 'src/app/models/esame/Esame';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
@@ -14,11 +13,12 @@ import { EsameService } from 'src/app/services/EsameService/esame.service';
   templateUrl: './add-exam.page.html',
   styleUrls: ['./add-exam.page.scss'],
   standalone: true,
-  imports: [IonSearchbar, IonList, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonItem, IonSearchbar, IonList, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class AddExamPage implements OnInit {
   protected paziente: Paziente;
   protected isLoading: boolean = true;
+
   protected exams!: Esame[];
   protected filteredExams!: Esame[];
 
@@ -31,7 +31,17 @@ export class AddExamPage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadItems();
   }
+
+  async loadItems() {
+    setTimeout(() => {
+      this.esameService.getAllEsami().subscribe((result: Esame[]) => {
+        this.exams = result;
+      });
+      this.isLoading = false;
+    }, 1000);
+  }  
 
   search(event: any) {
     if (event.target.value === "") {
@@ -43,12 +53,8 @@ export class AddExamPage implements OnInit {
     this.exams.forEach(element => {
       const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
-      const reversedFullName = `$ ${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '')
-        .includes(searchValue.replace(/\s+/g, '')) ||
-        reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+      
+      if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredExams.push(element);
       }
     });
