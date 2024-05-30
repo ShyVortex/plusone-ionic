@@ -14,6 +14,7 @@ import {
 import {NavController} from "@ionic/angular";
 import {Infermiere} from "../../../../models/infermiere/Infermiere";
 import {Sesso} from "../../../../models/persona/sesso";
+import { InfermiereService } from 'src/app/services/InfermiereService/infermiere.service';
 
 @Component({
   selector: 'app-functions-nurses',
@@ -28,15 +29,23 @@ export class FunctionsNursesPage implements OnInit {
   protected filteredNurses!: Infermiere[];
 
   constructor(
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private infermiereService: InfermiereService
   ) { }
 
   ngOnInit() {
+    this.loadItems();
   }
 
-  navigateBack() {
-    this.navCtrl.navigateBack("admin-functions");
-  }
+  async loadItems() {
+    setTimeout(() => {
+      this.infermiereService.getAllInfermieri().subscribe((result: Infermiere[]) => {
+        this.nurses = result;
+        this.filteredNurses = this.nurses;
+      });
+      this.isLoading = false;
+    }, 1000);
+  }  
 
   search(event: any) {
     if (event.target.value === "") {
@@ -46,14 +55,10 @@ export class FunctionsNursesPage implements OnInit {
 
     this.filteredNurses = [];
     this.nurses.forEach(element => {
-      const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
+      const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
-      const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      if (fullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')) ||
-        reversedFullName.replace(/\s+/g, '')
-          .includes(searchValue.replace(/\s+/g, '')))
-      {
+      
+      if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredNurses.push(element);
       }
     });
@@ -61,6 +66,10 @@ export class FunctionsNursesPage implements OnInit {
 
   goToUserDetails(item: any) {
 
+  }
+
+  navigateBack() {
+    this.navCtrl.navigateBack("admin-functions");
   }
 
   goToHome() {
