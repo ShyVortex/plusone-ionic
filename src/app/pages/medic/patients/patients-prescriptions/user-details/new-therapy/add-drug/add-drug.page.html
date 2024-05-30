@@ -9,6 +9,8 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
+
 <ion-searchbar
   placeholder="Cerca paziente..."
   (input)="search($event)"
