@@ -16,6 +16,8 @@ import {
 import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../../registration/login/LoginUtilities";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
+import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
+import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
 
 @Component({
   selector: 'app-bugreport',
@@ -29,6 +31,7 @@ export class BugreportPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
   protected readonly LoginUtilities = LoginUtilities;
+  private segnalazione: Segnalazione;
 
   @ViewChild('reportSelectRef') reportSelectRef!: IonSelect;
   @ViewChild('reportAreaRef') reportAreaRef!: IonTextarea;
@@ -37,9 +40,12 @@ export class BugreportPage implements OnInit {
     private navCtrl: NavController,
     private personaService: PersonaService,
     private alertController: AlertController,
+    private segnalazioneService: SegnalazioneService
   ) {
     this.persona = personaService.getPersona();
-    this.ruolo = "";
+    this.segnalazione = new Segnalazione();
+
+    console.log(this.ruolo = history.state.ruolo);
   }
 
   ngOnInit() {
@@ -63,6 +69,14 @@ export class BugreportPage implements OnInit {
     await alert.present();
   }
 
+  setSegnalazione() {
+    this.segnalazione.persona = this.persona;
+    this.segnalazione.schermata = this.reportSelectRef.value;
+
+    // @ts-ignore
+    this.segnalazione.errore = this.reportAreaRef.value;
+  }
+
   navigateBack() {
     this.navCtrl.back();
   }
@@ -72,9 +86,22 @@ export class BugreportPage implements OnInit {
   }
 
   onConfirm() {
-    // @ts-ignore
-    if (this.reportSelectRef.value != null && this.reportAreaRef.value.length > 0)
-      this.navCtrl.navigateForward("settings-bugreport-confirm");
+    if (this.reportSelectRef.value != null && this.reportAreaRef.value != null
+      && this.reportAreaRef.value.length > 0)
+    {
+      this.setSegnalazione();
+
+      if (!this.persona.isSet()) {
+        this.segnalazioneService.addSegnalazioneOffline(this.persona, this.segnalazione);
+        console.log(this.persona);
+      }
+
+      this.navCtrl.navigateForward("settings-bugreport-confirm", {
+        state: {
+          ruolo: this.ruolo
+        }
+      });
+    }
     else
       this.presentAlert();
   }
@@ -86,6 +113,8 @@ export class BugreportPage implements OnInit {
       this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
       this.navCtrl.navigateBack("patient-home");
+    else if (this.ruolo === 'ADMIN')
+      this.navCtrl.navigateBack("admin-home");
   }
 
   goToLogbook() {

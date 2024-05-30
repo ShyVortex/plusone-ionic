@@ -23,6 +23,8 @@ import {AnimationItem} from "lottie-web";
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, LottieComponent, IonText]
 })
 export class BugreportConfirmPage implements OnInit {
+  protected ruolo: String;
+
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
     loop: false,
@@ -38,7 +40,7 @@ export class BugreportConfirmPage implements OnInit {
   }
 
   constructor(private navCtrl: NavController) {
-    console.log(history.state.type, history.state.hospitalWard, history.state.date, history.state.time);
+    console.log(this.ruolo = history.state.ruolo);
   }
 
   ngOnInit() {}
@@ -48,11 +50,21 @@ export class BugreportConfirmPage implements OnInit {
   }
 
   goToHomeAnimated() {
-    this.navCtrl.navigateBack("patient-home", { animated: true });
+    if (this.ruolo === 'PAZIENTE')
+      this.navCtrl.navigateBack("patient-home", { animated: true });
+    else if (this.ruolo === 'INFERMIERE')
+      this.navCtrl.navigateBack("nurse-home", { animated: true });
+    else if (this.ruolo === 'MEDICO')
+      this.navCtrl.navigateBack("medic-home", { animated: true });
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    if (this.ruolo === 'PAZIENTE')
+      this.navCtrl.navigateBack("patient-home", { animated: false });
+    else if (this.ruolo === 'INFERMIERE')
+      this.navCtrl.navigateBack("nurse-home", { animated: false });
+    else if (this.ruolo === 'MEDICO')
+      this.navCtrl.navigateBack("medic-home", { animated: false });
   }
 
   goToLogbook() {
