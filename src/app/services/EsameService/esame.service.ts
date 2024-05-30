@@ -17,7 +17,7 @@ export class EsameService {
     let esami: Esame[] = [];
 
     return new Observable<Esame[]>((observer: Observer<Esame[]>) => {
-      axios.get<Esame[]>(this.commonURL + "/getAllEsami").then
+      axios.get<Esame[]>(this.commonURL + "/getAll").then
       ((response: AxiosResponse<Esame[]>) => {
         jsonResponse = response.data
         jsonResponse.forEach((element: any) => {
