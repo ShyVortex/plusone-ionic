@@ -5,6 +5,7 @@ import {Medico} from "../../models/medico/Medico";
 import { cloneDeep, isEqual } from 'lodash';
 import {Terapia} from "../../models/terapia/Terapia";
 import {Triage} from "../../models/triage/Triage";
+import {Segnalazione} from "../../models/segnalazione/Segnalazione";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class StorageService {
   private terapie!: Terapia[];
   private triage!: Triage;
   private richieste!: Triage[];
+  private segnalazione!: Segnalazione;
+  private segnalazioni: Segnalazione[];
 
   constructor() {
     this.paziente = new Paziente();
@@ -27,6 +30,7 @@ export class StorageService {
     this.medico = new Medico();
     this.route = "";
     this.loginCache = [];
+    this.segnalazioni = [];
   }
 
   setPaziente(paziente: Paziente) {
@@ -94,6 +98,22 @@ export class StorageService {
 
   cacheRichieste(value: Triage[]) {
     this.richieste = value;
+  }
+
+  getSegnalazione() {
+    return this.segnalazione;
+  }
+
+  setSegnalazione(value: Segnalazione) {
+    this.segnalazione = value;
+  }
+
+  getSegnalazioni() {
+    return this.segnalazioni;
+  }
+
+  cacheSegnalazione(value: Segnalazione) {
+    this.segnalazioni.push(value);
   }
 
   getAllStates() {

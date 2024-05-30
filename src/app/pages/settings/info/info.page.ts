@@ -58,6 +58,8 @@ export class InfoPage implements OnInit {
       this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
       this.navCtrl.navigateBack("patient-home");
+    else if (this.ruolo === 'ADMIN')
+      this.navCtrl.navigateBack("admin-home");
   }
 
   goToLogbook() {

@@ -264,6 +264,11 @@ export const routes: Routes = [
       .then(m => m.ReportsPage)
   },
   {
+    path: 'admin-report-details',
+    loadComponent: () => import('./pages/admin/reports/report-details/report-details.page')
+      .then(m => m.ReportDetailsPage)
+  },
+  {
     path: 'settings',
     loadComponent: () => import('./pages/settings/settings.page')
       .then(m => m.SettingsPage)

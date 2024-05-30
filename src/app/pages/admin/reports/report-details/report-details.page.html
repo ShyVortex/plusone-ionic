@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli segnalazione</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="report-details-content" [fullscreen]="true">
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <div class="summary-container">
+    <ion-item lines="none">
+      <ion-img class="report-summary-icon"
+               src="../../assets/icon/admin/reports/message.png">
+      </ion-img>
+      <ion-text class="report-summary-text">Segnalazione n. 1 <br/>
+        inviata da <b>{{segnalazione.persona.nome}} {{segnalazione.persona.cognome}}</b> <br/>
+        per la schermata "{{segnalazione.schermata}}"
+      </ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="details-container">
+    <ion-text class="report-details-text">
+      <b>Schermata</b>: {{segnalazione.schermata}} <br/>
+      <b>Errore</b>: {{segnalazione.errore}}
+    </ion-text>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="buttons-container">
+    <ion-button class="report-buttons"
+                color="warning"
+                (click)="markAsSolved()">Risolto
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/bug-report.png"></ion-img>
+          Segnalazioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
