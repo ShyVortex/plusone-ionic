@@ -35,7 +35,10 @@
       <div class="item-content">
         <ion-img class="request-icon" slot="start" src="../../assets/icon/admin/reports/exclamation.png"></ion-img>
         <ion-text class="item-title-list">L'utente {{segnalazione?.persona?.nome}} {{segnalazione?.persona?.cognome}}
-          ha segnalato un errore relativo alla schermata {{segnalazione?.schermata}}</ion-text>
+          ha segnalato un errore relativo alla schermata "{{segnalazione?.schermata}}"</ion-text>
+        <ion-button slot="end" fill="clear" (click)="routeToReportDetails(segnalazione)">
+          <ion-text class="button-arrow">></ion-text>
+        </ion-button>
       </div>
     </ion-item>
   </ion-list>

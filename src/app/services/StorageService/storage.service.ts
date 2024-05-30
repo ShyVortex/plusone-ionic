@@ -21,6 +21,7 @@ export class StorageService {
   private terapie!: Terapia[];
   private triage!: Triage;
   private richieste!: Triage[];
+  private segnalazione!: Segnalazione;
   private segnalazioni: Segnalazione[];
 
   constructor() {
@@ -97,6 +98,14 @@ export class StorageService {
 
   cacheRichieste(value: Triage[]) {
     this.richieste = value;
+  }
+
+  getSegnalazione() {
+    return this.segnalazione;
+  }
+
+  setSegnalazione(value: Segnalazione) {
+    this.segnalazione = value;
   }
 
   getSegnalazioni() {

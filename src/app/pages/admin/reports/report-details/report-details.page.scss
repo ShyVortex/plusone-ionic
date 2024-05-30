@@ -1,0 +1,55 @@
+.legacy-toolbar {
+  .back-button {
+    margin-top: -0.1em;
+    margin-bottom: -1em;
+  }
+
+  .tab-name {
+    margin-top: 1em;
+    font-size: 25px;
+  }
+}
+
+.report-details-content {
+  .summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .report-summary-icon {
+      width: 7em;
+      height: auto;
+    }
+
+    .report-summary-text {
+      margin-left: 1em;
+    }
+  }
+
+  .details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2em;
+    margin-right: 2em;
+
+    .report-details-text {
+      width: 100%;
+      flex-wrap: wrap;
+      font-size: large;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .report-buttons {
+      text-transform: none;
+      font-family: Inter, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0;
+    }
+  }
+}

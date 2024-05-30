@@ -19,13 +19,16 @@ export class SegnalazioneService {
   }
 
   deleteSegnalazioneOffline(persona: any, segnalazione: Segnalazione) {
-    const index = persona.segnalazioni.findIndex((item: Segnalazione) => item === segnalazione);
+    const index = this.storageService.getSegnalazioni().findIndex(
+      (item: Segnalazione) => item === segnalazione
+    );
     if (index !== -1) {
-      if (isEqual(persona.segnalazioni[index], segnalazione)) {
+      if (isEqual(this.storageService.getSegnalazioni()[index], segnalazione)) {
         // splice === rimuovi
-        persona.segnalazioni.splice(index, 1);
-        console.log(`Report for ${segnalazione.schermata} by ${persona.nome} ${persona.cognome}
-        has been cancelled.`);
+        persona.segnalazioni.splice(index, 1); // può fallire se le segnalazioni non si salvano correttamente
+        this.storageService.getSegnalazioni().splice(index, 1);
+        console.log(`Report for ${segnalazione.schermata} by ${segnalazione.persona.nome}
+        ${segnalazione.persona.cognome} has been cancelled.`);
       }
       else
         console.error('The report details do not match.');

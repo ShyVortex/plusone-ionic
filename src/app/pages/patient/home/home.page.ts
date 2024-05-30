@@ -86,7 +86,6 @@ export class HomePage implements OnInit {
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);
-    console.log(this.paziente);
   }
 
   ngOnInit() {

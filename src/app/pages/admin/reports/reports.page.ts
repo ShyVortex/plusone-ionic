@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  IonButton,
   IonContent,
   IonFooter,
   IonHeader,
@@ -25,7 +26,7 @@ import {SegnalazioneService} from "../../../services/SegnalazioneService/segnala
   templateUrl: './reports.page.html',
   styleUrls: ['./reports.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton]
 })
 export class ReportsPage implements OnInit {
   protected admin: Admin;
@@ -58,6 +59,11 @@ export class ReportsPage implements OnInit {
 
   handleRefresh(customEvent: any) {
 
+  }
+
+  routeToReportDetails(segnalazione: Segnalazione) {
+    this.storageService.setSegnalazione(segnalazione);
+    this.navCtrl.navigateForward("admin-report-details");
   }
 
   routeToSettings() {
