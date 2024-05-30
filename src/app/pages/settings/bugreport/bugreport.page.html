@@ -50,8 +50,20 @@
       <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-notifs">
         Notifiche
       </ion-select-option>
-      <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-home">
-        Prescrizioni
+      <ion-select-option *ngIf="ruolo === 'MEDICO'" value="medic-patients">
+        Pazienti
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'ADMIN'" value="admin-home">
+        Home
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'ADMIN'" value="admin-requests">
+        Richieste
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'ADMIN'" value="admin-functions">
+        Funzioni
+      </ion-select-option>
+      <ion-select-option *ngIf="ruolo === 'ADMIN'" value="admin-reports">
+        Segnalazioni
       </ion-select-option>
     </ion-select>
   </div>

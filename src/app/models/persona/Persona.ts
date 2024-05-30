@@ -1,4 +1,5 @@
 import {Sesso} from "./sesso";
+import {Segnalazione} from "../segnalazione/Segnalazione";
 
 export abstract class Persona {
   protected _id: number;
@@ -9,6 +10,7 @@ export abstract class Persona {
   protected _password: string;
   protected _CF: string
   protected _isSet: boolean;
+  protected _segnalazioni: Segnalazione[];
 
   protected constructor(
      id: number,
@@ -26,6 +28,7 @@ export abstract class Persona {
     this._password = password;
     this._CF = CF;
     this._isSet = false;
+    this._segnalazioni = [];
   }
 
   get id(): number {
@@ -82,6 +85,14 @@ export abstract class Persona {
 
   set CF(value: string) {
     this._CF = value;
+  }
+
+  get segnalazioni(): Segnalazione[] {
+    return this._segnalazioni;
+  }
+
+  set segnalazioni(value: Segnalazione[]) {
+    this._segnalazioni = value;
   }
 
   public isSet(): boolean {

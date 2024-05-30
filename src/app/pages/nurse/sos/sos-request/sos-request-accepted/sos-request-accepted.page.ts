@@ -60,6 +60,10 @@ export class SosRequestAcceptedPage implements OnInit {
     this.paziente = this.richiesta.paziente;
   }
 
+  ionViewWillEnter(){
+    this.triageService.setState(this.richiesta.id,Conferma.SI).subscribe();
+  }
+
   ionViewDidLeave() {
     if (!this.paziente.isSet()) {
       const index = this.paziente.richieste.findIndex((item) => item === this.richiesta);
@@ -70,10 +74,10 @@ export class SosRequestAcceptedPage implements OnInit {
            ${this.richiesta.paziente.cognome} has been accepted.`);
         }
         else
-          console.error('The reservation details do not match.');
+          console.error('The request details do not match.');
       }
       else
-        console.error('Reservation not found.');
+        console.error('Request not found.');
     }
   }
 
@@ -99,8 +103,5 @@ export class SosRequestAcceptedPage implements OnInit {
 
   goToSOS() {
     this.navCtrl.navigateForward("nurse-sos", { animated: false });
-  }
-  ionViewWillEnter(){
-    this.triageService.setState(this.richiesta.id,Conferma.SI).subscribe()
   }
 }

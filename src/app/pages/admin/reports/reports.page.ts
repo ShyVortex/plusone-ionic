@@ -17,6 +17,8 @@ import {Admin} from "../../../models/admin/Admin";
 import {AdminService} from "../../../services/AdminService/admin.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
+import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
+import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
 
 @Component({
   selector: 'app-reports',
@@ -27,15 +29,18 @@ import {Router} from "@angular/router";
 })
 export class ReportsPage implements OnInit {
   protected admin: Admin;
+  protected segnalazioni!: Segnalazione[];
+  protected ruolo: any;
 
   constructor(
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
     private adminService: AdminService,
+    private segnalazioneService: SegnalazioneService,
     private storageService: StorageService
   ) {
-    this.admin = this.personaService.getPersona();
+    this.admin = personaService.getPersona();
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
@@ -46,6 +51,9 @@ export class ReportsPage implements OnInit {
   ngOnInit() {
     if (!this.admin.isSet())
       this.adminService.offlineSetAdmin(this.admin);
+
+    if (!this.admin.isSet())
+      this.segnalazioni = this.storageService.getSegnalazioni();
   }
 
   handleRefresh(customEvent: any) {

@@ -61,7 +61,11 @@ export class SettingsPage implements OnInit {
   }
 
   routeToBugReport() {
-    this.navCtrl.navigateForward("settings-bugreport");
+    this.navCtrl.navigateForward("settings-bugreport", {
+      state: {
+        ruolo: this.ruolo
+      }
+    });
   }
 
   routeToInfo() {
@@ -81,6 +85,8 @@ export class SettingsPage implements OnInit {
       this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
       this.navCtrl.navigateBack("medic-home");
+    else if (this.ruolo === 'ADMIN')
+      this.navCtrl.navigateBack("admin-home");
   }
 
   goToLogbook() {
