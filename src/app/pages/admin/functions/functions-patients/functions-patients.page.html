@@ -19,14 +19,14 @@
 <ion-content>
   <ion-list *ngIf="!isLoading">
     @for (patient of filteredPatients; track patient.CF) {
-      <ion-item button (click)="goToUserDetails(patient)">
+      <ion-item button (click)="goToPatientDetails(patient)">
         <ion-avatar slot="start">
           <ion-img *ngIf="patient.sesso === Sesso.MASCHIO"
-                   src="../../assets/icon/home/avatar/av-doctor-male.png"
+                   src="../../assets/icon/home/avatar/av-patient-male.png"
                    alt="Foto profilo medico">
           </ion-img>
           <ion-img *ngIf="patient.sesso === Sesso.FEMMINA"
-                   src="../../assets/icon/home/avatar/av-doctor-female.png"
+                   src="../../assets/icon/home/avatar/av-patient-female.png"
                    alt="Foto profilo medico">
           </ion-img>
         </ion-avatar>

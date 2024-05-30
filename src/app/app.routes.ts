@@ -225,14 +225,38 @@ export const routes: Routes = [
       .then(m => m.FunctionsMedicsPage)
   },
   {
+    path: 'admin-medic-details',
+    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-details.page').then( m => m.MedicDetailsPage)
+  },
+  {
+    path: 'admin-medic-modify-details',
+    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-modify-details/medic-modify-details.page').then( m => m.MedicModifyDetailsPage)
+  },
+  {
     path: 'admin-functions-nurses',
     loadComponent: () => import('./pages/admin/functions/functions-nurses/functions-nurses.page')
       .then(m => m.FunctionsNursesPage)
   },
   {
+    path: 'admin-nurse-details',
+    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-details.page').then( m => m.NurseDetailsPage)
+  },
+  {
+    path: 'admin-nurse-modify-details',
+    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-modify-details/nurse-modify-details.page').then( m => m.NurseModifyDetailsPage)
+  },
+  {
     path: 'admin-functions-patients',
     loadComponent: () => import('./pages/admin/functions/functions-patients/functions-patients.page')
       .then(m => m.FunctionsPatientsPage)
+  },
+  {
+    path: 'admin-patient-details',
+    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-details.page').then( m => m.PatientDetailsPage)
+  },
+  {
+    path: 'admin-patient-modify-details',
+    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-modify-details/patient-modify-details.page').then( m => m.PatientModifyDetailsPage)
   },
   {
     path: 'admin-reports',
@@ -263,5 +287,5 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
-  }
+  },
 ];

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>patient-modify-details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">patient-modify-details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+          Segnalazioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

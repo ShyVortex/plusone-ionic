@@ -11,10 +11,11 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {NavController} from "@ionic/angular";
-import {Infermiere} from "../../../../models/infermiere/Infermiere";
-import {Sesso} from "../../../../models/persona/sesso";
+import { NavController } from "@ionic/angular";
+import { Infermiere } from "../../../../models/infermiere/Infermiere";
+import { Sesso } from "../../../../models/persona/sesso";
 import { InfermiereService } from 'src/app/services/InfermiereService/infermiere.service';
+import { StorageService } from 'src/app/services/StorageService/storage.service';
 
 @Component({
   selector: 'app-functions-nurses',
@@ -30,7 +31,8 @@ export class FunctionsNursesPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private infermiereService: InfermiereService
+    private infermiereService: InfermiereService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -57,15 +59,20 @@ export class FunctionsNursesPage implements OnInit {
     this.nurses.forEach(element => {
       const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
+      const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
       
-      if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
+      if (
+        fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
+        reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))
+      ) {
         this.filteredNurses.push(element);
       }
     });
   }
 
-  goToUserDetails(item: any) {
-
+  goToNurseDetails(nurse: any) {
+    this.storageService.setInfermiere(nurse);
+    this.navCtrl.navigateForward("admin-nurse-details", { animated: false });
   }
 
   navigateBack() {

@@ -19,6 +19,7 @@ import { StorageService } from "../../../../../services/StorageService/storage.s
 })
 export class UserDetailsPage {
   protected patient!: any;
+  protected readonly Sesso = Sesso;
 
   constructor(
     private navCtrl: NavController,
@@ -62,5 +63,4 @@ export class UserDetailsPage {
     this.navCtrl.navigateForward('medic-patients', { animated: false });
   }
 
-  protected readonly Sesso = Sesso;
 }

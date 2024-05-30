@@ -14,11 +14,11 @@
     <ion-card-content>
       <ion-avatar slot="start">
         <ion-img *ngIf="patient.sesso === Sesso.MASCHIO"
-                 src="../../assets/icon/home/avatar/av-patient-male.png"
+                 src="../../../../../../assets/icon/home/avatar/av-patient-male.png"
                  alt="Foto profilo paziente">
         </ion-img>
         <ion-img *ngIf="patient.sesso === Sesso.FEMMINA"
-                 src="../../assets/icon/home/avatar/av-patient-female.png"
+                 src="../../../../../../assets/icon/home/avatar/av-patient-female.png"
                  alt="Foto profilo paziente">
         </ion-img>
       </ion-avatar>
@@ -36,24 +36,28 @@
     <ion-card-title>Lista farmaci assegnati</ion-card-title>
     </ion-card-content>
   </ion-card>
-  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Assegna terapia</ion-button>
+  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToModifyDetails()">Modifica dettagli</ion-button>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-tabs class="bottom-bar">
       <ion-tab-bar class="bottom-tab-bar" slot="bottom">
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToHome()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/home.png"></ion-img>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToNotifs()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
-          Notifiche
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
+          Richieste
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" (click)="goToPatients()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
-          Pazienti
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+          Segnalazioni
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
