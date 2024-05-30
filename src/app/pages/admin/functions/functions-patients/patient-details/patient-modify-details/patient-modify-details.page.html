@@ -1,15 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>patient-modify-details</ion-title>
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Modifica dettagli</ion-label>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">patient-modify-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content scrollY="false">
+  <div class="profile-container">
+    <ion-img class="profile-avatar"
+                  src="../../../../../../../assets/icon/home/avatar/av-patient-male.png"
+                  alt="Foto profilo paziente">
+    </ion-img>
+    <div class="profile-info">
+      <h2 class="profile-username">{{patient._nome}} {{patient._cognome}}</h2>
+      <p class="profile-email">{{patient._CF}}</p>
+    </div>
+  </div>
+  <ion-item>
+    <ion-input label="Email" type="" value="{{patient._email}}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password" type="password" value="{{patient._password}}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Conferma password" type="password" value="{{patient._password}}"></ion-input>
+  </ion-item>
+  <ion-button id="confirm" class="confirm-button" shape="round">Conferma modifiche</ion-button>
+  <ion-button id="delete" class="delete-button" shape="round">Elimina medico</ion-button>
+
+  <ion-alert
+    trigger="confirm"
+    header="Conferma cambiamenti"
+    message="Sei sicuro di voler confermare le modifiche?"
+    [buttons]="confirmButtons"
+  ></ion-alert>
+
+  <ion-alert
+    trigger="delete"
+    header="Conferma cancellazione"
+    message="Sei sicuro di voler procedere? Questa azione è irreversibile."
+    [buttons]="deleteButtons"
+  ></ion-alert>
 </ion-content>
 
 <ion-footer>

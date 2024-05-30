@@ -25,6 +25,10 @@
       <ion-card-title>{{this.medic._nome}} {{this.medic._cognome}}</ion-card-title>
       <ion-card-subtitle>{{this.medic._CF}}</ion-card-subtitle>
       <ion-card-subtitle>{{this.medic._email}}</ion-card-subtitle>
+      <ion-card-title style="margin-top: 0.75em;">Lavora presso</ion-card-title>
+      <ion-card-subtitle>{{this.medic._ospedale}}</ion-card-subtitle>
+      <ion-card-title style="margin-top: 0.75em;">Reparto</ion-card-title>
+      <ion-card-subtitle>{{this.medic._reparto}}</ion-card-subtitle>
     </ion-card-content>
   </ion-card>
   <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToModifyDetails()">Modifica dettagli</ion-button>

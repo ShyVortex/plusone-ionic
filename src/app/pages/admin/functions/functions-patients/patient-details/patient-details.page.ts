@@ -49,6 +49,6 @@ export class PatientDetailsPage implements OnInit {
   }
 
   goToModifyDetails() {
-    this.navCtrl.navigateForward("admin-patient-modify-details", { animated: false });
+    this.navCtrl.navigateForward("admin-patient-modify-details");
   }
 }
