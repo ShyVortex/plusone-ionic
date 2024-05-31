@@ -28,3 +28,32 @@ ion-select {
   display: block;
   font-size: 1em;
 }
+
+.item-specialista {
+  display: block;
+  font-size: 1em;
+  margin-left: -1em;
+  margin-right: auto;
+}
+
+.no-ripple {
+  --ripple-color: transparent;
+  --background-activated: transparent;
+}
+
+ion-modal {
+  --height: 60%;
+  --width: 90%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(135, 228, 194);
+  --color: white;
+}
