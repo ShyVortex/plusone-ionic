@@ -39,6 +39,8 @@ export class ReservationDatePage implements OnInit {
   ) {
     this.currentDateTime = new Date().toISOString();
     this.hospitalWard = "Specifica reparto";
+    this.medics = [];
+    this.filteredMedics = [];
   }
   
   ngOnInit() {
@@ -56,6 +58,7 @@ export class ReservationDatePage implements OnInit {
       this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
         this.medics = result;
         this.filteredMedics = this.medics;
+        console.log('Medici caricati');
       });
       this.isLoading = false;
       this.firstLoading = true;
@@ -84,7 +87,7 @@ export class ReservationDatePage implements OnInit {
   
   updateList() {
     this.filteredMedics = this.medics.filter(medic => medic.reparto === this.hospitalWard);
-    console.log("Medici filtrati", this.medics);
+    console.log("Medici filtrati", this.filteredMedics);
   }
   
   storeHospitalWard(event: CustomEvent) {

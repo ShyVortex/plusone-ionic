@@ -1,45 +1,19 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
-import {
-  AlertController,
-  IonAlert,
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonCard,
-  IonCol,
-  IonContent,
-  IonFooter,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonImg,
-  IonItem,
-  IonItemDivider,
-  IonLabel,
-  IonRow,
-  IonSegment,
-  IonSegmentButton,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
-  NavController
-} from '@ionic/angular/standalone';
-import {time} from './times';
-import {DataService} from "../../../../../services/data.service";
-import {firstValueFrom, Observable, Subscription} from "rxjs";
-import {Paziente} from "../../../../../models/paziente/Paziente";
-import {Terapia} from "../../../../../models/terapia/Terapia";
-import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
-import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
-import {TipologiaTerapia} from "../../../../../models/terapia/tipologia-terapia";
-import {PersonaService} from "../../../../../services/PersonaService/persona.service";
-import {StorageService} from "../../../../../services/StorageService/storage.service";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, IonAlert, IonBackButton, IonButton, IonButtons, IonCard, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonItemDivider, IonLabel, IonRow, IonSegment, IonSegmentButton, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar, NavController } from '@ionic/angular/standalone';
+import { time } from './times';
+import { DataService } from "../../../../../services/data.service";
+import { firstValueFrom, Observable, Subscription } from "rxjs";
+import { Paziente } from "../../../../../models/paziente/Paziente";
+import { Terapia } from "../../../../../models/terapia/Terapia";
+import { PazienteService } from "../../../../../services/PazienteService/paziente.service";
+import { TerapiaService } from "../../../../../services/TerapiaService/terapia.service";
+import { TipologiaTerapia } from "../../../../../models/terapia/tipologia-terapia";
+import { PersonaService } from "../../../../../services/PersonaService/persona.service";
+import { StorageService } from "../../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-reservation-continue',
@@ -49,17 +23,21 @@ import {StorageService} from "../../../../../services/StorageService/storage.ser
   imports: [IonAlert, IonFooter, IonImg, IonTabButton, IonTabBar, IonTabs, IonItemDivider, IonItem, IonButton, IonCard, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSegment, IonIcon, IonSegmentButton, IonLabel]
 })
 export class ReservationContinuePage implements OnInit {
-  times!: time[];
-  actualIndex!: number;
+  protected times!: time[];
+  protected actualIndex!: number;
 
-  type!: string;
-  hospitalWard!: string;
-  date!: string;
-  private dataSubscription!:Subscription;
-  private patientToPrenote!:Paziente;
-  private terapia:any;
-  private terapiaAdded:Terapia;
-  private getPazienteByEmailObservable:Observable<Paziente>;
+  protected type!: string;
+  protected hospitalWard!: string;
+  protected date!: string;
+  
+  private dataSubscription!: Subscription;
+  private patientToPrenote!: Paziente;
+  private terapia: any;
+  private terapiaAdded: Terapia;
+  private getPazienteByEmailObservable: Observable<Paziente>;
+
+  // NUOVO CODICE
+  protected therapies!: any[];
 
   public alertButtons = [
     {
@@ -96,32 +74,38 @@ export class ReservationContinuePage implements OnInit {
   ];
 
   constructor(
-    private navCtrl: NavController,
     private route: Router,
+    private navCtrl: NavController,
     private alertController: AlertController,
-    private dataService:DataService,
+    private dataService: DataService,
+    private storageService: StorageService,
     private personaService: PersonaService,
-    private pazienteService:PazienteService,
-    private terapiaService:TerapiaService,
-    private storageService: StorageService
+    private pazienteService: PazienteService,
+    private terapiaService: TerapiaService
   ) {
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.terapiaAdded = new Terapia();
     this.terapia = {};
     // actualIndex inital value is a placeholder
     this.actualIndex = 6;
+
+    // NUOVO CODICE: aggiunta della property 'reserved' per il blocco condizionale del button 
     this.times = [
-      { time: '07:00', clicked: false },
-      { time: '11:00', clicked: false },
-      { time: '15:30', clicked: false },
-      { time: '16:15', clicked: false },
-      { time: '18:00', clicked: false },
-      { time: '18:30', clicked: false },
+      { time: '07:00', clicked: false, reserved: false },
+      { time: '11:00', clicked: false, reserved: false },
+      { time: '15:30', clicked: false, reserved: false },
+      { time: '16:15', clicked: false, reserved: false },
+      { time: '18:00', clicked: false, reserved: false },
+      { time: '18:30', clicked: false, reserved: false },
     ];
-    console.log(this.type = history.state.type);
-    console.log(this.hospitalWard = history.state.hospitalWard);
-    console.log(this.date = history.state.date);
-  }
+    this.type = history.state.type;
+    this.hospitalWard = history.state.hospitalWard;
+    this.date = history.state.date;
+      
+    console.log(this.type);
+    console.log(this.hospitalWard);
+    console.log(this.date);
+}
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
@@ -131,12 +115,20 @@ export class ReservationContinuePage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+    this.getPazienteByEmailObservable.subscribe((value: Paziente) => {
       this.patientToPrenote = value
       if (!this.patientToPrenote) {
         this.patientToPrenote = this.personaService.getPersona();
       }
     });
+
+    // NUOVO CODICE
+    this.terapiaService.getTerapieByTipologiaTerapia(this.type).subscribe((result: Terapia[]) => {
+      this.therapies = result;
+      this.therapies.forEach((element: Terapia) => {
+        console.log("Orario prenotazione", element.orario);
+      })
+    }) 
   }
 
   async missingTimeAlert() {

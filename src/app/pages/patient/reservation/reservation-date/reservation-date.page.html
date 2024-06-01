@@ -9,20 +9,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding" scrollY="false">
   <ion-item button id="specialista-modal" class="item-specialista no-ripple" *ngIf="type === 'SPECIALISTICA'" (click)="onModalOpen()">
-    <ion-label>Seleziona specialista</ion-label>
-    <ion-icon class="fa-solid fa-arrow-right" slot="end"></ion-icon>
+    <ion-label>Specialista</ion-label>
+    <ion-icon class="icon fa-solid fa-arrow-right"></ion-icon>
   </ion-item>
 
-  <ion-select label="Reparto" placeholder="Seleziona reparto" *ngIf="type === 'GENERALE'" (ionChange)="storeHospitalWard($event)">
+  <ion-select label="Reparto" class="reparto-generale" placeholder="Seleziona reparto" *ngIf="type === 'GENERALE'" (ionChange)="storeHospitalWard($event)">
     <ion-select-option value="Cardiologia">Cardiologia</ion-select-option>
     <ion-select-option value="Ortopedia">Ortopedia</ion-select-option>
     <ion-select-option value="Pediatria">Pediatria</ion-select-option>
     <ion-select-option value="Nefrologia">Nefrologia</ion-select-option>
   </ion-select>
 
-  <h6>Specificare la <b>data</b></h6>
+  <h6>Data dell'appuntamento</h6>
 
   <ion-datetime presentation="date" class="datetime reservation-datetime" [min]="currentDateTime" (ionChange)="storeDate($event)"></ion-datetime>
 
@@ -32,17 +32,24 @@
         <ion-title style="color: black;">Seleziona specialista</ion-title>
       </ion-toolbar>
 
-      <ion-select style="display:block; margin-top: 0.5em; margin-left: auto; margin-right: auto; width: 85%;" label="Reparto" [placeholder]="this.hospitalWard" (ionChange)="storeHospitalWard($event); updateList();">
-        <ion-select-option value="Cardiologia">Cardiologia</ion-select-option>
-        <ion-select-option value="Ortopedia">Ortopedia</ion-select-option>
-        <ion-select-option value="Pediatria">Pediatria</ion-select-option>
-        <ion-select-option value="Nefrologia">Nefrologia</ion-select-option>
-      </ion-select>
-
+      
+      <ion-item-divider>
+        <ion-select style="color: black; margin-bottom: 0.4em; margin-top: 0.4em;" label="Reparto" [placeholder]="this.hospitalWard" (ionChange)="storeHospitalWard($event); updateList();">
+          <ion-select-option value="Cardiologia">Cardiologia</ion-select-option>
+          <ion-select-option value="Ortopedia">Ortopedia</ion-select-option>
+          <ion-select-option value="Pediatria">Pediatria</ion-select-option>
+          <ion-select-option value="Nefrologia">Nefrologia</ion-select-option>
+        </ion-select>
+      </ion-item-divider>
+      <ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
+      
       <ion-content>
         <ion-list>
-          <ion-text style="display:flex; margin-top: 6em; margin-left: 4em; margin-right: 4em; width: 85%; align-items: center;" *ngIf="filteredMedics.length <= 0">Nessun medico disponibile.</ion-text>
-
+          <div *ngIf="filteredMedics.length <= 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <ion-img style="margin-top: 4.5em; width: 30%;" src="../../../../../assets/icon/user-not-found.png" alt="nessun medico disponibile"></ion-img>
+            <ion-text style="margin: 1em 4em 0 4em; width: 85%; color: gray;">Nessun medico disponibile</ion-text>
+          </div>
+          
           <!-- Nella view iniziale dei medici, se l'utente clicca su uno di questi il campo reparto sarà sostituito con quello del medico selezionato -->
           <ion-item button *ngFor="let medic of filteredMedics" (click)="storeMedic(medic); ">
             <ion-avatar slot="start">

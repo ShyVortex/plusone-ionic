@@ -32,8 +32,13 @@ ion-select {
 .item-specialista {
   display: block;
   font-size: 1em;
+  margin-top: -0.8em;
   margin-left: -1em;
-  margin-right: auto;
+  margin-right: -0.25em;
+}
+
+.reparto-generale {
+  margin-top: -0.8em;
 }
 
 .no-ripple {
@@ -57,3 +62,8 @@ ion-modal ion-toolbar {
   --background: rgb(135, 228, 194);
   --color: white;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
