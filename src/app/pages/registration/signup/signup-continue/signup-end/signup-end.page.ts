@@ -61,6 +61,23 @@ export class SignupEndPage implements OnInit {
 
   ngOnInit() {
   }
+
+  private setPaziente(){
+    this.paziente.nome = this.nome;
+    this.paziente.cognome = this.cognome;
+    this.paziente.email = this.email;
+    this.paziente.password= this.password;
+    this.paziente.esenzione = false;
+    this.paziente.donatoreOrgani = false;
+    this.paziente.cf = this.CF;
+    this.paziente.attivo = false;
+    this.indirizzoJson.cap = this.cap;
+    this.indirizzoJson.via=this.indirizzo;
+    this.indirizzoJson.numeroCivico=this.numeroCivico;
+    this.indirizzoJson.città=this.citta;
+    this.paziente.indirizzo=this.indirizzoJson
+  }
+
   async confirmRegistration() {
     if (this.isAValidCAP()) {
       try {
@@ -91,21 +108,8 @@ export class SignupEndPage implements OnInit {
   setOpen(isOpen: boolean) {
     this.isToastOpen = isOpen;
   }
+
   routeToLogin():void{
     this.navCtrl.navigateRoot('login');
-  }
-  private setPaziente(){
-    this.paziente.nome = this.nome;
-    this.paziente.cognome = this.cognome;
-    this.paziente.email = this.email;
-    this.paziente.password= this.password;
-    this.paziente.esenzione = false
-    this.paziente.donatoreOrgani = false
-    this.paziente.cf = this.CF
-    this.indirizzoJson.cap = this.cap;
-    this.indirizzoJson.via=this.indirizzo;
-    this.indirizzoJson.numeroCivico=this.numeroCivico;
-    this.indirizzoJson.città=this.citta;
-    this.paziente.indirizzo=this.indirizzoJson
   }
 }

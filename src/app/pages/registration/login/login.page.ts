@@ -11,7 +11,7 @@ import {
   IonItem,
   IonLabel, IonList,
   IonTitle,
-  IonToolbar, IonToast, IonText
+  IonToolbar, IonToast, IonText, AlertController
 } from '@ionic/angular/standalone';
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
 import {Observable, Subscriber, Subscription,firstValueFrom} from "rxjs";
@@ -53,6 +53,7 @@ export class LoginPage implements OnInit,OnDestroy {
 
   constructor(
     private navCtrl: NavController,
+    private alertController: AlertController,
     private personaService: PersonaService,
     private pazienteService: PazienteService,
     private infermiereService: InfermiereService,
@@ -75,6 +76,16 @@ export class LoginPage implements OnInit,OnDestroy {
   ngOnInit() {
     console.log(HashingUtilities.HashPassword("pippo"))
     console.log(HashingUtilities.HashPassword("mimmo"))
+  }
+
+  async showAlert() {
+    const alert = await this.alertController.create({
+      header: 'Errore',
+      message: 'La tua registrazione non risulta ancora accettata.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 
   togglePasswordVisibility() {
@@ -175,9 +186,10 @@ export class LoginPage implements OnInit,OnDestroy {
     this.dataService.sendData(this.email);
 
     if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
-
-      this.navCtrl.navigateForward("patient-home")
-
+      if (this.personToLogin.attivo)
+        this.navCtrl.navigateForward("patient-home")
+      else
+        this.showAlert();
     }
     else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
       this.navCtrl.navigateForward("nurse-home")
