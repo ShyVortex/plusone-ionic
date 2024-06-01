@@ -7,16 +7,16 @@ import {AnimationItem} from "lottie-web";
 import {NavController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-signup-confirmed',
-  templateUrl: './signup-confirmed.page.html',
-  styleUrls: ['./signup-confirmed.page.scss'],
+  selector: 'app-signup-pending',
+  templateUrl: './signup-pending.page.html',
+  styleUrls: ['./signup-pending.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonText, LottieComponent]
 })
 
-export class SignupConfirmedPage implements OnInit {
+export class SignupPendingPage implements OnInit {
   options: AnimationOptions = {
-    path: '../../../assets/animations/green-check.json',
+    path: '../../../assets/animations/pending.json',
     loop: false,
   };
 
@@ -28,15 +28,17 @@ export class SignupConfirmedPage implements OnInit {
     marginBottom: '-4em',
     height: '26em',
   }
+
   animationCreated(animationItem: AnimationItem): void {
     //console.log("Animazione renderizzata. \n\n", animationItem);
   }
-  goToHomeAnimated() {
-    this.navCtrl.navigateBack("login", { animated: true });
-  }
+
   constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  goToLoginAnimated() {
+    this.navCtrl.navigateBack("login", { animated: true });
+  }
 }

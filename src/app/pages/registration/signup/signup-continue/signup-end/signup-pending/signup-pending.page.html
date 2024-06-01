@@ -8,17 +8,19 @@
 
 <ion-content class="ion-padding" scroll-y="false">
   <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
-  <h3 class="info-h3">REGISTRAZIONE EFFETUATA</h3>
-  <h6 class="info-h6">La registrazione è stata effettuata con successo.</h6>
+  <h3 class="info-h3">REGISTRAZIONE INVIATA</h3>
+  <h6 class="info-h6">La tua richiesta di registrazione è stata inviata con successo.
+                      Attenda la conferma da parte del personale competente.
+  </h6>
 </ion-content>
 
 <div class="anim-confirm">
   <ion-button class="confirm-button"
               expand="block"
               fill="solid"
-              (click)="goToHomeAnimated()">
+              (click)="goToLoginAnimated()">
     <ion-text class="confirm-button-text">
-      ACCEDI
+      TORNA INDIETRO
     </ion-text>
   </ion-button>
 </div>
