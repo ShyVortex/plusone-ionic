@@ -20,6 +20,7 @@ import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
 import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
+import {Sesso} from "../../../models/persona/sesso";
 
 @Component({
   selector: 'app-reports',
@@ -91,4 +92,6 @@ export class ReportsPage implements OnInit {
     this.personaService.setPersona(this.admin);
     this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
+
+    protected readonly Sesso = Sesso;
 }

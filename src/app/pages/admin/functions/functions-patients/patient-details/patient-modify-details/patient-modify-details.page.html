@@ -10,7 +10,7 @@
 </ion-header>
 
 
-<ion-content scrollY="false">
+<ion-content>
   <div class="profile-container">
     <ion-img class="profile-avatar"
                   src="../../../../../../../assets/icon/home/avatar/av-patient-male.png"
@@ -22,18 +22,58 @@
     </div>
   </div>
   <ion-item>
-    <ion-input label="Email" type="" value="{{patient.email}}" [(ngModel)]="this.emailToUpdate"></ion-input>
+    <ion-label><b>Nome:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input value="{{patient.nome}}" [(ngModel)]="this.nameToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Password" type="password" value="{{patient.password}}" [(ngModel)]="this.passwordToUpdate"></ion-input>
+    <ion-label><b>Cognome:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.cognome}}" [(ngModel)]="this.surnameToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Conferma password" type="password" value="{{patient.password}}" [(ngModel)]="this.passwordToMatch"></ion-input>
+    <ion-label><b>Città:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{citta}}" [(ngModel)]="this.cityToUpdate">
+    </ion-input>
   </ion-item>
-  <ion-button id="confirm" class="confirm-button" (click)="presentAlert()" shape="round">Conferma modifiche</ion-button>
+  <ion-item>
+    <ion-label><b>CAP:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.indirizzo.cap}}" [(ngModel)]="this.CAPToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Indirizzo:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.indirizzo.via}}" [(ngModel)]="this.streetToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Numero civico:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.indirizzo.numeroCivico}}" [(ngModel)]="this.civicNumberToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Esenzione:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.esenzione}}" [(ngModel)]="this.exemptionToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Donatore organi:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.donatoreOrgani}}" [(ngModel)]="this.donorToUpdate"></ion-input>
+  </ion-item>
+   <!-- <ion-item>
+     <ion-label class="bold-label">Medico curante:</ion-label>
+     <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.medico}}" [(ngModel)]="this.medicToUpdate"></ion-input>
+  </ion-item> !-->
+  <ion-item>
+    <ion-label><b>Attivo:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.attivo}}" [(ngModel)]="this.activeState"></ion-input>
+  </ion-item>
+  <ion-button id="confirm" class="confirm-button" shape="round">Conferma modifiche</ion-button>
   <ion-button id="delete" class="delete-button" shape="round">Elimina paziente</ion-button>
-
-
 
   <ion-alert
     trigger="delete"
