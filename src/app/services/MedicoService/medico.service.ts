@@ -19,6 +19,32 @@ export class MedicoService {
     private storageService: StorageService
   ) {}
 
+  updateMedico(medicoToUpdate:Medico,id:number) : Observable<Medico> {
+    let jsonResponse: any;
+    let medico: Medico;
+
+    return new Observable<Medico>((observer: Observer<Medico>) => {
+      axios.put<Medico>(this.medicoURL + "/updateMedico"+"/" + id,medicoToUpdate).then
+      ((response: AxiosResponse<Medico>) => {
+        jsonResponse = response.data
+        medico = ModelUtilities.medicoFromJSON(jsonResponse)
+        console.log(medico)
+
+        observer.next(medico);
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
+  deleteMedico(id:number) : Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      axios.delete<void>(this.medicoURL + "/deleteMedico"+"/" + id).then
+      ((response: AxiosResponse<void>) => {
+        observer.next()
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
+
   getAllMedici(): Observable<Medico[]> {
     let jsonResponse: any[] = [];
     let medici: Medico[] = [];
