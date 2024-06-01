@@ -36,7 +36,6 @@ export class FunctionsNursesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadItems();
   }
 
   async loadItems() {
@@ -47,7 +46,13 @@ export class FunctionsNursesPage implements OnInit {
       });
       this.isLoading = false;
     }, 1000);
-  }  
+  }
+  ionViewWillEnter(){
+    this.loadItems();
+  }
+  ionViewWillLeave(){
+    this.isLoading = true;
+  }
 
   search(event: any) {
     if (event.target.value === "") {
@@ -60,7 +65,7 @@ export class FunctionsNursesPage implements OnInit {
       const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      
+
       if (
         fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))

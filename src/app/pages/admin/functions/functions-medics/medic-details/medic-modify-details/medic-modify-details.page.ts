@@ -26,7 +26,6 @@ export class MedicModifyDetailsPage implements OnInit {
   protected emailToUpdate!:string;
   protected passwordToUpdate:string;
   protected passwordToMatch:string;
-  protected confirmButtonId:string;
   protected medicoJson:any;
   protected confirmButtons = [{
     text:'Annulla',
@@ -41,7 +40,7 @@ export class MedicModifyDetailsPage implements OnInit {
       await this.medicoToJson()
       await firstValueFrom(this.medicoService.updateMedico(this.medicoJson,this.medic.id))
 
-      this.navCtrl.navigateBack("admin-functions-medics", { animated: false });
+       this.navCtrl.navigateForward("admin-functions-medics", {animated: false});
     }
   }];
   protected deleteButtons = [{
@@ -56,7 +55,7 @@ export class MedicModifyDetailsPage implements OnInit {
     handler:async () => {
       await firstValueFrom(this.medicoService.deleteMedico(this.medic.id))
 
-      this.navCtrl.navigateBack("admin-functions-medics", { animated: false });
+      this.navCtrl.navigateForward("admin-functions-medics", {animated: false});
     }
   }];
   protected alertButton =["OK"];
@@ -69,7 +68,6 @@ export class MedicModifyDetailsPage implements OnInit {
   ) {
     this.medic = this.storageService.getMedico();
     this.emailToUpdate = this.medic.email
-    this.confirmButtonId = "confirm"
     this.passwordToUpdate = ''
     this.passwordToMatch = ''
     this.medicoJson = {}

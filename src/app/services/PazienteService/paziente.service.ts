@@ -7,6 +7,7 @@ import { Terapia } from "../../models/terapia/Terapia";
 import { Medico } from "../../models/medico/Medico";
 import { TipologiaMedico } from "../../models/medico/tipologia-medico";
 import { Sesso } from "../../models/persona/sesso";
+import {Infermiere} from "../../models/infermiere/Infermiere";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,9 @@ export class PazienteService {
         observer.next(pazienti);
         observer.complete();
       })
-        .catch(error => {console.log(error)}
+        .catch(error => {console.log(error)
+        observer.next([])
+        }
         );
     });
   }
@@ -79,6 +82,31 @@ export class PazienteService {
 
           }
         );
+    });
+  }
+  updatePaziente(pazienteToUpdate:Paziente,id:number) : Observable<Paziente> {
+    let jsonResponse: any;
+    let paziente: Paziente;
+
+    return new Observable<Paziente>((observer: Observer<Paziente>) => {
+      axios.put<Paziente>(this.pazienteURL + "/updatePaziente"+"/" + id,pazienteToUpdate).then
+      ((response: AxiosResponse<Paziente>) => {
+        jsonResponse = response.data
+        paziente = ModelUtilities.pazienteFromJSON(jsonResponse)
+        console.log(paziente)
+
+        observer.next(paziente);
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
+  deletePaziente(id:number) : Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      axios.delete<void>(this.pazienteURL + "/deletePaziente"+"/" + id).then
+      ((response: AxiosResponse<void>) => {
+        observer.next()
+        observer.complete();
+      }).catch(error => {console.log(error)});
     });
   }
 

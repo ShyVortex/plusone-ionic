@@ -18,6 +18,7 @@ export class PatientDetailsPage implements OnInit {
   protected patient!: any;
   protected readonly Sesso = Sesso;
 
+
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService

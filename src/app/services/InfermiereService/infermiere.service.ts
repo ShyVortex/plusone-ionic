@@ -4,6 +4,7 @@ import {Infermiere} from "../../models/infermiere/Infermiere";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {Sesso} from "../../models/persona/sesso";
+import {Medico} from "../../models/medico/Medico";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,7 @@ export class InfermiereService {
         })
 
         .catch(error => {
+          observer.next([])
           console.log(error)
         }
       );
@@ -54,6 +56,31 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
 
       .catch(error => {console.log(error)}
       );
+    });
+  }
+  updateInfermiere(infermiereToUpdate:Infermiere,id:number) : Observable<Infermiere> {
+    let jsonResponse: any;
+    let infermiere: Infermiere;
+
+    return new Observable<Infermiere>((observer: Observer<Infermiere>) => {
+      axios.put<Infermiere>(this.infermiereURL + "/updateInfermiere"+"/" + id,infermiereToUpdate).then
+      ((response: AxiosResponse<Infermiere>) => {
+        jsonResponse = response.data
+        infermiere = ModelUtilities.infermiereFromJSON(jsonResponse)
+        console.log(infermiere)
+
+        observer.next(infermiere);
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
+  deleteInfermiere(id:number) : Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      axios.delete<void>(this.infermiereURL + "/deleteInfermiere"+"/" + id).then
+      ((response: AxiosResponse<void>) => {
+        observer.next()
+        observer.complete();
+      }).catch(error => {console.log(error)});
     });
   }
 

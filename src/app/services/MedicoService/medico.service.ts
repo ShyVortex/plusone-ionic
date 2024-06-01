@@ -60,7 +60,9 @@ export class MedicoService {
 
         observer.next(medici);
         observer.complete();
-      }).catch(error => {console.log(error)});
+      }).catch(error => {console.log(error)
+      observer.next([])
+      });
     });
   }
 
