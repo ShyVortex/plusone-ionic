@@ -11,6 +11,7 @@ export class Paziente extends Persona {
   private _medico: Medico;
   private _terapie: Terapia[];
   private _richieste: Triage[];
+  private _attivo: boolean;
 
   constructor() {
     super(0, "", "", "", "", "");
@@ -21,6 +22,7 @@ export class Paziente extends Persona {
     this._medico = new Medico();
     this._terapie = [];
     this._richieste = [];
+    this._attivo = false;
   }
 
   get terapie(): Terapia[] {
@@ -69,5 +71,13 @@ export class Paziente extends Persona {
 
   set medico(value: Medico) {
     this._medico = value;
+  }
+
+  get attivo(): boolean {
+    return this._attivo;
+  }
+
+  set attivo(value: boolean) {
+    this._attivo = value;
   }
 }

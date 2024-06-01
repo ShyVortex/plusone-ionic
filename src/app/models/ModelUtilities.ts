@@ -18,6 +18,7 @@ export class ModelUtilities {
     paziente.esenzione = json.esenzione;
     paziente.indirizzo = json.indirizzo;
     paziente.terapie = json.terapie;
+    paziente.attivo = json.attivo;
 
     return paziente;
   }

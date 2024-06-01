@@ -95,6 +95,7 @@ export class PazienteService {
     paziente.esenzione = true;
     paziente.medico = this.offlineSetMedicoCurante();
     paziente.donatoreOrgani = false;
+    paziente.attivo = true;
   }
 
   offlineSetMedicoCurante(): Medico {
