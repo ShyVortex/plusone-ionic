@@ -17,28 +17,21 @@
                   alt="Foto profilo paziente">
     </ion-img>
     <div class="profile-info">
-      <h2 class="profile-username">{{nurse._nome}} {{nurse._cognome}}</h2>
-      <p class="profile-email">{{nurse._CF}}</p>
+      <h2 class="profile-username">{{nurse.nome}} {{nurse.cognome}}</h2>
+      <p class="profile-email">{{nurse.CF}}</p>
     </div>
   </div>
   <ion-item>
-    <ion-input label="Email" type="" value="{{nurse._email}}"></ion-input>
+    <ion-input label="Email" type="" value="{{nurse.email}}" [(ngModel)]="this.emailToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Password" type="password" value="{{nurse._password}}"></ion-input>
+    <ion-input label="Password" type="password" value="{{nurse.password}}" [(ngModel)]="this.passwordToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Conferma password" type="password" value="{{nurse._password}}"></ion-input>
+    <ion-input label="Conferma password" type="password" value="{{nurse.password}}" [(ngModel)]="this.passwordToMatch"></ion-input>
   </ion-item>
-  <ion-button id="confirm" class="confirm-button" shape="round">Conferma modifiche</ion-button>
+  <ion-button id="confirm" class="confirm-button" (click)="this.presentAlert()" shape="round">Conferma modifiche</ion-button>
   <ion-button id="delete" class="delete-button" shape="round">Elimina infermiere</ion-button>
-
-  <ion-alert
-    trigger="confirm"
-    header="Conferma cambiamenti"
-    message="Sei sicuro di voler confermare le modifiche?"
-    [buttons]="confirmButtons"
-  ></ion-alert>
 
   <ion-alert
     trigger="delete"
@@ -46,7 +39,10 @@
     message="Sei sicuro di voler procedere? Questa azione è irreversibile."
     [buttons]="deleteButtons"
   ></ion-alert>
+
 </ion-content>
+
+
 
 <ion-footer>
   <ion-toolbar>

@@ -37,7 +37,6 @@ export class FunctionsPatientsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadItems();
   }
 
   async loadItems() {
@@ -49,20 +48,26 @@ export class FunctionsPatientsPage implements OnInit {
       this.isLoading = false;
     }, 1000);
   }
+  ionViewWillEnter(){
+    this.loadItems()
+  }
+  ionViewWillLeave() {
+    this.isLoading = true
+  }
 
-  
+
   search(event: any) {
     if (event.target.value === "") {
       this.filteredPatients = this.patients;
       return;
     }
-    
+
     this.filteredPatients = [];
     this.patients.forEach(element => {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      
+
       if (
         fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))
@@ -71,7 +76,7 @@ export class FunctionsPatientsPage implements OnInit {
       }
     });
   }
-  
+
   navigateBack() {
     this.navCtrl.navigateBack("admin-functions");
   }
