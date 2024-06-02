@@ -6,6 +6,7 @@ import { AlertController, IonContent, IonHeader, IonIcon, IonImg, IonTabBar, Ion
 import { Medico } from 'src/app/models/medico/Medico';
 import { MedicoService } from 'src/app/services/MedicoService/medico.service';
 import { Sesso } from 'src/app/models/persona/sesso';
+import {StorageService} from "../../../../services/StorageService/storage.service";
 
 @Component({
   selector: 'app-reservation',
@@ -19,34 +20,35 @@ export class ReservationDatePage implements OnInit {
 
   protected readonly Sesso = Sesso;
   protected currentDateTime!: string;
-  
+
   protected firstLoading: boolean = false;
   protected isLoading: boolean = true;
-  
+
   protected type!: string;
-  
+
   protected medics!: any[];
   protected filteredMedics!: any[];
-  
+
   protected hospitalWard!: string;
-  protected chosenMedic!: string;
+  protected chosenMedic!: Medico;
   protected date!: string;
 
   constructor(
-    private navCtrl: NavController, 
+    private navCtrl: NavController,
     private alertController: AlertController,
     private medicoService: MedicoService,
+    private storageService:StorageService
   ) {
     this.currentDateTime = new Date().toISOString();
     this.hospitalWard = "Specifica reparto";
     this.medics = [];
     this.filteredMedics = [];
   }
-  
+
   ngOnInit() {
     this.type = history.state.type;
   }
-  
+
   onModalOpen() {
     if(!this.firstLoading) {
       this.loadItems();
@@ -63,8 +65,8 @@ export class ReservationDatePage implements OnInit {
       this.isLoading = false;
       this.firstLoading = true;
     }, 1000);
-  }  
-  
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Errore',
@@ -84,23 +86,24 @@ export class ReservationDatePage implements OnInit {
 
     await alert.present();
   }
-  
+
   updateList() {
     this.filteredMedics = this.medics.filter(medic => medic.reparto === this.hospitalWard);
     console.log("Medici filtrati", this.filteredMedics);
   }
-  
+
   storeHospitalWard(event: CustomEvent) {
     this.hospitalWard = event.detail.value;
   }
 
-  storeMedic(medic: any) {
+  storeMedic(medic: Medico) {
     this.chosenMedic = medic;
     console.log("Medico scelto: ", this.chosenMedic);
     if (!this.hospitalWard) {
       this.presentWardAlert();
     } else {
       this.modal.dismiss();
+      this.storageService.setMedico(this.chosenMedic)
       console.log(this.chosenMedic);
     }
   }

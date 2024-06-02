@@ -14,6 +14,7 @@ import { TerapiaService } from "../../../../../services/TerapiaService/terapia.s
 import { TipologiaTerapia } from "../../../../../models/terapia/tipologia-terapia";
 import { PersonaService } from "../../../../../services/PersonaService/persona.service";
 import { StorageService } from "../../../../../services/StorageService/storage.service";
+import {Medico} from "../../../../../models/medico/Medico";
 
 @Component({
   selector: 'app-reservation-continue',
@@ -29,12 +30,13 @@ export class ReservationContinuePage implements OnInit {
   protected type!: string;
   protected hospitalWard!: string;
   protected date!: string;
-  
+
   private dataSubscription!: Subscription;
   private patientToPrenote!: Paziente;
   private terapia: any;
   private terapiaAdded: Terapia;
   private getPazienteByEmailObservable: Observable<Paziente>;
+  private chosenMedic:Medico
 
   // NUOVO CODICE
   protected therapies!: any[];
@@ -55,7 +57,7 @@ export class ReservationContinuePage implements OnInit {
           console.clear();
           console.log("patientToPrenote:", this.patientToPrenote);
           await firstValueFrom<Terapia>(
-            this.terapiaService.addTerapia(1, this.patientToPrenote.id, this.terapia)
+            this.terapiaService.addTerapia(this.chosenMedic.id, this.patientToPrenote.id, this.terapia)
           );
         }
 
@@ -85,11 +87,12 @@ export class ReservationContinuePage implements OnInit {
   ) {
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.terapiaAdded = new Terapia();
+    this.chosenMedic = storageService.getMedico()
     this.terapia = {};
     // actualIndex inital value is a placeholder
     this.actualIndex = 6;
 
-    // NUOVO CODICE: aggiunta della property 'reserved' per il blocco condizionale del button 
+    // NUOVO CODICE: aggiunta della property 'reserved' per il blocco condizionale del button
     this.times = [
       { time: '07:00', clicked: false, reserved: false },
       { time: '11:00', clicked: false, reserved: false },
@@ -101,7 +104,7 @@ export class ReservationContinuePage implements OnInit {
     this.type = history.state.type;
     this.hospitalWard = history.state.hospitalWard;
     this.date = history.state.date;
-      
+
     console.log(this.type);
     console.log(this.hospitalWard);
     console.log(this.date);
@@ -128,7 +131,7 @@ export class ReservationContinuePage implements OnInit {
       this.therapies.forEach((element: Terapia) => {
         console.log("Orario prenotazione", element.orario);
       })
-    }) 
+    })
   }
 
   async missingTimeAlert() {
