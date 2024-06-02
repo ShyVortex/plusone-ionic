@@ -32,6 +32,14 @@
     <ion-input type="" value="{{patient.cognome}}" [(ngModel)]="this.surnameToUpdate"></ion-input>
   </ion-item>
   <ion-item>
+    <ion-label><b>Sesso:</b></ion-label>
+    <ion-select class="left-aligned-select" value="{{patient.sesso}}" placeholder="{{patient.sesso}}"
+                [(ngModel)]="this.genderToUpdate">
+      <ion-select-option>Maschio</ion-select-option>
+      <ion-select-option>Femmina</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
     <ion-label><b>Città:</b></ion-label>
     <ion-row style="width: 1.25em"></ion-row>
     <ion-input type="" value="{{citta}}" [(ngModel)]="this.cityToUpdate">
@@ -55,12 +63,19 @@
   <ion-item>
     <ion-label><b>Esenzione:</b></ion-label>
     <ion-row style="width: 1.25em"></ion-row>
-    <ion-input type="" value="{{patient.esenzione}}" [(ngModel)]="this.exemptionToUpdate"></ion-input>
+    <ion-select class="left-aligned-select" value="{{patient.esenzione}}"
+                placeholder="{{patient.esenzione ? 'SI' : 'NO'}}" [(ngModel)]="this.exemptionToUpdate">
+      <ion-select-option>SI</ion-select-option>
+      <ion-select-option>NO</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-label><b>Donatore organi:</b></ion-label>
-    <ion-row style="width: 1.25em"></ion-row>
-    <ion-input type="" value="{{patient.donatoreOrgani}}" [(ngModel)]="this.donorToUpdate"></ion-input>
+    <ion-select class="left-aligned-select" value="{{patient.donatoreOrgani}}"
+                placeholder="{{patient.donatoreOrgani ? 'SI' : 'NO'}}" [(ngModel)]="this.donorToUpdate">
+      <ion-select-option>SI</ion-select-option>
+      <ion-select-option>NO</ion-select-option>
+    </ion-select>
   </ion-item>
    <!-- <ion-item>
      <ion-label class="bold-label">Medico curante:</ion-label>
@@ -69,10 +84,14 @@
   </ion-item> !-->
   <ion-item>
     <ion-label><b>Attivo:</b></ion-label>
-    <ion-row style="width: 1.25em"></ion-row>
-    <ion-input type="" value="{{patient.attivo}}" [(ngModel)]="this.activeState"></ion-input>
+    <ion-select class="left-aligned-select" value="{{patient.attivo}}"
+                placeholder="{{patient.attivo ? 'SI' : 'NO'}}" [(ngModel)]="this.activeState">
+      <ion-select-option>SI</ion-select-option>
+      <ion-select-option>NO</ion-select-option>
+    </ion-select>
   </ion-item>
-  <ion-button id="confirm" class="confirm-button" shape="round">Conferma modifiche</ion-button>
+  <ion-button id="confirm" class="confirm-button" (click)="this.presentAlert()"
+              shape="round">Conferma modifiche</ion-button>
   <ion-button id="delete" class="delete-button" shape="round">Elimina paziente</ion-button>
 
   <ion-alert

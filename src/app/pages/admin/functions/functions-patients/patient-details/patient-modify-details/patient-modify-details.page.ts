@@ -17,7 +17,7 @@ import {
   IonItem,
   IonInput,
   IonAlert,
-  IonRow
+  IonRow, IonSelect, IonSelectOption
 } from '@ionic/angular/standalone';
 import {AlertController, NavController} from "@ionic/angular";
 import { StorageService } from 'src/app/services/StorageService/storage.service';
@@ -32,7 +32,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
   templateUrl: './patient-modify-details.page.html',
   styleUrls: ['./patient-modify-details.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow]
+  imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
 })
 export class PatientModifyDetailsPage implements OnInit {
   protected patient: Paziente;
@@ -67,6 +67,7 @@ export class PatientModifyDetailsPage implements OnInit {
   protected citta: string;
   protected nameToUpdate: string;
   protected surnameToUpdate: string;
+  protected genderToUpdate!: string;
   protected cityToUpdate: string;
   protected CAPToUpdate: string;
   protected streetToUpdate: string;
@@ -102,12 +103,22 @@ export class PatientModifyDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header:"Conferma cambiamenti",
+      message:"Sei sicuro di voler confermare le modifiche?",
+      buttons:this.confirmButtons
+    });
+    await alert.present();
+  }
+
   async jsonFromPatient() {
     this.patientJson.id = this.patient.id;
-    this.patientJson.nome = this.patient.nome
-    this.patientJson.cognome = this.patient.cognome
+    this.patientJson.nome = this.nameToUpdate;
+    this.patientJson.cognome = this.surnameToUpdate;
+    this.patientJson.sesso = this.genderToUpdate;
     this.patientJson.email = this.patient.email;
-    this.patientJson.password = this.patient.password;
+    this.patientJson.password = await HashingUtilities.HashPassword(this.patient.password);
     this.patientJson.indirizzo = [this.CAPToUpdate, this.streetToUpdate, this.civicNumberToUpdate, this.citta];
     this.patientJson.indirizzo.cap = this.CAPToUpdate;
     this.patientJson.indirizzo.via = this.streetToUpdate;
