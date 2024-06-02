@@ -18,6 +18,7 @@ import {StorageService} from "../../../services/StorageService/storage.service";
 import {Admin} from "../../../models/admin/Admin";
 import {AdminService} from "../../../services/AdminService/admin.service";
 import {Router} from "@angular/router";
+import {Sesso} from "../../../models/persona/sesso";
 
 @Component({
   selector: 'app-functions',
@@ -86,4 +87,6 @@ export class FunctionsPage implements OnInit {
     this.personaService.setPersona(this.admin);
     this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
+
+    protected readonly Sesso = Sesso;
 }

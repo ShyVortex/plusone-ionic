@@ -18,6 +18,7 @@ import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {AdminService} from "../../../services/AdminService/admin.service";
+import {Sesso} from "../../../models/persona/sesso";
 
 @Component({
   selector: 'app-home',
@@ -88,4 +89,6 @@ export class HomePage implements OnInit {
     this.personaService.setPersona(this.admin);
     this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
+
+    protected readonly Sesso = Sesso;
 }
