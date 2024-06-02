@@ -40,6 +40,25 @@
     </ion-select>
   </ion-item>
   <ion-item>
+    <ion-label><b>Codice fiscale:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.CF}}" [(ngModel)]="this.CFtoUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Email:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{patient.email}}" [(ngModel)]="this.emailToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Password:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input [type]="isPasswordVisible ? 'text' : 'password'"
+               value="{{patient.password}}" [(ngModel)]="this.passwordToUpdate"></ion-input>
+    <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
+      <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
+    </ion-button>
+  </ion-item>
+  <ion-item>
     <ion-label><b>Città:</b></ion-label>
     <ion-row style="width: 1.25em"></ion-row>
     <ion-input type="" value="{{citta}}" [(ngModel)]="this.cityToUpdate">
@@ -48,7 +67,7 @@
   <ion-item>
     <ion-label><b>CAP:</b></ion-label>
     <ion-row style="width: 1.25em"></ion-row>
-    <ion-input type="" value="{{patient.indirizzo.cap}}" [(ngModel)]="this.CAPToUpdate"></ion-input>
+    <ion-input type="" value="{{patient.indirizzo.cap}}" [(ngModel)]="this.CAPtoUpdate"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label><b>Indirizzo:</b></ion-label>

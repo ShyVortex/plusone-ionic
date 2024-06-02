@@ -36,6 +36,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
 })
 export class PatientModifyDetailsPage implements OnInit {
   protected patient: Paziente;
+  protected isPasswordVisible: boolean = false;
   protected confirmButtons = [{
     text:'Annulla',
     role:'annulla',
@@ -67,9 +68,12 @@ export class PatientModifyDetailsPage implements OnInit {
   protected citta: string;
   protected nameToUpdate: string;
   protected surnameToUpdate: string;
-  protected genderToUpdate!: string;
+  protected genderToUpdate: string;
+  protected CFtoUpdate: string;
+  protected emailToUpdate: string;
+  protected passwordToUpdate: string;
   protected cityToUpdate: string;
-  protected CAPToUpdate: string;
+  protected CAPtoUpdate: string;
   protected streetToUpdate: string;
   protected civicNumberToUpdate: string;
   protected exemptionToUpdate: string;
@@ -89,8 +93,12 @@ export class PatientModifyDetailsPage implements OnInit {
     this.citta = this.patient.indirizzo.città;
     this.nameToUpdate = this.patient.nome;
     this.surnameToUpdate = this.patient.cognome;
+    this.genderToUpdate = this.patient.sesso;
+    this.CFtoUpdate = this.patient.CF;
+    this.emailToUpdate = this.patient.email;
+    this.passwordToUpdate = 'pippo';
     this.cityToUpdate = this.citta;
-    this.CAPToUpdate = this.patient.indirizzo.cap;
+    this.CAPtoUpdate = this.patient.indirizzo.cap;
     this.streetToUpdate = this.patient.indirizzo.via;
     this.civicNumberToUpdate = this.patient.indirizzo.numeroCivico;
     this.exemptionToUpdate = this.patient.esenzione.toString();
@@ -103,13 +111,27 @@ export class PatientModifyDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
   async presentAlert() {
-    const alert = await this.alertController.create({
-      header:"Conferma cambiamenti",
-      message:"Sei sicuro di voler confermare le modifiche?",
-      buttons:this.confirmButtons
-    });
-    await alert.present();
+    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate) === "PAZIENTE") {
+      const alert = await this.alertController.create({
+        header:"Conferma cambiamenti",
+        message:"Sei sicuro di voler confermare le modifiche?",
+        buttons:this.confirmButtons
+      });
+      await alert.present();
+    }
+    else {
+      const alert = await this.alertController.create({
+        header:"ERRORE",
+        message:"le Password non corrispondono oppure l'email non è nel formato corretto",
+        buttons:this.alertButton
+      });
+      await alert.present();
+    }
   }
 
   async jsonFromPatient() {
@@ -117,17 +139,17 @@ export class PatientModifyDetailsPage implements OnInit {
     this.patientJson.nome = this.nameToUpdate;
     this.patientJson.cognome = this.surnameToUpdate;
     this.patientJson.sesso = this.genderToUpdate;
-    this.patientJson.email = this.patient.email;
-    this.patientJson.password = await HashingUtilities.HashPassword(this.patient.password);
-    this.patientJson.indirizzo = [this.CAPToUpdate, this.streetToUpdate, this.civicNumberToUpdate, this.citta];
-    this.patientJson.indirizzo.cap = this.CAPToUpdate;
+    this.patientJson.email = this.emailToUpdate;
+    this.patientJson.password = await HashingUtilities.HashPassword(this.passwordToUpdate);
+    this.patientJson.indirizzo = [this.CAPtoUpdate, this.streetToUpdate, this.civicNumberToUpdate, this.citta];
+    this.patientJson.indirizzo.cap = this.CAPtoUpdate;
     this.patientJson.indirizzo.via = this.streetToUpdate;
     this.patientJson.indirizzo.numeroCivico = this.civicNumberToUpdate;
     this.patientJson.indirizzo.città = this.cityToUpdate;
     // this.patientJson.medicoCurante = this.medicToUpdate;
     this.patientJson.esenzione = this.exemptionToUpdate;
     this.patientJson.donatoreOrgani = this.donorToUpdate;
-    this.patientJson.cf = this.patient.CF;
+    this.patientJson.cf = this.CFtoUpdate;
   }
 
   navigateBack() {

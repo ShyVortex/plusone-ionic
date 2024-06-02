@@ -38,6 +38,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
 
 export class NurseModifyDetailsPage implements OnInit {
   protected nurse: Infermiere;
+  protected isPasswordVisible: boolean = false;
   protected readonly Sesso = Sesso;
 
   protected confirmButtons = [{
@@ -76,6 +77,9 @@ export class NurseModifyDetailsPage implements OnInit {
   protected nameToUpdate: string;
   protected surnameToUpdate: string;
   protected genderToUpdate: string;
+  protected CFtoUpdate: string;
+  protected emailToUpdate: string;
+  protected passwordToUpdate: string;
   protected hospitalToUpdate: string;
   protected wardToUpdate: string;
   protected roleToUpdate: string;
@@ -92,6 +96,9 @@ export class NurseModifyDetailsPage implements OnInit {
     this.nameToUpdate = this.nurse.nome;
     this.surnameToUpdate = this.nurse.cognome;
     this.genderToUpdate = this.nurse.sesso;
+    this.CFtoUpdate = this.nurse.CF;
+    this.emailToUpdate = this.nurse.email;
+    this.passwordToUpdate = 'pippo';
     this.hospitalToUpdate = this.nurse.ospedale;
     this.wardToUpdate = this.nurse.reparto;
     this.roleToUpdate = this.nurse.ruolo;
@@ -122,24 +129,38 @@ export class NurseModifyDetailsPage implements OnInit {
     this.navCtrl.navigateForward("admin-reports", {animated: false});
   }
 
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
   async presentAlert() {
-    const alert = await this.alertController.create({
-      header:"Conferma cambiamenti",
-      message:"Sei sicuro di voler confermare le modifiche?",
-      buttons:this.confirmButtons
-    });
-    await alert.present();
+    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate)==="INFERMIERE") {
+      const alert = await this.alertController.create({
+        header:"Conferma cambiamenti",
+        message:"Sei sicuro di voler confermare le modifiche?",
+        buttons:this.confirmButtons
+      });
+      await alert.present();
+    }
+    else {
+      const alert = await this.alertController.create({
+        header:"ERRORE",
+        message:"le Password non corrispondono oppure l'email non è nel formato corretto",
+        buttons:this.alertButton
+      });
+      await alert.present();
+    }
   }
 
   async jsonFromNurse() {
     this.nurseJson.id = this.nurse.id;
     this.nurseJson.nome = this.nameToUpdate;
     this.nurseJson.cognome = this.surnameToUpdate;
-    this.nurseJson.email = this.nurse.email;
-    this.nurseJson.password = await HashingUtilities.HashPassword(this.nurse.password);
+    this.nurseJson.email = this.emailToUpdate;
+    this.nurseJson.password = await HashingUtilities.HashPassword(this.passwordToUpdate);
     this.nurseJson.ospedale = this.hospitalToUpdate;
     this.nurseJson.reparto = this.wardToUpdate;
     this.nurseJson.ruolo = this.roleToUpdate;
-    this.nurseJson.cf = this.nurse.CF;
+    this.nurseJson.cf = this.CFtoUpdate;
   }
 }

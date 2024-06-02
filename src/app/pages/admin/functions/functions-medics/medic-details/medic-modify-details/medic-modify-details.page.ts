@@ -44,10 +44,14 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
 
 export class MedicModifyDetailsPage implements OnInit {
   protected medic: Medico;
+  protected isPasswordVisible: boolean = false;
   protected readonly Sesso = Sesso;
   protected nameToUpdate: string;
   protected surnameToUpdate: string;
   protected genderToUpdate: string;
+  protected CFtoUpdate: string;
+  protected emailToUpdate: string;
+  protected passwordToUpdate: string;
   protected hospitalToUpdate: string;
   protected wardToUpdate: string;
   protected roleToUpdate: string;
@@ -57,9 +61,7 @@ export class MedicModifyDetailsPage implements OnInit {
   protected confirmButtons = [{
     text:'Annulla',
     role:'annulla',
-    handler:()=> {
-
-    }
+    handler:()=> {}
   }, {
     text:'Conferma',
     role:'conferma',
@@ -74,9 +76,7 @@ export class MedicModifyDetailsPage implements OnInit {
   protected deleteButtons = [{
     text:'Annulla',
     role:'annulla',
-    handler:()=> {
-
-    }
+    handler:()=> {}
   }, {
     text:'Elimina',
     role:'elimina',
@@ -98,6 +98,9 @@ export class MedicModifyDetailsPage implements OnInit {
     this.nameToUpdate = this.medic.nome;
     this.surnameToUpdate = this.medic.cognome;
     this.genderToUpdate = this.medic.sesso;
+    this.CFtoUpdate = this.medic.CF;
+    this.emailToUpdate = this.medic.email;
+    this.passwordToUpdate = 'pippo';
     this.hospitalToUpdate = this.medic.ospedale;
     this.wardToUpdate = this.medic.reparto;
     this.roleToUpdate = this.medic.ruolo;
@@ -128,18 +131,32 @@ export class MedicModifyDetailsPage implements OnInit {
     this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
 
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
   async presentAlert() {
-    const alert = await this.alertController.create({
-      header:"Conferma cambiamenti",
-      message:"Sei sicuro di voler confermare le modifiche?",
-      buttons:this.confirmButtons
-    });
-    await alert.present();
+    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate) === "MEDICO") {
+      const alert = await this.alertController.create({
+        header:"Conferma cambiamenti",
+        message:"Sei sicuro di voler confermare le modifiche?",
+        buttons:this.confirmButtons
+      });
+      await alert.present();
+    }
+    else {
+      const alert = await this.alertController.create({
+        header:"ERRORE",
+        message:"le Password non corrispondono oppure l'email non è nel formato corretto",
+        buttons:this.alertButton
+      });
+      await alert.present();
+    }
   }
 
   async medicoToJson(){
-    this.medicoJson.email = this.medic.email;
-    this.medicoJson.password = await HashingUtilities.HashPassword(this.medic.password);
+    this.medicoJson.email = this.emailToUpdate;
+    this.medicoJson.password = await HashingUtilities.HashPassword(this.passwordToUpdate);
     this.medicoJson.id = this.medic.id;
     this.medicoJson.nome = this.nameToUpdate;
     this.medicoJson.cognome = this.surnameToUpdate;
@@ -147,6 +164,6 @@ export class MedicModifyDetailsPage implements OnInit {
     this.medicoJson.reparto = this.wardToUpdate;
     this.medicoJson.ruolo = this.roleToUpdate;
     this.medicoJson.tipologiaMedico = this.typologyToUpdate;
-    this.medicoJson.cf = this.medic.CF;
+    this.medicoJson.cf = this.CFtoUpdate;
   }
 }
