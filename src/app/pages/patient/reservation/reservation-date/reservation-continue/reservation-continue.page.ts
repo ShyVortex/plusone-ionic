@@ -30,17 +30,16 @@ export class ReservationContinuePage implements OnInit {
   protected type!: string;
   protected hospitalWard!: string;
   protected date!: string;
+  private chosenMedic: Medico;
 
+  private terapia: any;
+  protected therapies!: any[];
+  private terapiaAdded: Terapia;
+  
   private dataSubscription!: Subscription;
   private patientToPrenote!: Paziente;
-  private terapia: any;
-  private terapiaAdded: Terapia;
   private getPazienteByEmailObservable: Observable<Paziente>;
-  private chosenMedic:Medico
-
-  // NUOVO CODICE
-  protected therapies!: any[];
-
+  
   public alertButtons = [
     {
       text: 'Annulla',
@@ -89,12 +88,10 @@ export class ReservationContinuePage implements OnInit {
     this.terapiaAdded = new Terapia();
     this.chosenMedic = storageService.getMedico()
     this.terapia = {};
-    // actualIndex inital value is a placeholder
     this.actualIndex = 6;
 
-    // NUOVO CODICE: aggiunta della property 'reserved' per il blocco condizionale del button
     this.times = [
-      { time: '07:00', clicked: false, reserved: true },
+      { time: '07:00', clicked: false, reserved: false },
       { time: '11:00', clicked: false, reserved: false },
       { time: '15:30', clicked: false, reserved: false },
       { time: '16:15', clicked: false, reserved: false },
@@ -127,10 +124,27 @@ export class ReservationContinuePage implements OnInit {
 
     this.terapiaService.getTerapieByTipologiaTerapia(this.type).subscribe((result: Terapia[]) => {
       this.therapies = result;
+
       this.therapies.forEach((element: Terapia) => {
-        console.log("Orario prenotazione: ", element.orario);
-      })
-    })
+        console.log("Data prenotazione: ", element.orario.split('T')[0]);
+        console.log("Orario prenotazione: ", element.orario.split('T')[1]);
+        
+        this.times.forEach((time: time) => {
+          console.log("Data 1 da confrontare: ", this.date);
+          console.log("Data 2 da confrontare: ", element.orario.split('T')[0]);
+          console.log("Orario 1 da confrontare: ", time.time);
+          console.log("Orario 2 da confrontare: ", element.orario.split('T')[1].substring(0, 5));
+          
+          if (this.date === element.orario.split('T')[0] && time.time === element.orario.split('T')[1].substring(0, 5)) {
+            console.log("Match trovato");
+            console.log("Orario: ", time.time);
+            console.log("Orario prenotazione: ", element.orario.split('T')[1].substring(0, 5));
+            
+            time.reserved = true;
+          }
+        });
+      });
+    });
   }
 
   async missingTimeAlert() {
@@ -168,10 +182,9 @@ export class ReservationContinuePage implements OnInit {
 
   toggleClickedItem(clickedIndex: number) {
     if (this.actualIndex < 6) this.times[this.actualIndex].clicked = !this.times[this.actualIndex].clicked;
-    /* if (this.actualIndex !== clickedIndex) */ this.actualIndex = clickedIndex;
-
+    
+    this.actualIndex = clickedIndex;
     this.times[clickedIndex].clicked = !this.times[clickedIndex].clicked;
-    //console.log(this.actualIndex, clickedIndex);
   }
 
   submit() {
