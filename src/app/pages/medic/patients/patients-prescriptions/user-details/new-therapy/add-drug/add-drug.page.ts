@@ -1,8 +1,7 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonTabButton, IonTabs, IonTabBar, IonImg, IonFooter, IonItem, IonAvatar, IonList, IonSearchbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonTabButton, IonTabs, IonTabBar, IonImg, IonFooter, IonItem, IonAvatar, IonList, IonSearchbar, IonAlert } from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
 import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { PersonaService } from 'src/app/services/PersonaService/persona.service';
@@ -15,11 +14,12 @@ import { FarmacoService } from 'src/app/services/FarmacoService/farmaco.service'
   templateUrl: './add-drug.page.html',
   styleUrls: ['./add-drug.page.scss'],
   standalone: true,
-  imports: [IonSearchbar, IonList, IonAvatar, IonItem, IonFooter, IonImg, IonTabBar, IonTabs, IonTabButton, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonAlert, IonSearchbar, IonList, IonAvatar, IonItem, IonFooter, IonImg, IonTabBar, IonTabs, IonTabButton, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class AddDrugPage implements OnInit {
   protected paziente: Paziente;
   protected isLoading: boolean = true;
+
   protected drugs!: Farmaco[];
   protected filteredDrugs!: Farmaco[];
 
@@ -59,6 +59,12 @@ export class AddDrugPage implements OnInit {
       if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredDrugs.push(element);
       }
+    });
+  }
+
+  submitDrug() {
+    // TODO: implementare la logica di aggiunta del farmaco alla terapia
+    this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {
     });
   }
 

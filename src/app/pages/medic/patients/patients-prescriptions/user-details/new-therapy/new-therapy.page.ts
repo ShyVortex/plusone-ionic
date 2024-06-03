@@ -8,6 +8,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-therapy',
@@ -22,7 +23,7 @@ export class NewTherapyPage implements OnInit{
   protected paziente: Paziente;
 
   protected drugs!: Farmaco[];
-  protected drug: Farmaco = new Farmaco(1, 'codice', 'nome', 'categoria', 'principioattivo', 'azienda');
+  protected drug: Farmaco = new Farmaco(1, 'codice', 'Un farmaco', 'categoria', 'principioattivo', 'azienda');
 
   protected exams!: Farmaco[];
   protected exam: Farmaco = new Farmaco(1, 'codice', 'nome', 'categoria', 'principioattivo', 'azienda');
@@ -30,9 +31,27 @@ export class NewTherapyPage implements OnInit{
   protected name!: string;
   protected message = 'Message';
 
+  protected alertButtons = [
+    {
+      text: 'Annulla',
+      role: 'cancel',
+      handler: () => {}
+    },
+    {
+      text: 'Conferma',
+      role: 'confirm',
+      handler: () => {
+        this.storageService.setPaziente(this.paziente);
+        this.navCtrl.navigateBack('medic-patients-prescriptions', {
+        });
+      }
+    }
+  ];
+
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
+    private alertController: AlertController
   ) {
     this.paziente = storageService.getPaziente();
     this.drugs = [];
@@ -43,10 +62,19 @@ export class NewTherapyPage implements OnInit{
     this.drugs.push(this.drug);
   }
 
-  navigateBack() {
-    this.storageService.setPaziente(this.paziente);
-    this.navCtrl.navigateBack('medic-patients-prescriptions', {
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Conferma cancellazione',
+      message: 'Sei sicuro di voler annullare il processo? Confermare comporterà la perdita di tutti i dati inseriti.',
+      buttons: this.alertButtons,
     });
+
+    await alert.present();
+  }
+
+  navigateBack() {
+    this.presentAlert();
+   
   }
 
   goToAddDrug() {

@@ -7,6 +7,7 @@ import { Esame } from 'src/app/models/esame/Esame';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { EsameService } from 'src/app/services/EsameService/esame.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-exam',
@@ -25,7 +26,8 @@ export class AddExamPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
-    private esameService: EsameService
+    private esameService: EsameService,
+    private alertController: AlertController
   ) { 
     this.paziente = storageService.getPaziente();
   }
@@ -58,6 +60,12 @@ export class AddExamPage implements OnInit {
       if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredExams.push(element);
       }
+    });
+  }
+
+  submitExam() {
+    // TODO: implemetare la logica di aggiunta dell'esame alla terapia
+    this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {
     });
   }
 
