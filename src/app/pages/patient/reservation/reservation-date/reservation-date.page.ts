@@ -58,7 +58,7 @@ export class ReservationDatePage implements OnInit {
   async loadItems() {
     setTimeout(() => {
       this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
-        this.medics = result;
+        this.medics = result.filter((medic) => medic.tipologiaMedico === 'OSPEDALIERO');
         this.filteredMedics = this.medics;
         console.log('Medici caricati');
       });
@@ -113,11 +113,23 @@ export class ReservationDatePage implements OnInit {
   }
 
   submit() {
-    if (!this.hospitalWard || !this.date || !this.chosenMedic) {
-      this.presentAlert();
-    } else {
-      this.routeToReservationContinue();
-    }
+    switch (this.type) {
+      case 'SPECIALISTICA':
+        if (!this.hospitalWard || !this.date || !this.chosenMedic) {
+          this.presentAlert();
+        } else {
+          this.routeToReservationContinue();
+        } 
+      break;
+      
+      case 'GENERALE': 
+        if (!this.hospitalWard || !this.date) {
+          this.presentAlert();
+        } else {
+          this.routeToReservationContinue();
+        }
+      break;
+    }    
   }
 
   navigateBack() {
