@@ -9,35 +9,81 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content scrollY="false">
+<ion-content>
   <div class="profile-container">
     <ion-img class="profile-avatar"
                   src="../../../../../../../assets/icon/home/avatar/av-doctor-male.png"
                   alt="Foto profilo paziente">
     </ion-img>
     <div class="profile-info">
-      <h2 class="profile-username">{{medic._nome}} {{medic._cognome}}</h2>
-      <p class="profile-email">{{medic._CF}}</p>
+      <h2 class="profile-username">{{medic.nome}} {{medic.cognome}}</h2>
+      <p class="profile-email">{{medic.CF}}</p>
     </div>
   </div>
   <ion-item>
-    <ion-input label="Email" type="" value="{{medic._email}}"></ion-input>
+    <ion-label><b>Nome:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input value="{{medic.nome}}" [(ngModel)]="this.nameToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Password" type="password" value="{{medic._password}}"></ion-input>
+    <ion-label><b>Cognome:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.cognome}}" [(ngModel)]="this.surnameToUpdate"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input label="Conferma password" type="password" value="{{medic._password}}"></ion-input>
+    <ion-label><b>Sesso:</b></ion-label>
+    <ion-select class="left-aligned-select" value="{{medic.sesso}}" placeholder="{{medic.sesso}}"
+                [(ngModel)]="this.genderToUpdate">
+      <ion-select-option>Maschio</ion-select-option>
+      <ion-select-option>Femmina</ion-select-option>
+    </ion-select>
   </ion-item>
-  <ion-button id="confirm" class="confirm-button" shape="round">Conferma modifiche</ion-button>
+  <ion-item>
+    <ion-label><b>Codice fiscale:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.CF}}" [(ngModel)]="this.CFtoUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Email:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.email}}" [(ngModel)]="this.emailToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Password:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input [type]="isPasswordVisible ? 'text' : 'password'"
+               value="{{medic.password}}" [(ngModel)]="this.passwordToUpdate"></ion-input>
+    <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
+      <ion-img id="eye-icon" src="../../assets/icon/eye.png"></ion-img>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Ospedale:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.ospedale}}" [(ngModel)]="this.hospitalToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Reparto:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.reparto}}" [(ngModel)]="this.wardToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Ruolo:</b></ion-label>
+    <ion-row style="width: 1.25em"></ion-row>
+    <ion-input type="" value="{{medic.ruolo}}" [(ngModel)]="this.roleToUpdate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><b>Tipologia:</b></ion-label>
+    <ion-select class="left-aligned-select" value="{{medic.tipologiaMedico}}"
+                placeholder="{{medic.tipologiaMedico ? 'DI BASE' : 'OSPEDALIERO'}}"
+                [(ngModel)]="this.typologyToUpdate">
+      <ion-select-option>DI BASE</ion-select-option>
+      <ion-select-option>OSPEDALIERO</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button class="confirm-button" (click)="this.presentAlert()" shape="round">Conferma modifiche</ion-button>
   <ion-button id="delete" class="delete-button" shape="round">Elimina medico</ion-button>
 
-  <ion-alert
-    trigger="confirm"
-    header="Conferma cambiamenti"
-    message="Sei sicuro di voler confermare le modifiche?"
-    [buttons]="confirmButtons"
-  ></ion-alert>
 
   <ion-alert
     trigger="delete"

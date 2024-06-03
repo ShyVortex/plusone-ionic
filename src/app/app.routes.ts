@@ -27,9 +27,9 @@ export const routes: Routes = [
       .then(m => m.SignupEndPage)
   },
   {
-    path: 'signup-confirmed',
-    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-confirmed/signup-confirmed.page')
-      .then(m => m.SignupConfirmedPage)
+    path: 'signup-pending',
+    loadComponent: () => import('./pages/registration/signup/signup-continue/signup-end/signup-pending/signup-pending.page')
+      .then(m => m.SignupPendingPage)
   },
   {
     path: 'patient-home',

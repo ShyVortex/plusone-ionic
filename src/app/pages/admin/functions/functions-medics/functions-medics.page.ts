@@ -28,7 +28,7 @@ import { StorageService } from 'src/app/services/StorageService/storage.service'
 })
 export class FunctionsMedicsPage implements OnInit {
   protected isLoading: boolean = true;
-  
+
   protected medics!: Medico[];
   protected filteredMedics!: Medico[];
 
@@ -39,20 +39,28 @@ export class FunctionsMedicsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadItems();
   }
 
   async loadItems() {
-    setTimeout(() => {
-      this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
-        this.medics = result;
-        this.filteredMedics = this.medics;
-      });
-      this.isLoading = false;
-    }, 1000);
+      setTimeout(() => {
+        this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
+          this.medics = result;
+          this.filteredMedics = this.medics;
+        });
+        this.isLoading = false;
+
+      }, 1000);
   }
 
-  
+  ionViewWillEnter(){
+    this.loadItems();
+  }
+  ionViewWillLeave(){
+    this.isLoading = true;
+  }
+
+
+
   search(event: any) {
     if (event.target.value === "") {
       this.filteredMedics = this.medics;
@@ -64,7 +72,7 @@ export class FunctionsMedicsPage implements OnInit {
       const fullName = `${element.nome} ${element.cognome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
       const reversedFullName = `${element.cognome} ${element.nome}`.toLowerCase();
-      
+
       if (
         fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, '')) ||
         reversedFullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))
@@ -73,7 +81,7 @@ export class FunctionsMedicsPage implements OnInit {
       }
     });
   }
-  
+
   navigateBack() {
     this.navCtrl.navigateBack("admin-functions");
   }
@@ -82,7 +90,7 @@ export class FunctionsMedicsPage implements OnInit {
     this.storageService.setMedico(medico);
     this.navCtrl.navigateForward("admin-medic-details");
   }
-  
+
   goToHome() {
     this.navCtrl.navigateForward("admin-home", { animated: false });
   }
