@@ -48,7 +48,7 @@ export class ReservationContinuePage implements OnInit {
       handler: () => {}
     },
     {
-      text  : 'Conferma',
+      text: 'Conferma',
       role: 'confirm',
       handler: async () => {
         this.setTerapia()
@@ -94,7 +94,7 @@ export class ReservationContinuePage implements OnInit {
 
     // NUOVO CODICE: aggiunta della property 'reserved' per il blocco condizionale del button
     this.times = [
-      { time: '07:00', clicked: false, reserved: false },
+      { time: '07:00', clicked: false, reserved: true },
       { time: '11:00', clicked: false, reserved: false },
       { time: '15:30', clicked: false, reserved: false },
       { time: '16:15', clicked: false, reserved: false },
@@ -125,11 +125,10 @@ export class ReservationContinuePage implements OnInit {
       }
     });
 
-    // NUOVO CODICE
     this.terapiaService.getTerapieByTipologiaTerapia(this.type).subscribe((result: Terapia[]) => {
       this.therapies = result;
       this.therapies.forEach((element: Terapia) => {
-        console.log("Orario prenotazione", element.orario);
+        console.log("Orario prenotazione: ", element.orario);
       })
     })
   }

@@ -98,12 +98,15 @@ export class ReservationDatePage implements OnInit {
 
   storeMedic(medic: Medico) {
     this.chosenMedic = medic;
+
     console.log("Medico scelto: ", this.chosenMedic);
+
     if (!this.hospitalWard) {
       this.presentWardAlert();
     } else {
       this.modal.dismiss();
       this.storageService.setMedico(this.chosenMedic)
+      
       console.log(this.chosenMedic);
     }
   }

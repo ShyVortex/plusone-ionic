@@ -71,22 +71,28 @@
     </ion-grid>
   </ion-card>
 
-  <div slot="fixed" style="width: 100%; padding: 25px; padding-left: 13; bottom: 0;">
-    <ion-button shape="round" style="width: 75%; margin-right: 1.8em; margin-top: 11px;">Conferma terapia</ion-button>
-    <ion-fab id="open-modal">
-      <ion-fab-button>
-        <ion-icon class="fas fa-add" style="color:white"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-list side="top">
-        <ion-fab-button data-desc="Aggiungi farmaco" color="primary" (click)="goToAddDrug()">
-          <ion-icon class="fas fa-pills" style="color:white"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button data-desc="Aggiungi esame" color="primary" (click)="goToAddExam()">
-          <ion-icon class="fas fa-notes-medical" style="color:white"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>
-  </div>
+  <ion-grid slot="fixed" style="width: 100%; bottom: 0; padding: 1em; display: flex; justify-content: center;">
+    <ion-row style="width: 100%; max-width: 1000px;">
+      <ion-col class="buttons" size="10" style="padding-left: 0;">
+        <ion-button shape="round" style="width: 100%; margin-top: 11px;">Conferma terapia</ion-button>
+      </ion-col>
+      <ion-col class="buttons" offset="0.3" size="1.5">
+        <ion-fab id="open-modal" style="margin-left: auto; margin-right: auto;">
+          <ion-fab-button>
+            <ion-icon class="fas fa-add" style="color:white"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="top">
+            <ion-fab-button data-desc="Aggiungi farmaco" color="primary" (click)="goToAddDrug()">
+              <ion-icon class="fas fa-pills" style="color:white"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button data-desc="Aggiungi esame" color="primary" (click)="goToAddExam()">
+              <ion-icon class="fas fa-notes-medical" style="color:white"></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
