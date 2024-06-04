@@ -1,29 +1,15 @@
-.legacy-toolbar {
-  .back-button {
-    margin-top: -0.1em;
-    margin-bottom: -1em;
-  }
-
-  .tab-name {
-    margin-top: 1em;
-    font-size: 25px;
-  }
-}
-
-.report-details-content {
+.request-details-content {
   .summary-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 1em;
-    margin-right: 1em;
 
-    .report-summary-icon {
+    .request-summary-icon {
       width: 7em;
       height: auto;
     }
 
-    .report-summary-text {
+    .request-summary-text {
       margin-left: 1em;
     }
   }
@@ -35,7 +21,7 @@
     margin-left: 2em;
     margin-right: 2em;
 
-    .report-details-text {
+    .request-details-text {
       font-size: large;
     }
   }
@@ -45,11 +31,12 @@
     justify-content: center;
     align-items: center;
 
-    .report-buttons {
+    .request-buttons {
       text-transform: none;
       font-family: Inter, sans-serif;
       font-weight: bold;
       letter-spacing: 0;
+      margin: 0 1.5em;
     }
   }
 }

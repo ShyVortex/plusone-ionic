@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  IonButton,
   IonContent,
   IonFooter,
   IonHeader,
@@ -18,22 +19,29 @@ import {AdminService} from "../../../services/AdminService/admin.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Sesso} from "../../../models/persona/sesso";
+import {Paziente} from "../../../models/paziente/Paziente";
+import {Observable} from "rxjs";
+import {DataService} from "../../../services/data.service";
+import {PazienteService} from "../../../services/PazienteService/paziente.service";
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.page.html',
   styleUrls: ['./requests.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton]
 })
 export class RequestsPage implements OnInit {
   protected admin: Admin;
+  protected getAllInattiviObservable!: Observable<Paziente[]>;
+  protected pazienti!: Paziente[];
 
   constructor(
     private navCtrl: NavController,
     private router: Router,
     private personaService: PersonaService,
     private adminService: AdminService,
+    private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
     this.admin = this.personaService.getPersona();
@@ -45,12 +53,27 @@ export class RequestsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getAllInattiviObservable = this.pazienteService.getAllPazientiInattivi();
+    this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
+      this.pazienti = value;
+    });
+
     if (!this.admin.isSet())
       this.adminService.offlineSetAdmin(this.admin);
   }
 
-  handleRefresh(customEvent: any) {
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
+        this.pazienti = value;
+      });
+      event.target.complete();
+    }, 1000);
+  }
 
+  routeToRequestDetails(paziente: Paziente) {
+    this.storageService.setPaziente(paziente);
+    this.navCtrl.navigateForward("admin-request-details");
   }
 
   routeToSettings() {
