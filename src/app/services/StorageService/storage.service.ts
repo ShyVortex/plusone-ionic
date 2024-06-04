@@ -23,6 +23,7 @@ export class StorageService {
   private richieste!: Triage[];
   private segnalazione!: Segnalazione;
   private segnalazioni: Segnalazione[];
+  private tFarmacologicaId!:number
 
   constructor() {
     this.paziente = new Paziente();
@@ -110,6 +111,12 @@ export class StorageService {
 
   getSegnalazioni() {
     return this.segnalazioni;
+  }
+  setTfarmacologicaId(value: number) {
+    this.tFarmacologicaId = value
+  }
+  getTFarmacologicaId() {
+    return this.tFarmacologicaId;
   }
 
   cacheSegnalazione(value: Segnalazione) {

@@ -1,34 +1,134 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonTabButton, IonTabs, IonTabBar, IonImg, IonFooter, IonItem, IonAvatar, IonList, IonSearchbar, IonAlert } from '@ionic/angular/standalone';
-import { NavController } from "@ionic/angular";
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonLabel,
+  IonButton,
+  IonTabButton,
+  IonTabs,
+  IonTabBar,
+  IonImg,
+  IonFooter,
+  IonItem,
+  IonAvatar,
+  IonList,
+  IonSearchbar,
+  IonAlert,
+  IonProgressBar, AlertController, ToastController
+} from '@ionic/angular/standalone';
+import {AlertInput, NavController} from "@ionic/angular";
 import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { PersonaService } from 'src/app/services/PersonaService/persona.service';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { FarmacoService } from 'src/app/services/FarmacoService/farmaco.service';
+import {firstValueFrom} from "rxjs";
+import {
+  QuantitaDettaglioService
+} from "../../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
+import {QuantitaDettaglio} from "../../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
 
 @Component({
   selector: 'app-add-drug',
   templateUrl: './add-drug.page.html',
   styleUrls: ['./add-drug.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonSearchbar, IonList, IonAvatar, IonItem, IonFooter, IonImg, IonTabBar, IonTabs, IonTabButton, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonAlert, IonSearchbar, IonList, IonAvatar, IonItem, IonFooter, IonImg, IonTabBar, IonTabs, IonTabButton, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonProgressBar]
 })
 export class AddDrugPage implements OnInit {
   protected paziente: Paziente;
   protected isLoading: boolean = true;
+  private note!:string;
+  private quantita!:any
+  private navURL!: string;
+  private tfarmacologicaId!:number
+  private quantitaDettaglioJSON: any
+  private chosenDrug!:Farmaco
 
   protected drugs!: Farmaco[];
   protected filteredDrugs!: Farmaco[];
 
+  private alertButtons = [
+    {
+      text: 'Annulla',
+      role: 'cancel',
+      handler: () => {}
+    },
+    {
+      text: 'Conferma',
+      role: 'confirm',
+      handler: async (alertData: any) => {
+        this.quantita = alertData.quantita
+        this.note = alertData.note;
+        if (this.isValidInput()) {
+          if (this.quantita >= 10) {
+            this.presentToast("La quantità inserita sembra essere eccessiva, inserire una quantità adeguata!")
+          } else {
+            this.setQuantitaDettaglio()
+            try {
+              await firstValueFrom<QuantitaDettaglio>(
+                this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id, this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON)
+              );
+              this.presentToast("Farmaco assegnato correttamente!")
+            } catch (error) {
+              console.error(error)
+            }
+
+          }
+        } else {
+          this.presentToast("Dati non validi, inserire dei dati corretti!")
+        }
+      }
+    }
+  ];
+  private alertInputs:AlertInput[] = [
+    {
+      name:"quantita",
+      type: "number",
+      placeholder: 'Quantità',
+    },
+    {
+      name:"note",
+      type: 'textarea',
+      placeholder: 'Note aggiuntive',
+      attributes: {
+        maxlength: 50,
+      },
+    },
+  ];
+  protected exitButtons = [
+    {
+      text: 'Annulla',
+      role: 'cancel',
+      handler: () => {}
+    },
+    {
+      text: 'Conferma',
+      role: 'confirm',
+      handler: () => {
+        this.storageService.setPaziente(this.paziente);
+        this.navCtrl.navigateForward(this.navURL, {animated:false
+        });
+      }
+    }
+  ];
+
+
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
-    private farmacoService: FarmacoService
+    private farmacoService: FarmacoService,
+    private alertController:AlertController,
+    private toastController: ToastController,
+    private quantitaDettaglioService:QuantitaDettaglioService
   ) {
+    this.quantitaDettaglioJSON = {}
     this.paziente = storageService.getPaziente();
+
   }
 
   ngOnInit() {
@@ -44,6 +144,9 @@ export class AddDrugPage implements OnInit {
       this.isLoading = false;
     }, 1000);
   }
+  ionViewWillEnter(){
+    this.tfarmacologicaId = this.storageService.getTFarmacologicaId()
+  }
 
   search(event: any) {
     if (event.target.value === "") {
@@ -55,17 +158,44 @@ export class AddDrugPage implements OnInit {
     this.drugs.forEach(element => {
       const fullName = `${element.nome}`.toLowerCase();
       const searchValue = event.target.value.toLowerCase();
-      
+
       if (fullName.replace(/\s+/g, '').includes(searchValue.replace(/\s+/g, ''))) {
         this.filteredDrugs.push(element);
       }
     });
   }
 
-  submitDrug() {
-    // TODO: implementare la logica di aggiunta del farmaco alla terapia
-    this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {
+  submitDrug(drug:Farmaco) {
+    this.chosenDrug = drug
+    this.presentDrugInsertAlert()
+    //this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {});
+  }
+  async presentDrugInsertAlert() {
+    const alert = await this.alertController.create({
+      header: 'Informazioni aggiuntive',
+      message: 'Compila i campi.',
+      inputs:  this.alertInputs,
+      buttons: this.alertButtons,
     });
+
+
+    await alert.present();
+  }
+  async presentExitAlertButton() {
+    const alert = await this.alertController.create({
+      header: 'Conferma cancellazione',
+      message: 'Sei sicuro di voler annullare il processo? Confermare comporterà la perdita di tutti i dati inseriti.',
+      buttons: this.exitButtons,
+    });
+    await alert.present()
+  }
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+    });
+
+    await toast.present();
   }
 
   navigateBack() {
@@ -75,14 +205,26 @@ export class AddDrugPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack('medic-home', { animated: false });
+    this.navURL = 'medic-home'
+    this.presentExitAlertButton()
   }
 
   goToNotifs() {
-    this.navCtrl.navigateForward('medic-notifs', { animated: false });
+    this.navURL = 'medic-notifs'
+    this.presentExitAlertButton()
   }
 
   goToPatients() {
-    this.navCtrl.navigateForward('medic-drugs', { animated: false });
+    this.navURL = 'medic-patients'
+    this.presentExitAlertButton()
   }
+
+  private isValidInput():boolean{
+    return (this.note !== undefined && this.note !== '') && (this.quantita !== undefined && this.quantita !==''&& this.quantita !== 0 )
+  }
+  private setQuantitaDettaglio(){
+    this.quantitaDettaglioJSON.quantita = this.quantita
+    this.quantitaDettaglioJSON.note = this.note
+  }
+
 }

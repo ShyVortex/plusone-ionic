@@ -22,13 +22,13 @@
     <ion-grid class="drug-grid" *ngFor="let drug of drugs; let i = index">
       <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug drug-name">{{drug.nome}}</ion-label>
+          <ion-label class="drug drug-name">{{drug?.farmaco?.nome}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label class="drug drug-info">Quantità: </ion-label>
+          <ion-label class="drug drug-info">Quantità: {{drug?.quantita}} </ion-label>
         </ion-row>
         <ion-row>
-          <ion-label class="drug drug-notes">Da assumere con un bicchiere d'acqua</ion-label>
+          <ion-label class="drug drug-notes">{{drug?.note}}</ion-label>
         </ion-row>
       </ion-col>
       <ion-col class="drug-actions">
@@ -42,7 +42,7 @@
   </ion-card>
 
   <ion-item-divider></ion-item-divider>
-  
+
   <ion-label><h1>Esami</h1></ion-label>
   <ion-card>
     <ion-grid class="drug-grid" *ngIf="exams.length <= 0">

@@ -6,6 +6,7 @@ import { Terapia } from "./terapia/Terapia";
 import { Farmaco } from "./farmaco/Farmaco";
 import { Triage } from "./triage/Triage";
 import { Esame } from "./esame/Esame";
+import {QuantitaDettaglio} from "./terapiafarmacologica/QuantitaDettaglio";
 
 export class ModelUtilities {
   static pazienteFromJSON(json: any): Paziente {
@@ -71,6 +72,16 @@ export class ModelUtilities {
     terapia.tipologiaTerapia = json.tipologiaTerapia;
 
     return terapia;
+  }
+  public static quantitaDettaglioFromJSON(json:any): QuantitaDettaglio {
+    let quantitaDettaglio: QuantitaDettaglio  = new QuantitaDettaglio();
+
+    quantitaDettaglio.id = json.id;
+    quantitaDettaglio.quantita = json.quantita;
+    quantitaDettaglio.note = json.note;
+    quantitaDettaglio.farmaco = json.farmaco;
+
+    return quantitaDettaglio;
   }
 
   public static farmacoFromJSON(json: any): Farmaco {

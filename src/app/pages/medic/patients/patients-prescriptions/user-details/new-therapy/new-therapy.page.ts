@@ -9,6 +9,12 @@ import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { AlertController } from '@ionic/angular';
+import {QuantitaDettaglio} from "../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
+import {Esame} from "../../../../../../models/esame/Esame";
+import {TfarmacologicaService} from "../../../../../../services/TfarmacologicaService/tfarmacologica.service";
+import {Medico} from "../../../../../../models/medico/Medico";
+import {firstValueFrom, Observable} from "rxjs";
+import {Terapia} from "../../../../../../models/terapia/Terapia";
 
 @Component({
   selector: 'app-new-therapy',
@@ -21,15 +27,22 @@ export class NewTherapyPage implements OnInit{
   // @ViewChild(IonModal) modal!: IonModal;
 
   protected paziente: Paziente;
+  protected medico: Medico;
+  private tFarmacologicaId!:number
+  protected navURL!: string;
 
-  protected drugs!: Farmaco[];
+  protected drugs!: QuantitaDettaglio[];
   protected drug: Farmaco = new Farmaco(1, 'codice', 'Un farmaco', 'categoria', 'principioattivo', 'azienda');
 
-  protected exams!: Farmaco[];
+  protected exams!: Esame[];
   protected exam: Farmaco = new Farmaco(1, 'codice', 'nome', 'categoria', 'principioattivo', 'azienda');
 
   protected name!: string;
   protected message = 'Message';
+
+  private getAllFarmaciByTFarmacologicaObservable!: Observable<QuantitaDettaglio[]>;
+  private getAllEsamiByTfarmacologicaObservable!: Observable<Esame[]>;
+
 
   protected alertButtons = [
     {
@@ -40,10 +53,17 @@ export class NewTherapyPage implements OnInit{
     {
       text: 'Conferma',
       role: 'confirm',
-      handler: () => {
+      handler: async () => {
         this.storageService.setPaziente(this.paziente);
-        this.navCtrl.navigateBack('medic-patients-prescriptions', {
-        });
+        try {
+          await firstValueFrom<void>(
+            this.tFarmacologicaService.deleteTfarmacologica(this.tFarmacologicaId)
+          );
+          this.navCtrl.navigateBack(this.navURL, {});
+        }
+        catch (error){
+          console.error(error)
+        }
       }
     }
   ];
@@ -51,15 +71,33 @@ export class NewTherapyPage implements OnInit{
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private tFarmacologicaService:TfarmacologicaService
   ) {
     this.paziente = storageService.getPaziente();
+    this.medico = storageService.getMedico();
     this.drugs = [];
     this.exams = [];
+
   }
 
   ngOnInit() {
-    this.drugs.push(this.drug);
+    this.tFarmacologicaService.addTFarmacologica(this.medico.id,this.paziente.id).subscribe(value => {
+      this.tFarmacologicaId = value
+      this.storageService.setTfarmacologicaId(this.tFarmacologicaId);
+      console.log(this.tFarmacologicaId);
+      this.getAllEsamiByTfarmacologicaObservable = this.tFarmacologicaService.getAllEsamiByTFarmacologica(this.tFarmacologicaId);
+      this.getAllFarmaciByTFarmacologicaObservable = this.tFarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(this.tFarmacologicaId);
+    })
+  }
+  ionViewDidEnter(){
+      this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
+        this.drugs = value
+      })
+      this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
+        this.exams = value
+      })
+
   }
 
   async presentAlert() {
@@ -73,8 +111,8 @@ export class NewTherapyPage implements OnInit{
   }
 
   navigateBack() {
+    this.navURL = 'medic-patients-prescriptions'
     this.presentAlert();
-   
   }
 
   goToAddDrug() {
@@ -85,15 +123,18 @@ export class NewTherapyPage implements OnInit{
     this.navCtrl.navigateForward('medic-patients-user-details-add-exam');
   }
 
-  goToHome() {
-    this.navCtrl.navigateBack('medic-home', { animated: false });
+   goToHome() {
+     this.navURL = 'medic-home'
+     this.presentAlert();
   }
 
   goToNotifs() {
-    this.navCtrl.navigateForward('medic-notifs', { animated: false });
+     this.navURL = 'medic-notifs'
+     this.presentAlert()
   }
 
-  goToPatients() {
-    this.navCtrl.navigateForward('medic-patients', { animated: false });
+   goToPatients() {
+     this.navURL = 'medic-patients'
+     this.presentAlert()
   }
 }
