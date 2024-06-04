@@ -96,11 +96,11 @@
       <ion-select-option>NO</ion-select-option>
     </ion-select>
   </ion-item>
-   <!-- <ion-item>
-     <ion-label class="bold-label">Medico curante:</ion-label>
-     <ion-row style="width: 1.25em"></ion-row>
-    <ion-input type="" value="{{patient.medico}}" [(ngModel)]="this.medicToUpdate"></ion-input>
-  </ion-item> !-->
+  <ion-item button id="medico-curante-modal" class="no-ripple" (click)="onModalOpen()">
+    <ion-label><b>Medico curante:</b></ion-label>
+    <ion-label slot="end" style="color: grey" [ngClass]="{'assigned': this.assignedMedic}">{{this.assignedMedicDetails}}</ion-label>
+    <ion-icon slot="end" class="icon fa-solid fa-arrow-right"></ion-icon>
+  </ion-item>
   <ion-item>
     <ion-label><b>Attivo:</b></ion-label>
     <ion-select class="left-aligned-select" value="{{patient.attivo}}"
@@ -119,6 +119,39 @@
     message="Sei sicuro di voler procedere? Questa azione è irreversibile."
     [buttons]="deleteButtons"
   ></ion-alert>
+
+  <ion-modal #modal trigger="medico-curante-modal">
+    <ng-template>
+      <ion-toolbar>
+        <ion-title style="color: black;">Seleziona medico</ion-title>
+      </ion-toolbar>
+
+      <ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
+      
+      <ion-content>
+        <ion-list>
+          <div *ngIf="filteredMedics.length <= 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <ion-img style="margin-top: 4.5em; width: 30%;" src="../../../../../../../assets/icon/user-not-found.png" alt="nessun medico disponibile"></ion-img>
+            <ion-text style="margin: 1em 4em 0 4em; width: 85%; color: gray;">Nessun medico disponibile</ion-text>
+          </div>
+          
+          <ion-item button *ngFor="let medic of filteredMedics" (click)="storeMedic(medic); ">
+            <ion-avatar slot="start">
+              <ion-img *ngIf="medic.sesso === Sesso.MASCHIO"
+                src="../../assets/icon/home/avatar/av-nurse-male.png"
+                alt="Foto profilo medico">
+              </ion-img>
+            </ion-avatar>
+
+            <ion-card-title>{{medic.nome}} {{medic.cognome}}</ion-card-title>
+            <ion-card-subtitle slot="end">{{medic.ospedale}}</ion-card-subtitle>
+          </ion-item>
+
+        </ion-list>
+      </ion-content>
+
+    </ng-template>
+  </ion-modal>
 </ion-content>
 
 <ion-footer>

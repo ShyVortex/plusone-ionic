@@ -108,7 +108,6 @@ export class ReservationContinuePage implements OnInit {
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.terapiaAdded = new Terapia();
     this.terapia = {};
-    // actualIndex inital value is a placeholder
     this.actualIndex = 6;
     this.times = [
       { time: '07:00', clicked: false },
