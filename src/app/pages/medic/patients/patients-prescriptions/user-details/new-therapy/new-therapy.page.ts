@@ -15,6 +15,7 @@ import {TfarmacologicaService} from "../../../../../../services/TfarmacologicaSe
 import {Medico} from "../../../../../../models/medico/Medico";
 import {firstValueFrom, Observable} from "rxjs";
 import {Terapia} from "../../../../../../models/terapia/Terapia";
+import {QuantitaDettaglioService} from "../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
 
 @Component({
   selector: 'app-new-therapy',
@@ -72,7 +73,8 @@ export class NewTherapyPage implements OnInit{
     private navCtrl: NavController,
     private storageService: StorageService,
     private alertController: AlertController,
-    private tFarmacologicaService:TfarmacologicaService
+    private tFarmacologicaService:TfarmacologicaService,
+    private quantitaDettaglioService:QuantitaDettaglioService
   ) {
     this.paziente = storageService.getPaziente();
     this.medico = storageService.getMedico();
@@ -137,4 +139,32 @@ export class NewTherapyPage implements OnInit{
      this.navURL = 'medic-patients'
      this.presentAlert()
   }
+  async handleDrugEliminationItem(drug: QuantitaDettaglio) {
+    const indexToRemove = this.drugs.indexOf(drug);
+    if (indexToRemove !== -1) {
+      this.drugs.splice(indexToRemove, 1);
+    }
+    try {
+      await firstValueFrom<void>(
+        this.quantitaDettaglioService.deleteQuantitaDettaglio(drug.id)
+      );
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
+  async handleExamEliminationItem(exam: Esame) {
+    const indexToRemove = this.exams.indexOf(exam);
+    if (indexToRemove !== -1) {
+      this.exams.splice(indexToRemove, 1);
+    }
+    try {
+      await firstValueFrom<void>(
+        this.tFarmacologicaService.removeEsameOfTfarmacologica(exam.id,this.tFarmacologicaId)
+      );
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
 }

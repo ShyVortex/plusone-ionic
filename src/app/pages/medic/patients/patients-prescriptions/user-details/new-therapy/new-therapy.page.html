@@ -33,7 +33,7 @@
       </ion-col>
       <ion-col class="drug-actions">
         <ion-row>
-          <div (click)="goToHome()" style="cursor: pointer;">
+          <div (click)="handleDrugEliminationItem(drug)" style="cursor: pointer;">
             <ion-icon class="fas fa-xmark" style="color:black"></ion-icon>
           </div>
         </ion-row>
@@ -55,15 +55,15 @@
     <ion-grid class="drug-grid" *ngFor="let exam of exams; let i = index">
       <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug drug-name">Spirometria</ion-label>
+          <ion-label class="drug drug-name">{{exam.nome}}</ion-label>
         </ion-row>
         <ion-row>
-          <ion-label class="drug drug-notes">Dettagli esame</ion-label>
+          <ion-label class="drug drug-notes">Codice esame : {{exam.codice}}</ion-label>
         </ion-row>
       </ion-col>
       <ion-col class="drug-actions">
         <ion-row>
-          <div (click)="goToHome()" style="cursor: pointer;">
+          <div (click)="handleExamEliminationItem(exam)" style="cursor: pointer;">
             <ion-icon class="fas fa-xmark" style="color:black"></ion-icon>
           </div>
         </ion-row>

@@ -84,6 +84,32 @@ export class TfarmacologicaService {
         );
     });
   }
+  addEsameToTfarmacologica(id_esame:number,id_tfarmacologica:number): Observable<void> {
+      return new Observable<any>((observer:Observer<void>)  => {
+        axios.put<void>(this.tFarmacologicaURL +"/addEsameToTfarmacologica" +"/"+id_esame + "/" + id_tfarmacologica).then
+        ((response:AxiosResponse<void>)  => {
+          observer.next()
+          observer.complete();
+        })
+          .catch(error => {console.log(error)
+
+            }
+          );
+      });
+  }
+  removeEsameOfTfarmacologica(id_esame:number,id_tfarmacologica:number): Observable<void> {
+    return new Observable<any>((observer:Observer<void>)  => {
+      axios.put<void>(this.tFarmacologicaURL +"/removeEsameOfTfarmacologica" +"/"+id_esame + "/" + id_tfarmacologica).then
+      ((response:AxiosResponse<any>)  => {
+        observer.next()
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+
+          }
+        );
+    });
+  }
 
 
 }

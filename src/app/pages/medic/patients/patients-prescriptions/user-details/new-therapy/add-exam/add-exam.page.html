@@ -19,7 +19,7 @@
 <ion-content>
   <ion-list *ngIf="!isLoading">
     @for (exam of filteredExams; track exam.id) {
-      <ion-item button (click)="submitExam()">
+      <ion-item button (click)="submitExam(exam)">
         <ion-label>
           <h2>{{exam.nome}}</h2>
         </ion-label>

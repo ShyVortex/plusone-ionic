@@ -32,4 +32,13 @@ export class QuantitaDettaglioService {
         );
     });
   }
+  deleteQuantitaDettaglio(id:number) : Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      axios.delete<void>(this.quantitaDettaglioURL + "/deleteQuantitaDettaglio"+"/" + id).then
+      ((response: AxiosResponse<void>) => {
+        observer.next()
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
 }

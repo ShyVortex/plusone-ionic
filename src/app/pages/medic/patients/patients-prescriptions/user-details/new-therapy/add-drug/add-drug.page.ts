@@ -31,6 +31,7 @@ import {
   QuantitaDettaglioService
 } from "../../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
 import {QuantitaDettaglio} from "../../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
+import {TfarmacologicaService} from "../../../../../../../services/TfarmacologicaService/tfarmacologica.service";
 
 @Component({
   selector: 'app-add-drug',
@@ -109,10 +110,14 @@ export class AddDrugPage implements OnInit {
     {
       text: 'Conferma',
       role: 'confirm',
-      handler: () => {
-        this.storageService.setPaziente(this.paziente);
-        this.navCtrl.navigateForward(this.navURL, {animated:false
-        });
+      handler: async () => {
+
+          await firstValueFrom<any>(
+            this.tFarmacologicaService.deleteTfarmacologica(this.storageService.getTFarmacologicaId()))
+          this.navCtrl.navigateForward(this.navURL, {
+            animated: false
+          });
+
       }
     }
   ];
@@ -124,7 +129,8 @@ export class AddDrugPage implements OnInit {
     private farmacoService: FarmacoService,
     private alertController:AlertController,
     private toastController: ToastController,
-    private quantitaDettaglioService:QuantitaDettaglioService
+    private quantitaDettaglioService:QuantitaDettaglioService,
+    private tFarmacologicaService:TfarmacologicaService,
   ) {
     this.quantitaDettaglioJSON = {}
     this.paziente = storageService.getPaziente();
