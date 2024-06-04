@@ -34,14 +34,16 @@
     RICHIESTE
   </ion-item>
   <ion-list>
-    <!--
-    <ion-item class="item-title" *ngFor="let richiesta of richieste">
+    <ion-item class="item-title" *ngFor="let paziente of pazienti">
       <div class="item-content">
-        <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
-        <ion-text class="item-title-list">Il paziente {{richiesta?.paziente?.nome}} {{richiesta?.paziente?.cognome}}
-          ha richiesto di registrarsi in data {{richiesta?.orario | date: 'yyyy-MM-dd'}}</ion-text>
+        <ion-img class="request-icon" slot="start" src="../../assets/icon/admin/requests/registration.png"></ion-img>
+        <ion-text class="item-title-list">La registrazione del paziente {{paziente?.nome}} {{paziente?.cognome}}
+          è in attesa di un riscontro.</ion-text>
+        <ion-button slot="end" fill="clear" (click)="routeToRequestDetails(paziente)">
+          <ion-text class="button-arrow">></ion-text>
+        </ion-button>
       </div>
-    </ion-item> !-->
+    </ion-item>
   </ion-list>
 </ion-content>
 
