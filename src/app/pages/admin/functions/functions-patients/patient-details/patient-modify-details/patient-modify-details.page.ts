@@ -66,6 +66,7 @@ export class PatientModifyDetailsPage implements OnInit {
     role:'conferma',
     handler:async () => {
       await this.jsonFromPatient()
+      this.medicoService.addPazienteToMedico(this.assignedMedic.id, this.patient.id).subscribe(() => {});
       await firstValueFrom(this.pazienteService.updatePaziente(this.patientJson,this.patient.id))
 
       this.navCtrl.navigateForward("admin-functions-patients", {animated: false});
@@ -167,7 +168,7 @@ export class PatientModifyDetailsPage implements OnInit {
     this.patientJson.sesso = this.genderToUpdate;
     this.patientJson.email = this.emailToUpdate;
     this.patientJson.password = await HashingUtilities.HashPassword(this.passwordToUpdate);
-    this.patientJson.indirizzo = [this.CAPtoUpdate, this.streetToUpdate, this.civicNumberToUpdate, this.citta];
+    this.patientJson.indirizzo = {}; /* [this.CAPtoUpdate, this.streetToUpdate, this.civicNumberToUpdate, this.citta]; */
     this.patientJson.indirizzo.cap = this.CAPtoUpdate;
     this.patientJson.indirizzo.via = this.streetToUpdate;
     this.patientJson.indirizzo.numeroCivico = this.civicNumberToUpdate;
@@ -182,7 +183,6 @@ export class PatientModifyDetailsPage implements OnInit {
     this.assignedMedic = medic;
     this.isMedicAssigned = true;
     this.assignedMedicDetails = medic.nome + " " + medic.cognome;
-    this.medicoService.addPazienteToMedico(this.assignedMedic.id, this.patient.id).subscribe(() => {});
     this.modal.dismiss();
       
     console.log("Medico assegnato: ", this.assignedMedic);
