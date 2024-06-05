@@ -293,4 +293,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
   },
+  {
+    path: 'confirm-therapy',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/confirm-therapy/confirm-therapy.page').then(m => m.ConfirmTherapyPage)
+  },
+
 ];

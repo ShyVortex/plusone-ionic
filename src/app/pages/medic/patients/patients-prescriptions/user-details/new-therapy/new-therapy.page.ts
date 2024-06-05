@@ -68,7 +68,34 @@ export class NewTherapyPage implements OnInit{
       }
     }
   ];
+  protected confirmButtons = [
+    {
+      text: 'Annulla',
+      role: 'cancel',
+      handler: () => {}
+    },
+    {
+      text: 'Conferma',
+      role: 'confirm',
+      handler: async () => {
+        if(this.isInserted()) {
+          try {
+            await firstValueFrom<void>(
+              this.tFarmacologicaService.setState(this.tFarmacologicaId, true)
+            );
+            this.navCtrl.navigateForward(this.navURL, {});
 
+          } catch (error) {
+            console.error(error)
+          }
+        }
+        else {
+          this.presentWarningButtonAlert()
+        }
+      }
+    }
+  ];
+  protected warningButton =["OK"];
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
@@ -110,6 +137,22 @@ export class NewTherapyPage implements OnInit{
     });
 
     await alert.present();
+  }
+  async presentConfirmButtonAlert() {
+    const alert = await this.alertController.create({
+      header: 'Confermare terapia',
+      message: 'Sei sicuro di voler confermare la terapia? In seguito non sarà possibile modificare la scelta.',
+      buttons: this.confirmButtons,
+    });
+    await alert.present()
+  }
+  async presentWarningButtonAlert() {
+    const alert = await this.alertController.create({
+      header: 'ATTENZIONE',
+      message: 'Nessun farmaco inserito',
+      buttons: this.warningButton,
+    });
+    await alert.present()
   }
 
   navigateBack() {
@@ -167,4 +210,11 @@ export class NewTherapyPage implements OnInit{
     }
   }
 
+  protected confirmButton() {
+    this.navURL = 'confirm-therapy'
+    this.presentConfirmButtonAlert()
+  }
+  private isInserted(){
+    return this.drugs.length > 0;
+  }
 }

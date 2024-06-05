@@ -31,7 +31,7 @@
     "@capacitor/status-bar": "6.0.0",
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@ionic/angular": "^8.1.2",
-    "angular": "^1.8.3",
+    "angular": "^1.6.10",
     "angular-in-memory-web-api": "^0.17.0",
     "bcryptjs": "^2.4.3",
     "capacitor": "^0.5.6",

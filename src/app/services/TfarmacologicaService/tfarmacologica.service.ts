@@ -110,6 +110,20 @@ export class TfarmacologicaService {
         );
     });
   }
+  setState(id_tFarmacologica:number,stato:boolean):Observable<any> {
+
+    return new Observable<any>((observer:Observer<any>)  => {
+      axios.put<any>(this.tFarmacologicaURL +"/setState" +"/"+id_tFarmacologica + "/" + stato).then
+      ((response:AxiosResponse<any>)  => {
+        observer.next(response.data)
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+
+          }
+        );
+    });
+  }
 
 
 }

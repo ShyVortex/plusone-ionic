@@ -153,7 +153,7 @@ export class AddExamPage implements OnInit {
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 3000,
+      duration: 1500,
     });
 
     await toast.present();
