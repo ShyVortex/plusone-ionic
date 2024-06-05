@@ -41,6 +41,52 @@ export class PazienteService {
     });
   }
 
+  getAllPazientiAttivi(): Observable<Paziente[]> {
+    let jsonResponse: any[] = [];
+    let pazienti: Paziente[] = [];
+
+    return new Observable<Paziente[]>((observer:Observer<Paziente[]>)  => {
+      axios.get<Paziente[]>(this.pazienteURL +"/getAllPazientiAttivi").then
+      ((response:AxiosResponse<Paziente[]>)  => {
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          pazienti.push(ModelUtilities.pazienteFromJSON(element))
+        })
+        console.log(pazienti)
+
+        observer.next(pazienti);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+            observer.next([])
+          }
+        );
+    });
+  }
+
+  getAllPazientiInattivi(): Observable<Paziente[]> {
+    let jsonResponse: any[] = [];
+    let pazienti: Paziente[] = [];
+
+    return new Observable<Paziente[]>((observer:Observer<Paziente[]>)  => {
+      axios.get<Paziente[]>(this.pazienteURL +"/getAllPazientiInattivi").then
+      ((response:AxiosResponse<Paziente[]>)  => {
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          pazienti.push(ModelUtilities.pazienteFromJSON(element))
+        })
+        console.log(pazienti)
+
+        observer.next(pazienti);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+            observer.next([])
+          }
+        );
+    });
+  }
+
   getPazienteByEmail(email:string):Observable<Paziente> {
     let jsonResponse:any;
     let paziente:Paziente;
@@ -84,6 +130,7 @@ export class PazienteService {
         );
     });
   }
+
   updatePaziente(pazienteToUpdate:Paziente,id:number) : Observable<Paziente> {
     let jsonResponse: any;
     let paziente: Paziente;
@@ -100,6 +147,17 @@ export class PazienteService {
       }).catch(error => {console.log(error)});
     });
   }
+
+  activatePaziente(id: number) : Observable<void> {
+    return new Observable<void>((observer: Observer<void>) => {
+      axios.put<Paziente>(this.pazienteURL + "/activatePaziente"+"/" + id).then
+      ((response: AxiosResponse<Paziente>) => {
+        observer.next()
+        observer.complete();
+      }).catch(error => {console.log(error)});
+    });
+  }
+
   deletePaziente(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.pazienteURL + "/deletePaziente"+"/" + id).then

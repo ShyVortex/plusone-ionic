@@ -215,6 +215,21 @@ export const routes: Routes = [
       .then(m => m.RequestsPage)
   },
   {
+    path: 'admin-request-details',
+    loadComponent: () => import('./pages/admin/requests/request-details/request-details.page')
+      .then(m => m.RequestDetailsPage)
+  },
+  {
+    path: 'admin-request-accepted',
+    loadComponent: () => import('./pages/admin/requests/request-details/request-accepted/request-accepted.page')
+      .then(m => m.RequestAcceptedPage)
+  },
+  {
+    path: 'admin-request-denied',
+    loadComponent: () => import('./pages/admin/requests/request-details/request-denied/request-denied.page')
+      .then(m => m.RequestDeniedPage)
+  },
+  {
     path: 'admin-functions',
     loadComponent: () => import('./pages/admin/functions/functions.page')
       .then(m => m.FunctionsPage)
@@ -226,11 +241,13 @@ export const routes: Routes = [
   },
   {
     path: 'admin-medic-details',
-    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-details.page').then( m => m.MedicDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-details.page')
+      .then( m => m.MedicDetailsPage)
   },
   {
     path: 'admin-medic-modify-details',
-    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-modify-details/medic-modify-details.page').then( m => m.MedicModifyDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-medics/medic-details/medic-modify-details/medic-modify-details.page')
+      .then( m => m.MedicModifyDetailsPage)
   },
   {
     path: 'admin-functions-nurses',
@@ -239,11 +256,13 @@ export const routes: Routes = [
   },
   {
     path: 'admin-nurse-details',
-    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-details.page').then( m => m.NurseDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-details.page')
+      .then( m => m.NurseDetailsPage)
   },
   {
     path: 'admin-nurse-modify-details',
-    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-modify-details/nurse-modify-details.page').then( m => m.NurseModifyDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-nurses/nurse-details/nurse-modify-details/nurse-modify-details.page')
+      .then( m => m.NurseModifyDetailsPage)
   },
   {
     path: 'admin-functions-patients',
@@ -252,11 +271,13 @@ export const routes: Routes = [
   },
   {
     path: 'admin-patient-details',
-    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-details.page').then( m => m.PatientDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-details.page')
+      .then( m => m.PatientDetailsPage)
   },
   {
     path: 'admin-patient-modify-details',
-    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-modify-details/patient-modify-details.page').then( m => m.PatientModifyDetailsPage)
+    loadComponent: () => import('./pages/admin/functions/functions-patients/patient-details/patient-modify-details/patient-modify-details.page')
+      .then( m => m.PatientModifyDetailsPage)
   },
   {
     path: 'admin-reports',
@@ -295,7 +316,7 @@ export const routes: Routes = [
   },
   {
     path: 'confirm-therapy',
-    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/confirm-therapy/confirm-therapy.page').then(m => m.ConfirmTherapyPage)
-  },
-
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/confirm-therapy/confirm-therapy.page')
+      .then(m => m.ConfirmTherapyPage)
+  }
 ];

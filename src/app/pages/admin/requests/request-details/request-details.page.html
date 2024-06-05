@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli richiesta</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="request-details-content" [fullscreen]="true">
+  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto-->
+  <div class="summary-container">
+    <ion-item lines="none">
+      <ion-img class="request-summary-icon"
+               src="../../assets/icon/admin/requests/user-form.png">
+      </ion-img>
+      <ion-text class="request-summary-text">Richiesta n. {{paziente.id}} <br/>
+        da <b>{{paziente.nome}} {{paziente.cognome}}</b> <br/>
+      </ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="details-container">
+    <ion-text class="request-details-text">
+      Ha richiesto di registrarsi il paziente: <br/><br/>
+      <b>Nome</b>: {{paziente.nome}} <br/>
+      <b>Cognome</b>: {{paziente.cognome}} <br/>
+      <b>Sesso</b>: {{paziente.sesso}} <br/>
+      <b>Città</b>: {{citta}} <br/>
+      <b>CF</b>: {{paziente.CF}} <br/>
+      <b>Email</b>: {{paziente.email}} <br/>
+      <b>Esenzione</b>: {{paziente.esenzione ? 'SI' : 'NO'}} <br/>
+      <b>Donatore organi</b>: {{paziente.donatoreOrgani ? 'SI' : 'NO'}}
+    </ion-text>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="buttons-container">
+    <ion-button class="request-buttons"
+                color="primary"
+                (click)="acceptRequest()">Accetta
+    </ion-button>
+    <ion-button class="request-buttons"
+                color="danger"
+                (click)="denyRequest()">Rifiuta
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToRequests()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/requests.png"></ion-img>
+          Richieste
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToFunctions()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/functions.png"></ion-img>
+          Funzioni
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToReports()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/bug-report.png"></ion-img>
+          Segnalazioni
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
