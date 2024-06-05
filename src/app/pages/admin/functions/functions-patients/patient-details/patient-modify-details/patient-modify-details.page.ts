@@ -114,10 +114,15 @@ export class PatientModifyDetailsPage implements OnInit {
     this.medics = [];
     this.filteredMedics = [];
 
-    this.isMedicAssigned = false;
-    this.assignedMedic = this.pazienteService.getMedicoOfPaziente(this.patient.id);
+    this.pazienteService.getMedicoOfPaziente(this.patient.id.toString()).subscribe((result: any) => {
+      this.assignedMedic = result;
+      this.assignedMedicDetails = this.assignedMedic._nome + " " + this.assignedMedic._cognome;
 
-    this.assignedMedicDetails = "Seleziona un medico";
+      if (this.assignedMedic._nome == "") {
+        this.isMedicAssigned = false;
+        this.assignedMedicDetails = "Seleziona un medico";
+      }
+    });
   }
 
   ngOnInit() {}

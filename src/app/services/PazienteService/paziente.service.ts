@@ -109,17 +109,16 @@ export class PazienteService {
     });
   }
 
-  getMedicoOfPaziente(): Observable<Medico> {
+  getMedicoOfPaziente(id: string): Observable<Medico> {
     let jsonResponse: any;
     let medico: Medico;
 
     return new Observable<Medico>((observer:Observer<Medico>)  => {
-      axios.get<Medico>(this.pazienteURL +"/getAllPazientiInattivi").then
-      ((response:AxiosResponse<Medico>)  => {
+      axios.get<Medico>(this.pazienteURL +"/getMedicoOfPaziente/" + id).then
+      ((response: AxiosResponse<Medico>)  => {
         jsonResponse = response.data
-        jsonResponse.forEach((element: any) => {
-          medico = ModelUtilities.medicoFromJSON(element);
-        })
+        medico = ModelUtilities.medicoFromJSON(jsonResponse);
+  
         console.log(medico)
 
         observer.next(medico);
