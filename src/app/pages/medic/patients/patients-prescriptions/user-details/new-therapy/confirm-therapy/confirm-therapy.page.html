@@ -1,32 +1,28 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
-      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
-        &larr;
-      </ion-button>
-      <ion-label class="tab-name">Aggiungi esame</ion-label>
+      <ion-text class="tab-name-bl">Conferma</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
-
-<ion-searchbar
-  placeholder="Cerca paziente..."
-  (input)="search($event)"
-></ion-searchbar>
-
-<ion-content>
-  <ion-list *ngIf="!isLoading">
-    @for (exam of filteredExams; track exam.id) {
-      <ion-item button (click)="submitExam(exam)">
-        <ion-label>
-          <h2>{{exam.nome}}</h2>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
+<ion-content class="ion-padding" scroll-y="false">
+  <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h3 class="info-h3">TERAPIA ASSEGNATA</h3>
+  <h6 class="info-h6">La terapia scelta è stata assegnata correttamente</h6>
 </ion-content>
+
+<div class="anim-confirm">
+  <ion-button class="confirm-button"
+              expand="block"
+              fill="solid"
+              (click)="goToPatientsListAnimated()"
+              shape="round">
+    <ion-text class="confirm-button-text">
+      Torna alla lista pazienti
+    </ion-text>
+  </ion-button>
+</div>
 
 <ion-footer>
   <ion-toolbar>
@@ -48,4 +44,3 @@
     </ion-tabs>
   </ion-toolbar>
 </ion-footer>
-

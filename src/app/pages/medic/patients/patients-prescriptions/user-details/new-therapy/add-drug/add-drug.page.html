@@ -19,7 +19,7 @@
 <ion-content>
   <ion-list *ngIf="!isLoading">
     @for (drug of filteredDrugs; track drug.id) {
-      <ion-item button>
+      <ion-item button (click)="submitDrug(drug)">
         <ion-label>
           <h2>{{drug.nome}}</h2>
         </ion-label>

@@ -6,9 +6,6 @@
       </ion-button>
       <ion-label class="tab-name">Prenotazione</ion-label>
     </div>
-    <!-- <ion-icon id="settings-icon"
-              src="../../../assets/icon/settings/settings.svg"
-              slot="end"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
 
@@ -17,14 +14,14 @@
 
   <ion-grid>
     <ion-row class="available-appointments">
-      <ion-button (click)="toggleClickedItem(0)" [ngClass]="{'button-clicked': this.times[0].clicked}" fill="outline" size="default" class="appointment-button">7:00</ion-button>
-      <ion-button (click)="toggleClickedItem(1)" [ngClass]="{'button-clicked': this.times[1].clicked}" fill="outline" size="default" class="appointment-button">11:00</ion-button>
-      <ion-button (click)="toggleClickedItem(2)" [ngClass]="{'button-clicked': this.times[2].clicked}" fill="outline" size="default" class="appointment-button">15:30</ion-button>
+      <ion-button [disabled]="this.times[0].reserved" (click)="toggleClickedItem(0)" [ngClass]="{'button-clicked': this.times[0].clicked}" fill="outline" size="default" class="appointment-button">7:00</ion-button>
+      <ion-button [disabled]="this.times[1].reserved" (click)="toggleClickedItem(1)" [ngClass]="{'button-clicked': this.times[1].clicked}" fill="outline" size="default" class="appointment-button">11:00</ion-button>
+      <ion-button [disabled]="this.times[2].reserved" (click)="toggleClickedItem(2)" [ngClass]="{'button-clicked': this.times[2].clicked}" fill="outline" size="default" class="appointment-button">15:30</ion-button>
     </ion-row>
     <ion-row class="available-appointments">
-      <ion-button (click)="toggleClickedItem(3)" [ngClass]="{'button-clicked': this.times[3].clicked}" fill="outline" size="default" class="appointment-button">16:15</ion-button>
-      <ion-button (click)="toggleClickedItem(4)" [ngClass]="{'button-clicked': this.times[4].clicked}" fill="outline" size="default" class="appointment-button">18:00</ion-button>
-      <ion-button (click)="toggleClickedItem(5)" [ngClass]="{'button-clicked': this.times[5].clicked}" fill="outline" size="default" class="appointment-button">18:30</ion-button>
+      <ion-button [disabled]="this.times[3].reserved" (click)="toggleClickedItem(3)" [ngClass]="{'button-clicked': this.times[3].clicked}" fill="outline" size="default" class="appointment-button">16:15</ion-button>
+      <ion-button [disabled]="this.times[4].reserved" (click)="toggleClickedItem(4)" [ngClass]="{'button-clicked': this.times[4].clicked}" fill="outline" size="default" class="appointment-button">18:00</ion-button>
+      <ion-button [disabled]="this.times[5].reserved" (click)="toggleClickedItem(5)" [ngClass]="{'button-clicked': this.times[5].clicked}" fill="outline" size="default" class="appointment-button">18:30</ion-button>
     </ion-row>
   </ion-grid>
 

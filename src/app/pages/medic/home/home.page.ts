@@ -90,6 +90,7 @@ export class HomePage implements OnInit {
   ionViewWillEnter(){
     this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
       this.medico = value
+      this.storageService.setMedico(this.medico)
     });
   }
 
