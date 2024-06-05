@@ -115,6 +115,8 @@ export class PatientModifyDetailsPage implements OnInit {
     this.filteredMedics = [];
 
     this.isMedicAssigned = false;
+    this.assignedMedic = this.pazienteService.getMedicoOfPaziente(this.patient.id);
+
     this.assignedMedicDetails = "Seleziona un medico";
   }
 
