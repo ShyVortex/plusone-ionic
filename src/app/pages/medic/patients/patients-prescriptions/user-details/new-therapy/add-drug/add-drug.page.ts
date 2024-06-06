@@ -226,7 +226,7 @@ export class AddDrugPage implements OnInit {
   }
 
   private isValidInput():boolean{
-    return (this.note !== undefined && this.note !== '') && (this.quantita !== undefined && this.quantita !==''&& this.quantita !== 0 )
+    return (this.note !== undefined && this.note !== '') && (this.quantita !== undefined && this.quantita !=='' && this.quantita > 0 )
   }
   private setQuantitaDettaglio(){
     this.quantitaDettaglioJSON.quantita = this.quantita
