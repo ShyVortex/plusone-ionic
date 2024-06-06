@@ -109,6 +109,28 @@ export class PazienteService {
     });
   }
 
+  getMedicoOfPaziente(id: string): Observable<Medico> {
+    let jsonResponse: any;
+    let medico: Medico;
+
+    return new Observable<Medico>((observer:Observer<Medico>)  => {
+      axios.get<Medico>(this.pazienteURL +"/getMedicoOfPaziente/" + id).then
+      ((response: AxiosResponse<Medico>)  => {
+        jsonResponse = response.data
+        medico = ModelUtilities.medicoFromJSON(jsonResponse);
+  
+        console.log(medico)
+
+        observer.next(medico);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+            observer.next(new Medico())
+          }
+        );
+    });
+  }
+
   addPaziente(paziente:Paziente):Observable<Paziente> {
     let jsonResponse: any
     let pazienteAdded: Paziente = new Paziente();
