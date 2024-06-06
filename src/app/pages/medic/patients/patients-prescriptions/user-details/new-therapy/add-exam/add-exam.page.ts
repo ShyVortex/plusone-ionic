@@ -61,11 +61,12 @@ export class AddExamPage implements OnInit {
           });
         }
         catch (error){
-          console.error(error)
+          console.error(error);
         }
       }
     }
   ];
+
   private alertButtons = [
     {
       text: 'NO',
@@ -76,13 +77,23 @@ export class AddExamPage implements OnInit {
       text: 'SI',
       role: 'confirm',
       handler: async () => {
-        try {
-          await firstValueFrom<any>(
-            this.tFarmacologicaService.addEsameToTfarmacologica(this.chosenExam.id,this.storageService.getTFarmacologicaId()))
-          this.presentToast("Esame aggiunto con successo!")
-        }
-        catch (error){
-          console.error(error)
+        if (this.paziente.isSet()) {
+          try {
+            await firstValueFrom<any>(
+              this.tFarmacologicaService.addEsameToTfarmacologica(this.chosenExam.id,this.storageService.getTFarmacologicaId()))
+            this.presentToast("Esame aggiunto con successo!");
+          }
+          catch (error){
+            console.error(error);
+          }
+        } else {
+          try {
+            this.esameService.addEsameOffline(this.chosenExam);
+            this.presentToast("Esame aggiunto con successo!");
+          }
+          catch (error) {
+            console.log(error);
+          }
         }
       }
     }

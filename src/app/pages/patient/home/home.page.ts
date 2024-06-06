@@ -106,10 +106,11 @@ export class HomePage implements OnInit {
     this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
       this.paziente = value
       this.citta = this.paziente.indirizzo.città;
-      if (this.isDefault && this.paziente.nome === "" && !this.paziente.isSet()) {
+      if (this.paziente.nome === "" && !this.paziente.isSet()) {
         this.pazienteService.offlineSetPaziente(this.paziente);
         this.citta = this.paziente.indirizzo.città;
         this.paziente.terapie = this.storageService.getTerapie();
+        this.paziente.tFarmacologiche = this.storageService.getTFarmacologiche();
       }
     });
   }

@@ -3,8 +3,8 @@ import {Farmaco} from "../farmaco/Farmaco";
 export class QuantitaDettaglio {
     private _quantita: number;
     private _note: string;
-    private _id:number;
-    private _farmaco:Farmaco;
+    private _id: number;
+    private _farmaco: Farmaco;
 
     constructor() {
         this._quantita = 0;

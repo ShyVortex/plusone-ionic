@@ -16,6 +16,8 @@ import {Medico} from "../../../../../../models/medico/Medico";
 import {firstValueFrom, Observable} from "rxjs";
 import {Terapia} from "../../../../../../models/terapia/Terapia";
 import {QuantitaDettaglioService} from "../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
+import {TerapiaFarmacologica} from "../../../../../../models/terapiafarmacologica/TerapiaFarmacologica";
+import {forEach} from "lodash";
 
 @Component({
   selector: 'app-new-therapy',
@@ -68,6 +70,7 @@ export class NewTherapyPage implements OnInit{
       }
     }
   ];
+
   protected confirmButtons = [
     {
       text: 'Annulla',
@@ -79,14 +82,35 @@ export class NewTherapyPage implements OnInit{
       role: 'confirm',
       handler: async () => {
         if(this.isInserted()) {
-          try {
-            await firstValueFrom<void>(
-              this.tFarmacologicaService.setState(this.tFarmacologicaId, true)
-            );
-            this.navCtrl.navigateForward(this.navURL, {});
+          if (this.paziente.isSet()) {
+            try {
+              await firstValueFrom<void>(
+                this.tFarmacologicaService.setState(this.tFarmacologicaId, true)
+              );
+              this.navCtrl.navigateForward(this.navURL, {});
 
-          } catch (error) {
-            console.error(error)
+            } catch (error) {
+              console.error(error)
+            }
+          }
+          else {
+            try {
+              let tFarmacologica = new TerapiaFarmacologica();
+              tFarmacologica.esami = this.exams;
+              tFarmacologica.farmaci = [];
+
+              this.drugs.forEach(function (value) {
+                tFarmacologica.farmaci.push(value.farmaco);
+              });
+              this.tFarmacologicaService.addTFarmacologicaOffline(this.paziente, tFarmacologica);
+
+              this.storageService.cacheTFarmacologica(tFarmacologica);
+              this.storageService.cacheState(this.paziente);
+              await this.navCtrl.navigateForward(this.navURL, {});
+
+            } catch (error) {
+              console.log(error);
+            }
           }
         }
         else {
@@ -95,7 +119,8 @@ export class NewTherapyPage implements OnInit{
       }
     }
   ];
-  protected warningButton =["OK"];
+
+  protected warningButton = ["OK"];
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
@@ -118,15 +143,20 @@ export class NewTherapyPage implements OnInit{
       this.getAllEsamiByTfarmacologicaObservable = this.tFarmacologicaService.getAllEsamiByTFarmacologica(this.tFarmacologicaId);
       this.getAllFarmaciByTFarmacologicaObservable = this.tFarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(this.tFarmacologicaId);
     })
-  }
-  ionViewDidEnter(){
-      this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
-        this.drugs = value
-      })
-      this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
-        this.exams = value
-      })
 
+    if (!this.paziente.isSet()) {
+      this.exams = this.storageService.getEsami();
+      this.drugs = this.storageService.getQuantitaDettagli();
+    }
+  }
+
+  ionViewDidEnter(){
+    this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
+      this.drugs = value
+    })
+    this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
+      this.exams = value
+    })
   }
 
   async presentAlert() {
@@ -138,6 +168,7 @@ export class NewTherapyPage implements OnInit{
 
     await alert.present();
   }
+
   async presentConfirmButtonAlert() {
     const alert = await this.alertController.create({
       header: 'Confermare terapia',
@@ -146,6 +177,7 @@ export class NewTherapyPage implements OnInit{
     });
     await alert.present()
   }
+
   async presentWarningButtonAlert() {
     const alert = await this.alertController.create({
       header: 'ATTENZIONE',
@@ -182,6 +214,7 @@ export class NewTherapyPage implements OnInit{
      this.navURL = 'medic-patients'
      this.presentAlert()
   }
+
   async handleDrugEliminationItem(drug: QuantitaDettaglio) {
     const indexToRemove = this.drugs.indexOf(drug);
     if (indexToRemove !== -1) {
@@ -196,6 +229,7 @@ export class NewTherapyPage implements OnInit{
     }
 
   }
+
   async handleExamEliminationItem(exam: Esame) {
     const indexToRemove = this.exams.indexOf(exam);
     if (indexToRemove !== -1) {
@@ -214,6 +248,7 @@ export class NewTherapyPage implements OnInit{
     this.navURL = 'confirm-therapy'
     this.presentConfirmButtonAlert()
   }
+
   private isInserted(){
     return this.drugs.length > 0;
   }

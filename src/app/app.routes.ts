@@ -47,6 +47,11 @@ export const routes: Routes = [
       .then(m => m.LogbookPrescriptionsPage)
   },
   {
+    path: 'patient-logbook-prescription-details',
+    loadComponent: () => import('./pages/patient/logbook/logbook-prescriptions/logbook-prescription-details/logbook-prescription-details.page')
+      .then(m => m.LogbookPrescriptionDetailsPage)
+  },
+  {
     path: 'patient-logbook-reservations',
     loadComponent: () => import('./pages/patient/logbook/logbook-reservations/logbook-reservations.page')
       .then(m => m.LogbookReservationsPage)
