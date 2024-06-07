@@ -3,5 +3,7 @@
     "@ionic/angular/common",
     "@ionic/angular"
   ],
-  "accessibility.signals.sounds.volume": 0
+  "accessibility.signalOptions": {
+    "volume": 0
+  }
 }

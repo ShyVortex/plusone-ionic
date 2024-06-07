@@ -9,6 +9,10 @@
   </ion-toolbar>
 </ion-header>
 
+<div id="overlay" [ngClass]="{'active': overlayVisible}" (click)="hideOverlay()">
+  <ng-lottie [options]="options" (animationCreated)="handleAnimation($event)"></ng-lottie>
+</div>
+
 <ion-content class="info-content" [fullscreen]="true">
   <div class="info-container">
     <ion-text class="version-text">
@@ -23,7 +27,7 @@
   </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer id="footer" [ngClass]="{'activeOverlay': overlayVisible}">
   <ion-toolbar>
     <ion-tabs class="bottom-bar">
       <ion-tab-bar class="bottom-tab-bar" slot="bottom">
