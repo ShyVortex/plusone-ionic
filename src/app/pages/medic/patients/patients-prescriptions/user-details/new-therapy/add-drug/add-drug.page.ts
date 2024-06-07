@@ -239,5 +239,4 @@ export class AddDrugPage implements OnInit {
       this.quantitaDettaglioJSON.note = this.note;
     }
   }
-
 }

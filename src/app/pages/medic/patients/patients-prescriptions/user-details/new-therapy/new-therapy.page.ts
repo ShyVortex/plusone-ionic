@@ -9,13 +9,13 @@ import { Farmaco } from 'src/app/models/farmaco/Farmaco';
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { AlertController } from '@ionic/angular';
-import {QuantitaDettaglio} from "../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
-import {Esame} from "../../../../../../models/esame/Esame";
-import {TfarmacologicaService} from "../../../../../../services/TfarmacologicaService/tfarmacologica.service";
-import {Medico} from "../../../../../../models/medico/Medico";
-import {firstValueFrom, Observable} from "rxjs";
-import {Terapia} from "../../../../../../models/terapia/Terapia";
-import {QuantitaDettaglioService} from "../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
+import { QuantitaDettaglio } from "../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
+import { Esame } from "../../../../../../models/esame/Esame";
+import { TfarmacologicaService } from "../../../../../../services/TfarmacologicaService/tfarmacologica.service";
+import { Medico } from "../../../../../../models/medico/Medico";
+import { firstValueFrom, Observable } from "rxjs";
+import { Terapia } from "../../../../../../models/terapia/Terapia";
+import { QuantitaDettaglioService } from "../../../../../../services/QuantitaDettaglioService/quantita-dettaglio.service";
 
 @Component({
   selector: 'app-new-therapy',
@@ -25,8 +25,6 @@ import {QuantitaDettaglioService} from "../../../../../../services/QuantitaDetta
   imports: [IonSearchbar, IonButtons, IonModal, IonAvatar, IonItemOptions, IonItemOption, IonItemSliding, IonCardTitle, IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCol, IonGrid, IonRow, IonItemDivider, IonItem, IonList, IonFabList, IonIcon, IonFabButton, IonFab, IonSelect, IonFooter, IonTabButton, IonTabs, IonTabBar, IonImg, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class NewTherapyPage implements OnInit{
-  // @ViewChild(IonModal) modal!: IonModal;
-
   protected paziente: Paziente;
   protected medico: Medico;
   private tFarmacologicaId!:number
@@ -43,7 +41,6 @@ export class NewTherapyPage implements OnInit{
 
   private getAllFarmaciByTFarmacologicaObservable!: Observable<QuantitaDettaglio[]>;
   private getAllEsamiByTfarmacologicaObservable!: Observable<Esame[]>;
-
 
   protected alertButtons = [
     {
@@ -63,7 +60,7 @@ export class NewTherapyPage implements OnInit{
           this.navCtrl.navigateBack(this.navURL, {});
         }
         catch (error){
-          console.error(error)
+          console.error(error);
         }
       }
     }
@@ -84,13 +81,12 @@ export class NewTherapyPage implements OnInit{
               this.tFarmacologicaService.setState(this.tFarmacologicaId, true)
             );
             this.navCtrl.navigateForward(this.navURL, {});
-
           } catch (error) {
-            console.error(error)
+            console.error(error);
           }
         }
         else {
-          this.presentWarningButtonAlert()
+          this.presentWarningButtonAlert();
         }
       }
     }
@@ -108,7 +104,6 @@ export class NewTherapyPage implements OnInit{
     this.medico = storageService.getMedico();
     this.drugs = [];
     this.exams = [];
-
   }
 
   ngOnInit() {
@@ -118,7 +113,7 @@ export class NewTherapyPage implements OnInit{
       console.log(this.tFarmacologicaId);
       this.getAllEsamiByTfarmacologicaObservable = this.tFarmacologicaService.getAllEsamiByTFarmacologica(this.tFarmacologicaId);
       this.getAllFarmaciByTFarmacologicaObservable = this.tFarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(this.tFarmacologicaId);
-    })
+    });
   }
 
   ionViewDidEnter(){
@@ -128,7 +123,6 @@ export class NewTherapyPage implements OnInit{
       this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
         this.exams = value
       })
-
   }
 
   async presentAlert() {
@@ -147,14 +141,14 @@ export class NewTherapyPage implements OnInit{
       message: 'Sei sicuro di voler confermare la terapia? In seguito non sarà possibile modificare la scelta.',
       buttons: this.confirmButtons,
     });
-    
+
     await alert.present()
   }
 
   async presentWarningButtonAlert() {
     const alert = await this.alertController.create({
       header: 'ATTENZIONE',
-      message: 'Nessun farmaco inserito',
+      message: 'Inserire almeno un farmaco o un esame per confermare la terapia.',
       buttons: this.warningButton,
     });
 
@@ -218,9 +212,10 @@ export class NewTherapyPage implements OnInit{
 
   protected confirmButton() {
     this.navURL = 'confirm-therapy'
-    this.presentConfirmButtonAlert()
+    this.presentConfirmButtonAlert();
   }
-  private isInserted(){
-    return this.drugs.length > 0;
+
+  private isInserted() {
+    return this.drugs.length > 0 || this.exams.length > 0;
   }
 }
