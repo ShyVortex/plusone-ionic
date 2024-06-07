@@ -7,6 +7,7 @@ import {Paziente} from "../../models/paziente/Paziente";
 import {Esame} from "../../models/esame/Esame";
 import {QuantitaDettaglio} from "../../models/terapiafarmacologica/QuantitaDettaglio";
 import {TerapiaFarmacologica} from "../../models/terapiafarmacologica/TerapiaFarmacologica";
+import {isEqual} from "lodash";
 
 @Injectable({
   providedIn: 'root'
@@ -136,5 +137,17 @@ export class TfarmacologicaService {
 
   addTFarmacologicaOffline(paziente: Paziente, tFarmacologica: TerapiaFarmacologica) {
     paziente.tFarmacologiche.push(tFarmacologica);
+  }
+
+  deleteTFarmacologicaOffline(paziente: Paziente, tFarmacologica: TerapiaFarmacologica) {
+    const index = paziente.tFarmacologiche.findIndex(item => item === tFarmacologica);
+    if (index !== -1) {
+      if (isEqual(tFarmacologica, paziente.tFarmacologiche[index])) {
+        paziente.tFarmacologiche.splice(index, 1);
+        console.log("Prescription has been cancelled.")
+      }
+    }
+    else
+      console.error("Prescription not found");
   }
 }
