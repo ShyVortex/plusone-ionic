@@ -43,12 +43,12 @@ import {TfarmacologicaService} from "../../../../../../../services/Tfarmacologic
 export class AddDrugPage implements OnInit {
   protected paziente: Paziente;
   protected isLoading: boolean = true;
-  private note!:string;
-  private quantita!:any
+  private note!: string;
+  private quantita!: any;
   private navURL!: string;
-  private tfarmacologicaId!:number
-  private quantitaDettaglioJSON: any
-  private chosenDrug!:Farmaco
+  private tfarmacologicaId!: number;
+  private quantitaDettaglioJSON: any;
+  private chosenDrug!: Farmaco;
 
   protected drugs!: Farmaco[];
   protected filteredDrugs!: Farmaco[];
@@ -69,7 +69,7 @@ export class AddDrugPage implements OnInit {
           if (this.quantita >= 10) {
             this.presentToast("La quantità inserita sembra essere eccessiva, inserire una quantità adeguata!")
           } else {
-            this.setQuantitaDettaglio()
+            this.setQuantitaDettaglio();
             try {
               await firstValueFrom<QuantitaDettaglio>(
                 this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id, this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON)
@@ -122,7 +122,6 @@ export class AddDrugPage implements OnInit {
     }
   ];
 
-
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
@@ -134,7 +133,6 @@ export class AddDrugPage implements OnInit {
   ) {
     this.quantitaDettaglioJSON = {}
     this.paziente = storageService.getPaziente();
-
   }
 
   ngOnInit() {
@@ -150,6 +148,7 @@ export class AddDrugPage implements OnInit {
       this.isLoading = false;
     }, 1000);
   }
+
   ionViewWillEnter(){
     this.tfarmacologicaId = this.storageService.getTFarmacologicaId()
   }
@@ -171,11 +170,11 @@ export class AddDrugPage implements OnInit {
     });
   }
 
-  submitDrug(drug:Farmaco) {
-    this.chosenDrug = drug
-    this.presentDrugInsertAlert()
-    //this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {});
+  submitDrug(drug: Farmaco) {
+    this.chosenDrug = drug;
+    this.presentDrugInsertAlert();
   }
+
   async presentDrugInsertAlert() {
     const alert = await this.alertController.create({
       header: 'Informazioni aggiuntive',
@@ -184,17 +183,19 @@ export class AddDrugPage implements OnInit {
       buttons: this.alertButtons,
     });
 
-
     await alert.present();
   }
+
   async presentExitAlertButton() {
     const alert = await this.alertController.create({
       header: 'Conferma cancellazione',
       message: 'Sei sicuro di voler annullare il processo? Confermare comporterà la perdita di tutti i dati inseriti.',
       buttons: this.exitButtons,
     });
+
     await alert.present()
   }
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -225,12 +226,18 @@ export class AddDrugPage implements OnInit {
     this.presentExitAlertButton()
   }
 
-  private isValidInput():boolean{
-    return (this.note !== undefined && this.note !== '') && (this.quantita !== undefined && this.quantita !=='' && this.quantita > 0 )
+  private isValidInput(): boolean {
+    return (this.quantita !== undefined && this.quantita !=='' && this.quantita > 0 );
   }
-  private setQuantitaDettaglio(){
-    this.quantitaDettaglioJSON.quantita = this.quantita
-    this.quantitaDettaglioJSON.note = this.note
+
+  private setQuantitaDettaglio() {
+    this.quantitaDettaglioJSON.quantita = this.quantita;
+    
+    if (this.note == undefined || this.note == '') {
+      this.quantitaDettaglioJSON.note = 'Nessuna informazione aggiuntiva';
+    } else {
+      this.quantitaDettaglioJSON.note = this.note;
+    }
   }
 
 }

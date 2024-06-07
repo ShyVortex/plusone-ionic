@@ -95,7 +95,8 @@ export class NewTherapyPage implements OnInit{
       }
     }
   ];
-  protected warningButton =["OK"];
+  protected warningButton = ["OK"];
+
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
@@ -119,6 +120,7 @@ export class NewTherapyPage implements OnInit{
       this.getAllFarmaciByTFarmacologicaObservable = this.tFarmacologicaService.getAllQuantitaDettaglioByTFarmacologica(this.tFarmacologicaId);
     })
   }
+
   ionViewDidEnter(){
       this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
         this.drugs = value
@@ -138,20 +140,24 @@ export class NewTherapyPage implements OnInit{
 
     await alert.present();
   }
+
   async presentConfirmButtonAlert() {
     const alert = await this.alertController.create({
       header: 'Confermare terapia',
       message: 'Sei sicuro di voler confermare la terapia? In seguito non sarà possibile modificare la scelta.',
       buttons: this.confirmButtons,
     });
+    
     await alert.present()
   }
+
   async presentWarningButtonAlert() {
     const alert = await this.alertController.create({
       header: 'ATTENZIONE',
       message: 'Nessun farmaco inserito',
       buttons: this.warningButton,
     });
+
     await alert.present()
   }
 

@@ -72,15 +72,15 @@
       Descrivi il problema
     </ion-label>
     <ion-textarea #reportAreaRef
+                  id="report-textarea"
                   class="issue-textarea"
                   fill="outline"
                   readonly="false"
                   autoGrow="true"
-                  maxlength="300"
-                  tabindex="-1"
+                  maxlength="200"
                   >
     </ion-textarea>
-    <ion-text class="issue-textarea-counter">{{reportAreaRef.value?.length}}/300</ion-text>
+    <ion-text class="issue-textarea-counter">{{reportAreaRef.value?.length}}/200</ion-text>
     <ion-grid>
       <ion-row>
         <ion-col>
