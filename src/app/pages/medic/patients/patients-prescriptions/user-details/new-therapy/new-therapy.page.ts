@@ -118,11 +118,11 @@ export class NewTherapyPage implements OnInit{
 
   ionViewDidEnter(){
       this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
-        this.drugs = value
-      })
+        this.drugs = value;
+      });
       this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
-        this.exams = value
-      })
+        this.exams = value;
+      });
   }
 
   async presentAlert() {
@@ -152,11 +152,11 @@ export class NewTherapyPage implements OnInit{
       buttons: this.warningButton,
     });
 
-    await alert.present()
+    await alert.present();
   }
 
   navigateBack() {
-    this.navURL = 'medic-patients-prescriptions'
+    this.navURL = 'medic-patients-prescriptions';
     this.presentAlert();
   }
 
