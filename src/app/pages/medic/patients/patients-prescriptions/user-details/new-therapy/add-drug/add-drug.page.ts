@@ -99,6 +99,7 @@ export class AddDrugPage implements OnInit {
       }
     }
   ];
+
   private alertInputs:AlertInput[] = [
     {
       name:"quantita",
@@ -114,6 +115,7 @@ export class AddDrugPage implements OnInit {
       },
     },
   ];
+
   protected exitButtons = [
     {
       text: 'Annulla',
@@ -151,7 +153,10 @@ export class AddDrugPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadItems();
+    if (this.paziente.isSet())
+      this.loadItems();
+    else
+      this.loadItemsOffline();
   }
 
   async loadItems() {
@@ -160,6 +165,23 @@ export class AddDrugPage implements OnInit {
         this.drugs = result;
         this.filteredDrugs = this.drugs;
       });
+      this.isLoading = false;
+    }, 1000);
+  }
+
+  async loadItemsOffline() {
+    setTimeout( () => {
+      this.drugs = [];
+
+      let farmaco = new Farmaco();
+      farmaco.codice = '022571147';
+      farmaco.nome = 'ACICLOVIR';
+      farmaco.categoria = 'Antibiotico';
+      farmaco.principioattivo = 'Ibrupofene';
+      farmaco.azienda = 'Sanitech';
+      this.drugs.push(farmaco);
+      this.filteredDrugs = this.drugs;
+
       this.isLoading = false;
     }, 1000);
   }
