@@ -58,7 +58,7 @@ export class ReservationConfirmedPage implements OnInit {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-    //console.log("Animazione renderizzata. \n\n", animationItem);
+    //  console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
   goToHomeAnimated() {
