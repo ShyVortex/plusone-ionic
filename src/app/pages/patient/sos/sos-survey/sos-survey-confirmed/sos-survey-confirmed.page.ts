@@ -153,7 +153,7 @@ export class SosSurveyConfirmedPage implements OnInit {
   async goToHome() {
     if (this.sentStatus === 'OK') {
       this.personaService.setPersona(this.paziente);
-      this.navCtrl.navigateBack("patient-home", { animated: false });
+      this.navCtrl.navigateForward("patient-home", { animated: false });
     } else
       await this.showAlert();
   }

@@ -1,0 +1,83 @@
+ion-content {
+  h1 {
+    font-weight: 40;
+    color: #000;
+    margin-left: 1em;
+  }
+}
+
+ion-item-divider {
+  visibility: hidden;
+}
+
+ion-label {
+  h1 {
+    font-weight: 80;
+    color: #000;
+    margin-top: 0.5em;
+  }
+}
+
+h4 {
+  color: #000;
+  margin-bottom: 0;
+}
+
+.drug {
+  margin-left: 0.5em;
+}
+
+.drug-name {
+  font-size: 1.1em;
+  color: #000;
+}
+
+.drug-grid {
+  display: flex;
+  align-items: center;
+
+  .drug-details {
+    flex-grow: 10;
+  }
+
+  .drug-actions {
+    flex-grow: 1;
+  }
+}
+
+.center-items {
+  display: flex;
+  align-items: center;
+}
+
+.prescription-details-content {
+  .summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    .prescription-summary-icon {
+      width: 7em;
+      height: auto;
+    }
+
+    .prescription-summary-text {
+      margin-left: 1.5em;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .prescription-buttons {
+      text-transform: none;
+      font-family: Inter, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0;
+    }
+  }
+}

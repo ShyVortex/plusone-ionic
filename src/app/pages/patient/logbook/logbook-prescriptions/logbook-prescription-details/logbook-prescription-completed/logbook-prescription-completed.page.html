@@ -1,31 +1,29 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
-      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
-        &larr;
-      </ion-button>
-      <ion-label class="tab-name">Terapie</ion-label>
+      <ion-text class="tab-name-bl">Completato</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="prescriptions-content" [fullscreen]="true">
-  <ion-list>
-    <ion-item class="item-title" *ngFor="let tpaFarm of tpeFarm">
-      <div class="item-content">
-        <ion-img class="prescription-icon" slot="start"
-                 src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
-        </ion-img>
-        <ion-text class="item-title-list">Terapia farmacologica
-          assegnata da {{paziente.medico.nome}} {{paziente.medico.cognome}}
-        </ion-text>
-        <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarm)">
-          <ion-text class="button-arrow">></ion-text>
-        </ion-button>
-      </div>
-    </ion-item>
-  </ion-list>
+<ion-content class="ion-padding" scroll-y="false">
+  <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h3 class="info-h3">TERAPIA COMPLETATA</h3>
+  <h6 class="info-h6">Hai completato la terapia farmacologica. Speriamo che ora ti senta meglio!</h6>
 </ion-content>
+
+<div class="anim-confirm">
+  <ion-button class="confirm-button"
+              expand="block"
+              fill="solid"
+              routerLink="/home"
+              (click)="goToHomeAnimated()"
+              shape="round">
+    <ion-text class="confirm-button-text">
+      Torna alla home
+    </ion-text>
+  </ion-button>
+</div>
 
 <ion-footer>
   <ion-toolbar>

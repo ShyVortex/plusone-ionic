@@ -4,17 +4,23 @@ import {Observable, Observer} from "rxjs";
 import axios, {AxiosResponse} from "axios";
 import {ModelUtilities} from "../../models/ModelUtilities";
 import {QuantitaDettaglio} from "../../models/terapiafarmacologica/QuantitaDettaglio";
+import {StorageService} from "../StorageService/storage.service";
+import {Farmaco} from "../../models/farmaco/Farmaco";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuantitaDettaglioService {
   private quantitaDettaglioURL = "http://localhost:8080/api/medici";
 
-  constructor() { }
-  addQuantitaDettaglio(id_farmaco:number,id_tFarmacologica:number,quantitaDettaglio:QuantitaDettaglio):Observable<QuantitaDettaglio> {
+  constructor(
+    private storageService: StorageService
+  ) { }
+
+  addQuantitaDettaglio(id_farmaco: number, id_tFarmacologica: number, quantitaDettaglio: QuantitaDettaglio):Observable<QuantitaDettaglio> {
     let jsonResponse :any
-    let quantitaDettaglioAdded:QuantitaDettaglio = new QuantitaDettaglio();
+    let quantitaDettaglioAdded: QuantitaDettaglio = new QuantitaDettaglio();
 
     return new Observable<QuantitaDettaglio>((observer:Observer<QuantitaDettaglio>)  => {
       axios.post<Terapia>(this.quantitaDettaglioURL +"/addQuantitaDettaglio" +"/"+id_farmaco + "/" + id_tFarmacologica,quantitaDettaglio).then
@@ -32,6 +38,7 @@ export class QuantitaDettaglioService {
         );
     });
   }
+
   deleteQuantitaDettaglio(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.quantitaDettaglioURL + "/deleteQuantitaDettaglio"+"/" + id).then
@@ -40,5 +47,16 @@ export class QuantitaDettaglioService {
         observer.complete();
       }).catch(error => {console.log(error)});
     });
+  }
+
+  addQuantitaDettaglioOffline(farmaco: Farmaco, id_tFarmacologica: number, quantita: number, note: string) {
+    let quantitaDettaglioAdded: QuantitaDettaglio = new QuantitaDettaglio();
+
+    quantitaDettaglioAdded.quantita = quantita;
+    quantitaDettaglioAdded.note = note;
+    quantitaDettaglioAdded.id = id_tFarmacologica;
+    quantitaDettaglioAdded.farmaco = farmaco;
+
+    this.storageService.getQuantitaDettagli().push(quantitaDettaglioAdded);
   }
 }

@@ -57,7 +57,7 @@ export class LogbookReservationsPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {
