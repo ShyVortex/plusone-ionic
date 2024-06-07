@@ -10,7 +10,6 @@
 </ion-header>
 
 <ion-content class="report-content" [fullscreen]="true">
-  <ion-row style="height: 2em"></ion-row> <!-- spazio vuoto -->
   <div class="report-container">
     <ion-label
       class="report-text">
@@ -75,8 +74,13 @@
     <ion-textarea #reportAreaRef
                   class="issue-textarea"
                   fill="outline"
-                  readonly="false">
+                  readonly="false"
+                  autoGrow="true"
+                  maxlength="300"
+                  tabindex="-1"
+                  >
     </ion-textarea>
+    <ion-text class="issue-textarea-counter">{{reportAreaRef.value?.length}}/300</ion-text>
     <ion-grid>
       <ion-row>
         <ion-col>

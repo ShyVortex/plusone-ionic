@@ -1,7 +1,7 @@
 .report-content {
   .report-container {
     margin-left: 1em;
-    margin-top: 1em;
+    margin-top: 1.5em;
 
     .report-text {
       font-family: Inter, sans-serif;
@@ -18,7 +18,7 @@
 
   .report-container-alt {
     margin-left: 1em;
-    margin-top: 5em;
+    margin-top: 2em;
 
     .report-text {
       font-family: Inter, sans-serif;
@@ -36,9 +36,14 @@
   .issue-textarea {
     margin-top: 0.85em;
     width: 90%;
-    height: 12.5em;
+    height: 10.6em;
     font-family: Inter, sans-serif;
-    font-size: large;
+    font-size: medium;
+    margin-bottom: 0.25em;
+  }
+
+  .issue-textarea-counter {
+    // margin-top: 1em;
   }
 
   .reset-button {
