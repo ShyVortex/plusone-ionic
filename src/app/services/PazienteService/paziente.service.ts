@@ -71,11 +71,14 @@ export class PazienteService {
     return new Observable<Paziente[]>((observer:Observer<Paziente[]>)  => {
       axios.get<Paziente[]>(this.pazienteURL +"/getAllPazientiInattivi").then
       ((response:AxiosResponse<Paziente[]>)  => {
+        pazienti = []
         jsonResponse = response.data
         jsonResponse.forEach((element: any) => {
           pazienti.push(ModelUtilities.pazienteFromJSON(element))
         })
+
         console.log(pazienti)
+
 
         observer.next(pazienti);
         observer.complete();

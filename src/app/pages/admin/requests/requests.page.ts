@@ -70,6 +70,12 @@ export class RequestsPage implements OnInit {
       event.target.complete();
     }, 1000);
   }
+  ionViewWillEnter(){
+    this.getAllInattiviObservable = this.pazienteService.getAllPazientiInattivi();
+    this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
+      this.pazienti = value;
+    });
+  }
 
   routeToRequestDetails(paziente: Paziente) {
     this.storageService.setPaziente(paziente);
