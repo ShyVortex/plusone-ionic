@@ -70,6 +70,7 @@ export class InfoPage implements OnInit {
   hideOverlay() {
     this.anim.goToAndStop(0, true);
     this.overlayVisible = false;
+    this.clicks = 0;
   }
 
   handleAnimation(anim: any) {
@@ -80,7 +81,6 @@ export class InfoPage implements OnInit {
     this.clicks++;
     if (this.clicks === 3) {
       this.showOverlay();
-      this.clicks = 0;
     }
   }
 
