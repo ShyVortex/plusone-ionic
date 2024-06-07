@@ -16,8 +16,6 @@ export class TerapiaService {
   constructor() { }
 
   getAllTerapie():Observable<Terapia[]> {
-
-
     let jsonResponse :any[] =[];
     let terapie:Terapia[] = [];
 
@@ -29,6 +27,27 @@ export class TerapiaService {
           terapie.push(ModelUtilities.terapieFromJSON(element))
         })
         console.log(terapie)
+
+        observer.next(terapie);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)}
+        );
+    });
+  }
+
+  getTerapieByTipologiaTerapia(tipologia: String):Observable<Terapia[]> {
+    let jsonResponse :any[] =[];
+    let terapie:Terapia[] = [];
+
+    return new Observable<Terapia[]>((observer:Observer<Terapia[]>)  => {
+      axios.get<Terapia[]>(this.terapiaURL +"/getTerapieByTipologiaTerapia/" + tipologia).then
+      ((response:AxiosResponse<Terapia[]>)  => {
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          terapie.push(ModelUtilities.terapieFromJSON(element))
+        })
+        console.log("Terapie filtrate per tipo", terapie)
 
         observer.next(terapie);
         observer.complete();

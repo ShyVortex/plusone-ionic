@@ -125,7 +125,11 @@ export class LoginPage implements OnInit,OnDestroy {
         this.personaService.setPersona(new Paziente());
 
       this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("patient-home");
+      await this.navCtrl.navigateForward("patient-home", {
+        state: {
+          isDefault: true
+        }
+      });
     }
     if (this.email === "teresa.nucci@infermiere.it" && this.password === "password123") {
       this.personToLogin = this.storageService.getState(this.email);

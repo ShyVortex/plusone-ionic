@@ -1,0 +1,89 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli terapia</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="prescription-details-content" [fullscreen]="true">
+  <ion-row style="height: 1.5em"></ion-row> <!-- spazio vuoto-->
+  <div class="summary-container">
+    <ion-item lines="none">
+      <ion-img class="prescription-summary-icon"
+               src="../../assets/icon/patient/logbook/prescriptions/prescription-colored.png">
+      </ion-img>
+      <ion-text class="prescription-summary-text">Terapia farmacologica <br/>
+        assegnata da <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
+      </ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <ion-label><h1>Farmaci</h1></ion-label>
+  <ion-card>
+    <ion-grid class="drug-grid" *ngFor="let drug of drugs; let i = index">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug drug-name">{{drug?.farmaco?.nome}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="drug drug-info">Quantità: {{drug?.quantita}} </ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="drug drug-notes">{{drug?.note}}</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+  </ion-card>
+
+  <ion-item-divider></ion-item-divider>
+
+  <ion-label><h1>Esami</h1></ion-label>
+  <ion-card>
+    <ion-grid class="drug-grid" *ngFor="let exam of exams; let i = index">
+      <ion-col class="drug-details">
+        <ion-row>
+          <ion-label class="drug drug-name">{{exam.nome}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="drug drug-notes">Codice esame : {{exam.codice}}</ion-label>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+  </ion-card>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="buttons-container">
+    <ion-button class="prescription-buttons"
+                color="primary"
+                (click)="markAsCompleted()">Completata
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToLogbook()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/logbook.png"></ion-img>
+          Registro
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToReservation()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
+          Prenota
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToSOS()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
+          SOS
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

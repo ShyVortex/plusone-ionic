@@ -47,6 +47,16 @@ export const routes: Routes = [
       .then(m => m.LogbookPrescriptionsPage)
   },
   {
+    path: 'patient-logbook-prescription-details',
+    loadComponent: () => import('./pages/patient/logbook/logbook-prescriptions/logbook-prescription-details/logbook-prescription-details.page')
+      .then(m => m.LogbookPrescriptionDetailsPage)
+  },
+  {
+    path: 'patient-logbook-prescription-completed',
+    loadComponent: () => import('./pages/patient/logbook/logbook-prescriptions/logbook-prescription-details/logbook-prescription-completed/logbook-prescription-completed.page')
+      .then(m => m.LogbookPrescriptionCompletedPage)
+  },
+  {
     path: 'patient-logbook-reservations',
     loadComponent: () => import('./pages/patient/logbook/logbook-reservations/logbook-reservations.page')
       .then(m => m.LogbookReservationsPage)
@@ -55,6 +65,11 @@ export const routes: Routes = [
     path: 'patient-logbook-reservation-details',
     loadComponent: () => import('./pages/patient/logbook/logbook-reservations/logbook-reservation-details/logbook-reservation-details.page')
       .then(m => m.LogbookReservationDetailsPage)
+  },
+  {
+    path: 'patient-logbook-reservation-cancelled',
+    loadComponent: () => import('./pages/patient/logbook/logbook-reservations/logbook-reservation-details/logbook-reservation-cancelled/logbook-reservation-cancelled.page')
+      .then(m => m.LogbookReservationCancelledPage)
   },
   {
     path: 'patient-logbook-diagnosis',
@@ -313,5 +328,10 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
+  },
+  {
+    path: 'confirm-therapy',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/confirm-therapy/confirm-therapy.page')
+      .then(m => m.ConfirmTherapyPage)
   }
 ];

@@ -6,6 +6,9 @@ import { cloneDeep, isEqual } from 'lodash';
 import {Terapia} from "../../models/terapia/Terapia";
 import {Triage} from "../../models/triage/Triage";
 import {Segnalazione} from "../../models/segnalazione/Segnalazione";
+import {TerapiaFarmacologica} from "../../models/terapiafarmacologica/TerapiaFarmacologica";
+import {QuantitaDettaglio} from "../../models/terapiafarmacologica/QuantitaDettaglio";
+import {Esame} from "../../models/esame/Esame";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +26,11 @@ export class StorageService {
   private richieste!: Triage[];
   private segnalazione!: Segnalazione;
   private segnalazioni: Segnalazione[];
+  private tFarmacologicaId!:number
+  private tpaFarm!: TerapiaFarmacologica;
+  private tpeFarm: TerapiaFarmacologica[];
+  private quantitaDettagli: QuantitaDettaglio[];
+  private esami: Esame[];
 
   constructor() {
     this.paziente = new Paziente();
@@ -31,6 +39,9 @@ export class StorageService {
     this.route = "";
     this.loginCache = [];
     this.segnalazioni = [];
+    this.tpeFarm = [];
+    this.quantitaDettagli = [];
+    this.esami = [];
   }
 
   setPaziente(paziente: Paziente) {
@@ -112,8 +123,40 @@ export class StorageService {
     return this.segnalazioni;
   }
 
+  setTfarmacologicaId(value: number) {
+    this.tFarmacologicaId = value
+  }
+
+  getTFarmacologicaId() {
+    return this.tFarmacologicaId;
+  }
+
   cacheSegnalazione(value: Segnalazione) {
     this.segnalazioni.push(value);
+  }
+
+  getTFarmacologica() {
+    return this.tpaFarm;
+  }
+
+  setTFarmacologica(value: TerapiaFarmacologica) {
+    this.tpaFarm = value;
+  }
+
+  getTFarmacologiche() {
+    return this.tpeFarm;
+  }
+
+  cacheTFarmacologica(value: TerapiaFarmacologica) {
+    this.tpeFarm.push(value);
+  }
+
+  getQuantitaDettagli() {
+    return this.quantitaDettagli;
+  }
+
+  getEsami() {
+    return this.esami;
   }
 
   getAllStates() {

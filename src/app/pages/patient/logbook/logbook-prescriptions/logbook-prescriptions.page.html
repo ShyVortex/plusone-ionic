@@ -4,10 +4,28 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Ricette</ion-label>
+      <ion-label class="tab-name">Terapie</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
+
+<ion-content class="prescriptions-content" [fullscreen]="true">
+  <ion-list>
+    <ion-item class="item-title" *ngFor="let tpaFarm of tpeFarm">
+      <div class="item-content">
+        <ion-img class="prescription-icon" slot="start"
+                 src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
+        </ion-img>
+        <ion-text class="item-title-list">Terapia farmacologica
+          assegnata da {{paziente.medico.nome}} {{paziente.medico.cognome}}
+        </ion-text>
+        <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarm)">
+          <ion-text class="button-arrow">></ion-text>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
 
 <ion-footer>
   <ion-toolbar>

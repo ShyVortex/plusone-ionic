@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -11,29 +11,42 @@ import {
     IonTitle,
     IonToolbar
 } from '@ionic/angular/standalone';
-import {NavController} from "@ionic/angular";
-import {LoginUtilities} from "../../registration/login/LoginUtilities";
-import {PersonaService} from "../../../services/PersonaService/persona.service";
+import { NavController } from "@ionic/angular";
+import { LoginUtilities } from "../../registration/login/LoginUtilities";
+import { PersonaService } from "../../../services/PersonaService/persona.service";
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { trashBinSharp } from 'ionicons/icons';
 
 @Component({
   selector: 'app-info',
   templateUrl: './info.page.html',
   styleUrls: ['./info.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter]
+  imports: [LottieComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter]
 })
 
 export class InfoPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
   protected readonly LoginUtilities = LoginUtilities;
+  protected clicks: number;
+  protected overlayVisible!: boolean;
+  protected anim: any;
 
+  options: AnimationOptions = {
+  path: '../../../assets/animations/unimol-spinner.json',
+    autoplay: false,
+  };
+  
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
+    this.clicks = 0;
+    this.overlayVisible = false;
   }
 
   ngOnInit() {
@@ -45,6 +58,30 @@ export class InfoPage implements OnInit {
       this.ruolo = "MEDICO";
     else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'ADMIN')
       this.ruolo = "ADMIN";
+  }
+
+  showOverlay() {
+    this.overlayVisible = true;
+    setTimeout(() => {
+      this.anim.play();
+    }, 500);
+  }
+
+  hideOverlay() {
+    this.anim.goToAndStop(0, true);
+    this.overlayVisible = false;
+    this.clicks = 0;
+  }
+
+  handleAnimation(anim: any) {
+    this.anim = anim;
+  }
+
+  displayEasterEgg() {
+    this.clicks++;
+    if (this.clicks === 3) {
+      this.showOverlay();
+    }
   }
 
   navigateBack() {

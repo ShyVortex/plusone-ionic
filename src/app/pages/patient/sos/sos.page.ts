@@ -75,7 +75,7 @@ export class SOSPage implements OnInit {
 
   goToHome() {
     this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {

@@ -16,10 +16,16 @@ ion-card {
     border-radius: 1em;
 }
 
-ion-fab {
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ion-fab {
     margin-right: 0.2em;
     margin-bottom: 3.7em;
-}
+} */
 
 ion-item-divider {
     margin-top: 0.5em;

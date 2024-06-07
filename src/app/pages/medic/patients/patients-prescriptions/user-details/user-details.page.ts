@@ -32,15 +32,6 @@ export class UserDetailsPage {
     console.log(this.patient.sesso);
   }
 
-  async presentAlert() {
-      const alert = await this.alertController.create({
-        header: 'In sviluppo!',
-        buttons: ['Ok'],
-      });
-
-      await alert.present();
-  }
-
   navigateBack() {
     this.navCtrl.navigateBack('medic-patients-prescriptions', {
       // animated: false,

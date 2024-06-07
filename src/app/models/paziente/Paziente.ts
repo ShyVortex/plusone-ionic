@@ -3,6 +3,7 @@ import { Indirizzo } from "../persona/Indirizzo";
 import { Medico } from "../medico/Medico";
 import { Terapia } from "../terapia/Terapia";
 import {Triage} from "../triage/Triage";
+import {TerapiaFarmacologica} from "../terapiafarmacologica/TerapiaFarmacologica";
 
 export class Paziente extends Persona {
   private _indirizzo: Indirizzo;
@@ -11,6 +12,7 @@ export class Paziente extends Persona {
   private _medico: Medico;
   private _terapie: Terapia[];
   private _richieste: Triage[];
+  private _tFarmacologiche: TerapiaFarmacologica[];
   private _attivo: boolean;
 
   constructor() {
@@ -22,6 +24,7 @@ export class Paziente extends Persona {
     this._medico = new Medico();
     this._terapie = [];
     this._richieste = [];
+    this._tFarmacologiche = [];
     this._attivo = false;
   }
 
@@ -39,6 +42,14 @@ export class Paziente extends Persona {
 
   set richieste(value: Triage[]) {
     this._richieste = value;
+  }
+
+  get tFarmacologiche(): TerapiaFarmacologica[] {
+    return this._tFarmacologiche;
+  }
+
+  set tFarmacologiche(value: TerapiaFarmacologica[]) {
+    this._tFarmacologiche = value;
   }
 
   get indirizzo(): Indirizzo {

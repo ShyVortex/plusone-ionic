@@ -58,7 +58,7 @@ export class ReservationConfirmedPage implements OnInit {
   }
 
   animationCreated(animationItem: AnimationItem): void {
-    //console.log("Animazione renderizzata. \n\n", animationItem);
+    //  console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
   goToHomeAnimated() {
@@ -66,7 +66,7 @@ export class ReservationConfirmedPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {

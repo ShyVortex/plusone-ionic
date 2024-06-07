@@ -60,12 +60,13 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
-  protected paziente: Paziente;
+  protected paziente: Paziente = new Paziente();
   private getPazienteByEmailObservable:Observable<Paziente>;
   private emailPaziente!:string
   protected citta! :string
   private getMedicoByEmailObservable:Observable<Medico>
   private dataSubscription!:Subscription;
+  private isDefault: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -76,13 +77,13 @@ export class HomePage implements OnInit {
     private dataService: DataService,
     private storageService: StorageService
   ) {
+    this.isDefault = history.state.isDefault;
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
-    this.paziente = personaService.getPersona();
 
-    if (!this.paziente)
-      this.paziente = new Paziente();
+    if (this.isDefault)
+      this.paziente = personaService.getPersona();
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);
@@ -97,7 +98,7 @@ export class HomePage implements OnInit {
       }
     )
 
-    if (this.paziente.isEmpty())
+    if (this.isDefault && this.paziente.isEmpty())
       this.paziente.setState(false);
   }
 
@@ -109,6 +110,7 @@ export class HomePage implements OnInit {
         this.pazienteService.offlineSetPaziente(this.paziente);
         this.citta = this.paziente.indirizzo.città;
         this.paziente.terapie = this.storageService.getTerapie();
+        this.paziente.tFarmacologiche = this.storageService.getTFarmacologiche();
       }
     });
   }
@@ -133,7 +135,7 @@ export class HomePage implements OnInit {
 
   goToHome() {
     this.personaService.setPersona(this.paziente);
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {
