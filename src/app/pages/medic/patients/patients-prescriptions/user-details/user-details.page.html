@@ -28,12 +28,15 @@
     </ion-card-content>
 
     <ion-card-content>
-    <ion-card-title>Diagnosi</ion-card-title>
-    <ion-card-subtitle>Asma eosinofila, rinite allergica</ion-card-subtitle>
+      <ion-card-title>Esenzione</ion-card-title>
+      <ion-card-subtitle *ngIf="this.patient._esenzione">Esente</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="!this.patient._esenzione">Non esente</ion-card-subtitle>
     </ion-card-content>
 
     <ion-card-content>
-    <ion-card-title>Lista farmaci assegnati</ion-card-title>
+      <ion-card-title>Donatore organi</ion-card-title>
+      <ion-card-subtitle *ngIf="this.patient._donatoreOrgani">Donatore</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="!this.patient._donatoreOrgani">Non donatore</ion-card-subtitle>
     </ion-card-content>
   </ion-card>
   <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Assegna terapia</ion-button>

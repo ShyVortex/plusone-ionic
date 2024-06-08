@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -11,8 +11,7 @@ import {
   IonTabBar,
   IonTabButton, IonTabs, IonText, IonTextarea,
   IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+  IonToolbar, IonItem } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../../registration/login/LoginUtilities";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
@@ -24,10 +23,10 @@ import {SegnalazioneService} from "../../../services/SegnalazioneService/segnala
   templateUrl: './bugreport.page.html',
   styleUrls: ['./bugreport.page.scss'],
   standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonSelect, IonSelectOption, IonCol, IonGrid, IonFooter]
+  imports: [IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonSelect, IonSelectOption, IonCol, IonGrid, IonFooter]
 })
 
-export class BugreportPage implements OnInit {
+export class BugreportPage implements OnInit, AfterViewInit {
   protected persona: any;
   protected ruolo: String;
   protected readonly LoginUtilities = LoginUtilities;
@@ -57,6 +56,15 @@ export class BugreportPage implements OnInit {
       this.ruolo = "MEDICO";
     else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'ADMIN')
       this.ruolo = "ADMIN";
+  }
+
+  ngAfterViewInit(): void {
+    const textarea = document.getElementById('report-textarea');
+    if (textarea) {
+      textarea.addEventListener('focus', (event) => {
+        event.preventDefault();
+      }, true);
+    }
   }
 
   async presentAlert() {

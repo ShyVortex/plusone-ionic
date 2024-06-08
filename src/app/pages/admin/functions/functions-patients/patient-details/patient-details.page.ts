@@ -6,6 +6,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonTabs, IonTab
 import { NavController } from "@ionic/angular";
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { Sesso } from 'src/app/models/persona/sesso';
+import { PazienteService } from 'src/app/services/PazienteService/paziente.service';
+import { Medico } from 'src/app/models/medico/Medico';
 
 @Component({
   selector: 'app-patient-details',
@@ -16,13 +18,23 @@ import { Sesso } from 'src/app/models/persona/sesso';
 })
 export class PatientDetailsPage implements OnInit {
   protected patient!: any;
+  protected assignedMedicDetails!: string;
   protected readonly Sesso = Sesso;
 
   constructor(
     private navCtrl: NavController,
+    private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
+    this.assignedMedicDetails = '';
     this.patient = this.storageService.getPaziente();
+
+    pazienteService.getMedicoOfPaziente(this.patient.id).subscribe((medico) => {
+      this.assignedMedicDetails = medico.nome + ' ' + medico.cognome;
+      if (medico.nome == '') {
+        this.assignedMedicDetails = 'Nessun medico assegnato';
+      }
+    });
   }
 
   ngOnInit() {
