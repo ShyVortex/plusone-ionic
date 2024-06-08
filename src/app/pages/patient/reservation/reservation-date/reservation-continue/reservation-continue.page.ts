@@ -35,11 +35,11 @@ export class ReservationContinuePage implements OnInit {
   private terapia: any;
   protected therapies!: any[];
   private terapiaAdded: Terapia;
-  
+
   private dataSubscription!: Subscription;
   private patientToPrenote!: Paziente;
   private getPazienteByEmailObservable: Observable<Paziente>;
-  
+
   public alertButtons = [
     {
       text: 'Annulla',
@@ -128,18 +128,18 @@ export class ReservationContinuePage implements OnInit {
       this.therapies.forEach((element: Terapia) => {
         console.log("Data prenotazione: ", element.orario.split('T')[0]);
         console.log("Orario prenotazione: ", element.orario.split('T')[1]);
-        
+
         this.times.forEach((time: time) => {
           console.log("Data 1 da confrontare: ", this.date);
           console.log("Data 2 da confrontare: ", element.orario.split('T')[0]);
           console.log("Orario 1 da confrontare: ", time.time);
           console.log("Orario 2 da confrontare: ", element.orario.split('T')[1].substring(0, 5));
-          
+
           if (this.date === element.orario.split('T')[0] && time.time === element.orario.split('T')[1].substring(0, 5)) {
             console.log("Match trovato");
             console.log("Orario: ", time.time);
             console.log("Orario prenotazione: ", element.orario.split('T')[1].substring(0, 5));
-            
+
             time.reserved = true;
           }
         });
@@ -182,7 +182,7 @@ export class ReservationContinuePage implements OnInit {
 
   toggleClickedItem(clickedIndex: number) {
     if (this.actualIndex < 6) this.times[this.actualIndex].clicked = !this.times[this.actualIndex].clicked;
-    
+
     this.actualIndex = clickedIndex;
     this.times[clickedIndex].clicked = !this.times[clickedIndex].clicked;
   }
@@ -213,7 +213,7 @@ export class ReservationContinuePage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {

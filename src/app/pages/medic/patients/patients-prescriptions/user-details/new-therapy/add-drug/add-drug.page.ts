@@ -70,15 +70,29 @@ export class AddDrugPage implements OnInit {
             this.presentToast("La quantità inserita sembra essere eccessiva, inserire una quantità adeguata!")
           } else {
             this.setQuantitaDettaglio();
-            try {
-              await firstValueFrom<QuantitaDettaglio>(
-                this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id, this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON)
-              );
-              this.presentToast("Farmaco assegnato correttamente!")
-            } catch (error) {
-              console.error(error)
+           
+            if (this.paziente.isSet()) {
+              try {
+                await firstValueFrom<QuantitaDettaglio>(
+                  this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id,
+                    this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON
+                  )
+                );
+                this.presentToast("Farmaco assegnato correttamente!");
+              } catch (error) {
+                console.error(error);
+              }
             }
-
+            else {
+              try {
+                this.quantitaDettaglioService.addQuantitaDettaglioOffline(this.chosenDrug,
+                  this.storageService.getTFarmacologicaId(), this.quantita, this.note
+                );
+                this.presentToast("Farmaco assegnato correttamente!");
+              } catch (error) {
+                console.error(error);
+              }
+            }
           }
         } else {
           this.presentToast("Dati non validi, inserire dei dati corretti!")
@@ -86,6 +100,7 @@ export class AddDrugPage implements OnInit {
       }
     }
   ];
+
   private alertInputs:AlertInput[] = [
     {
       name:"quantita",
@@ -101,6 +116,7 @@ export class AddDrugPage implements OnInit {
       },
     },
   ];
+
   protected exitButtons = [
     {
       text: 'Annulla',
@@ -136,7 +152,10 @@ export class AddDrugPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadItems();
+    if (this.paziente.isSet())
+      this.loadItems();
+    else
+      this.loadItemsOffline();
   }
 
   async loadItems() {
@@ -145,6 +164,23 @@ export class AddDrugPage implements OnInit {
         this.drugs = result;
         this.filteredDrugs = this.drugs;
       });
+      this.isLoading = false;
+    }, 1000);
+  }
+
+  async loadItemsOffline() {
+    setTimeout( () => {
+      this.drugs = [];
+
+      let farmaco = new Farmaco();
+      farmaco.codice = '022571147';
+      farmaco.nome = 'ACICLOVIR';
+      farmaco.categoria = 'Antibiotico';
+      farmaco.principioattivo = 'Ibrupofene';
+      farmaco.azienda = 'Sanitech';
+      this.drugs.push(farmaco);
+      this.filteredDrugs = this.drugs;
+
       this.isLoading = false;
     }, 1000);
   }

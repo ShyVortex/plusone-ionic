@@ -1,17 +1,17 @@
 import {Farmaco} from "../farmaco/Farmaco";
 
 export class QuantitaDettaglio {
-    private _quantita: number;
-    private _note: string;
-    private _id:number;
-    private _farmaco:Farmaco;
+  private _quantita: number;
+  private _note: string;
+  private _id: number;
+  private _farmaco: Farmaco;
 
-    constructor() {
-        this._quantita = 0;
-        this._note = "";
-        this._id = 0;
-        this._farmaco = new Farmaco();
-    }
+  constructor() {
+    this._quantita = 0;
+    this._note = "";
+    this._id = 0;
+    this._farmaco = new Farmaco();
+  }
 
   get id(): number {
     return this._id;

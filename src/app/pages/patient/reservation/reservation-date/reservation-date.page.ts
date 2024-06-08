@@ -106,7 +106,7 @@ export class ReservationDatePage implements OnInit {
     } else {
       this.modal.dismiss();
       this.storageService.setMedico(this.chosenMedic)
-      
+
       console.log(this.chosenMedic);
     }
   }
@@ -122,17 +122,17 @@ export class ReservationDatePage implements OnInit {
           this.presentAlert();
         } else {
           this.routeToReservationContinue();
-        } 
+        }
       break;
-      
-      case 'GENERALE': 
+
+      case 'GENERALE':
         if (!this.hospitalWard || !this.date) {
           this.presentAlert();
         } else {
           this.routeToReservationContinue();
         }
       break;
-    }    
+    }
   }
 
   navigateBack() {
@@ -150,7 +150,7 @@ export class ReservationDatePage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("patient-home", { animated: false });
+    this.navCtrl.navigateForward("patient-home", { animated: false });
   }
 
   goToLogbook() {

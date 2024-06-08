@@ -26,7 +26,7 @@ import { EsameService } from 'src/app/services/EsameService/esame.service';
 import { AlertController } from '@ionic/angular';
 import {firstValueFrom} from "rxjs";
 import {TfarmacologicaService} from "../../../../../../../services/TfarmacologicaService/tfarmacologica.service";
-import {QuantitaDettaglio} from "../../../../../../../models/terapiafarmacologica/QuantitaDettaglio";
+
 
 @Component({
   selector: 'app-add-exam',
@@ -61,11 +61,12 @@ export class AddExamPage implements OnInit {
           });
         }
         catch (error){
-          console.error(error)
+          console.error(error);
         }
       }
     }
   ];
+
   private alertButtons = [
     {
       text: 'NO',
@@ -76,13 +77,23 @@ export class AddExamPage implements OnInit {
       text: 'SI',
       role: 'confirm',
       handler: async () => {
-        try {
-          await firstValueFrom<any>(
-            this.tFarmacologicaService.addEsameToTfarmacologica(this.chosenExam.id,this.storageService.getTFarmacologicaId()))
-          this.presentToast("Esame aggiunto con successo!")
-        }
-        catch (error){
-          console.error(error)
+        if (this.paziente.isSet()) {
+          try {
+            await firstValueFrom<any>(
+              this.tFarmacologicaService.addEsameToTfarmacologica(this.chosenExam.id,this.storageService.getTFarmacologicaId()))
+            this.presentToast("Esame aggiunto con successo!");
+          }
+          catch (error){
+            console.error(error);
+          }
+        } else {
+          try {
+            this.esameService.addEsameOffline(this.chosenExam);
+            this.presentToast("Esame aggiunto con successo!");
+          }
+          catch (error) {
+            console.log(error);
+          }
         }
       }
     }
@@ -100,7 +111,12 @@ export class AddExamPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadItems();
+    if (this.paziente.isSet())
+      this.loadItems();
+    else
+      this.loadItemsOffline();
+
+    console.log(this.exams);
   }
 
   async loadItems() {
@@ -109,6 +125,20 @@ export class AddExamPage implements OnInit {
         this.exams = result;
         this.filteredExams = this.exams;
       });
+      this.isLoading = false;
+    }, 1000);
+  }
+
+  loadItemsOffline() {
+    setTimeout(() => {
+      this.exams = [];
+
+      let esame = new Esame();
+      esame.nome = "Esame della cardrega";
+      esame.codice = '1';
+      this.exams.push(esame);
+      this.filteredExams = this.exams;
+
       this.isLoading = false;
     }, 1000);
   }

@@ -6,14 +6,18 @@ import {ModelUtilities} from "../../models/ModelUtilities";
 import {Paziente} from "../../models/paziente/Paziente";
 import {Esame} from "../../models/esame/Esame";
 import {QuantitaDettaglio} from "../../models/terapiafarmacologica/QuantitaDettaglio";
+import {TerapiaFarmacologica} from "../../models/terapiafarmacologica/TerapiaFarmacologica";
+import {isEqual} from "lodash";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class TfarmacologicaService {
   private tFarmacologicaURL: string = "http://localhost:8080/api/medici";
 
   constructor() { }
+
   addTFarmacologica(id_medico:number,id_paziente:number):Observable<any> {
 
     return new Observable<any>((observer:Observer<any>)  => {
@@ -28,6 +32,7 @@ export class TfarmacologicaService {
         );
     });
   }
+
   deleteTfarmacologica(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.tFarmacologicaURL + "/deleteTfarmacologica"+"/" + id).then
@@ -37,6 +42,7 @@ export class TfarmacologicaService {
       }).catch(error => {console.log(error)});
     });
   }
+
   getAllEsamiByTFarmacologica(id:number): Observable<Esame[]> {
     let jsonResponse: any[] = [];
     let esami: Esame[] = [];
@@ -60,6 +66,7 @@ export class TfarmacologicaService {
         );
     });
   }
+
   getAllQuantitaDettaglioByTFarmacologica(id:number): Observable<QuantitaDettaglio[]> {
 
     let jsonResponse: any[] = [];
@@ -84,6 +91,7 @@ export class TfarmacologicaService {
         );
     });
   }
+
   addEsameToTfarmacologica(id_esame:number,id_tfarmacologica:number): Observable<void> {
       return new Observable<any>((observer:Observer<void>)  => {
         axios.put<void>(this.tFarmacologicaURL +"/addEsameToTfarmacologica" +"/"+id_esame + "/" + id_tfarmacologica).then
@@ -97,6 +105,7 @@ export class TfarmacologicaService {
           );
       });
   }
+
   removeEsameOfTfarmacologica(id_esame:number,id_tfarmacologica:number): Observable<void> {
     return new Observable<any>((observer:Observer<void>)  => {
       axios.put<void>(this.tFarmacologicaURL +"/removeEsameOfTfarmacologica" +"/"+id_esame + "/" + id_tfarmacologica).then
@@ -110,6 +119,7 @@ export class TfarmacologicaService {
         );
     });
   }
+
   setState(id_tFarmacologica:number,stato:boolean):Observable<any> {
 
     return new Observable<any>((observer:Observer<any>)  => {
@@ -125,5 +135,19 @@ export class TfarmacologicaService {
     });
   }
 
+  addTFarmacologicaOffline(paziente: Paziente, tFarmacologica: TerapiaFarmacologica) {
+    paziente.tFarmacologiche.push(tFarmacologica);
+  }
 
+  deleteTFarmacologicaOffline(paziente: Paziente, tFarmacologica: TerapiaFarmacologica) {
+    const index = paziente.tFarmacologiche.findIndex(item => item === tFarmacologica);
+    if (index !== -1) {
+      if (isEqual(tFarmacologica, paziente.tFarmacologiche[index])) {
+        paziente.tFarmacologiche.splice(index, 1);
+        console.log("Prescription has been cancelled.")
+      }
+    }
+    else
+      console.error("Prescription not found");
+  }
 }

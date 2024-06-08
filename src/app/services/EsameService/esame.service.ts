@@ -3,6 +3,7 @@ import { Observable, Observer } from 'rxjs';
 import axios, { AxiosResponse } from 'axios';
 import { Esame } from 'src/app/models/esame/Esame';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
+import {StorageService} from "../StorageService/storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ import { ModelUtilities } from 'src/app/models/ModelUtilities';
 export class EsameService {
   private commonURL = "http://localhost:8080/api/esami";
 
-  constructor() { }
+  constructor(
+    private storageService: StorageService
+  ) { }
 
   getAllEsami(): Observable<Esame[]> {
     let jsonResponse: any[] = [];
@@ -30,4 +33,7 @@ export class EsameService {
     })
   }
 
+  addEsameOffline(esame: Esame) {
+    this.storageService.getEsami().push(esame);
+  }
 }
