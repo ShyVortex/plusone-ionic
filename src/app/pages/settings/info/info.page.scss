@@ -1,18 +1,42 @@
 .info-content {
-.info-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  .info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
-  .version-text {
-    text-align: center;
+    .info-card {
+      margin-left: 2em;
+      margin-right: 2em;
+      border-radius: 10px;
 
-    .build-ver {
-      font-weight: bold;
+      .card-icon {
+        width: 10em;
+        height: auto;
+        margin: auto;
+      }
+
+      .card-line {
+        flex-grow: 1;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .card-title {
+        margin-top: 0.75em;
+        color: #000;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+
+      .card-content {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: medium;
+      }
     }
   }
- }
 }
 
 #overlay {
@@ -23,11 +47,11 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
-  display: none; 
+  display: none;
 }
 
 #overlay.active {
-  display: block; 
+  display: block;
 }
 
 #footer.activeOverlay {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-    IonButton,
+    IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle,
     IonCol,
     IonContent, IonFooter,
     IonGrid,
@@ -23,7 +23,7 @@ import { trashBinSharp } from 'ionicons/icons';
   templateUrl: './info.page.html',
   styleUrls: ['./info.page.scss'],
   standalone: true,
-  imports: [LottieComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter]
+    imports: [LottieComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonCol, IonGrid, IonImg, IonLabel, IonRow, IonSelect, IonSelectOption, IonTabBar, IonTabButton, IonTabs, IonTextarea, IonText, IonFooter, IonCard, IonCardContent, IonCardHeader, IonCardTitle]
 })
 
 export class InfoPage implements OnInit {
@@ -38,7 +38,7 @@ export class InfoPage implements OnInit {
   path: '../../../assets/animations/unimol-spinner.json',
     autoplay: false,
   };
-  
+
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService
