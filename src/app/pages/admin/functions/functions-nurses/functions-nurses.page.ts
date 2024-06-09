@@ -24,6 +24,7 @@ import { StorageService } from 'src/app/services/StorageService/storage.service'
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonAvatar, IonImg, IonItem, IonList, IonProgressBar, IonSearchbar, IonFooter, IonTabBar, IonTabButton, IonTabs]
 })
+
 export class FunctionsNursesPage implements OnInit {
   protected isLoading: boolean = true;
   protected nurses!: Infermiere[];
@@ -38,20 +39,34 @@ export class FunctionsNursesPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter(){
+    this.loadItems();
+  }
+
+  ionViewWillLeave(){
+    this.isLoading = true;
+  }
+
   async loadItems() {
     setTimeout(() => {
       this.infermiereService.getAllInfermieri().subscribe((result: Infermiere[]) => {
-        this.nurses = result;
+        if (result.length !== 0)
+          this.nurses = result;
+        else
+          this.loadIfEmpty();
         this.filteredNurses = this.nurses;
       });
       this.isLoading = false;
     }, 1000);
   }
-  ionViewWillEnter(){
-    this.loadItems();
-  }
-  ionViewWillLeave(){
-    this.isLoading = true;
+
+  loadIfEmpty() {
+    if (this.nurses === undefined) {
+      this.nurses = [];
+      let nurse: Infermiere = new Infermiere();
+      this.infermiereService.offlineSetInfermiere(nurse);
+      this.nurses.push(nurse);
+    }
   }
 
   search(event: any) {

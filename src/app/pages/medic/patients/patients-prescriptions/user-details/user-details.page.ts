@@ -32,6 +32,10 @@ export class UserDetailsPage {
     console.log(this.patient.sesso);
   }
 
+  format(): string {
+    return this.patient.diagnosi.replace(/_/g, ' ');
+  }
+
   navigateBack() {
     this.navCtrl.navigateBack('medic-patients-prescriptions', {
       // animated: false,

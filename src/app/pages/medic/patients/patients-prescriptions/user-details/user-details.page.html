@@ -28,6 +28,11 @@
     </ion-card-content>
 
     <ion-card-content>
+      <ion-card-title>Diagnosi</ion-card-title>
+      <ion-card-subtitle>{{ format() }}</ion-card-subtitle>
+    </ion-card-content>
+
+    <ion-card-content>
       <ion-card-title>Esenzione</ion-card-title>
       <ion-card-subtitle *ngIf="this.patient._esenzione">Esente</ion-card-subtitle>
       <ion-card-subtitle *ngIf="!this.patient._esenzione">Non esente</ion-card-subtitle>

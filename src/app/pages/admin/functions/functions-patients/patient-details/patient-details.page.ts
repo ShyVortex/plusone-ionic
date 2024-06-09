@@ -40,6 +40,10 @@ export class PatientDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  format(): string {
+    return this.patient.diagnosi.replace(/_/g, ' ');
+  }
+
   navigateBack() {
     this.navCtrl.navigateBack("admin-functions-patients");
   }
