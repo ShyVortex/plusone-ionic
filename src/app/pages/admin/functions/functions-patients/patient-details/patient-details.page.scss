@@ -1,3 +1,33 @@
+.legacy-toolbar {
+  @media only screen and (max-width: 360px) {
+    .back-button {
+      margin-top: -0.1em;
+      margin-bottom: -1em;
+    }
+
+    .tab-name {
+      margin-top: 1em;
+      font-size: 25px;
+    }
+  }
+
+  @media only screen and (min-width: 361px) {
+    .back-button {
+      margin-top: 0.80em;
+      margin-bottom: -1em;
+    }
+
+    .tab-name {
+      margin-top: 2.3em;
+      font-size: 25px;
+    }
+  }
+
+  .container {
+    margin-right: 1em;
+  }
+}
+
 ion-content {
     --background: #f0f1f5;
     padding-left: 2em;
@@ -11,7 +41,7 @@ ion-avatar {
     margin-bottom: 0.5em;
     width: 175px;
     height: 175px;
-    display: block;  
+    display: block;
 }
 
 ion-card {
