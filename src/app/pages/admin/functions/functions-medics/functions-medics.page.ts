@@ -26,9 +26,9 @@ import { StorageService } from 'src/app/services/StorageService/storage.service'
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonProgressBar, IonSearchbar, IonAvatar, IonImg, IonItem, IonList, IonFooter, IonTabBar, IonTabButton, IonTabs]
 })
+
 export class FunctionsMedicsPage implements OnInit {
   protected isLoading: boolean = true;
-
   protected medics!: Medico[];
   protected filteredMedics!: Medico[];
 
@@ -41,25 +41,36 @@ export class FunctionsMedicsPage implements OnInit {
   ngOnInit() {
   }
 
-  async loadItems() {
-      setTimeout(() => {
-        this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
-          this.medics = result;
-          this.filteredMedics = this.medics;
-        });
-        this.isLoading = false;
-
-      }, 1000);
-  }
-
   ionViewWillEnter(){
     this.loadItems();
   }
+
   ionViewWillLeave(){
     this.isLoading = true;
   }
 
+  async loadItems() {
+    setTimeout(() => {
+      this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
+        if (result.length !== 0)
+          this.medics = result;
+        else
+          this.loadIfEmpty();
+        this.filteredMedics = this.medics;
+      });
+      this.isLoading = false;
 
+    }, 1000);
+  }
+
+  loadIfEmpty() {
+    if (this.medics === undefined) {
+      this.medics = [];
+      let medic: Medico = new Medico();
+      this.medicoService.offlineSetMedico(medic);
+      this.medics.push(medic);
+    }
+  }
 
   search(event: any) {
     if (event.target.value === "") {

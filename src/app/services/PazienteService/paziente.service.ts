@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import axios , { AxiosResponse } from 'axios';
-import { Observable, Observer } from "rxjs";
-import { Paziente } from "../../models/paziente/Paziente";
-import { ModelUtilities } from "../../models/ModelUtilities";
-import { Terapia } from "../../models/terapia/Terapia";
-import { Medico } from "../../models/medico/Medico";
-import { TipologiaMedico } from "../../models/medico/tipologia-medico";
-import { Sesso } from "../../models/persona/sesso";
-import {Infermiere} from "../../models/infermiere/Infermiere";
+import {Injectable} from '@angular/core';
+import axios, {AxiosResponse} from 'axios';
+import {Observable, Observer} from "rxjs";
+import {Paziente} from "../../models/paziente/Paziente";
+import {ModelUtilities} from "../../models/ModelUtilities";
+import {Medico} from "../../models/medico/Medico";
+import {TipologiaMedico} from "../../models/medico/tipologia-medico";
+import {Sesso} from "../../models/persona/sesso";
+import {Diagnosi} from "../../models/paziente/Diagnosi";
 
 @Injectable({
   providedIn: 'root'
@@ -121,7 +120,7 @@ export class PazienteService {
       ((response: AxiosResponse<Medico>)  => {
         jsonResponse = response.data
         medico = ModelUtilities.medicoFromJSON(jsonResponse);
-  
+
         console.log(medico)
 
         observer.next(medico);
@@ -205,6 +204,7 @@ export class PazienteService {
     paziente.indirizzo.via = "Contrada Lappone";
     paziente.esenzione = true;
     paziente.medico = this.offlineSetMedicoCurante();
+    paziente.diagnosi = Diagnosi.IN_SALUTE;
     paziente.donatoreOrgani = false;
     paziente.attivo = true;
   }
