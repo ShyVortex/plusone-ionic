@@ -13,14 +13,7 @@
   <div class="diagnosis-container">
     <ion-card class="select-card">
       <ion-card-header>
-        <ion-img *ngIf="paziente?.diagnosi === Diagnosi.IN_SALUTE"
-                 class="card-icon"
-                 src="../../assets/icon/patient/logbook/diagnosis/healthy.png">
-        </ion-img>
-        <ion-img *ngIf="paziente?.diagnosi !== Diagnosi.IN_SALUTE"
-                 class="card-icon"
-                 src="{{ getIcona() }}">
-        </ion-img>
+        <ion-img class="card-icon" src="{{ getIcona() }}"></ion-img>
         <ion-row class="card-line"></ion-row>
         <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ format() }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
