@@ -4,12 +4,14 @@ import { Medico } from "../medico/Medico";
 import { Terapia } from "../terapia/Terapia";
 import {Triage} from "../triage/Triage";
 import {TerapiaFarmacologica} from "../terapiafarmacologica/TerapiaFarmacologica";
+import {Diagnosi} from "./Diagnosi";
 
 export class Paziente extends Persona {
   private _indirizzo: Indirizzo;
   private _esenzione: boolean;
   private _donatoreOrgani: boolean;
   private _medico: Medico;
+  private _diagnosi: Diagnosi;
   private _terapie: Terapia[];
   private _richieste: Triage[];
   private _tFarmacologiche: TerapiaFarmacologica[];
@@ -22,6 +24,7 @@ export class Paziente extends Persona {
     this._esenzione = false;
     this._donatoreOrgani = false;
     this._medico = new Medico();
+    this._diagnosi = Diagnosi.IN_SALUTE;
     this._terapie = [];
     this._richieste = [];
     this._tFarmacologiche = [];
@@ -82,6 +85,14 @@ export class Paziente extends Persona {
 
   set medico(value: Medico) {
     this._medico = value;
+  }
+
+  get diagnosi(): Diagnosi {
+    return this._diagnosi;
+  }
+
+  set diagnosi(value: Diagnosi) {
+    this._diagnosi = value;
   }
 
   get attivo(): boolean {

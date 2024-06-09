@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Paziente} from "../../models/paziente/Paziente";
-import { Observable, Observer } from "rxjs";
-import axios, { AxiosResponse } from "axios";
-import { ModelUtilities } from "../../models/ModelUtilities";
-import { Medico } from "../../models/medico/Medico";
-import { Terapia } from "../../models/terapia/Terapia";
-import { TipologiaMedico } from "../../models/medico/tipologia-medico";
-import { Sesso } from "../../models/persona/sesso";
-import { StorageService } from "../StorageService/storage.service";
+import {Injectable} from '@angular/core';
+import {Paziente} from "../../models/paziente/Paziente";
+import {Observable, Observer} from "rxjs";
+import axios, {AxiosResponse} from "axios";
+import {ModelUtilities} from "../../models/ModelUtilities";
+import {Medico} from "../../models/medico/Medico";
+import {Terapia} from "../../models/terapia/Terapia";
+import {TipologiaMedico} from "../../models/medico/tipologia-medico";
+import {Sesso} from "../../models/persona/sesso";
+import {StorageService} from "../StorageService/storage.service";
+import {Diagnosi} from "../../models/paziente/Diagnosi";
 
 @Injectable({
   providedIn: 'root'
@@ -181,6 +182,7 @@ export class MedicoService {
       paziente.indirizzo.via = "Contrada Lappone";
       paziente.esenzione = true;
       paziente.donatoreOrgani = false;
+      paziente.diagnosi = Diagnosi.IN_SALUTE;
 
       return paziente;
     }
