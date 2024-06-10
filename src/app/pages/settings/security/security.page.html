@@ -105,11 +105,11 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/sos.png"></ion-img>
           SOS
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToDrugs()">
+        <ion-tab-button hidden class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToDrugs()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/drugs.png"></ion-img>
           Farmaci
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToShifts()">
+        <ion-tab-button hidden class="bottom-bar-buttons" *ngIf="ruolo === 'INFERMIERE'" (click)="goToShifts()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/calendar.png"></ion-img>
           Turni
         </ion-tab-button>
@@ -121,9 +121,9 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
           Notifiche
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'MEDICO'" (click)="goToPrescriptions()">
-          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/prescriptions.png"></ion-img>
-          Prescrizioni
+        <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'MEDICO'" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
+          Pazienti
         </ion-tab-button>
         <ion-tab-button class="bottom-bar-buttons" *ngIf="ruolo === 'ADMIN'" (click)="goToRequests()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>

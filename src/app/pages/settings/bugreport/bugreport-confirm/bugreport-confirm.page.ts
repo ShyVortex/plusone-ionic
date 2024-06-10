@@ -56,15 +56,19 @@ export class BugreportConfirmPage implements OnInit {
       this.navCtrl.navigateBack("nurse-home", { animated: true });
     else if (this.ruolo === 'MEDICO')
       this.navCtrl.navigateBack("medic-home", { animated: true });
+    else if (this.ruolo === 'ADMIN')
+      this.navCtrl.navigateBack("admin-home", { animated: true });
   }
 
   goToHome() {
     if (this.ruolo === 'PAZIENTE')
-      this.navCtrl.navigateBack("patient-home", { animated: false });
+      this.navCtrl.navigateBack("patient-home");
     else if (this.ruolo === 'INFERMIERE')
-      this.navCtrl.navigateBack("nurse-home", { animated: false });
+      this.navCtrl.navigateBack("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("medic-home", { animated: false });
+      this.navCtrl.navigateBack("patient-home");
+    else if (this.ruolo === 'ADMIN')
+      this.navCtrl.navigateBack("admin-home");
   }
 
   goToLogbook() {
@@ -75,7 +79,39 @@ export class BugreportConfirmPage implements OnInit {
     this.navCtrl.navigateForward("patient-reservation", { animated: false });
   }
 
-  goToSOS() {
+  goToPatientSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
+  }
+
+  goToDrugs() {
+    this.navCtrl.navigateForward("nurse-drugs", { animated: false });
+  }
+
+  goToShifts() {
+    this.navCtrl.navigateForward("nurse-shifts", { animated: false });
+  }
+
+  goToNurseSOS() {
+    this.navCtrl.navigateForward("nurse-sos", { animated: false });
+  }
+
+  goToNotifs() {
+    this.navCtrl.navigateForward("medic-notifs", { animated: false });
+  }
+
+  goToPatients() {
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
+  }
+
+  goToRequests() {
+    this.navCtrl.navigateForward("admin-requests", { animated: false });
+  }
+
+  goToFunctions() {
+    this.navCtrl.navigateForward("admin-functions", { animated: false });
+  }
+
+  goToReports() {
+    this.navCtrl.navigateForward("admin-reports", { animated: false });
   }
 }
