@@ -7,6 +7,7 @@ import { Farmaco } from "./farmaco/Farmaco";
 import { Triage } from "./triage/Triage";
 import { Esame } from "./esame/Esame";
 import {QuantitaDettaglio} from "./terapiafarmacologica/QuantitaDettaglio";
+import {Segnalazione} from "./segnalazione/Segnalazione";
 
 export class ModelUtilities {
   static pazienteFromJSON(json: any): Paziente {
@@ -119,5 +120,15 @@ export class ModelUtilities {
     triage.conferma = json.conferma;
 
     return triage;
+  }
+  public static segnalazioneFromJSON(json:any){
+    let segnalazione: Segnalazione = new Segnalazione();
+
+    segnalazione.id = json.id
+    segnalazione.utente = json.utente;
+    segnalazione.descrizione = json.descrizione;
+    segnalazione.schermataBug = json.schermataBug;
+
+    return segnalazione;
   }
 }

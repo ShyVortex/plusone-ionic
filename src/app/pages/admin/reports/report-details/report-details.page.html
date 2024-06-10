@@ -17,16 +17,16 @@
                src="../../assets/icon/admin/reports/message.png">
       </ion-img>
       <ion-text class="report-summary-text">Segnalazione n. 1 <br/>
-        inviata da <b>{{segnalazione.persona.nome}} {{segnalazione.persona.cognome}}</b> <br/>
-        per la schermata "{{segnalazione.schermata}}"
+        inviata da <b>{{segnalazione.utente.nome}} {{segnalazione.utente.cognome}}</b> <br/>
+        per la schermata "{{segnalazione.schermataBug}}"
       </ion-text>
     </ion-item>
   </div>
   <ion-row style="height: 2.5em"></ion-row>
   <div class="details-container">
     <ion-text class="report-details-text">
-      <b>Schermata</b>: {{segnalazione.schermata}} <br/>
-      <b>Errore</b>: {{segnalazione.errore}}
+      <b>Schermata</b>: {{segnalazione.schermataBug}} <br/>
+      <b>Errore</b>: {{segnalazione.descrizione}}
     </ion-text>
   </div>
   <ion-row style="height: 2.5em"></ion-row>

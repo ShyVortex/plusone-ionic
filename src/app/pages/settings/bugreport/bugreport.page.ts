@@ -17,6 +17,7 @@ import {LoginUtilities} from "../../registration/login/LoginUtilities";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
 import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-bugreport',
@@ -30,7 +31,7 @@ export class BugreportPage implements OnInit, AfterViewInit {
   protected persona: any;
   protected ruolo: String;
   protected readonly LoginUtilities = LoginUtilities;
-  private segnalazione: Segnalazione;
+  private segnalazione: any;
 
   @ViewChild('reportSelectRef') reportSelectRef!: IonSelect;
   @ViewChild('reportAreaRef') reportAreaRef!: IonTextarea;
@@ -42,7 +43,7 @@ export class BugreportPage implements OnInit, AfterViewInit {
     private segnalazioneService: SegnalazioneService
   ) {
     this.persona = personaService.getPersona();
-    this.segnalazione = new Segnalazione();
+    this.segnalazione = {}
 
     console.log(this.ruolo = history.state.ruolo);
   }
@@ -78,11 +79,10 @@ export class BugreportPage implements OnInit, AfterViewInit {
   }
 
   setSegnalazione() {
-    this.segnalazione.persona = this.persona;
-    this.segnalazione.schermata = this.reportSelectRef.value;
+    this.segnalazione.schermataBug = this.reportSelectRef.value;
 
     // @ts-ignore
-    this.segnalazione.errore = this.reportAreaRef.value;
+    this.segnalazione.descrizione = this.reportAreaRef.value;
   }
 
   navigateBack() {
@@ -93,11 +93,12 @@ export class BugreportPage implements OnInit, AfterViewInit {
     this.reportAreaRef.value = "";
   }
 
-  onConfirm() {
+  async onConfirm() {
     if (this.reportSelectRef.value != null && this.reportAreaRef.value != null
-      && this.reportAreaRef.value.length > 0)
-    {
+      && this.reportAreaRef.value.length > 0) {
       this.setSegnalazione();
+
+      await firstValueFrom(this.segnalazioneService.addSegnalazione(this.persona.id, this.segnalazione))
 
       if (!this.persona.isSet()) {
         this.segnalazioneService.addSegnalazioneOffline(this.persona, this.segnalazione);
@@ -109,8 +110,7 @@ export class BugreportPage implements OnInit, AfterViewInit {
           ruolo: this.ruolo
         }
       });
-    }
-    else
+    } else
       this.presentAlert();
   }
 
