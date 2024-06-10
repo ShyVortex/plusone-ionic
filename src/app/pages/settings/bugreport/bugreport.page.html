@@ -81,16 +81,10 @@
                   >
     </ion-textarea>
     <ion-text class="issue-textarea-counter">{{reportAreaRef.value?.length}}/200</ion-text>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-button class="reset-button" (click)="onReset()">Reset</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button class="confirm-button" (click)="onConfirm()">Conferma</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  </div>
+  <div class="buttons-container" style="display: flex; justify-content: space-between;">
+    <ion-button class="reset-button" (click)="onReset()">Reset</ion-button>
+    <ion-button class="confirm-button" (click)="onConfirm()">Conferma</ion-button>
   </div>
 </ion-content>
 
