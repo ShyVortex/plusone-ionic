@@ -28,6 +28,11 @@
 /* Additional CSS utils not related to Ionic */
 @import "@fortawesome/fontawesome-free/css/all.css";
 
+/* Restore old hidden behaviour */
+[hidden] {
+  display: none !important;
+}
+
 
 /** LIGHT MODE GLOBAL THEME **/
 ion-tab-bar {

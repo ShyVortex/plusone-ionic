@@ -117,8 +117,8 @@ export class SettingsPage implements OnInit {
     this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
-  goToPrescriptions() {
-    this.navCtrl.navigateForward("medic-prescriptions", { animated: false });
+  goToPatients() {
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
 
   goToRequests() {

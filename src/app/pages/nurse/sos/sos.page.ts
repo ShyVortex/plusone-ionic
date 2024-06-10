@@ -47,14 +47,17 @@ export class SOSPage implements OnInit {
     private triageService: TriageService
   ) {
     this.infermiere = personaService.getPersona();
+
     if (!this.infermiere.isSet()) {
       this.paziente = storageService.getState("mario.giannini@paziente.it");
-      this.paziente.richieste = storageService.getRichieste();
-      this.richieste = this.paziente.richieste;
-      console.log(this.paziente);
-      console.log(this.paziente.richieste);
-    }
 
+      if (this.paziente !== undefined) {
+        this.paziente.richieste = storageService.getRichieste();
+        this.richieste = this.paziente.richieste;
+        console.log(this.paziente);
+        console.log(this.paziente.richieste);
+      }
+    }
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */

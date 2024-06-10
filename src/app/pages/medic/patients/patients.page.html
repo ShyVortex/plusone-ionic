@@ -36,16 +36,14 @@
     PAZIENTI
   </ion-item>
   <div class="card-container">
-    <ion-card class="select-card"
-              *ngIf="this.medico.tipologiaMedico === TipologiaMedico.DI_BASE"
-              (click)="routeToPrescriptions()">
+    <ion-card class="select-card" (click)="routeToPrescriptions()">
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/medic/patients/drugs.png"></ion-img>
         <ion-row class="card-line"></ion-row>
         <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terapie&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="select-card"
+    <ion-card hidden class="select-card"
               *ngIf="this.medico.tipologiaMedico === TipologiaMedico.DI_BASE"
               (click)="routeToHomeCare()">
       <ion-card-header>
@@ -54,7 +52,7 @@
         <ion-card-title class="card-title">Cure domiciliari</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="select-card"
+    <ion-card hidden class="select-card"
               *ngIf="this.medico.tipologiaMedico === TipologiaMedico.DI_BASE"
               (click)="routeToIllnessCertificate()">
       <ion-card-header>
@@ -63,7 +61,7 @@
         <ion-card-title class="card-title">Certificato malattia</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="select-card"
+    <ion-card hidden class="select-card"
               *ngIf="this.medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO"
               (click)="routeToRecords()">
       <ion-card-header>
@@ -72,7 +70,7 @@
         <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;Cartelle&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="select-card"
+    <ion-card hidden class="select-card"
               *ngIf="this.medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO"
               (click)="routeToSDO()">
       <ion-card-header>
@@ -81,7 +79,7 @@
         <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-card class="select-card"
+    <ion-card hidden class="select-card"
               *ngIf="this.medico.tipologiaMedico === TipologiaMedico.OSPEDALIERO"
               (click)="routeToAssistance()">
       <ion-card-header>

@@ -40,6 +40,7 @@ import {Medico} from "../../../models/medico/Medico";
   standalone: true,
     imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonButton, IonLabel, IonRow, IonText, IonTextarea, IonIcon, IonCard, IonCardHeader, IonCardTitle, IonFooter, IonItem]
 })
+
 export class HomePage implements OnInit {
   protected infermiere: Infermiere;
   private infermiereEmail!:string;
@@ -108,7 +109,7 @@ export class HomePage implements OnInit {
 
   goToSOS() {
     this.personaService.setPersona(this.infermiere);
-    this.navCtrl.navigateForward("nurse-sos", {animated: false});
+    this.navCtrl.navigateForward("nurse-sos", { animated: false });
   }
 
   ionViewWillEnter(){
