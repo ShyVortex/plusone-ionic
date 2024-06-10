@@ -23,6 +23,7 @@ import {Medico} from "../../../../../models/medico/Medico";
   standalone: true,
   imports: [IonAlert, IonFooter, IonImg, IonTabButton, IonTabBar, IonTabs, IonItemDivider, IonItem, IonButton, IonCard, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSegment, IonIcon, IonSegmentButton, IonLabel]
 })
+
 export class ReservationContinuePage implements OnInit {
   protected times!: time[];
   protected actualIndex!: number;
@@ -50,7 +51,7 @@ export class ReservationContinuePage implements OnInit {
       text: 'Conferma',
       role: 'confirm',
       handler: async () => {
-        this.setTerapia()
+        this.setTerapia();
 
         if (this.patientToPrenote !== undefined && this.patientToPrenote.isSet()) {
           console.clear();

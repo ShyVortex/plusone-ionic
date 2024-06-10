@@ -31,6 +31,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonItem, IonRow, IonList, IonRefresher, IonRefresherContent]
 })
+
 export class NotificationsPage implements OnInit {
   protected medico!: Medico;
   private dataSubscription!:Subscription;
@@ -67,7 +68,7 @@ export class NotificationsPage implements OnInit {
       this.medicoService.offlineSetMedico(this.medico);
 
     if (!this.medico.isSet())
-      this.prenotazioni = this.medico.pazienti[0].terapie;
+      this.prenotazioni = this.storageService.getTerapie();
   }
 
   routeToSettings() {

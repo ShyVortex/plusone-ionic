@@ -85,7 +85,11 @@ export class HomePage implements OnInit {
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.getMedicoOfPazienteObservable = new Observable<Medico>()
 
-    if (this.isDefault)
+    // Risolve un problema con il refresh se si è già effettuato il login
+    if (this.paziente === undefined)
+      this.paziente = new Paziente();
+
+    if (this.isDefault && this.paziente !== undefined)
       this.paziente = personaService.getPersona();
 
     console.log(history.state.pazienteEmail)
@@ -101,14 +105,14 @@ export class HomePage implements OnInit {
       }
     )
 
-    if (this.isDefault && this.paziente.isEmpty())
+    if (this.isDefault && this.paziente !== undefined && this.paziente.isEmpty())
       this.paziente.setState(false);
   }
 
   ionViewWillEnter() {
     this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
-      this.paziente = value
-      this.getMedicoOfPazienteObservable = this.pazienteService.getMedicoOfPaziente(this.paziente.id as unknown as string)
+      this.paziente = value;
+      this.getMedicoOfPazienteObservable = this.pazienteService.getMedicoOfPaziente(this.paziente.id as unknown as string);
       this.citta = this.paziente.indirizzo.città;
       if (this.paziente.nome === "" && !this.paziente.isSet()) {
         this.pazienteService.offlineSetPaziente(this.paziente);
@@ -118,9 +122,10 @@ export class HomePage implements OnInit {
       }
     });
   }
+
   ionViewDidEnter(){
     this.getMedicoOfPazienteObservable.subscribe((value:Medico) => {
-      this.medicOfPatient = value
+      this.medicOfPatient = value;
     })
   }
 

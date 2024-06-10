@@ -70,8 +70,12 @@
         <ion-row style="height: 0.5em"></ion-row>
         <ion-label class="list-key">
           Medico curante:
-          <ion-text class="list-value">
+          <ion-text *ngIf="paziente.isSet()" class="list-value">
             {{medicOfPatient?.nome }} {{medicOfPatient?.cognome }}
+            <br/>
+          </ion-text>
+          <ion-text *ngIf="!paziente.isSet()" class="list-value">
+            {{paziente.medico?.nome }} {{paziente.medico?.cognome }}
             <br/>
           </ion-text>
         </ion-label>

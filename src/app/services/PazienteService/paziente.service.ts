@@ -191,6 +191,7 @@ export class PazienteService {
       }).catch(error => {console.log(error)});
     });
   }
+
   offlineSetPaziente(paziente: Paziente) {
     paziente.nome = "Mario";
     paziente.cognome = "Giannini";
