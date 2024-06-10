@@ -62,8 +62,10 @@ export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
   protected paziente: Paziente = new Paziente();
   private getPazienteByEmailObservable:Observable<Paziente>;
+  private getMedicoOfPazienteObservable:Observable<Medico>
   private emailPaziente!:string
   protected citta! :string
+  protected medicOfPatient! :Medico
   private getMedicoByEmailObservable:Observable<Medico>
   private dataSubscription!:Subscription;
   private isDefault: boolean = false;
@@ -81,6 +83,7 @@ export class HomePage implements OnInit {
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
+    this.getMedicoOfPazienteObservable = new Observable<Medico>()
 
     if (this.isDefault)
       this.paziente = personaService.getPersona();
@@ -105,6 +108,7 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
       this.paziente = value
+      this.getMedicoOfPazienteObservable = this.pazienteService.getMedicoOfPaziente(this.paziente.id as unknown as string)
       this.citta = this.paziente.indirizzo.città;
       if (this.paziente.nome === "" && !this.paziente.isSet()) {
         this.pazienteService.offlineSetPaziente(this.paziente);
@@ -113,6 +117,11 @@ export class HomePage implements OnInit {
         this.paziente.tFarmacologiche = this.storageService.getTFarmacologiche();
       }
     });
+  }
+  ionViewDidEnter(){
+    this.getMedicoOfPazienteObservable.subscribe((value:Medico) => {
+      this.medicOfPatient = value
+    })
   }
 
   routeToSettings() {
