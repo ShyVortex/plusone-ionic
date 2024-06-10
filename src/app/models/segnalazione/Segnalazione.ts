@@ -1,35 +1,45 @@
 export class Segnalazione {
-  private _persona: any;
-  private _schermata: string;
-  private _errore: string;
+  private _utente: any;
+  private _schermataBug: string;
+  private _descrizione: string;
+  private _id:number;
 
   constructor() {
-    this._persona = {};
-    this._schermata = "";
-    this._errore = "";
+    this._utente = {};
+    this._schermataBug = "";
+    this._descrizione = "";
+    this._id = 0;
   }
 
-  get persona() {
-    return this._persona;
+  get id(): number {
+    return this._id;
   }
 
-  set persona(value: any) {
-    this._persona = value;
+  set id(value: number) {
+    this._id = value;
   }
 
-  get schermata() {
-    return this._schermata;
+  get utente() {
+    return this._utente;
   }
 
-  set schermata(value: string) {
-    this._schermata = value;
+  set utente(value: any) {
+    this._utente = value;
   }
 
-  get errore() {
-    return this._errore;
+  get schermataBug() {
+    return this._schermataBug;
   }
 
-  set errore(value: string) {
-    this._errore = value;
+  set schermataBug(value: string) {
+    this._schermataBug = value;
+  }
+
+  get descrizione() {
+    return this._descrizione;
+  }
+
+  set descrizione(value: string) {
+    this._descrizione = value;
   }
 }

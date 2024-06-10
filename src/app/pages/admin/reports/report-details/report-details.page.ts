@@ -45,7 +45,7 @@ export class ReportDetailsPage implements OnInit {
 
   markAsSolved() {
     if (!this.admin.isSet())
-      this.segnalazioneService.deleteSegnalazioneOffline(this.segnalazione.persona, this.segnalazione);
+      this.segnalazioneService.deleteSegnalazioneOffline(this.segnalazione.utente, this.segnalazione);
 
     this.navigateBack();
   }

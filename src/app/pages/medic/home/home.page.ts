@@ -91,6 +91,7 @@ export class HomePage implements OnInit {
     this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
       this.medico = value
       this.storageService.setMedico(this.medico)
+
     });
   }
 
