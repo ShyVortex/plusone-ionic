@@ -15,7 +15,6 @@ import {
 import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../../registration/login/LoginUtilities";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
 import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
 import {firstValueFrom} from "rxjs";
 
@@ -79,9 +78,8 @@ export class BugreportPage implements OnInit, AfterViewInit {
   }
 
   setSegnalazione() {
+    this.segnalazione.utente = this.persona;
     this.segnalazione.schermataBug = this.reportSelectRef.value;
-
-    // @ts-ignore
     this.segnalazione.descrizione = this.reportAreaRef.value;
   }
 
@@ -98,31 +96,29 @@ export class BugreportPage implements OnInit, AfterViewInit {
       && this.reportAreaRef.value.length > 0) {
       this.setSegnalazione();
 
-      await firstValueFrom(this.segnalazioneService.addSegnalazione(this.persona.id, this.segnalazione))
-
-      if (!this.persona.isSet()) {
+      if (this.persona.isSet())
+        await firstValueFrom(this.segnalazioneService.addSegnalazione(this.persona.id, this.segnalazione));
+      else
         this.segnalazioneService.addSegnalazioneOffline(this.persona, this.segnalazione);
-        console.log(this.persona);
-      }
 
-      this.navCtrl.navigateForward("settings-bugreport-confirm", {
+      await this.navCtrl.navigateForward("settings-bugreport-confirm", {
         state: {
           ruolo: this.ruolo
         }
       });
     } else
-      this.presentAlert();
+      await this.presentAlert();
   }
 
   goToHome() {
     if (this.ruolo === 'PAZIENTE')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateForward("patient-home");
     else if (this.ruolo === 'INFERMIERE')
-      this.navCtrl.navigateBack("nurse-home");
+      this.navCtrl.navigateForward("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateForward("medic-home");
     else if (this.ruolo === 'ADMIN')
-      this.navCtrl.navigateBack("admin-home");
+      this.navCtrl.navigateForward("admin-home");
   }
 
   goToLogbook() {

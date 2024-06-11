@@ -52,19 +52,20 @@ export class ConfirmTherapyPage implements OnInit {
   animationCreated(animationItem: AnimationItem): void {
     //console.log("Animazione renderizzata. \n\n", animationItem);
   }
+
   goToHome() {
-    this.navCtrl.navigateForward(  'medic-home')
+    this.navCtrl.navigateForward('medic-home');
   }
 
   goToNotifs() {
-    this.navCtrl.navigateForward( 'medic-notifs')
+    this.navCtrl.navigateForward('medic-notifs');
   }
 
   goToPatients() {
-    this.navCtrl.navigateForward(  "medic-patients")
+    this.navCtrl.navigateForward("medic-patients");
   }
 
   protected goToPatientsListAnimated() {
-    this.navCtrl.navigateForward(  'medic-patients-prescriptions')
+    this.navCtrl.navigateForward('medic-patients-prescriptions');
   }
 }

@@ -19,7 +19,6 @@ import {AdminService} from "../../../services/AdminService/admin.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
-import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
 import {Sesso} from "../../../models/persona/sesso";
 
 @Component({
@@ -29,6 +28,7 @@ import {Sesso} from "../../../models/persona/sesso";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton]
 })
+
 export class ReportsPage implements OnInit {
   protected admin: Admin;
   protected segnalazioni!: Segnalazione[];
@@ -39,7 +39,6 @@ export class ReportsPage implements OnInit {
     private router: Router,
     private personaService: PersonaService,
     private adminService: AdminService,
-    private segnalazioneService: SegnalazioneService,
     private storageService: StorageService
   ) {
     this.admin = personaService.getPersona();
@@ -51,16 +50,13 @@ export class ReportsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.admin.isSet())
+    if (!this.admin.isSet()) {
       this.adminService.offlineSetAdmin(this.admin);
-
-    if (!this.admin.isSet())
       this.segnalazioni = this.storageService.getSegnalazioni();
+    }
   }
 
-  handleRefresh(customEvent: any) {
-
-  }
+  handleRefresh(event: any) {}
 
   routeToReportDetails(segnalazione: Segnalazione) {
     this.storageService.setSegnalazione(segnalazione);

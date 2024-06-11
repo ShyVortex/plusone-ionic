@@ -16,15 +16,16 @@ import { DataService } from 'src/app/services/data.service';
   standalone: true,
   imports: [IonTabButton, IonTabBar, IonTabs, IonFooter, IonCardSubtitle, IonCardTitle, IonImg, IonAvatar, IonCardContent, IonCard, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class MedicDetailsPage implements OnInit {
-  protected medic!: any; 
+  protected medic!: any;
   protected readonly Sesso = Sesso;
 
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService,
   ) {
-    this.medic = this.storageService.getMedico();  
+    this.medic = this.storageService.getMedico();
   }
 
   ngOnInit() {

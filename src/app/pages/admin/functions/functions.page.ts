@@ -27,6 +27,7 @@ import {Sesso} from "../../../models/persona/sesso";
   standalone: true,
     imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonCard, IonCardHeader, IonCardTitle, IonItem, IonRow]
 })
+
 export class FunctionsPage implements OnInit {
   protected admin: Admin;
 

@@ -47,7 +47,7 @@ export class UserDetailsPage {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack('medic-home', { animated: false });
+    this.navCtrl.navigateForward('medic-home', { animated: false });
   }
 
   goToNotifs() {
@@ -57,5 +57,4 @@ export class UserDetailsPage {
   goToPatients() {
     this.navCtrl.navigateForward('medic-patients', { animated: false });
   }
-
 }

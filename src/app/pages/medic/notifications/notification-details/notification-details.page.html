@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar class="legacy-toolbar">
+    <div class="container">
+      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
+        &larr;
+      </ion-button>
+      <ion-label class="tab-name">Dettagli prenotazione</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notif-details-content" [fullscreen]="true">
+  <ion-row style="height: 1.25em"></ion-row> <!-- spazio vuoto-->
+  <div class="summary-container">
+    <ion-item lines="none">
+      <ion-img class="notif-summary-icon"
+               src="../../assets/icon/patient/logbook/reservations/reservation.png">
+      </ion-img>
+      <ion-text class="notif-summary-text">Prenotazione n. 1 <br/>
+        appuntamento con <b>{{prenotazione.paziente?.nome}} {{prenotazione.paziente?.cognome}}</b> <br/>
+        in data {{prenotazione.orario | date: 'yyyy-MM-dd'}}
+      </ion-text>
+    </ion-item>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="details-container">
+    <ion-text class="notif-details-text">
+      Questa prenotazione prevede un appuntamento con il paziente <b>{{prenotazione.paziente?.nome}}
+      {{prenotazione.paziente?.cognome}}</b> per una visita {{prenotazione.tipologiaTerapia}} presso il reparto
+      di <b>{{prenotazione.reparto}}</b> dell'<b>Ospedale Riuniti</b> di Foggia alle ore
+      {{prenotazione.orario | date: 'HH:mm'}}.
+    </ion-text>
+  </div>
+  <ion-row style="height: 2.5em"></ion-row>
+  <div class="buttons-container">
+    <ion-button class="reservation-buttons"
+                color="primary"
+                (click)="acceptReservation()">Accetta
+    </ion-button>
+    <ion-button class="reservation-buttons"
+                color="danger"
+                (click)="denyReservation()">Rifiuta
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs class="bottom-bar">
+      <ion-tab-bar class="bottom-tab-bar" slot="bottom">
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToHome()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
+          Home
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToNotifs()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/notifications.png"></ion-img>
+          Notifiche
+        </ion-tab-button>
+        <ion-tab-button class="bottom-bar-buttons" (click)="goToPatients()">
+          <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/patients.png"></ion-img>
+          Pazienti
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

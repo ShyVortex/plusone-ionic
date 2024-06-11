@@ -90,7 +90,7 @@ export class SosRequestAcceptedPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("nurse-home", { animated: false });
+    this.navCtrl.navigateForward("nurse-home", { animated: false });
   }
 
   goToDrugs() {

@@ -40,13 +40,18 @@
     NOTIFICHE
   </ion-item>
   <ion-list>
-    <ion-item class="item-title" *ngFor="let prenotazione of prenotazioni">
-      <div class="item-content">
-        <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
-        <ion-text class="item-title-list">Il paziente {{prenotazione?.paziente?.nome}} {{prenotazione?.paziente?.cognome}}
-          ha prenotato una visita per il {{prenotazione?.orario | date: 'yyyy-MM-dd'}}</ion-text>
-      </div>
-    </ion-item>
+    <ng-container *ngFor="let prenotazione of prenotazioni">
+      <ion-item class="item-title" *ngIf="!prenotazione.attivo">
+        <div *ngIf="!prenotazione.attivo" class="item-content">
+          <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>
+          <ion-text class="item-title-list">Il paziente {{prenotazione?.paziente?.nome}} {{prenotazione?.paziente?.cognome}}
+            ha prenotato una visita per il {{prenotazione?.orario | date: 'yyyy-MM-dd'}}</ion-text>
+          <ion-button slot="end" fill="clear" (click)="routeToNotificationDetails(prenotazione)">
+            <ion-text class="button-arrow">></ion-text>
+          </ion-button>
+        </div>
+      </ion-item>
+    </ng-container>
   </ion-list>
 </ion-content>
 

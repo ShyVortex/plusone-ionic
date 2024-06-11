@@ -12,26 +12,22 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {AnimationOptions, LottieComponent} from "ngx-lottie";
-import {options} from "ionicons/icons";
 import {NavController} from "@ionic/angular";
+import {AnimationOptions, LottieComponent} from "ngx-lottie";
+import {Terapia} from "../../../../../models/terapia/Terapia";
 import {AnimationItem} from "lottie-web";
-import {Paziente} from "../../../../../models/paziente/Paziente";
 import {StorageService} from "../../../../../services/StorageService/storage.service";
-import {Observable} from "rxjs";
-import {PazienteService} from "../../../../../services/PazienteService/paziente.service";
 
 @Component({
-  selector: 'app-request-accepted',
-  templateUrl: './request-accepted.page.html',
-  styleUrls: ['./request-accepted.page.scss'],
+  selector: 'app-notification-accepted',
+  templateUrl: './notification-accepted.page.html',
+  styleUrls: ['./notification-accepted.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonButton, LottieComponent]
 })
 
-export class RequestAcceptedPage implements OnInit {
-  protected paziente: Paziente;
-  private activatePazienteObservable!: Observable<void>;
+export class NotificationAcceptedPage implements OnInit {
+  protected prenotazione: Terapia;
 
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
@@ -49,38 +45,31 @@ export class RequestAcceptedPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private pazienteService: PazienteService,
     private storageService: StorageService
   ) {
-    this.paziente = storageService.getPaziente();
+    this.prenotazione = storageService.getTerapia();
   }
 
   ngOnInit() {
-    this.activatePazienteObservable = this.pazienteService.activatePaziente(this.paziente.id);
-    this.activatePazienteObservable.subscribe();
   }
 
   animationCreated(animationItem: AnimationItem): void {
     //console.log("Animazione renderizzata. \n\n", animationItem);
   }
 
-  goToRequestsAnimated() {
-    this.navCtrl.navigateBack("admin-requests", { animated: true });
+  goToNotifsAnimated() {
+    this.navCtrl.navigateBack("medic-notifs", { animated: true });
   }
 
   goToHome() {
-    this.navCtrl.navigateForward("admin-home", { animated: false });
+    this.navCtrl.navigateForward("medic-home", { animated: false });
   }
 
-  goToRequests() {
-    this.navCtrl.navigateForward("admin-requests", { animated: false });
+  goToNotifs() {
+    this.navCtrl.navigateForward("medic-notifs", { animated: false });
   }
 
-  goToFunctions() {
-    this.navCtrl.navigateForward("admin-functions", { animated: false });
-  }
-
-  goToReports() {
-    this.navCtrl.navigateForward("admin-reports", { animated: false });
+  goToPatients() {
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
 }

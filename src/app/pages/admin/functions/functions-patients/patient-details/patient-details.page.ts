@@ -16,6 +16,7 @@ import { Medico } from 'src/app/models/medico/Medico';
   standalone: true,
   imports: [IonCardSubtitle, IonCardTitle, IonAvatar, IonCardContent, IonCard, IonLabel, IonButton, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class PatientDetailsPage implements OnInit {
   protected patient!: any;
   protected assignedMedicDetails!: string;

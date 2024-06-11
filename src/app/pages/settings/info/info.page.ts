@@ -90,13 +90,13 @@ export class InfoPage implements OnInit {
 
   goToHome() {
     if (this.ruolo === 'PAZIENTE')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateForward("patient-home");
     else if (this.ruolo === 'INFERMIERE')
-      this.navCtrl.navigateBack("nurse-home");
+      this.navCtrl.navigateForward("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateForward("medic-home");
     else if (this.ruolo === 'ADMIN')
-      this.navCtrl.navigateBack("admin-home");
+      this.navCtrl.navigateForward("admin-home");
   }
 
   goToLogbook() {

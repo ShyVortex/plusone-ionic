@@ -95,6 +95,32 @@ export class StorageService {
     this.terapie = value;
   }
 
+  updateStatoTerapia(terapia: Terapia, stato: boolean) {
+    if (terapia !== null) {
+      const index = this.terapie.findIndex(item => item === terapia);
+      if (index !== -1) {
+        if (isEqual(this.terapie[index], terapia))
+          this.terapie[index].attivo = stato;
+      } else
+        console.error("Cannot UPDATE: terapia not found in cache.");
+    }
+    else
+      console.error("Cannot retrieve terapia: undefined or not a supported instance");
+  }
+
+  deleteTerapia(value: Terapia) {
+    if (value !== null) {
+      const index = this.terapie.findIndex(item => item === value);
+      if (index !== -1) {
+        if (isEqual(this.terapie[index], value))
+          this.terapie.splice(index, 1);
+      } else
+        console.error("Cannot DELETE: terapia not found in cache.");
+    }
+    else
+      console.error("Cannot retrieve terapia: undefined or not a supported instance");
+  }
+
   getTriage() {
     return this.triage;
   }

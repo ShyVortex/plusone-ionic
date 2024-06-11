@@ -14,6 +14,7 @@ import { Sesso } from 'src/app/models/persona/sesso';
   standalone: true,
   imports: [IonLabel, IonButton, IonCardSubtitle, IonCardTitle, IonAvatar, IonCardContent, IonCard, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class NurseDetailsPage implements OnInit {
   protected nurse!: any;
   protected readonly Sesso = Sesso;
@@ -21,7 +22,7 @@ export class NurseDetailsPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private storageService: StorageService
-  ) { 
+  ) {
     this.nurse = this.storageService.getInfermiere();
   }
 

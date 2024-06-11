@@ -21,9 +21,10 @@ import { Sesso } from 'src/app/models/persona/sesso';
   standalone: true,
   imports: [IonCardSubtitle, IonCardTitle, IonAvatar, IonText, IonList, IonModal, IonItemDivider, IonIcon, IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
 })
+
 export class PatientModifyDetailsPage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
-  
+
   protected citta: string;
   protected nameToUpdate: string;
   protected surnameToUpdate: string;
@@ -41,22 +42,22 @@ export class PatientModifyDetailsPage implements OnInit {
   protected activeState: string;
   private patientJson: any;
   protected alertButton = ["OK"];
-  
+
   protected firstLoading: boolean = false;
   protected isLoading: boolean = true;
-  
+
   protected medics!: any[];
   protected filteredMedics!: any[];
-  
+
   protected isMedicAssigned!: boolean;
   protected assignedMedic!: any;
   protected assignedMedicDetails!: string;
-  
+
   protected patient: Paziente;
   protected isPasswordVisible: boolean = false;
 
   protected readonly Sesso = Sesso;
- 
+
   protected confirmButtons = [{
     text:'Annulla',
     role:'annulla',
@@ -72,6 +73,7 @@ export class PatientModifyDetailsPage implements OnInit {
       this.navCtrl.navigateForward("admin-functions-patients", {animated: false});
     }
   }];
+
   protected deleteButtons = [{
     text:'Annulla',
     role:'annulla',
@@ -110,7 +112,7 @@ export class PatientModifyDetailsPage implements OnInit {
     // this.medicToUpdate = this.patient.medico.nome + " " + this.patient.medico.cognome;
     this.activeState = this.patient.attivo.toString();
     this.patientJson = {};
-  
+
     this.medics = [];
     this.filteredMedics = [];
 
@@ -191,10 +193,10 @@ export class PatientModifyDetailsPage implements OnInit {
     this.isMedicAssigned = true;
     this.assignedMedicDetails = medic.nome + " " + medic.cognome;
     this.modal.dismiss();
-      
+
     console.log("Medico assegnato: ", this.assignedMedic);
   }
-  
+
   navigateBack() {
     this.storageService.setPaziente(this.patient);
     this.navCtrl.navigateBack("admin-patient-details");
