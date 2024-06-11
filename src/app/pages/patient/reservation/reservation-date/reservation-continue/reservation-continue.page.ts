@@ -173,7 +173,7 @@ export class ReservationContinuePage implements OnInit {
     this.terapia.tipologiaTerapia = this.type;
     this.terapia.orario = (this.date + "T" + this.times[this.actualIndex].time);
     this.terapia.reparto = this.hospitalWard;
-    this.terapia.attivo = true;
+    this.terapia.attivo = false;
     if (!this.patientToPrenote.isSet()) {
       this.patientToPrenote = this.personaService.getPersona();
       this.terapia.paziente = this.patientToPrenote;

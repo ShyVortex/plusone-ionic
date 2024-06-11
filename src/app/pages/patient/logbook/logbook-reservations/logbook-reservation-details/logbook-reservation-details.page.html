@@ -37,7 +37,10 @@
                 src="../../assets/icon/patient/logbook/reservations/hourglass.svg"
                 slot="start">
       </ion-icon>
-      <ion-text class="confirmation-text">IN ATTESA DI CONFERMA</ion-text>
+      <ion-text *ngIf="!prenotazione.attivo"
+                class="confirmation-text">
+        IN ATTESA DI CONFERMA
+      </ion-text>
     </ion-item>
   </div>
   <ion-row style="height: 2.5em"></ion-row>
