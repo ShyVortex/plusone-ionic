@@ -167,6 +167,21 @@ export const routes: Routes = [
       .then(m => m.NotificationsPage)
   },
   {
+    path: 'medic-notif-details',
+    loadComponent: () => import('./pages/medic/notifications/notification-details/notification-details.page')
+      .then(m => m.NotificationDetailsPage)
+  },
+  {
+    path: 'medic-notif-accepted',
+    loadComponent: () => import('./pages/medic/notifications/notification-details/notification-accepted/notification-accepted.page')
+      .then(m => m.NotificationAcceptedPage)
+  },
+  {
+    path: 'medic-notif-denied',
+    loadComponent: () => import('./pages/medic/notifications/notification-details/notification-denied/notification-denied.page')
+      .then(m => m.NotificationDeniedPage)
+  },
+  {
     path: 'medic-patients',
     loadComponent: () => import('./pages/medic/patients/patients.page')
       .then(m => m.PatientsPage)

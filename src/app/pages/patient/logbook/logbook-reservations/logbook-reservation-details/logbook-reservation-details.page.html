@@ -31,16 +31,13 @@
     </ion-text>
   </div>
   <ion-row style="height: 2.5em"></ion-row>
-  <div class="confirmation-container">
+  <div *ngIf="!prenotazione.attivo" class="confirmation-container">
     <ion-item lines="none">
       <ion-icon class="hourglass"
                 src="../../assets/icon/patient/logbook/reservations/hourglass.svg"
                 slot="start">
       </ion-icon>
-      <ion-text *ngIf="!prenotazione.attivo"
-                class="confirmation-text">
-        IN ATTESA DI CONFERMA
-      </ion-text>
+      <ion-text class="confirmation-text">IN ATTESA DI CONFERMA</ion-text>
     </ion-item>
   </div>
   <ion-row style="height: 2.5em"></ion-row>

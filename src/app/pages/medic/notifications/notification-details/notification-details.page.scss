@@ -1,0 +1,54 @@
+.legacy-toolbar {
+  .back-button {
+    margin-top: -0.1em;
+    margin-bottom: -1em;
+  }
+
+  .tab-name {
+    margin-top: 1em;
+    font-size: 25px;
+  }
+}
+
+.notif-details-content {
+  .summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .notif-summary-icon {
+      width: 7em;
+      height: auto;
+    }
+
+    .notif-summary-text {
+      margin-left: 1em;
+    }
+  }
+
+  .details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .notif-details-text {
+      font-size: large;
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .reservation-buttons {
+      text-transform: none;
+      font-family: Inter, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0;
+      margin: 0 1.5em;
+    }
+  }
+}

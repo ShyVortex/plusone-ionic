@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  IonButton,
   IonContent, IonFooter,
   IonHeader, IonIcon,
   IonImg, IonItem, IonLabel, IonList, IonRefresher, IonRefresherContent, IonRow,
@@ -29,7 +30,7 @@ import {Paziente} from "../../../models/paziente/Paziente";
   templateUrl: './notifications.page.html',
   styleUrls: ['./notifications.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonItem, IonRow, IonList, IonRefresher, IonRefresherContent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar, IonTabButton, IonTabs, IonIcon, IonLabel, IonFooter, IonText, IonItem, IonRow, IonList, IonRefresher, IonRefresherContent, IonButton]
 })
 
 export class NotificationsPage implements OnInit {
@@ -71,6 +72,21 @@ export class NotificationsPage implements OnInit {
       this.prenotazioni = this.storageService.getTerapie();
   }
 
+  ionViewWillEnter(){
+    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
+      this.medico = value
+      this.getAllprenotazioniByMedico = this.medicoService.getAllPrenotazioniByMedico(this.medico.id)
+      this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
+        this.prenotazioni = value;
+      })
+    });
+  }
+
+  routeToNotificationDetails(prenotazione: Terapia) {
+    this.storageService.setTerapia(prenotazione);
+    this.navCtrl.navigateForward("medic-notif-details");
+  }
+
   routeToSettings() {
     this.personaService.setPersona(this.medico);
     this.storageService.setRoute(this.router.url);
@@ -90,16 +106,6 @@ export class NotificationsPage implements OnInit {
   goToPatients() {
     this.personaService.setPersona(this.medico);
     this.navCtrl.navigateForward("medic-patients", { animated: false });
-  }
-
-  ionViewWillEnter(){
-    this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
-      this.medico = value
-      this.getAllprenotazioniByMedico = this.medicoService.getAllPrenotazioniByMedico(this.medico.id)
-      this.getAllprenotazioniByMedico.subscribe((value:Terapia[]) =>{
-        this.prenotazioni = value;
-      })
-    });
   }
 
   handleRefresh(event: any) {
