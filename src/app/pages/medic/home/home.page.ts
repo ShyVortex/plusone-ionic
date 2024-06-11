@@ -115,7 +115,7 @@ export class HomePage implements OnInit {
 
   goToHome() {
     this.personaService.setPersona(this.medico);
-    this.navCtrl.navigateBack("medic-home", { animated: false });
+    this.navCtrl.navigateForward("medic-home", { animated: false });
   }
 
   goToNotifs() {

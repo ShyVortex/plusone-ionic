@@ -28,6 +28,7 @@ import {PazienteService} from "../../../../../services/PazienteService/paziente.
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonButton, LottieComponent]
 })
+
 export class RequestAcceptedPage implements OnInit {
   protected paziente: Paziente;
   private activatePazienteObservable!: Observable<void>;

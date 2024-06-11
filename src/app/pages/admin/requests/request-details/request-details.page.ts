@@ -23,6 +23,7 @@ import {Observable} from "rxjs";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonRow, IonText]
 })
+
 export class RequestDetailsPage implements OnInit {
   protected paziente: Paziente;
   protected citta: string;

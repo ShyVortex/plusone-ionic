@@ -34,7 +34,7 @@ export class PatientsRecordsPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("medic-patients", { animated: false });
+    this.navCtrl.navigateForward("medic-patients", { animated: false });
   }
 
   goToNotifs() {

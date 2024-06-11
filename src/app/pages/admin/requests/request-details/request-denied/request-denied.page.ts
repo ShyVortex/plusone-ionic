@@ -27,6 +27,7 @@ import {AnimationItem} from "lottie-web";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonText, LottieComponent]
 })
+
 export class RequestDeniedPage implements OnInit {
   protected paziente: Paziente;
   private deletePazienteObservable!: Observable<void>;

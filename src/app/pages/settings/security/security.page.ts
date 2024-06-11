@@ -40,6 +40,7 @@ export class SecurityPage implements OnInit {
   Ionic che la variabile sarà inizializzata prima dell'utilizzo */
   @ViewChild('passwordAreaRef') passwordAreaRef!: IonTextarea;
   @ViewChild('confirmPassRef') confirmPassRef!: IonTextarea;
+
   protected confirmButtons = [
     {
       text: 'Annulla',
@@ -84,6 +85,7 @@ export class SecurityPage implements OnInit {
     else if (LoginUtilities.getRuoloByEmail(this.persona.email) === 'ADMIN')
       this.ruolo = "ADMIN";
   }
+
   async presentErrorAlert() {
     const alert = await this.alertController.create({
       header: 'Errore',
@@ -93,6 +95,7 @@ export class SecurityPage implements OnInit {
 
     await alert.present();
   }
+
   async presentConfirmAlert() {
     const alert = await this.alertController.create({
       header: 'Conferma',
@@ -103,21 +106,15 @@ export class SecurityPage implements OnInit {
     await alert.present();
   }
 
-
-
   navigateBack() {
     this.navCtrl.back();
   }
-
-
 
   async editPassword() {
     this.editablePass = true;
     this.passwordAreaRef.value = "";
     this.cdr.detectChanges();
   }
-
-
 
   async cancelEditPassword() {
     this.passwordAreaRef.value = "........";
@@ -134,22 +131,24 @@ export class SecurityPage implements OnInit {
         this.presentErrorAlert();
       }
   }
+
   isDisable() :boolean{
     return this.passwordAreaRef.value == '' || this.passwordAreaRef.value == undefined || this.confirmPassRef.value == "" || this.confirmPassRef.value == undefined;
   }
+
   isMatching() :boolean{
     return this.passwordAreaRef.value === this.confirmPassRef.value
   }
 
   goToHome() {
     if (this.ruolo === 'PAZIENTE')
-      this.navCtrl.navigateBack("patient-home");
+      this.navCtrl.navigateForward("patient-home");
     else if (this.ruolo === 'INFERMIERE')
-      this.navCtrl.navigateBack("nurse-home");
+      this.navCtrl.navigateForward("nurse-home");
     else if (this.ruolo === 'MEDICO')
-      this.navCtrl.navigateBack("medic-home");
+      this.navCtrl.navigateForward("medic-home");
     else if (this.ruolo === 'ADMIN')
-      this.navCtrl.navigateBack("admin-home");
+      this.navCtrl.navigateForward("admin-home");
   }
 
   goToLogbook() {

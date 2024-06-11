@@ -18,6 +18,7 @@ import {Medico} from "../../../../models/medico/Medico";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {isEqual} from "lodash";
+import {TerapiaService} from "../../../../services/TerapiaService/terapia.service";
 
 @Component({
   selector: 'app-notification-details',
@@ -36,6 +37,7 @@ export class NotificationDetailsPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
+    private terapiaService: TerapiaService,
     private storageService: StorageService
   ) {
     this.medico = personaService.getPersona();
@@ -50,7 +52,7 @@ export class NotificationDetailsPage implements OnInit {
     if (!this.medico.isSet()) {
       this.prenotazione.attivo = true;
       this.storageService.updateStatoTerapia(this.prenotazione, true);
-      this.updatePatientReservation();
+      this.terapiaService.updateTerapiaOffline(this.defPaz, this.prenotazione);
       this.storageService.setTerapia(this.prenotazione);
       this.navCtrl.navigateForward("medic-notif-accepted");
     }
@@ -59,31 +61,9 @@ export class NotificationDetailsPage implements OnInit {
   denyReservation() {
     if (!this.medico.isSet()) {
       this.storageService.deleteTerapia(this.prenotazione);
-      this.deletePatientReservation();
+      this.terapiaService.deleteTerapiaOffline(this.defPaz, this.prenotazione);
       this.navCtrl.navigateForward("medic-notif-denied");
     }
-  }
-
-  updatePatientReservation() {
-    const index = this.defPaz.terapie.findIndex(item => item === this.prenotazione);
-    if (index !== -1) {
-      if (isEqual(this.defPaz.terapie[index], this.prenotazione)) {
-        this.defPaz.terapie[index].attivo = true;
-      }
-    }
-    else
-      console.error("CRITICAL ERROR: prenotazione not found in paziente: " + this.defPaz);
-  }
-
-  deletePatientReservation() {
-    const index = this.defPaz.terapie.findIndex(item => item === this.prenotazione);
-    if (index !== -1) {
-      if (isEqual(this.defPaz.terapie[index], this.prenotazione)) {
-        this.defPaz.terapie.splice(index, 1);
-      }
-    }
-    else
-      console.error("CRITICAL ERROR: prenotazione not found in paziente: " + this.defPaz);
   }
 
   navigateBack() {

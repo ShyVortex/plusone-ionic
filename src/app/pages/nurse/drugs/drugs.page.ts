@@ -57,7 +57,7 @@ export class DrugsPage implements OnInit {
 
   goToHome() {
     this.personaService.setPersona(this.infermiere);
-    this.navCtrl.navigateBack("nurse-home", { animated: false });
+    this.navCtrl.navigateForward("nurse-home", { animated: false });
   }
 
   goToDrugs() {

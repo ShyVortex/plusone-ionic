@@ -28,6 +28,7 @@ import {Sesso} from "../../../models/persona/sesso";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton]
 })
+
 export class ReportsPage implements OnInit {
   protected admin: Admin;
   protected segnalazioni!: Segnalazione[];

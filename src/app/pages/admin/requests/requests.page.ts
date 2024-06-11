@@ -31,6 +31,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonText, IonFooter, IonTabBar, IonTabButton, IonTabs, IonItem, IonList, IonRefresher, IonRefresherContent, IonRow, IonButton]
 })
+
 export class RequestsPage implements OnInit {
   protected admin: Admin;
   protected getAllInattiviObservable!: Observable<Paziente[]>;
@@ -62,6 +63,13 @@ export class RequestsPage implements OnInit {
       this.adminService.offlineSetAdmin(this.admin);
   }
 
+  ionViewWillEnter(){
+    this.getAllInattiviObservable = this.pazienteService.getAllPazientiInattivi();
+    this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
+      this.pazienti = value;
+    });
+  }
+
   handleRefresh(event: any) {
     setTimeout(() => {
       this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
@@ -69,12 +77,6 @@ export class RequestsPage implements OnInit {
       });
       event.target.complete();
     }, 1000);
-  }
-  ionViewWillEnter(){
-    this.getAllInattiviObservable = this.pazienteService.getAllPazientiInattivi();
-    this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
-      this.pazienti = value;
-    });
   }
 
   routeToRequestDetails(paziente: Paziente) {

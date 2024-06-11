@@ -61,7 +61,7 @@ export class NotificationDeniedPage implements OnInit {
   }
 
   goToHome() {
-    this.navCtrl.navigateBack("medic-home", { animated: false });
+    this.navCtrl.navigateForward("medic-home", { animated: false });
   }
 
   goToNotifs() {
