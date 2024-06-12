@@ -78,7 +78,6 @@ export class NewTherapyPage implements OnInit{
       text: 'Conferma',
       role: 'confirm',
       handler: async () => {
-          if (this.paziente.isSet()) {
             try {
               await firstValueFrom<void>(
                 this.tFarmacologicaService.setState(this.tFarmacologicaId, true)
@@ -89,28 +88,6 @@ export class NewTherapyPage implements OnInit{
               console.error(error)
             }
           }
-          else {
-            try {
-              let tFarmacologica = new TerapiaFarmacologica();
-              tFarmacologica.esami = this.exams;
-              tFarmacologica.farmaci = [];
-
-              this.drugs.forEach(function (value) {
-                tFarmacologica.farmaci.push(value.farmaco);
-              });
-              this.tFarmacologicaService.addTFarmacologicaOffline(this.paziente, tFarmacologica);
-
-              this.storageService.cacheTFarmacologica(tFarmacologica);
-              this.storageService.cacheState(this.paziente);
-              await this.navCtrl.navigateForward(this.navURL, {});
-
-            } catch (error) {
-              console.log(error);
-            }
-          }
-        }
-
-
     }
   ];
 
