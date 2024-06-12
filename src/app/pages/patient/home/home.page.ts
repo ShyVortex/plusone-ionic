@@ -58,7 +58,7 @@ import {Router} from "@angular/router";
 
 export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
-  protected paziente!: Paziente;
+  protected paziente: Paziente = new Paziente();
   private getPazienteByEmailObservable:Observable<Paziente>;
   private getMedicoOfPazienteObservable:Observable<Medico>
   private emailPaziente!:string
@@ -78,13 +78,22 @@ export class HomePage implements OnInit {
   ) {
     if (personaService.getPersona() !== undefined)
       this.paziente = personaService.getPersona();
+
+    /* Chiamato per risolvere un freeze dell'applicazione ottenibile seguendo questa sequenza di passi:
+    1. Logga come paziente di default
+    2. Invia segnalazione errori
+    3. Logga in admin e segna come risolta la segnalazione
+    4. Logga come paziente reale presente sul database
+
+    Tuttavia, questo metodo non influisce sul login con account reale dato che vengono eseguite le azioni
+    in ngOnInit() ed ionViewWillEnter() che sovrascrivono il risultato di questo metodo.
+     */
+    pazienteService.offlineSetPaziente(this.paziente);
+
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.getMedicoOfPazienteObservable = new Observable<Medico>()
-
-    if (!this.paziente)
-      this.paziente = new Paziente();
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);

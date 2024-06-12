@@ -7,6 +7,7 @@ import {Medico} from "../../models/medico/Medico";
 import {TipologiaMedico} from "../../models/medico/tipologia-medico";
 import {Sesso} from "../../models/persona/sesso";
 import {Diagnosi} from "../../models/paziente/Diagnosi";
+import {Indirizzo} from "../../models/persona/Indirizzo";
 
 @Injectable({
   providedIn: 'root'
@@ -199,6 +200,7 @@ export class PazienteService {
     paziente.email = "mario.giannini@paziente.it";
     paziente.password = "password123";
     paziente.CF = "GNNMRA02R05E335P";
+    paziente.indirizzo = new Indirizzo();
     paziente.indirizzo.cap = "IS";
     paziente.indirizzo.città = "Pesche";
     paziente.indirizzo.via = "Contrada Lappone";

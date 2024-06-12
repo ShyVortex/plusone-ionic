@@ -9,6 +9,7 @@ import {Segnalazione} from "../../models/segnalazione/Segnalazione";
 import {TerapiaFarmacologica} from "../../models/terapiafarmacologica/TerapiaFarmacologica";
 import {QuantitaDettaglio} from "../../models/terapiafarmacologica/QuantitaDettaglio";
 import {Esame} from "../../models/esame/Esame";
+import {Admin} from "../../models/admin/Admin";
 
 @Injectable({
   providedIn: 'root'
@@ -207,7 +208,9 @@ export class StorageService {
 
   cacheState(value: any) {
     if (value && value.id !== undefined) {
-      if (value instanceof Paziente || value instanceof Infermiere || value instanceof Medico) {
+      if (value instanceof Paziente || value instanceof Infermiere
+        || value instanceof Medico || value instanceof Admin)
+      {
         if (!this.loginCache.includes(value)) {
           // this.loginCache.push(value); --> Shallow Copy
           this.loginCache.push(cloneDeep(value)); // --> Deep Copy
