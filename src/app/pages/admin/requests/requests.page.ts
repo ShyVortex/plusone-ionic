@@ -59,7 +59,7 @@ export class RequestsPage implements OnInit {
       this.pazienti = value;
     });
 
-    if (!this.admin.isSet())
+    if (this.personaService.isDefault())
       this.adminService.offlineSetAdmin(this.admin);
   }
 

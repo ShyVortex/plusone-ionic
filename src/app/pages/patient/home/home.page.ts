@@ -35,9 +35,7 @@ import {DataService} from "../../../services/data.service";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
 import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
-import {routes} from "../../../app.routes";
 import {Router} from "@angular/router";
-import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 @Component({
   selector: 'app-home',
@@ -60,7 +58,7 @@ import {TipologiaMedico} from "../../../models/medico/tipologia-medico";
 
 export class HomePage implements OnInit {
   private getAllMediciSubscription:Subscription;
-  protected paziente: Paziente = new Paziente();
+  protected paziente!: Paziente;
   private getPazienteByEmailObservable:Observable<Paziente>;
   private getMedicoOfPazienteObservable:Observable<Medico>
   private emailPaziente!:string
@@ -68,7 +66,6 @@ export class HomePage implements OnInit {
   protected medicOfPatient! :Medico
   private getMedicoByEmailObservable:Observable<Medico>
   private dataSubscription!:Subscription;
-  private isDefault: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -79,18 +76,15 @@ export class HomePage implements OnInit {
     private dataService: DataService,
     private storageService: StorageService
   ) {
-    this.isDefault = history.state.isDefault;
+    if (personaService.getPersona() !== undefined)
+      this.paziente = personaService.getPersona();
     this.getAllMediciSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.getMedicoByEmailObservable = new Observable<Medico>();
     this.getMedicoOfPazienteObservable = new Observable<Medico>()
 
-    // Risolve un problema con il refresh se si è già effettuato il login
-    if (this.paziente === undefined)
+    if (!this.paziente)
       this.paziente = new Paziente();
-
-    if (this.isDefault && this.paziente !== undefined)
-      this.paziente = personaService.getPersona();
 
     console.log(history.state.pazienteEmail)
     console.log(router.url);
@@ -104,22 +98,20 @@ export class HomePage implements OnInit {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.emailPaziente)
       }
     )
-
-    if (this.isDefault && this.paziente !== undefined && this.paziente.isEmpty())
-      this.paziente.setState(false);
   }
 
   ionViewWillEnter() {
-    this.getPazienteByEmailObservable.subscribe((value:Paziente) =>{
+    this.getPazienteByEmailObservable.subscribe((value:Paziente) => {
       this.paziente = value;
       this.getMedicoOfPazienteObservable = this.pazienteService.getMedicoOfPaziente(this.paziente.id as unknown as string);
       this.citta = this.paziente.indirizzo.città;
-      if (this.paziente.nome === "" && !this.paziente.isSet()) {
+      if (this.paziente.nome === "" && this.personaService.isDefault()) {
         this.pazienteService.offlineSetPaziente(this.paziente);
         this.citta = this.paziente.indirizzo.città;
         this.paziente.terapie = this.storageService.getTerapie();
         this.paziente.tFarmacologiche = this.storageService.getTFarmacologiche();
       }
+      console.log(this.paziente);
     });
   }
 
@@ -142,7 +134,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    if (!this.paziente.isSet())
+    if (this.personaService.isDefault())
       this.storageService.cacheState(this.paziente);
     this.navCtrl.navigateRoot("login");
   }

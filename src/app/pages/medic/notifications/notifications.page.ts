@@ -65,10 +65,10 @@ export class NotificationsPage implements OnInit {
       }
     )
 
-    if (!this.medico.isManager && !this.medico.isSet())
+    if (!this.medico.isManager && this.personaService.isDefault())
       this.medicoService.offlineSetMedico(this.medico);
 
-    if (!this.medico.isSet())
+    if (this.personaService.isDefault())
       this.prenotazioni = this.storageService.getTerapie();
   }
 

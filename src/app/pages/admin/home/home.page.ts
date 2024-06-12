@@ -45,10 +45,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.admin.isEmpty())
-      this.admin.setState(false);
-
-    if (!this.admin.isSet())
+    if (this.personaService.isDefault())
       this.adminService.offlineSetAdmin(this.admin);
   }
 
@@ -65,7 +62,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    if (!this.admin.isSet())
+    if (this.personaService.isDefault())
       this.storageService.cacheState(this.admin);
     this.navCtrl.navigateRoot("login");
   }

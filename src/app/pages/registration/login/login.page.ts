@@ -25,6 +25,8 @@ import {MedicoService} from "../../../services/MedicoService/medico.service";
 import {DataService} from "../../../services/data.service";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
+import {PersonaDefault} from "../../../models/persona/persona-default";
+import {Admin} from "../../../models/admin/Admin";
 
 @Component({
   selector: 'app-login',
@@ -115,51 +117,48 @@ export class LoginPage implements OnInit,OnDestroy {
   }
 
 
-  async loginButton():Promise<void> {
+  async loginButton(): Promise<void> {
     // Profili di default per far funzionare la login sul file .apk
-    if (this.email === "mario.giannini@paziente.it" && this.password === "password123") {
+    if ((<any>Object).values(PersonaDefault).includes(this.email) && this.password === "password123") {
       this.personToLogin = this.storageService.getState(this.email);
-      if (this.personToLogin != undefined)
+      if (this.personToLogin !== undefined)
         this.personaService.setPersona(this.personToLogin);
-      else
-        this.personaService.setPersona(new Paziente());
 
-      this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("patient-home", {
-        state: {
-          isDefault: true
-        }
-      });
-    }
-    if (this.email === "teresa.nucci@infermiere.it" && this.password === "password123") {
-      this.personToLogin = this.storageService.getState(this.email);
-      if (this.personToLogin != undefined)
-        this.personaService.setPersona(this.personToLogin);
-      else
-        this.personaService.setPersona(new Infermiere());
+      if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
+        if (this.personToLogin === undefined)
+          this.personaService.setPersona(new Paziente());
 
-      this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("nurse-home");
-    }
-    if (this.email === "victor.conde@medico.it" && this.password === "password123") {
-      this.personToLogin = this.storageService.getState(this.email);
-      if (this.personToLogin != undefined)
-        this.personaService.setPersona(this.personToLogin);
-      else
-        this.personaService.setPersona(new Medico());
+        this.dataService.sendData(this.email);
+        this.personaService.setDefault(true);
+        await this.navCtrl.navigateForward("patient-home");
+      }
 
-      this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("medic-home");
-    }
-    if (this.email === "bruno.strati@admin.it" && this.password === "password123") {
-      this.personToLogin = this.storageService.getState(this.email);
-      if (this.personToLogin != undefined)
-        this.personaService.setPersona(this.personToLogin);
-      else
-        this.personaService.setPersona(new Medico());
+      else if (LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE") {
+        if (this.personToLogin === undefined)
+          this.personaService.setPersona(new Infermiere());
 
-      this.dataService.sendData(this.email);
-      await this.navCtrl.navigateForward("admin-home");
+        this.dataService.sendData(this.email);
+        this.personaService.setDefault(true);
+        await this.navCtrl.navigateForward("nurse-home");
+      }
+
+      else if (LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO') {
+        if (this.personToLogin === undefined)
+          this.personaService.setPersona(new Medico());
+
+        this.dataService.sendData(this.email);
+        this.personaService.setDefault(true);
+        await this.navCtrl.navigateForward("medic-home");
+      }
+
+      else if (LoginUtilities.getRuoloByEmail(this.email) === 'ADMIN') {
+        if (this.personToLogin === undefined)
+          this.personaService.setPersona(new Admin());
+
+        this.dataService.sendData(this.email);
+        this.personaService.setDefault(true);
+        await this.navCtrl.navigateForward("admin-home");
+      }
     }
 
       if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
@@ -190,17 +189,20 @@ export class LoginPage implements OnInit,OnDestroy {
     this.dataService.sendData(this.email);
 
     if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
-      if (this.personToLogin.attivo)
-        this.navCtrl.navigateForward("patient-home")
+      if (this.personToLogin.attivo) {
+        this.personaService.setDefault(false);
+        this.navCtrl.navigateForward("patient-home");
+      }
       else
         this.showAlert();
     }
     else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
-      this.navCtrl.navigateForward("nurse-home")
-
+      this.personaService.setDefault(false);
+      this.navCtrl.navigateForward("nurse-home");
     }
     else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
-      this.navCtrl.navigateForward("medic-home")
+      this.personaService.setDefault(false);
+      this.navCtrl.navigateForward("medic-home");
     }
 
 

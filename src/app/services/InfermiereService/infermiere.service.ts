@@ -94,5 +94,6 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
     infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
     infermiere.reparto = "Chirurgia";
     infermiere.ruolo = "Infermiere assistente";
+    infermiere.setState(false);
   }
 }

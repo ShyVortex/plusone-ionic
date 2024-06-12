@@ -16,5 +16,6 @@ export class AdminService {
     admin.email = "bruno.strati@admin.it";
     admin.password = "password123";
     admin.CF = "STRBRN66H06C351Y";
+    admin.setState(false);
   }
 }

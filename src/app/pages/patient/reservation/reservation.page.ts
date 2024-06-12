@@ -55,7 +55,7 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.paziente.nome === "" && !this.paziente.isSet())
+    if (this.paziente.nome === "" && this.personaService.isDefault())
       this.pazienteService.offlineSetPaziente(this.paziente);
   }
 

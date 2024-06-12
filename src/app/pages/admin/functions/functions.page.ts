@@ -47,7 +47,7 @@ export class FunctionsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.admin.isSet())
+    if (this.personaService.isDefault())
       this.adminService.offlineSetAdmin(this.admin);
   }
 

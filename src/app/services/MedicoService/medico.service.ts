@@ -158,6 +158,7 @@ export class MedicoService {
     medico.reparto = "Cardiologia";
     medico.ruolo = "Primario";
     medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    medico.setState(false);
     medico.pazienti = [];
     medico.pazienti.push(this.offlineAddPaziente());
   }
@@ -183,6 +184,7 @@ export class MedicoService {
       paziente.esenzione = true;
       paziente.donatoreOrgani = false;
       paziente.diagnosi = Diagnosi.IN_SALUTE;
+      paziente.setState(false);
 
       return paziente;
     }

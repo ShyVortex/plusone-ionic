@@ -207,6 +207,7 @@ export class PazienteService {
     paziente.diagnosi = Diagnosi.IN_SALUTE;
     paziente.donatoreOrgani = false;
     paziente.attivo = true;
+    paziente.setState(false);
   }
 
   offlineSetMedicoCurante(): Medico {
@@ -223,6 +224,7 @@ export class PazienteService {
     medico.reparto = "Cardiologia";
     medico.ruolo = "Primario";
     medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    medico.setState(false);
 
     return medico;
   }
