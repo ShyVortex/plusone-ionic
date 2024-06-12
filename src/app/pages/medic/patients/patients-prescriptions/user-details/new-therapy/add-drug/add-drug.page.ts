@@ -66,32 +66,19 @@ export class AddDrugPage implements OnInit {
         this.quantita = alertData.quantita
         this.note = alertData.note;
         if (this.isValidInput()) {
-          if (this.quantita >= 10) {
-            this.presentToast("La quantità inserita sembra essere eccessiva, inserire una quantità adeguata!")
+          if (this.quantita >= 10 ) {
+            this.presentToast("La quantità inserita sembra essere inadeguata, inserire una quantità adeguata!")
           } else {
             this.setQuantitaDettaglio();
-           
-            if (this.paziente.isSet()) {
-              try {
-                await firstValueFrom<QuantitaDettaglio>(
-                  this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id,
-                    this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON
-                  )
-                );
-                this.presentToast("Farmaco assegnato correttamente!");
-              } catch (error) {
-                console.error(error);
-              }
-            }
-            else {
-              try {
-                this.quantitaDettaglioService.addQuantitaDettaglioOffline(this.chosenDrug,
-                  this.storageService.getTFarmacologicaId(), this.quantita, this.note
-                );
-                this.presentToast("Farmaco assegnato correttamente!");
-              } catch (error) {
-                console.error(error);
-              }
+            try {
+              await firstValueFrom<QuantitaDettaglio>(
+                this.quantitaDettaglioService.addQuantitaDettaglio(this.chosenDrug.id,
+                  this.storageService.getTFarmacologicaId(), this.quantitaDettaglioJSON
+                )
+              );
+              this.presentToast("Farmaco assegnato correttamente!");
+            } catch (error) {
+              console.error(error);
             }
           }
         } else {
@@ -152,10 +139,7 @@ export class AddDrugPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.paziente.isSet())
       this.loadItems();
-    else
-      this.loadItemsOffline();
   }
 
   async loadItems() {
@@ -268,7 +252,7 @@ export class AddDrugPage implements OnInit {
 
   private setQuantitaDettaglio() {
     this.quantitaDettaglioJSON.quantita = this.quantita;
-    
+
     if (this.note == undefined || this.note == '') {
       this.quantitaDettaglioJSON.note = 'Nessuna informazione aggiuntiva';
     } else {

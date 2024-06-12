@@ -78,7 +78,6 @@ export class NewTherapyPage implements OnInit{
       text: 'Conferma',
       role: 'confirm',
       handler: async () => {
-        if(this.isInserted()) {
           if (this.paziente.isSet()) {
             try {
               await firstValueFrom<void>(
@@ -110,10 +109,8 @@ export class NewTherapyPage implements OnInit{
             }
           }
         }
-        else {
-          this.presentWarningButtonAlert();
-        }
-      }
+
+
     }
   ];
 
@@ -244,8 +241,13 @@ export class NewTherapyPage implements OnInit{
   }
 
   protected confirmButton() {
-    this.navURL = 'confirm-therapy'
-    this.presentConfirmButtonAlert();
+    if(this.isInserted()) {
+      this.navURL = 'confirm-therapy'
+      this.presentConfirmButtonAlert();
+    }
+    else {
+      this.presentWarningButtonAlert()
+    }
   }
 
   private isInserted() {

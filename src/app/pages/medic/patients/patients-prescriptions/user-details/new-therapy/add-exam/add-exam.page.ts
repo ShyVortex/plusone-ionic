@@ -77,7 +77,6 @@ export class AddExamPage implements OnInit {
       text: 'SI',
       role: 'confirm',
       handler: async () => {
-        if (this.paziente.isSet()) {
           try {
             await firstValueFrom<any>(
               this.tFarmacologicaService.addEsameToTfarmacologica(this.chosenExam.id,this.storageService.getTFarmacologicaId()))
@@ -86,15 +85,6 @@ export class AddExamPage implements OnInit {
           catch (error){
             console.error(error);
           }
-        } else {
-          try {
-            this.esameService.addEsameOffline(this.chosenExam);
-            this.presentToast("Esame aggiunto con successo!");
-          }
-          catch (error) {
-            console.log(error);
-          }
-        }
       }
     }
   ];
@@ -111,12 +101,7 @@ export class AddExamPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.paziente.isSet())
       this.loadItems();
-    else
-      this.loadItemsOffline();
-
-    console.log(this.exams);
   }
 
   async loadItems() {
