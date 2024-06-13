@@ -36,6 +36,7 @@ export class MedicoService {
       }).catch(error => {console.log(error)});
     });
   }
+
   deleteMedico(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.medicoURL + "/deleteMedico"+"/" + id).then
@@ -95,10 +96,6 @@ export class MedicoService {
         (response: AxiosResponse<Medico>)  => {
           jsonResponse = response.data;
           medico = ModelUtilities.medicoFromJSON(jsonResponse);
-
-          if (!medico.isEmpty()) {
-            medico.setState(true);
-          }
 
           observer.next(medico);
           observer.complete();

@@ -99,9 +99,8 @@ export class PazienteService {
       ((response:AxiosResponse<Paziente>)  => {
         jsonResponse = response.data
         paziente = ModelUtilities.pazienteFromJSON(jsonResponse);
-        if (!paziente.isEmpty())
-          paziente.setState(true);
-        console.log(paziente)
+        console.log(paziente);
+
         observer.next(paziente);
         observer.complete();
       })
