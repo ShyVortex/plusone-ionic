@@ -120,7 +120,6 @@ export class HomePage implements OnInit {
         this.paziente.terapie = this.storageService.getTerapie();
         this.paziente.tFarmacologiche = this.storageService.getTFarmacologiche();
       }
-      console.log(this.paziente);
     });
   }
 
