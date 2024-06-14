@@ -32,6 +32,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
 
 export class LogbookPage implements OnInit {
   protected paziente: any;
+  private medicOfPatient: Medico;
 
   constructor(
     private navCtrl: NavController,
@@ -41,6 +42,7 @@ export class LogbookPage implements OnInit {
     private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
+    this.medicOfPatient = new Medico()
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
@@ -51,6 +53,9 @@ export class LogbookPage implements OnInit {
   ngOnInit() {
     if (this.paziente.nome === "" && this.personaService.isDefault())
       this.pazienteService.offlineSetPaziente(this.paziente);
+    this.pazienteService.getMedicoOfPaziente(this.paziente.id).subscribe(medicoOfPaziente => {
+      this.medicOfPatient = medicoOfPaziente;
+    })
   }
 
   routeToSettings() {
@@ -95,4 +100,8 @@ export class LogbookPage implements OnInit {
   }
 
   protected readonly Sesso = Sesso;
+
+  protected isDisable() {
+      return (this.medicOfPatient.id === 0);
+  }
 }

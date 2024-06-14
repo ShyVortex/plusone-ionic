@@ -16,6 +16,8 @@ import {TerapiaFarmacologica} from "../../../../models/terapiafarmacologica/Tera
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {StorageService} from "../../../../services/StorageService/storage.service";
+import {PazienteService} from "../../../../services/PazienteService/paziente.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-logbook-prescriptions',
@@ -27,12 +29,14 @@ import {StorageService} from "../../../../services/StorageService/storage.servic
 
 export class LogbookPrescriptionsPage implements OnInit {
   protected paziente: Paziente;
-  protected tpeFarm!: TerapiaFarmacologica[];
+  protected tpeFarm!: any[];
+  private getAllTerapiaFarmacologicaByPazienteObservable!:Observable<any[]>;
 
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private pazienteService:PazienteService
   ) {
     this.paziente = personaService.getPersona();
   }
@@ -45,11 +49,17 @@ export class LogbookPrescriptionsPage implements OnInit {
       this.tpeFarm = this.paziente.tFarmacologiche;
       console.log(this.tpeFarm);
     }
+    this.getAllTerapiaFarmacologicaByPazienteObservable = this.pazienteService.getAllTerapieFarmacologicaByPaziente(this.paziente.id);
   }
 
-  routeToPrescriptionDetails(tpaFarm: TerapiaFarmacologica) {
+  routeToPrescriptionDetails(tpaFarm: any) {
     this.storageService.setTFarmacologica(tpaFarm);
     this.navCtrl.navigateForward("patient-logbook-prescription-details");
+  }
+  ionViewWillEnter(){
+    this.getAllTerapiaFarmacologicaByPazienteObservable.subscribe(value => {
+      this.tpeFarm = value;
+    })
   }
 
   navigateBack() {

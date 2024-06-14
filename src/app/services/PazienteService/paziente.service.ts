@@ -8,6 +8,7 @@ import {TipologiaMedico} from "../../models/medico/tipologia-medico";
 import {Sesso} from "../../models/persona/sesso";
 import {Diagnosi} from "../../models/paziente/Diagnosi";
 import {Indirizzo} from "../../models/persona/Indirizzo";
+import {Terapia} from "../../models/terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'
@@ -189,6 +190,51 @@ export class PazienteService {
         observer.next()
         observer.complete();
       }).catch(error => {console.log(error)});
+    });
+  }
+  getAllPrenotazioniByPaziente(id:number):Observable<Terapia[]> {
+    return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
+      axios.get<Terapia[]>(this.pazienteURL + "/getAllTerapieByPaziente" + "/" + id).then
+      ((response: AxiosResponse<Terapia[]>) => {
+        let jsonResponse: any[] = [];
+        let terapie: Terapia[] = [];
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          terapie.push(ModelUtilities.terapieFromJSON(element))
+        })
+        console.log(terapie)
+
+        observer.next(terapie);
+        observer.complete();
+      })
+        .catch(error => {
+            observer.next([])
+            console.log(error)
+          }
+        );
+    });
+
+  }
+  getAllTerapieFarmacologicaByPaziente(id:number):Observable<any> {
+    return new Observable<any>((observer: Observer<any>) => {
+      axios.get<any>(this.pazienteURL + "/getAllTerapieFarmacologicaByPaziente" + "/" + id).then
+      ((response: AxiosResponse<any>) => {
+        let jsonResponse: any[] = [];
+        let any: any[] = [];
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          any.push(element)
+        })
+        console.log(any)
+
+        observer.next(any);
+        observer.complete();
+      })
+        .catch(error => {
+            observer.next([])
+            console.log(error)
+          }
+        );
     });
   }
 

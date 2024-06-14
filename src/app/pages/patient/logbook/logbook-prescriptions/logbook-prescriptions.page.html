@@ -10,20 +10,22 @@
 </ion-header>
 
 <ion-content class="prescriptions-content" [fullscreen]="true">
-  <ion-list>
-    <ion-item class="item-title" *ngFor="let tpaFarm of tpeFarm">
+  <ion-list *ngFor="let tpaFarm of tpeFarm">
+    <div *ngIf="tpaFarm.attivo">
+    <ion-item class="item-title" >
       <div class="item-content">
         <ion-img class="prescription-icon" slot="start"
                  src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
         </ion-img>
         <ion-text class="item-title-list">Terapia farmacologica
-          assegnata da {{paziente.medico.nome}} {{paziente.medico.cognome}}
+          assegnata da {{tpaFarm.medico?.nome}} {{tpaFarm.medico?.cognome}}
         </ion-text>
         <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarm)">
           <ion-text class="button-arrow">></ion-text>
         </ion-button>
       </div>
     </ion-item>
+    </div>
   </ion-list>
 </ion-content>
 

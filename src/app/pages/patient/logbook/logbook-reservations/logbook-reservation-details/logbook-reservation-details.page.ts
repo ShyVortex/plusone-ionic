@@ -20,6 +20,7 @@ import {Terapia} from "../../../../../models/terapia/Terapia";
 import {TipologiaTerapia} from "../../../../../models/terapia/tipologia-terapia";
 import {isEqual} from "lodash";
 import {firstValueFrom} from "rxjs";
+import {TerapiaService} from "../../../../../services/TerapiaService/terapia.service";
 
 @Component({
   selector: 'app-logbook-reservation-details',
@@ -43,22 +44,34 @@ export class LogbookReservationDetailsPage implements OnInit {
       text: 'Conferma',
       role: 'confirm',
       handler: async () => {
-        const index = this.paziente.terapie.findIndex(
-          (item) => item === this.prenotazione
-        );
-        if (index !== -1) {
-          if (isEqual(this.paziente.terapie[index], this.prenotazione)) {
-            // splice === rimuovi
-            this.paziente.terapie.splice(index, 1);
-            console.log(`Reservation for ${this.prenotazione} has been cancelled.`);
+        if (this.personaService.isDefault()) {
+          const index = this.paziente.terapie.findIndex(
+            (item) => item === this.prenotazione
+          );
+          if (index !== -1) {
+            if (isEqual(this.paziente.terapie[index], this.prenotazione)) {
+              // splice === rimuovi
+              this.paziente.terapie.splice(index, 1);
+              console.log(`Reservation for ${this.prenotazione} has been cancelled.`);
+              this.navCtrl.navigateForward("patient-logbook-reservation-cancelled");
+            } else
+              console.error('The reservation details do not match.');
+          } else
+            console.error('Reservation not found.');
+
+        }
+        else{
+          try{
+            firstValueFrom(this.terapiaService.deleteTerapia(this.prenotazione.id))
             this.navCtrl.navigateForward("patient-logbook-reservation-cancelled");
           }
-          else
-            console.error('The reservation details do not match.');
+          catch (error){
+            console.log(error)
+          }
         }
-        else
-          console.error('Reservation not found.');
       }
+
+
     }
   ];
 
@@ -67,6 +80,7 @@ export class LogbookReservationDetailsPage implements OnInit {
     private alertController: AlertController,
     private personaService: PersonaService,
     private storageService: StorageService,
+    private terapiaService:TerapiaService
   ) {
     this.paziente = personaService.getPersona();
     this.prenotazione = storageService.getTerapia();

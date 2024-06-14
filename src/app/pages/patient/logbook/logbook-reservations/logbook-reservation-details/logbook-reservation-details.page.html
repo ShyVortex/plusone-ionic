@@ -16,8 +16,8 @@
       <ion-img class="reservation-summary-icon"
                src="../../assets/icon/patient/logbook/reservations/reservation.png">
       </ion-img>
-      <ion-text class="reservation-summary-text">Prenotazione n. 1 <br/>
-        appuntamento con <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b> <br/>
+      <ion-text class="reservation-summary-text">Prenotazione n. {{prenotazione.id}} <br/>
+        appuntamento con <b>{{prenotazione.medicoCurante?.nome}} {{prenotazione.medicoCurante?.cognome}}</b> <br/>
                 in data {{prenotazione.orario | date: 'yyyy-MM-dd'}}
       </ion-text>
     </ion-item>
@@ -25,9 +25,9 @@
   <ion-row style="height: 2.5em"></ion-row>
   <div class="details-container">
     <ion-text class="reservation-details-text">
-      Questa prenotazione prevede un appuntamento con il dot. <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
-      per una visita {{prenotazione.tipologiaTerapia}} presso il reparto di <b>{{prenotazione.reparto}}</b>
-      dell'<b>Ospedale Riuniti</b> di Foggia alle ore {{prenotazione.orario | date: 'HH:mm'}}.
+      Questa prenotazione prevede un appuntamento con il dot. <b>{{prenotazione.medicoCurante?.nome}} {{prenotazione.medicoCurante?.cognome}}</b>
+      per una visita {{prenotazione.tipologiaTerapia}} presso il reparto di <b>{{prenotazione.medicoCurante?.reparto}}</b>
+      dell'<b>{{prenotazione.medicoCurante?.ospedale}}</b>  alle ore {{prenotazione.orario | date: 'HH:mm'}}.
     </ion-text>
   </div>
   <ion-row style="height: 2.5em"></ion-row>

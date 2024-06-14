@@ -58,9 +58,7 @@ export class NotificationDetailsPage implements OnInit {
       this.navCtrl.navigateForward("medic-notif-accepted");
     } else {
       try {
-        console.log("DENTRO")
-       let response = await firstValueFrom(this.terapiaService.setState(this.prenotazione.id, true))
-        console.log(response)
+        await firstValueFrom(this.terapiaService.setState(this.prenotazione.id, true))
         this.navCtrl.navigateForward("medic-notif-accepted");
       } catch (error) {
         console.log(error);
