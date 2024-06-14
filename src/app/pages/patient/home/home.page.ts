@@ -126,6 +126,7 @@ export class HomePage implements OnInit {
   ionViewDidEnter(){
     this.getMedicoOfPazienteObservable.subscribe((value:Medico) => {
       this.medicOfPatient = value;
+      this.storageService.setMedico(this.medicOfPatient)
     })
   }
 

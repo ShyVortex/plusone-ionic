@@ -19,6 +19,7 @@ import {PersonaService} from "../../../../services/PersonaService/persona.servic
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {isEqual} from "lodash";
 import {TerapiaService} from "../../../../services/TerapiaService/terapia.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-notification-details',
@@ -48,21 +49,37 @@ export class NotificationDetailsPage implements OnInit {
   ngOnInit() {
   }
 
-  acceptReservation() {
+  async acceptReservation() {
     if (!this.medico.isSet()) {
       this.prenotazione.attivo = true;
       this.storageService.updateStatoTerapia(this.prenotazione, true);
       this.terapiaService.updateTerapiaOffline(this.defPaz, this.prenotazione);
       this.storageService.setTerapia(this.prenotazione);
       this.navCtrl.navigateForward("medic-notif-accepted");
+    } else {
+      try {
+        console.log("DENTRO")
+       let response = await firstValueFrom(this.terapiaService.setState(this.prenotazione.id, true))
+        console.log(response)
+        this.navCtrl.navigateForward("medic-notif-accepted");
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
-  denyReservation() {
+  async denyReservation() {
     if (!this.medico.isSet()) {
       this.storageService.deleteTerapia(this.prenotazione);
       this.terapiaService.deleteTerapiaOffline(this.defPaz, this.prenotazione);
       this.navCtrl.navigateForward("medic-notif-denied");
+    } else {
+      try {
+        await firstValueFrom(this.terapiaService.deleteTerapia(this.prenotazione.id))
+        this.navCtrl.navigateForward("medic-notif-denied");
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 

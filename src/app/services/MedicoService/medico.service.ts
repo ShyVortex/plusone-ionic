@@ -137,6 +137,7 @@ export class MedicoService {
         observer.complete();
       })
         .catch(error => {
+            observer.next([])
             console.log(error)
           }
         );
