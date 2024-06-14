@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="survey-content">
-  <ion-row style="height: 10%"></ion-row> <!-- spazio vuoto-->
+  <ion-row style="height: 5%"></ion-row> <!-- spazio vuoto-->
   <div class="survey-container">
     <ion-text class="question-label">Dove ti fa male?</ion-text>
     <ion-select #wherePainRef
@@ -20,25 +20,214 @@
                 (ionChange)="unlockPainLevel()">
       <ion-select-option>Testa</ion-select-option>
       <ion-select-option>Braccia</ion-select-option>
-      <ion-select-option>Cuore</ion-select-option>
+      <ion-select-option>Petto</ion-select-option>
       <ion-select-option>Stomaco</ion-select-option>
       <ion-select-option>Ossa</ion-select-option>
       <ion-select-option>Gambe</ion-select-option>
     </ion-select>
     <div class="divider"></div>
-    <ion-label class="question-label">Come definiresti il dolore?</ion-label>
-    <ion-select #painLevelRef
+
+    <!-- 1. DOLORE ALLA TESTA !-->
+    <ion-label *ngIf="wherePainRef.value === 'Testa'"
+               class="question-label">
+      Da quanto tempo soffri di mal di testa?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Testa'"
+                #testaFirstRef
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
                 [disabled]="!isPainSelectable"
                 (ionChange)="updateAccessCode($event)">
-      <ion-select-option>Minimo</ion-select-option>
-      <ion-select-option>Lieve</ion-select-option>
-      <ion-select-option>Sofferto</ion-select-option>
-      <ion-select-option>A rischio</ion-select-option>
+      <ion-select-option>Poco</ion-select-option>
+      <ion-select-option>Abbastanza</ion-select-option>
+      <ion-select-option>Molto</ion-select-option>
     </ion-select>
-    <div class="divider"></div>
+    <div class="divider" *ngIf="wherePainRef.value === 'Testa'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Testa'"
+               class="question-label">
+      Il dolore è localizzato in una parte specifica della testa o è diffuso?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Testa'"
+                #testaSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Specifico</ion-select-option>
+      <ion-select-option>Diffuso</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Testa'"></div>
+
+    <!-- 2. DOLORE ALLE BRACCIA !-->
+    <ion-label *ngIf="wherePainRef.value === 'Braccia'"
+               class="question-label">
+      Hai notato se il dolore si intensifica con il movimento o durante il riposo?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Braccia'"
+                #bracciaFirstRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si, con il movimento</ion-select-option>
+      <ion-select-option>Si, a riposo</ion-select-option>
+      <ion-select-option>In entrambi i casi</ion-select-option>
+      <ion-select-option>No, è indifferente</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Braccia'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Braccia'"
+               class="question-label">
+      Hai avuto di recente traumi o sforzi fisici che potrebbero aver causato questo dolore?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Braccia'"
+                #bracciaSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Braccia'"></div>
+
+    <!-- 3. DOLORE AL PETTO !-->
+    <ion-label *ngIf="wherePainRef.value === 'Petto'"
+               class="question-label">
+      Il dolore è costante o si verifica in episodi intermittenti?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Petto'"
+                #pettoFirstRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Costante</ion-select-option>
+      <ion-select-option>Intermittente</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Petto'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Petto'"
+               class="question-label">
+      Avverti il dolore principalmente al centro del petto o si irradia anche verso altre parti del corpo
+      come braccia o mascella?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Petto'"
+                #pettoSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Solo nel petto</ion-select-option>
+      <ion-select-option>Anche alle braccia</ion-select-option>
+      <ion-select-option>Anche alla mascella</ion-select-option>
+      <ion-select-option>Altro</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Petto'"></div>
+
+    <!-- 4. DOLORE ALLO STOMACO !-->
+    <ion-label *ngIf="wherePainRef.value === 'Stomaco'"
+               class="question-label">
+      Hai avuto episodi di nausea, vomito o diarrea insieme al dolore?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Stomaco'"
+                #stomacoFirstRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Stomaco'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Stomaco'"
+               class="question-label">
+      Il dolore peggiora dopo aver mangiato o a stomaco vuoto?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Stomaco'"
+                #stomacoSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si, dopo mangiato</ion-select-option>
+      <ion-select-option>Si, a stomaco vuoto</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Stomaco'"></div>
+
+    <!-- 5. DOLORE ALLE OSSA !-->
+    <ion-label *ngIf="wherePainRef.value === 'Ossa'"
+               class="question-label">
+      Il dolore osseo è associato a qualche gonfiore, rossore o calore nella zona interessata?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Ossa'"
+                #ossaFirstRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Ossa'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Ossa'"
+               class="question-label">
+      Hai avuto recenti cadute, incidenti o traumi che potrebbero aver causato questo dolore?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Ossa'"
+                #ossaSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Ossa'"></div>
+
+    <!-- 6. DOLORE ALLE GAMBE !-->
+    <ion-label *ngIf="wherePainRef.value === 'Gambe'"
+               class="question-label">
+      Il dolore è più intenso durante il cammino, la corsa o a riposo?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Gambe'"
+                #gambeFirstRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si, durante il cammino o corsa</ion-select-option>
+      <ion-select-option>Si, a riposo</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Gambe'"></div>
+    <ion-label *ngIf="wherePainRef.value === 'Gambe'"
+               class="question-label">
+      Hai notato gonfiore, formicolio o intorpidimento nella gamba dolorante?
+    </ion-label>
+    <ion-select *ngIf="wherePainRef.value === 'Gambe'"
+                #gambeSecondRef
+                class="question-select"
+                fill="solid"
+                placeholder="Seleziona"
+                [disabled]="!isPainSelectable"
+                (ionChange)="updateAccessCode($event)">
+      <ion-select-option>Si</ion-select-option>
+      <ion-select-option>No</ion-select-option>
+    </ion-select>
+    <div class="divider" *ngIf="wherePainRef.value === 'Gambe'"></div>
+    <!--------------------------------------------------------------------->
+
     <ion-item *ngIf="isCodiceVisible" lines="none" class="code-title">
       <ion-img *ngIf = "codiceTriage === CodiciTriage.BIANCO"
                class="code-icon"
@@ -60,9 +249,14 @@
         CODICE {{this.codiceTriage}}
       </ion-text>
     </ion-item>
-    <div class="divider"></div>
-    <div style="display: flex; justify-content: flex-end;">
-      <ion-button class="send-button" (click)="routeToSurveyConfirmed()">Invia</ion-button>
+    <div *ngIf="checkFields()" style="display: flex; justify-content: center;">
+      <ion-button class="confirm-button"
+                  expand="block"
+                  fill="solid"
+                  shape="round"
+                  (click)="routeToSurveyConfirmed()">
+        Invia le risposte
+      </ion-button>
     </div>
   </div>
 </ion-content>

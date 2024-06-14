@@ -22,13 +22,25 @@ import {CodiciTriage} from "../../../../models/triage/codici-triage";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonRow, IonSelect, IonSelectOption, IonRadio, IonRadioGroup, IonText, IonGrid, IonCol, IonItem]
 })
+
 export class SosSurveyPage implements OnInit {
-  codiceTriage: string = "";
-  isPainSelectable: boolean = false;
-  isCodiceVisible: boolean = false;
+  protected codiceTriage: string = "";
+  protected isPainSelectable: boolean = false;
+  protected isCodiceVisible: boolean = false;
 
   @ViewChild('wherePainRef') wherePainRef!: IonSelect;
-  @ViewChild('painLevelRef') painLevelRef!: IonSelect;
+  @ViewChild('testaFirstRef') testaFirstRef!: IonSelect;
+  @ViewChild('testaSecondRef') testaSecondRef!: IonSelect;
+  @ViewChild('bracciaFirstRef') bracciaFirstRef!: IonSelect;
+  @ViewChild('bracciaSecondRef') bracciaSecondRef!: IonSelect;
+  @ViewChild('pettoFirstRef') pettoFirstRef!: IonSelect;
+  @ViewChild('pettoSecondRef') pettoSecondRef!: IonSelect;
+  @ViewChild('stomacoFirstRef') stomacoFirstRef!: IonSelect;
+  @ViewChild('stomacoSecondRef') stomacoSecondRef!: IonSelect;
+  @ViewChild('ossaFirstRef') ossaFirstRef!: IonSelect;
+  @ViewChild('ossaSecondRef') ossaSecondRef!: IonSelect;
+  @ViewChild('gambeFirstRef') gambeFirstRef!: IonSelect;
+  @ViewChild('gambeSecondRef') gambeSecondRef!: IonSelect;
 
   constructor(
     private navCtrl: NavController,
@@ -53,8 +65,59 @@ export class SosSurveyPage implements OnInit {
   }
 
   checkFields(): boolean {
-    if (this.wherePainRef.value != null && this.painLevelRef.value != null)
+    if (this.wherePainRef && this.wherePainRef.value != null)
       return true;
+    else
+      return false;
+  }
+
+  checkFormComplete() {
+    if (this.checkFields()) {
+      // case 1: DOLORE ALLA TESTA
+      if (
+        (this.testaFirstRef && this.testaFirstRef.value != null) &&
+        (this.testaSecondRef && this.testaSecondRef.value != null)
+      )
+        return true;
+
+      // case 2: DOLORE ALLE BRACCIA
+      else if (
+        (this.bracciaFirstRef && this.bracciaFirstRef.value != null) &&
+        (this.bracciaSecondRef && this.bracciaSecondRef.value != null)
+      )
+        return true;
+
+      // case 3: DOLORE AL PETTO
+      else if (
+        (this.pettoFirstRef && this.pettoFirstRef.value != null)
+        && (this.pettoSecondRef && this.pettoSecondRef.value != null)
+      )
+        return true;
+
+      // case 4: DOLORE ALLO STOMACO
+      else if (
+        (this.stomacoFirstRef && this.stomacoFirstRef.value != null) &&
+        (this.stomacoSecondRef && this.stomacoSecondRef.value != null)
+      )
+        return true;
+
+      // case 5: DOLORE ALLE OSSA
+      else if (
+        (this.ossaFirstRef && this.ossaFirstRef.value != null) &&
+        (this.ossaSecondRef && this.ossaSecondRef.value != null)
+      )
+        return true;
+
+      // case 6: DOLORE ALLE GAMBE
+      else if (
+        (this.gambeFirstRef && this.gambeFirstRef.value != null) &&
+        (this.gambeSecondRef && this.gambeSecondRef.value != null)
+      )
+        return true;
+
+      // default
+      return false;
+    }
     else
       return false;
   }
@@ -77,7 +140,7 @@ export class SosSurveyPage implements OnInit {
   }
 
   routeToSurveyConfirmed() {
-    if (this.checkFields()) {
+    if (this.checkFormComplete()) {
       if (this.codiceTriage != CodiciTriage.ARANCIONE)
         this.navCtrl.navigateForward("patient-sos-survey-confirmed", {
           state: {
