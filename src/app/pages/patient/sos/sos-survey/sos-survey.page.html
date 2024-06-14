@@ -17,7 +17,7 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                (ionChange)="unlockPainLevel()">
+                (ionChange)="unlockFirstQuestion()">
       <ion-select-option>Testa</ion-select-option>
       <ion-select-option>Braccia</ion-select-option>
       <ion-select-option>Petto</ion-select-option>
@@ -37,8 +37,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Poco</ion-select-option>
       <ion-select-option>Abbastanza</ion-select-option>
       <ion-select-option>Molto</ion-select-option>
@@ -53,8 +53,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Specifico</ion-select-option>
       <ion-select-option>Diffuso</ion-select-option>
     </ion-select>
@@ -70,8 +70,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Si, con il movimento</ion-select-option>
       <ion-select-option>Si, a riposo</ion-select-option>
       <ion-select-option>In entrambi i casi</ion-select-option>
@@ -87,8 +87,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Si</ion-select-option>
       <ion-select-option>No</ion-select-option>
     </ion-select>
@@ -104,8 +104,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Costante</ion-select-option>
       <ion-select-option>Intermittente</ion-select-option>
     </ion-select>
@@ -120,8 +120,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Solo nel petto</ion-select-option>
       <ion-select-option>Anche alle braccia</ion-select-option>
       <ion-select-option>Anche alla mascella</ion-select-option>
@@ -139,8 +139,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Si</ion-select-option>
       <ion-select-option>No</ion-select-option>
     </ion-select>
@@ -154,8 +154,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Si, dopo mangiato</ion-select-option>
       <ion-select-option>Si, a stomaco vuoto</ion-select-option>
       <ion-select-option>No</ion-select-option>
@@ -172,8 +172,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Si</ion-select-option>
       <ion-select-option>No</ion-select-option>
     </ion-select>
@@ -187,8 +187,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Si</ion-select-option>
       <ion-select-option>No</ion-select-option>
     </ion-select>
@@ -204,8 +204,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isFirstSelectable"
+                (ionChange)="unlockSecondQuestion()">
       <ion-select-option>Si, durante il cammino o corsa</ion-select-option>
       <ion-select-option>Si, a riposo</ion-select-option>
       <ion-select-option>No</ion-select-option>
@@ -220,8 +220,8 @@
                 class="question-select"
                 fill="solid"
                 placeholder="Seleziona"
-                [disabled]="!isPainSelectable"
-                (ionChange)="updateAccessCode($event)">
+                [disabled]="!isSecondSelectable"
+                (ionChange)="updateAccessCode()">
       <ion-select-option>Si</ion-select-option>
       <ion-select-option>No</ion-select-option>
     </ion-select>
