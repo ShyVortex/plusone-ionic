@@ -103,7 +103,7 @@ export class ReservationPage implements OnInit {
 
   protected readonly Sesso = Sesso;
 
-  isDisable() {
-    return (this.medicOfPatient.id === 0);
+  protected isDisable() {
+    return (this.medicOfPatient.id === 0) && !this.personaService.isDefault();
   }
 }

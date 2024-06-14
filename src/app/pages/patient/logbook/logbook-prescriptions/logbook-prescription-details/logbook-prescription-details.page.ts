@@ -40,7 +40,7 @@ export class LogbookPrescriptionDetailsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
+    protected personaService: PersonaService,
     private tFaService: TfarmacologicaService,
     private storageService: StorageService
   ) {
@@ -49,28 +49,31 @@ export class LogbookPrescriptionDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.paziente.isSet()) {
+    if (this.personaService.isDefault()) {
       this.exams = this.paziente.tFarmacologiche[0].esami;
       this.drugs = this.storageService.getQuantitaDettagli();
-    }else {
+    }
+    else {
      this.getAllEsamiByTfarmacologicaObservable = this.tFaService.getAllEsamiByTFarmacologica(this.tpaFarm.id)
      this.getAllQuantitaDettaglioByTfarmacologicaObservable = this.tFaService.getAllQuantitaDettaglioByTFarmacologica(this.tpaFarm.id)
     }
   }
+
   ionViewWillEnter(){
     this.getAllQuantitaDettaglioByTfarmacologicaObservable.subscribe(value =>
-    this.drugs = value
+      this.drugs = value
     )
     this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
-      this.exams = value
+      this.exams = value;
     })
   }
 
   async markAsCompleted() {
-    if (!this.paziente.isSet()) {
+    if (this.personaService.isDefault()) {
       this.tFaService.deleteTFarmacologicaOffline(this.paziente, this.tpaFarm);
       this.navCtrl.navigateForward("patient-logbook-prescription-completed");
-    } else {
+    }
+    else {
       try {
         await firstValueFrom(this.tFaService.setState(this.tpaFarm.id, false))
         this.navCtrl.navigateForward("patient-logbook-prescription-completed");
@@ -78,7 +81,6 @@ export class LogbookPrescriptionDetailsPage implements OnInit {
       catch (error) {
         console.log(error);
       }
-
     }
   }
 

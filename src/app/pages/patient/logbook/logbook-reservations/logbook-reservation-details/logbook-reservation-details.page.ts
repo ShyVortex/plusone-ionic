@@ -60,18 +60,16 @@ export class LogbookReservationDetailsPage implements OnInit {
             console.error('Reservation not found.');
 
         }
-        else{
-          try{
+        else {
+          try {
             firstValueFrom(this.terapiaService.deleteTerapia(this.prenotazione.id))
             this.navCtrl.navigateForward("patient-logbook-reservation-cancelled");
           }
-          catch (error){
+          catch (error) {
             console.log(error)
           }
         }
       }
-
-
     }
   ];
 

@@ -12,12 +12,12 @@ import {
     IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {TerapiaFarmacologica} from "../../../../models/terapiafarmacologica/TerapiaFarmacologica";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {StorageService} from "../../../../services/StorageService/storage.service";
 import {PazienteService} from "../../../../services/PazienteService/paziente.service";
 import {Observable} from "rxjs";
+import {TerapiaFarmacologica} from "../../../../models/terapiafarmacologica/TerapiaFarmacologica";
 
 @Component({
   selector: 'app-logbook-prescriptions',
@@ -30,11 +30,12 @@ import {Observable} from "rxjs";
 export class LogbookPrescriptionsPage implements OnInit {
   protected paziente: Paziente;
   protected tpeFarm!: any[];
+  protected tpeFarmOffline!: TerapiaFarmacologica[];
   private getAllTerapiaFarmacologicaByPazienteObservable!:Observable<any[]>;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
+    protected personaService: PersonaService,
     private storageService: StorageService,
     private pazienteService:PazienteService
   ) {
@@ -45,21 +46,24 @@ export class LogbookPrescriptionsPage implements OnInit {
     console.clear();
     console.log(this.paziente);
 
+    this.getAllTerapiaFarmacologicaByPazienteObservable = this.pazienteService
+      .getAllTerapieFarmacologicaByPaziente(this.paziente.id);
+
     if (this.paziente && this.paziente.tFarmacologiche) {
-      this.tpeFarm = this.paziente.tFarmacologiche;
-      console.log(this.tpeFarm);
+      this.tpeFarmOffline = this.paziente.tFarmacologiche;
+      console.log(this.tpeFarmOffline);
     }
-    this.getAllTerapiaFarmacologicaByPazienteObservable = this.pazienteService.getAllTerapieFarmacologicaByPaziente(this.paziente.id);
+  }
+
+  ionViewWillEnter(){
+    this.getAllTerapiaFarmacologicaByPazienteObservable.subscribe(value => {
+      this.tpeFarm = value;
+    })
   }
 
   routeToPrescriptionDetails(tpaFarm: any) {
     this.storageService.setTFarmacologica(tpaFarm);
     this.navCtrl.navigateForward("patient-logbook-prescription-details");
-  }
-  ionViewWillEnter(){
-    this.getAllTerapiaFarmacologicaByPazienteObservable.subscribe(value => {
-      this.tpeFarm = value;
-    })
   }
 
   navigateBack() {

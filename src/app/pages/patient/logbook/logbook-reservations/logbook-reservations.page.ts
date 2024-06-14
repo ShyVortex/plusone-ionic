@@ -45,16 +45,18 @@ export class LogbookReservationsPage implements OnInit {
     console.clear();
     console.log(this.paziente);
 
+    if (!this.personaService.isDefault())
+      this.getAllPrenotazioniByPaziente = this.pazienteService.getAllPrenotazioniByPaziente(this.paziente.id);
+
     if (this.paziente && this.paziente.terapie) {
       this.prenotazioni = this.paziente.terapie;
       console.log(this.prenotazioni);
     }
-    this.getAllPrenotazioniByPaziente = this.pazienteService.getAllPrenotazioniByPaziente(this.paziente.id)
-
   }
+
   ionViewWillEnter(){
     this.getAllPrenotazioniByPaziente.subscribe(value => {
-      this.prenotazioni = value
+      this.prenotazioni = value;
     })
   }
 

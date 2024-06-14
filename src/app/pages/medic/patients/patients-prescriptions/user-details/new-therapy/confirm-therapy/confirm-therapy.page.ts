@@ -22,9 +22,8 @@ import {AnimationItem} from "lottie-web";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonText, LottieComponent]
 })
+
 export class ConfirmTherapyPage implements OnInit {
-
-
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
     loop: false,

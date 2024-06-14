@@ -16,8 +16,15 @@
       <ion-img class="prescription-summary-icon"
                src="../../assets/icon/patient/logbook/prescriptions/prescription-colored.png">
       </ion-img>
-      <ion-text class="prescription-summary-text">Terapia farmacologica <br/>
+      <ion-text *ngIf="!personaService.isDefault()"
+                class="prescription-summary-text">ù
+        Terapia farmacologica <br/>
         assegnata da <b>{{tpaFarm.medico?.nome}} {{tpaFarm.medico?.cognome}}</b>
+      </ion-text>
+      <ion-text *ngIf="personaService.isDefault()"
+                class="prescription-summary-text">
+        Terapia farmacologica <br/>
+        assegnata da <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
       </ion-text>
     </ion-item>
   </div>

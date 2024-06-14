@@ -10,23 +10,42 @@
 </ion-header>
 
 <ion-content class="prescriptions-content" [fullscreen]="true">
-  <ion-list *ngFor="let tpaFarm of tpeFarm">
-    <div *ngIf="tpaFarm.attivo">
-    <ion-item class="item-title" >
-      <div class="item-content">
-        <ion-img class="prescription-icon" slot="start"
-                 src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
-        </ion-img>
-        <ion-text class="item-title-list">Terapia farmacologica
-          assegnata da {{tpaFarm.medico?.nome}} {{tpaFarm.medico?.cognome}}
-        </ion-text>
-        <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarm)">
-          <ion-text class="button-arrow">></ion-text>
-        </ion-button>
+  <ng-container *ngIf="!personaService.isDefault()">
+    <ion-list *ngFor="let tpaFarm of tpeFarm">
+      <div *ngIf="tpaFarm.attivo">
+        <ion-item class="item-title" >
+          <div class="item-content">
+            <ion-img class="prescription-icon" slot="start"
+                     src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
+            </ion-img>
+            <ion-text class="item-title-list">Terapia farmacologica
+              assegnata da {{tpaFarm.medico?.nome}} {{tpaFarm.medico?.cognome}}
+            </ion-text>
+            <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarm)">
+              <ion-text class="button-arrow">></ion-text>
+            </ion-button>
+          </div>
+        </ion-item>
       </div>
-    </ion-item>
-    </div>
-  </ion-list>
+    </ion-list>
+  </ng-container>
+  <ng-container>
+    <ion-list>
+      <ion-item class="item-title" *ngFor="let tpaFarmOffline of tpeFarmOffline">
+        <div class="item-content">
+          <ion-img class="prescription-icon" slot="start"
+                   src="../../assets/icon/patient/logbook/prescriptions/prescription.png">
+          </ion-img>
+          <ion-text class="item-title-list">Terapia farmacologica
+            assegnata da {{paziente.medico.nome}} {{paziente.medico.cognome}}
+          </ion-text>
+          <ion-button slot="end" fill="clear" (click)="routeToPrescriptionDetails(tpaFarmOffline)">
+            <ion-text class="button-arrow">></ion-text>
+          </ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 </ion-content>
 
 <ion-footer>

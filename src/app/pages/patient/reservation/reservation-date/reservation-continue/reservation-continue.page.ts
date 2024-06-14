@@ -118,7 +118,7 @@ export class ReservationContinuePage implements OnInit {
   ionViewWillEnter() {
     this.getPazienteByEmailObservable.subscribe((value: Paziente) => {
       this.patientToPrenote = value
-      if (!this.patientToPrenote) {
+      if (this.patientToPrenote === undefined) {
         this.patientToPrenote = this.personaService.getPersona();
       }
     });
@@ -175,8 +175,11 @@ export class ReservationContinuePage implements OnInit {
     this.terapia.reparto = this.hospitalWard;
     this.terapia.attivo = false;
     if (this.personaService.isDefault()) {
+      this.terapia.id = 0;
       this.patientToPrenote = this.personaService.getPersona();
       this.terapia.paziente = this.patientToPrenote;
+      this.terapia.medicoCurante = this.patientToPrenote.medico;
+      this.terapia.reparto = this.patientToPrenote.medico.reparto;
     }
     console.log(this.terapia)
   }
