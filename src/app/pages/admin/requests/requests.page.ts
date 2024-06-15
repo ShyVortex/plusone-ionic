@@ -54,11 +54,6 @@ export class RequestsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllInattiviObservable = this.pazienteService.getAllPazientiInattivi();
-    this.getAllInattiviObservable.subscribe((value: Paziente[]) => {
-      this.pazienti = value;
-    });
-
     if (this.personaService.isDefault())
       this.adminService.offlineSetAdmin(this.admin);
   }
