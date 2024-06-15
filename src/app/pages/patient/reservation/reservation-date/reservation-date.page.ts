@@ -1,12 +1,47 @@
-import { Component, ModelSignal, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NavigationExtras } from '@angular/router';
-import { AlertController, IonContent, IonHeader, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar, NavController, IonSegment, IonSegmentButton, IonDatetime, IonLabel, IonButton,  IonFooter,  IonRow, IonSelect, IonSelectOption, IonAlert, IonItem, IonText, IonAvatar, IonList, IonButtons, IonModal, IonCard, IonCardTitle, IonCardSubtitle, IonProgressBar, IonItemDivider } from '@ionic/angular/standalone';
-import { Medico } from 'src/app/models/medico/Medico';
-import { MedicoService } from 'src/app/services/MedicoService/medico.service';
-import { Sesso } from 'src/app/models/persona/sesso';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {
+  AlertController,
+  IonAlert,
+  IonAvatar,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+  IonDatetime,
+  IonFooter,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonItem,
+  IonItemDivider,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonProgressBar,
+  IonRow,
+  IonSegment,
+  IonSegmentButton,
+  IonSelect,
+  IonSelectOption,
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonText,
+  IonTitle,
+  IonToolbar,
+  NavController
+} from '@ionic/angular/standalone';
+import {Medico} from 'src/app/models/medico/Medico';
+import {MedicoService} from 'src/app/services/MedicoService/medico.service';
+import {Sesso} from 'src/app/models/persona/sesso';
 import {StorageService} from "../../../../services/StorageService/storage.service";
+import {PersonaService} from "../../../../services/PersonaService/persona.service";
+import {Paziente} from "../../../../models/paziente/Paziente";
+import {TipologiaMedico} from "../../../../models/medico/tipologia-medico";
 
 @Component({
   selector: 'app-reservation',
@@ -32,10 +67,12 @@ export class ReservationDatePage implements OnInit {
   protected hospitalWard!: string;
   protected chosenMedic!: Medico;
   protected date!: string;
+  private paziente: Paziente;
 
   constructor(
     private navCtrl: NavController,
     private alertController: AlertController,
+    private personaService: PersonaService,
     private medicoService: MedicoService,
     private storageService:StorageService
   ) {
@@ -43,6 +80,7 @@ export class ReservationDatePage implements OnInit {
     this.hospitalWard = "Specifica reparto";
     this.medics = [];
     this.filteredMedics = [];
+    this.paziente = personaService.getPersona();
   }
 
   ngOnInit() {
@@ -59,6 +97,12 @@ export class ReservationDatePage implements OnInit {
     setTimeout(() => {
       this.medicoService.getAllMedici().subscribe((result: Medico[]) => {
         this.medics = result.filter((medic) => medic.tipologiaMedico === 'OSPEDALIERO');
+        if (this.personaService.isDefault()) {
+          this.medics = [];
+          this.paziente.medico.tipologiaMedico = TipologiaMedico.OSPEDALIERO;
+          this.paziente.medico.ospedale = "Osp Ferd. Venez. (IS)";
+          this.medics.push(this.paziente.medico);
+        }
         this.filteredMedics = this.medics;
         console.log('Medici caricati');
       });
