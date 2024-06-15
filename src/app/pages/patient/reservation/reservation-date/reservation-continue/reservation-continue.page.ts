@@ -87,7 +87,7 @@ export class ReservationContinuePage implements OnInit {
   ) {
     this.getPazienteByEmailObservable = new Observable<Paziente>();
     this.terapiaAdded = new Terapia();
-    this.chosenMedic = storageService.getMedico()
+    this.chosenMedic = storageService.getMedico();
     this.terapia = {};
     this.actualIndex = 6;
 
@@ -106,7 +106,7 @@ export class ReservationContinuePage implements OnInit {
     console.log(this.type);
     console.log(this.hospitalWard);
     console.log(this.date);
-}
+  }
 
   ngOnInit(): void {
     this.dataSubscription = this.dataService.data$.subscribe((value:string) => {
@@ -127,19 +127,19 @@ export class ReservationContinuePage implements OnInit {
       this.therapies = result;
 
       this.therapies.forEach((element: Terapia) => {
-        console.log("Data prenotazione: ", element.orario.split('T')[0]);
-        console.log("Orario prenotazione: ", element.orario.split('T')[1]);
+        /* console.log("Data prenotazione: ", element.orario.split('T')[0]);
+        console.log("Orario prenotazione: ", element.orario.split('T')[1]); */
 
         this.times.forEach((time: time) => {
-          console.log("Data 1 da confrontare: ", this.date);
+          /* console.log("Data 1 da confrontare: ", this.date);
           console.log("Data 2 da confrontare: ", element.orario.split('T')[0]);
           console.log("Orario 1 da confrontare: ", time.time);
-          console.log("Orario 2 da confrontare: ", element.orario.split('T')[1].substring(0, 5));
+          console.log("Orario 2 da confrontare: ", element.orario.split('T')[1].substring(0, 5)); */
 
           if (this.date === element.orario.split('T')[0] && time.time === element.orario.split('T')[1].substring(0, 5)) {
-            console.log("Match trovato");
+            /* console.log("Match trovato");
             console.log("Orario: ", time.time);
-            console.log("Orario prenotazione: ", element.orario.split('T')[1].substring(0, 5));
+            console.log("Orario prenotazione: ", element.orario.split('T')[1].substring(0, 5)); */
 
             time.reserved = true;
           }
