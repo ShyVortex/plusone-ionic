@@ -11,7 +11,8 @@
 
 <ion-content class="prescriptions-content" [fullscreen]="true">
   <ng-container *ngIf="!personaService.isDefault()">
-    <ion-list *ngFor="let tpaFarm of tpeFarm">
+    <ion-list>
+      <div *ngFor="let tpaFarm of tpeFarm">
       <div *ngIf="tpaFarm.attivo">
         <ion-item class="item-title" >
           <div class="item-content">
@@ -26,6 +27,7 @@
             </ion-button>
           </div>
         </ion-item>
+      </div>
       </div>
     </ion-list>
   </ng-container>
