@@ -110,7 +110,7 @@ export class SosSurveyConfirmedPage implements OnInit {
 
     this.richiesta.conferma = "IN_ATTESA";
 
-    if (!this.paziente.isSet()) {
+    if (this.personaService.isDefault()) {
       this.richiesta.codice = this.richiesta.colore;
       this.richiesta.id = 0;
       this.richiesta.paziente = this.paziente;
@@ -127,7 +127,7 @@ export class SosSurveyConfirmedPage implements OnInit {
       await this.getCurrentLocation();
       this.setRichiesta()
 
-      if (this.paziente.isSet())
+      if (!this.personaService.isDefault())
         await firstValueFrom(this.triageService.addTriage(this.paziente.id, this.richiesta))
       else
         this.triageService.addRichiestaOffline(this.paziente, this.richiesta);

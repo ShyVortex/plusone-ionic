@@ -49,6 +49,7 @@ export class PatientsPrescriptionsPage implements OnInit {
         this.medicoService.getAllPazientiByMedico(this.medico.id).subscribe((result: Paziente[]) => {
           this.patients = result;
           this.filteredPatients = this.patients;
+          console.log(this.patients);
         });
       });
       this.isLoading = false;

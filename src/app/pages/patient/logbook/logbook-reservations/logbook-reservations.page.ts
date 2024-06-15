@@ -16,6 +16,8 @@ import {Terapia} from "../../../../models/terapia/Terapia";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {Paziente} from "../../../../models/paziente/Paziente";
 import {StorageService} from "../../../../services/StorageService/storage.service";
+import {Observable} from "rxjs";
+import {PazienteService} from "../../../../services/PazienteService/paziente.service";
 
 @Component({
   selector: 'app-logbook-reservations',
@@ -28,11 +30,13 @@ import {StorageService} from "../../../../services/StorageService/storage.servic
 export class LogbookReservationsPage implements OnInit {
   protected paziente: Paziente;
   protected prenotazioni!: Terapia[];
+  private getAllPrenotazioniByPaziente!:Observable<Terapia[]>;
 
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
     private storageService: StorageService,
+    private pazienteService:PazienteService
   ) {
     this.paziente = personaService.getPersona();
   }
@@ -41,10 +45,19 @@ export class LogbookReservationsPage implements OnInit {
     console.clear();
     console.log(this.paziente);
 
+    if (!this.personaService.isDefault())
+      this.getAllPrenotazioniByPaziente = this.pazienteService.getAllPrenotazioniByPaziente(this.paziente.id);
+
     if (this.paziente && this.paziente.terapie) {
       this.prenotazioni = this.paziente.terapie;
       console.log(this.prenotazioni);
     }
+  }
+
+  ionViewWillEnter(){
+    this.getAllPrenotazioniByPaziente.subscribe(value => {
+      this.prenotazioni = value;
+    })
   }
 
   navigateBack() {

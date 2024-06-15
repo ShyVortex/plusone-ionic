@@ -48,7 +48,7 @@ export class SOSPage implements OnInit {
   ) {
     this.infermiere = personaService.getPersona();
 
-    if (!this.infermiere.isSet()) {
+    if (this.personaService.isDefault()) {
       this.paziente = storageService.getState("mario.giannini@paziente.it");
 
       if (this.paziente !== undefined) {
@@ -68,19 +68,22 @@ export class SOSPage implements OnInit {
   ngOnInit() {
     this.getAllTriagesObservable = this.triageService.getAllTriages();
 
-    if (this.infermiere.nome === "" && !this.infermiere.isSet())
+    if (this.infermiere.nome === "" && this.personaService.isDefault())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
   ionViewWillEnter(){
     this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
-      this.richieste = value;
+      if (value !== undefined)
+        this.richieste = value;
+      else
+        this.richieste = this.paziente.richieste;
     })
   }
 
   handleRefresh(event: any) {
     setTimeout(() => {
-      if (this.infermiere.isSet()) {
+      if (!this.personaService.isDefault()) {
         this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
           this.richieste = value;
         })

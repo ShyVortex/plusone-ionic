@@ -22,18 +22,34 @@ import {CodiciTriage} from "../../../../models/triage/codici-triage";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonLabel, IonTabBar, IonTabButton, IonTabs, IonRow, IonSelect, IonSelectOption, IonRadio, IonRadioGroup, IonText, IonGrid, IonCol, IonItem]
 })
+
 export class SosSurveyPage implements OnInit {
-  codiceTriage: string = "";
-  isPainSelectable: boolean = false;
-  isCodiceVisible: boolean = false;
+  protected codiceTriage: string = "";
+  protected isFirstSelectable: boolean = false;
+  protected isSecondSelectable: boolean = false;
+  protected isCodiceVisible: boolean = false;
+  private dangerPercentage: number;
 
   @ViewChild('wherePainRef') wherePainRef!: IonSelect;
-  @ViewChild('painLevelRef') painLevelRef!: IonSelect;
+  @ViewChild('testaFirstRef') testaFirstRef!: IonSelect;
+  @ViewChild('testaSecondRef') testaSecondRef!: IonSelect;
+  @ViewChild('bracciaFirstRef') bracciaFirstRef!: IonSelect;
+  @ViewChild('bracciaSecondRef') bracciaSecondRef!: IonSelect;
+  @ViewChild('pettoFirstRef') pettoFirstRef!: IonSelect;
+  @ViewChild('pettoSecondRef') pettoSecondRef!: IonSelect;
+  @ViewChild('stomacoFirstRef') stomacoFirstRef!: IonSelect;
+  @ViewChild('stomacoSecondRef') stomacoSecondRef!: IonSelect;
+  @ViewChild('ossaFirstRef') ossaFirstRef!: IonSelect;
+  @ViewChild('ossaSecondRef') ossaSecondRef!: IonSelect;
+  @ViewChild('gambeFirstRef') gambeFirstRef!: IonSelect;
+  @ViewChild('gambeSecondRef') gambeSecondRef!: IonSelect;
 
   constructor(
     private navCtrl: NavController,
     private alertController: AlertController,
-  ) { }
+  ) {
+    this.dangerPercentage = 0;
+  }
 
   ngOnInit() {
   }
@@ -53,31 +69,247 @@ export class SosSurveyPage implements OnInit {
   }
 
   checkFields(): boolean {
-    if (this.wherePainRef.value != null && this.painLevelRef.value != null)
+    if (this.wherePainRef && this.wherePainRef.value != null)
       return true;
     else
       return false;
   }
 
-  unlockPainLevel() {
-    this.isPainSelectable = true;
+  checkFormComplete() {
+    if (this.checkFields()) {
+      // case 1: DOLORE ALLA TESTA
+      if (
+        (this.testaFirstRef && this.testaFirstRef.value != null) &&
+        (this.testaSecondRef && this.testaSecondRef.value != null)
+      )
+        return true;
+
+      // case 2: DOLORE ALLE BRACCIA
+      else if (
+        (this.bracciaFirstRef && this.bracciaFirstRef.value != null) &&
+        (this.bracciaSecondRef && this.bracciaSecondRef.value != null)
+      )
+        return true;
+
+      // case 3: DOLORE AL PETTO
+      else if (
+        (this.pettoFirstRef && this.pettoFirstRef.value != null)
+        && (this.pettoSecondRef && this.pettoSecondRef.value != null)
+      )
+        return true;
+
+      // case 4: DOLORE ALLO STOMACO
+      else if (
+        (this.stomacoFirstRef && this.stomacoFirstRef.value != null) &&
+        (this.stomacoSecondRef && this.stomacoSecondRef.value != null)
+      )
+        return true;
+
+      // case 5: DOLORE ALLE OSSA
+      else if (
+        (this.ossaFirstRef && this.ossaFirstRef.value != null) &&
+        (this.ossaSecondRef && this.ossaSecondRef.value != null)
+      )
+        return true;
+
+      // case 6: DOLORE ALLE GAMBE
+      else if (
+        (this.gambeFirstRef && this.gambeFirstRef.value != null) &&
+        (this.gambeSecondRef && this.gambeSecondRef.value != null)
+      )
+        return true;
+
+      // default
+      return false;
+    }
+    else
+      return false;
   }
 
-  updateAccessCode(event: CustomEvent) {
+  unlockFirstQuestion() {
+    this.isFirstSelectable = true;
+    this.isSecondSelectable = false;
+  }
+
+  unlockSecondQuestion() {
+    this.isSecondSelectable = true;
+    if (this.isCodiceVisible)
+      this.updateAccessCode();
+  }
+
+  updateDangerValue() {
+    if (this.testaFirstRef) {
+      this.dangerPercentage += 25;
+
+      switch (this.testaFirstRef.value) {
+        case 'Poco':
+          this.dangerPercentage += 5;
+          break;
+        case 'Abbastanza':
+          this.dangerPercentage += 15;
+          break;
+        case 'Molto':
+          this.dangerPercentage += 25;
+          break;
+      }
+
+      switch (this.testaSecondRef.value) {
+        case 'Specifico':
+          this.dangerPercentage += 25;
+          break;
+        case 'Diffuso':
+          this.dangerPercentage += 50;
+      }
+    }
+
+    else if (this.bracciaFirstRef) {
+      this.dangerPercentage += 10;
+
+      switch (this.bracciaFirstRef.value) {
+        case 'Si, con il movimento':
+          this.dangerPercentage += 15;
+          break;
+        case 'Si, a riposo':
+          this.dangerPercentage += 15;
+          break;
+        case 'In entrambi i casi':
+          this.dangerPercentage += 30;
+          break;
+        case 'No, è indifferente':
+          this.dangerPercentage += 5;
+          break;
+      }
+
+      switch (this.bracciaSecondRef.value) {
+        case 'Si':
+          this.dangerPercentage += 50;
+          break;
+        case 'No':
+          this.dangerPercentage += 25;
+          break;
+      }
+    }
+
+    else if (this.pettoFirstRef) {
+      this.dangerPercentage += 25;
+
+      switch (this.pettoFirstRef.value) {
+        case 'Costante':
+          this.dangerPercentage += 25;
+          break;
+        case 'Intermittente':
+          this.dangerPercentage += 15;
+          break;
+      }
+
+      switch (this.pettoSecondRef.value) {
+        case 'Solo nel petto':
+          this.dangerPercentage += 25;
+          break;
+        case 'Anche alle braccia':
+          this.dangerPercentage += 50;
+          break;
+        case 'Anche alla mascella':
+          this.dangerPercentage += 50;
+          break;
+        case 'Altro':
+          this.dangerPercentage += 35;
+          break;
+      }
+    }
+
+    else if (this.stomacoFirstRef) {
+      this.dangerPercentage += 20;
+
+      switch (this.stomacoFirstRef.value) {
+        case 'Si':
+          this.dangerPercentage += 20;
+          break;
+        case 'No':
+          this.dangerPercentage += 10;
+          break;
+      }
+
+      switch (this.stomacoSecondRef.value) {
+        case 'Si, dopo mangiato':
+          this.dangerPercentage += 30;
+          break;
+        case 'Si, a stomaco vuoto':
+          this.dangerPercentage += 45;
+          break;
+        case 'No':
+          this.dangerPercentage += 10;
+          break;
+      }
+    }
+
+    else if (this.ossaFirstRef) {
+      this.dangerPercentage += 25;
+
+      switch (this.ossaFirstRef.value) {
+        case 'Si':
+          this.dangerPercentage += 25;
+          break;
+        case 'No':
+          this.dangerPercentage += 15;
+          break;
+      }
+
+      switch (this.ossaSecondRef.value) {
+        case 'Si':
+          this.dangerPercentage += 25;
+          break;
+        case 'No':
+          this.dangerPercentage += 5;
+          break;
+      }
+    }
+
+    else if (this.gambeFirstRef) {
+      this.dangerPercentage += 25;
+
+      switch (this.gambeFirstRef.value) {
+        case 'Si, durante il cammino o corsa':
+          this.dangerPercentage += 20;
+          break;
+        case 'Si, a riposo':
+          this.dangerPercentage += 35;
+          break;
+        case 'No':
+          this.dangerPercentage += 10;
+          break;
+      }
+
+      switch (this.gambeSecondRef.value) {
+        case 'Si':
+          this.dangerPercentage += 20;
+          break;
+        case 'No':
+          this.dangerPercentage += 10;
+          break;
+      }
+    }
+  }
+
+  updateAccessCode() {
+    if (this.dangerPercentage !== 0)
+      this.dangerPercentage = 0;
+
+    this.updateDangerValue();
     this.isCodiceVisible = true;
 
-    if (event.detail.value === "Minimo")
+    if (this.dangerPercentage <= 25)
       this.codiceTriage = CodiciTriage.BIANCO;
-    else if (event.detail.value === "Lieve")
+    else if (this.dangerPercentage > 25 && this.dangerPercentage <= 50)
       this.codiceTriage = CodiciTriage.VERDE;
-    else if (event.detail.value === "Sofferto")
+    else if (this.dangerPercentage > 50 && this.dangerPercentage <= 75)
       this.codiceTriage = CodiciTriage.AZZURRO;
-    else if (event.detail.value === "A rischio")
+    else if (this.dangerPercentage > 75 && this.dangerPercentage <= 100)
       this.codiceTriage = CodiciTriage.ARANCIONE;
   }
 
   routeToSurveyConfirmed() {
-    if (this.checkFields()) {
+    if (this.checkFormComplete()) {
       if (this.codiceTriage != CodiciTriage.ARANCIONE)
         this.navCtrl.navigateForward("patient-sos-survey-confirmed", {
           state: {

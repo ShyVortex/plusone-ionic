@@ -30,7 +30,7 @@
     SELEZIONA LOG
   </ion-item>
   <div class="card-container">
-    <ion-card class="select-card" (click)="routeToLogbookPrescriptions()">
+    <ion-card class="select-card" (click)="routeToLogbookPrescriptions()" [disabled]="isDisable()">
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/patient/logbook/health-report.png"></ion-img>
         <ion-row class="card-line"></ion-row>

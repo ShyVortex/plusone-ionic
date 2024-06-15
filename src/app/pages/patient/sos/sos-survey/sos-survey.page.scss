@@ -6,7 +6,7 @@
     .question-label {
       font-family: Inter, sans-serif;
       letter-spacing: 0;
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 1em;
     }
 
@@ -40,6 +40,11 @@
       font-family: Inter, sans-serif;
       font-size: large;
       font-weight: bold;
+    }
+
+    .confirm-button {
+      margin-top: 2em;
+      margin-bottom: 3em;
     }
   }
 }

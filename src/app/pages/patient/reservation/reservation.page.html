@@ -30,7 +30,7 @@
     TIPO DI VISITA
   </ion-item>
   <div class="card-container">
-    <ion-card class="select-card" (click)="routeToReservationDate('GENERALE')">
+    <ion-card class="select-card" (click)="routeToReservationDate('GENERALE')" [disabled]=isDisable()>
       <ion-card-header>
         <ion-img class="card-icon" src="../../assets/icon/patient/reservation/check-up.png"></ion-img>
         <ion-row class="card-line"></ion-row>

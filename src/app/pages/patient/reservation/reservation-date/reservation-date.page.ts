@@ -98,6 +98,7 @@ export class ReservationDatePage implements OnInit {
 
   storeMedic(medic: Medico) {
     this.chosenMedic = medic;
+    this.storageService.setMedico(this.chosenMedic);
 
     console.log("Medico scelto: ", this.chosenMedic);
 
@@ -144,7 +145,8 @@ export class ReservationDatePage implements OnInit {
       state: {
         type: this.type,
         hospitalWard: this.hospitalWard,
-        date: this.date
+        date: this.date,
+        // chosenMedic: this.chosenMedic
       }
     });
   }

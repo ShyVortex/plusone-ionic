@@ -1,7 +1,7 @@
 <p align="center">
-  <img width="180" src="assets/icon-circle.png" alt="PlusOne">
+  <img width="180" src="assets/icon-circle.png" alt="PlusOne"></img>
   <h1 align="center">PlusOne</h1>
-  <p align="center">Applicazione medica PlusOne (Android)</p>
+  <p align="center">Applicazione medica PlusOne (Android)
 </p>
 
 ## ⚒️ Builds
@@ -37,7 +37,7 @@ a partire da un'idea del nostro manager [Victor Conde](https://github.com/vodkaa
   - Visualizzazione dettagli utente per ogni ruolo, con eventuale modifica dei campi sul database
   - Visualizzazione segnalazioni errore, possibilità di segnarle come risolte  
 
-## 🙌 Lista di funzionalità WIP
+## 🙌 Funzionalità non più in sviluppo
   ### Infermiere
   - Gestione turni
   - Assegnazione farmaci ai pazienti
@@ -60,5 +60,6 @@ Alternativamente, è possibile aprire l'applicazione sul proprio browser predefi
  ```
 
 ## Licenza
-Copyright di [@ShyVortex](https://github.com/ShyVortex), [@lorenzo-lepore](https://github.com/lorenzo-lepore), [@mariorascato](https://github.com/mariorascato), 2024.  
-Qualsiasi tentativo di rivendita dell'applicazione senza alcun preavviso né autorizzazione sarà segnalato alle autorità competenti e perseguito legalmente.
+- Questo progetto è distribuito sotto i termini della [GNU General Public License v3.0](https://github.com/ShyVortex/plusone-ionic/blob/master/LICENSE.md).
+- Copyright di [@ShyVortex](https://github.com/ShyVortex), [@lorenzo-lepore](https://github.com/lorenzo-lepore), [@mariorascato](https://github.com/mariorascato), 2024.  
+- Qualsiasi tentativo di rivendita dell'applicazione senza alcun preavviso né autorizzazione sarà segnalato alle autorità competenti e perseguito legalmente.

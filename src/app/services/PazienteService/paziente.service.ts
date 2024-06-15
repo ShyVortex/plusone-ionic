@@ -7,6 +7,8 @@ import {Medico} from "../../models/medico/Medico";
 import {TipologiaMedico} from "../../models/medico/tipologia-medico";
 import {Sesso} from "../../models/persona/sesso";
 import {Diagnosi} from "../../models/paziente/Diagnosi";
+import {Indirizzo} from "../../models/persona/Indirizzo";
+import {Terapia} from "../../models/terapia/Terapia";
 
 @Injectable({
   providedIn: 'root'
@@ -98,9 +100,8 @@ export class PazienteService {
       ((response:AxiosResponse<Paziente>)  => {
         jsonResponse = response.data
         paziente = ModelUtilities.pazienteFromJSON(jsonResponse);
-        if (!paziente.isEmpty())
-          paziente.setState(true);
-        console.log(paziente)
+        console.log(paziente);
+
         observer.next(paziente);
         observer.complete();
       })
@@ -191,6 +192,51 @@ export class PazienteService {
       }).catch(error => {console.log(error)});
     });
   }
+  getAllPrenotazioniByPaziente(id:number):Observable<Terapia[]> {
+    return new Observable<Terapia[]>((observer: Observer<Terapia[]>) => {
+      axios.get<Terapia[]>(this.pazienteURL + "/getAllTerapieByPaziente" + "/" + id).then
+      ((response: AxiosResponse<Terapia[]>) => {
+        let jsonResponse: any[] = [];
+        let terapie: Terapia[] = [];
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          terapie.push(ModelUtilities.terapieFromJSON(element))
+        })
+        console.log(terapie)
+
+        observer.next(terapie);
+        observer.complete();
+      })
+        .catch(error => {
+            observer.next([])
+            console.log(error)
+          }
+        );
+    });
+
+  }
+  getAllTerapieFarmacologicaByPaziente(id:number):Observable<any> {
+    return new Observable<any>((observer: Observer<any>) => {
+      axios.get<any>(this.pazienteURL + "/getAllTerapieFarmacologicaByPaziente" + "/" + id).then
+      ((response: AxiosResponse<any>) => {
+        let jsonResponse: any[] = [];
+        let any: any[] = [];
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          any.push(element)
+        })
+        console.log(any)
+
+        observer.next(any);
+        observer.complete();
+      })
+        .catch(error => {
+            observer.next([])
+            console.log(error)
+          }
+        );
+    });
+  }
 
   offlineSetPaziente(paziente: Paziente) {
     paziente.nome = "Mario";
@@ -199,6 +245,7 @@ export class PazienteService {
     paziente.email = "mario.giannini@paziente.it";
     paziente.password = "password123";
     paziente.CF = "GNNMRA02R05E335P";
+    paziente.indirizzo = new Indirizzo();
     paziente.indirizzo.cap = "IS";
     paziente.indirizzo.città = "Pesche";
     paziente.indirizzo.via = "Contrada Lappone";
@@ -207,6 +254,7 @@ export class PazienteService {
     paziente.diagnosi = Diagnosi.IN_SALUTE;
     paziente.donatoreOrgani = false;
     paziente.attivo = true;
+    paziente.setState(false);
   }
 
   offlineSetMedicoCurante(): Medico {
@@ -223,6 +271,7 @@ export class PazienteService {
     medico.reparto = "Cardiologia";
     medico.ruolo = "Primario";
     medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    medico.setState(false);
 
     return medico;
   }

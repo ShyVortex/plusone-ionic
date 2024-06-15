@@ -73,7 +73,7 @@ export class SettingsPage implements OnInit {
   }
 
   logout() {
-    if (!this.persona.isSet())
+    if (this.personaService.isDefault())
       this.storageService.cacheState(this.persona);
     this.navCtrl.navigateRoot("login");
   }

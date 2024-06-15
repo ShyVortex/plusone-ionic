@@ -20,6 +20,7 @@ import {Esame} from "../../../../../models/esame/Esame";
 import {StorageService} from "../../../../../services/StorageService/storage.service";
 import {TfarmacologicaService} from "../../../../../services/TfarmacologicaService/tfarmacologica.service";
 import {TerapiaFarmacologica} from "../../../../../models/terapiafarmacologica/TerapiaFarmacologica";
+import {firstValueFrom, Observable} from "rxjs";
 
 @Component({
   selector: 'app-logbook-prescription-details',
@@ -33,11 +34,13 @@ export class LogbookPrescriptionDetailsPage implements OnInit {
   protected paziente: Paziente;
   protected drugs!: QuantitaDettaglio[];
   protected exams!: Esame[];
-  protected tpaFarm: TerapiaFarmacologica;
+  protected tpaFarm: any;
+  private getAllQuantitaDettaglioByTfarmacologicaObservable!:Observable<QuantitaDettaglio[]>;
+  private getAllEsamiByTfarmacologicaObservable!:Observable<Esame[]>;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
+    protected personaService: PersonaService,
     private tFaService: TfarmacologicaService,
     private storageService: StorageService
   ) {
@@ -46,16 +49,38 @@ export class LogbookPrescriptionDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.paziente.isSet()) {
+    if (this.personaService.isDefault()) {
       this.exams = this.paziente.tFarmacologiche[0].esami;
       this.drugs = this.storageService.getQuantitaDettagli();
     }
+    else {
+     this.getAllEsamiByTfarmacologicaObservable = this.tFaService.getAllEsamiByTFarmacologica(this.tpaFarm.id)
+     this.getAllQuantitaDettaglioByTfarmacologicaObservable = this.tFaService.getAllQuantitaDettaglioByTFarmacologica(this.tpaFarm.id)
+    }
   }
 
-  markAsCompleted() {
-    if (!this.paziente.isSet()) {
+  ionViewWillEnter(){
+    this.getAllQuantitaDettaglioByTfarmacologicaObservable.subscribe(value =>
+      this.drugs = value
+    )
+    this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
+      this.exams = value;
+    })
+  }
+
+  async markAsCompleted() {
+    if (this.personaService.isDefault()) {
       this.tFaService.deleteTFarmacologicaOffline(this.paziente, this.tpaFarm);
       this.navCtrl.navigateForward("patient-logbook-prescription-completed");
+    }
+    else {
+      try {
+        await firstValueFrom(this.tFaService.setState(this.tpaFarm.id, false))
+        this.navCtrl.navigateForward("patient-logbook-prescription-completed");
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
   }
 

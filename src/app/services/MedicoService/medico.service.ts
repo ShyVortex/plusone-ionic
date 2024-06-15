@@ -36,6 +36,7 @@ export class MedicoService {
       }).catch(error => {console.log(error)});
     });
   }
+
   deleteMedico(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.medicoURL + "/deleteMedico"+"/" + id).then
@@ -96,10 +97,6 @@ export class MedicoService {
           jsonResponse = response.data;
           medico = ModelUtilities.medicoFromJSON(jsonResponse);
 
-          if (!medico.isEmpty()) {
-            medico.setState(true);
-          }
-
           observer.next(medico);
           observer.complete();
         }
@@ -140,6 +137,7 @@ export class MedicoService {
         observer.complete();
       })
         .catch(error => {
+            observer.next([])
             console.log(error)
           }
         );
@@ -158,6 +156,7 @@ export class MedicoService {
     medico.reparto = "Cardiologia";
     medico.ruolo = "Primario";
     medico.tipologiaMedico = TipologiaMedico.DI_BASE;
+    medico.setState(false);
     medico.pazienti = [];
     medico.pazienti.push(this.offlineAddPaziente());
   }
@@ -183,6 +182,7 @@ export class MedicoService {
       paziente.esenzione = true;
       paziente.donatoreOrgani = false;
       paziente.diagnosi = Diagnosi.IN_SALUTE;
+      paziente.setState(false);
 
       return paziente;
     }

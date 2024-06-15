@@ -26,6 +26,7 @@ import { forEach } from "lodash";
   standalone: true,
   imports: [IonSearchbar, IonButtons, IonModal, IonAvatar, IonItemOptions, IonItemOption, IonItemSliding, IonCardTitle, IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCol, IonGrid, IonRow, IonItemDivider, IonItem, IonList, IonFabList, IonIcon, IonFabButton, IonFab, IonSelect, IonFooter, IonTabButton, IonTabs, IonTabBar, IonImg, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
+
 export class NewTherapyPage implements OnInit{
   protected paziente: Paziente;
   protected medico: Medico;
@@ -78,7 +79,7 @@ export class NewTherapyPage implements OnInit{
       text: 'Conferma',
       role: 'confirm',
       handler: async () => {
-        if(this.isInserted()) {
+        if (this.isInserted()) {
           if (this.paziente.isSet()) {
             try {
               await firstValueFrom<void>(

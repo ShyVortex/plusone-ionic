@@ -50,7 +50,7 @@ export class ReportsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.admin.isSet()) {
+    if (this.personaService.isDefault()) {
       this.adminService.offlineSetAdmin(this.admin);
       this.segnalazioni = this.storageService.getSegnalazioni();
     }

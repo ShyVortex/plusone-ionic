@@ -11,9 +11,12 @@ import {Persona} from "../../models/persona/Persona";
 
 export class PersonaService {
   private persona: any;
+  private default!: boolean;
   private personaURL:string = "http://localhost:8080/api/persona";
 
-  constructor() { }
+  constructor() {
+    this.default = true;
+  }
 
   setPersona(persona: any) {
     this.persona = persona;
@@ -22,6 +25,15 @@ export class PersonaService {
   getPersona() {
     return this.persona;
   }
+
+  isDefault() {
+    return this.default;
+  }
+
+  setDefault(value: boolean) {
+    this.default = value;
+  }
+
   updatePersonaPassword(id:number,passwordToUpdate:any) : Observable<Persona> {
     let jsonResponse: any;
     let persona: Persona;

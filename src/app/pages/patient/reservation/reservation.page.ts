@@ -38,6 +38,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
 
 export class ReservationPage implements OnInit {
   protected paziente: any;
+  private medicOfPatient:Medico
 
   constructor(
     private navCtrl: NavController,
@@ -47,6 +48,7 @@ export class ReservationPage implements OnInit {
     private storageService: StorageService
   ) {
     this.paziente = personaService.getPersona();
+    this.medicOfPatient = new Medico()
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
@@ -55,14 +57,22 @@ export class ReservationPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.paziente.nome === "" && !this.paziente.isSet())
+    if (this.paziente.nome === "" && this.personaService.isDefault())
       this.pazienteService.offlineSetPaziente(this.paziente);
+    this.pazienteService.getMedicoOfPaziente(this.paziente.id).subscribe(medicoOfPaziente => {
+      this.medicOfPatient = medicoOfPaziente;
+    })
   }
 
   routeToReservationDate(type: string) {
     this.navCtrl.navigateForward('patient-reservation-date', { state:
         { type }
     });
+  }
+  ionViewWillEnter(){
+    this.pazienteService.getMedicoOfPaziente(this.paziente.id).subscribe(medicoOfPaziente => {
+      this.medicOfPatient = medicoOfPaziente;
+    })
   }
 
   routeToSettings() {
@@ -92,4 +102,8 @@ export class ReservationPage implements OnInit {
   }
 
   protected readonly Sesso = Sesso;
+
+  protected isDisable() {
+    return (this.medicOfPatient.id === 0) && !this.personaService.isDefault();
+  }
 }

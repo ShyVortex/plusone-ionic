@@ -80,10 +80,7 @@ export class HomePage implements OnInit {
       }
     )
 
-    if (this.medico.isEmpty())
-      this.medico.setState(false);
-
-    if (!this.medico.isManager && !this.medico.isSet())
+    if (!this.medico.isManager && this.personaService.isDefault())
       this.medicoService.offlineSetMedico(this.medico);
   }
 
@@ -91,7 +88,6 @@ export class HomePage implements OnInit {
     this.getMedicoByEmailObservable.subscribe((value:Medico) =>{
       this.medico = value
       this.storageService.setMedico(this.medico)
-
     });
   }
 
@@ -108,7 +104,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    if (!this.medico.isSet())
+    if (this.personaService.isDefault())
       this.storageService.cacheState(this.medico);
     this.navCtrl.navigateRoot("login");
   }

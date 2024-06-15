@@ -1,5 +1,6 @@
 import {Sesso} from "./sesso";
 import {Segnalazione} from "../segnalazione/Segnalazione";
+import {PersonaDefault} from "./persona-default";
 
 export abstract class Persona {
   protected _id: number;
@@ -27,7 +28,7 @@ export abstract class Persona {
     this._email = email;
     this._password = password;
     this._CF = CF;
-    this._isSet = false;
+    this._isSet = !(<any>Object).values(PersonaDefault).includes(this._email);
     this._segnalazioni = [];
   }
 

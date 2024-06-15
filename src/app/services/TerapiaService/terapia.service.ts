@@ -78,6 +78,34 @@ export class TerapiaService {
         );
     });
   }
+  setState(id:number, state:boolean):Observable<any> {
+    return new Observable<any>((observer:Observer<any>)  => {
+      axios.put<any>(this.terapiaURL +"/setState" +"/"+id + "/" + state).then
+      ((response:AxiosResponse<any>)  => {
+
+        observer.next(response.data);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+
+          }
+        );
+    });
+  }
+  deleteTerapia(id:number):Observable<void> {
+    return new Observable<void>((observer:Observer<void>)  => {
+      axios.delete<void>(this.terapiaURL +"/deleteTerapia" +"/"+id ).then
+      ((response:AxiosResponse<void>)  => {
+
+        observer.next();
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+
+          }
+        );
+    });
+  }
 
   addTerapiaOffline(paziente: Paziente, medico: Medico, terapia: Terapia) {
     paziente.terapie.push(terapia);
@@ -105,4 +133,5 @@ export class TerapiaService {
     else
       console.error("CRITICAL ERROR: prenotazione not found in paziente: " + paziente);
   }
+
 }

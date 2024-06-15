@@ -67,10 +67,7 @@ export class HomePage implements OnInit {
       this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.infermiereEmail)
     })
 
-    if (this.infermiere.isEmpty())
-      this.infermiere.setState(false);
-
-    if (this.infermiere.nome === "" && !this.infermiere.isSet())
+    if (this.infermiere.nome === "" && this.personaService.isDefault())
       this.infermiereService.offlineSetInfermiere(this.infermiere);
   }
 
@@ -87,7 +84,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    if (!this.infermiere.isSet())
+    if (this.personaService.isDefault())
       this.storageService.cacheState(this.infermiere);
     this.navCtrl.navigateRoot("login");
   }

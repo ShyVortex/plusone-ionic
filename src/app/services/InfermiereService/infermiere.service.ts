@@ -48,8 +48,6 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
     ((response:AxiosResponse<Infermiere>)  => {
       jsonResponse = response.data
       infermiere = ModelUtilities.infermiereFromJSON(jsonResponse);
-      if (!infermiere.isEmpty())
-        infermiere.setState(true);
       observer.next(infermiere);
       observer.complete();
       })
@@ -58,6 +56,7 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
       );
     });
   }
+
   updateInfermiere(infermiereToUpdate:Infermiere,id:number) : Observable<Infermiere> {
     let jsonResponse: any;
     let infermiere: Infermiere;
@@ -74,6 +73,7 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
       }).catch(error => {console.log(error)});
     });
   }
+
   deleteInfermiere(id:number) : Observable<void> {
     return new Observable<void>((observer: Observer<void>) => {
       axios.delete<void>(this.infermiereURL + "/deleteInfermiere"+"/" + id).then
@@ -94,5 +94,6 @@ public getInfermiereByEmail(email:string) : Observable<Infermiere> {
     infermiere.ospedale = "Ospedale Ferdinando Veneziale, Isernia (IS)";
     infermiere.reparto = "Chirurgia";
     infermiere.ruolo = "Infermiere assistente";
+    infermiere.setState(false);
   }
 }
