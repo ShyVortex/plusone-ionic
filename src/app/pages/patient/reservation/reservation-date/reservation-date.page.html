@@ -32,7 +32,6 @@
         <ion-title style="color: black;">Seleziona specialista</ion-title>
       </ion-toolbar>
 
-      
       <ion-item-divider>
         <ion-select style="color: black; margin-bottom: 0.4em; margin-top: 0.4em;" label="Reparto" [placeholder]="this.hospitalWard" (ionChange)="storeHospitalWard($event); updateList();">
           <ion-select-option value="Cardiologia">Cardiologia</ion-select-option>
@@ -42,19 +41,23 @@
         </ion-select>
       </ion-item-divider>
       <ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
-      
+
       <ion-content>
         <ion-list>
           <div *ngIf="filteredMedics.length <= 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
             <ion-img style="margin-top: 4.5em; width: 30%;" src="../../../../../assets/icon/user-not-found.png" alt="nessun medico disponibile"></ion-img>
             <ion-text style="margin: 1em 4em 0 4em; width: 85%; color: gray;">Nessun medico disponibile</ion-text>
           </div>
-          
+
           <!-- Nella view iniziale dei medici, se l'utente clicca su uno di questi il campo reparto sarà sostituito con quello del medico selezionato -->
           <ion-item button *ngFor="let medic of filteredMedics" (click)="storeMedic(medic); ">
             <ion-avatar slot="start">
               <ion-img *ngIf="medic.sesso === Sesso.MASCHIO"
                 src="../../assets/icon/home/avatar/av-nurse-male.png"
+                alt="Foto profilo medico">
+              </ion-img>
+              <ion-img *ngIf="medic.sesso === Sesso.FEMMINA"
+                src="../../assets/icon/home/avatar/av-nurse-female.png"
                 alt="Foto profilo medico">
               </ion-img>
             </ion-avatar>

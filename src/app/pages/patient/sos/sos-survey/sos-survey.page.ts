@@ -139,26 +139,26 @@ export class SosSurveyPage implements OnInit {
 
   updateDangerValue() {
     if (this.testaFirstRef) {
-      this.dangerPercentage += 25;
+      this.dangerPercentage += 20;
 
       switch (this.testaFirstRef.value) {
         case 'Poco':
           this.dangerPercentage += 5;
           break;
         case 'Abbastanza':
-          this.dangerPercentage += 15;
+          this.dangerPercentage += 20;
           break;
         case 'Molto':
-          this.dangerPercentage += 25;
+          this.dangerPercentage += 30;
           break;
       }
 
       switch (this.testaSecondRef.value) {
         case 'Specifico':
-          this.dangerPercentage += 25;
+          this.dangerPercentage += 15;
           break;
         case 'Diffuso':
-          this.dangerPercentage += 50;
+          this.dangerPercentage += 35;
       }
     }
 
