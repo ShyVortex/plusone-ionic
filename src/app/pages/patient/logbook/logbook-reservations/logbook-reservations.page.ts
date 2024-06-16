@@ -49,7 +49,7 @@ export class LogbookReservationsPage implements OnInit {
     if (!this.personaService.isDefault())
       this.getAllPrenotazioniByPaziente = this.pazienteService.getAllPrenotazioniByPaziente(this.paziente.id);
 
-    if (this.paziente && this.paziente.terapie) {
+    else {
       this.prenotazioni = this.paziente.terapie;
       console.log(this.prenotazioni);
     }

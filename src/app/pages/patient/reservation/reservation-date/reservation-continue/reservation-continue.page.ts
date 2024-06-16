@@ -113,16 +113,22 @@ export class ReservationContinuePage implements OnInit {
         this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(value)
       }
     )
+
+    if (this.personaService.isDefault()) {
+      this.patientToPrenote = this.personaService.getPersona();
+      this.checkTimeReservedOffline();
+    }
   }
 
   ionViewWillEnter() {
     this.getPazienteByEmailObservable.subscribe((value: Paziente) => {
-      this.patientToPrenote = value
-      if (this.patientToPrenote === undefined) {
-        this.patientToPrenote = this.personaService.getPersona();
-      }
+      if (!this.personaService.isDefault())
+        this.patientToPrenote = value;
     });
+    this.checkTimeReserved();
+  }
 
+  checkTimeReserved() {
     this.terapiaService.getTerapieByTipologiaTerapia(this.type).subscribe((result: Terapia[]) => {
       this.therapies = result;
 
@@ -144,6 +150,20 @@ export class ReservationContinuePage implements OnInit {
             time.reserved = true;
           }
         });
+      });
+    });
+  }
+
+  checkTimeReservedOffline() {
+    this.therapies = this.patientToPrenote.terapie;
+
+    this.therapies.forEach((element: Terapia) => {
+      this.times.forEach((time: time) => {
+        if (
+          this.date === element.orario.split('T')[0]
+          && time.time === element.orario.split('T')[1].substring(0, 5)
+        )
+          time.reserved = true;
       });
     });
   }
@@ -176,7 +196,6 @@ export class ReservationContinuePage implements OnInit {
     this.terapia.attivo = false;
     if (this.personaService.isDefault()) {
       this.terapia.id = 0;
-      this.patientToPrenote = this.personaService.getPersona();
       this.terapia.paziente = this.patientToPrenote;
       this.terapia.medicoCurante = this.patientToPrenote.medico;
       this.terapia.reparto = this.patientToPrenote.medico.reparto;
