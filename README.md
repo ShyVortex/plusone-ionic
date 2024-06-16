@@ -59,6 +59,10 @@ Alternativamente, è possibile aprire l'applicazione sul proprio browser predefi
  ionic serve
  ```
 
+## Riconoscimenti
+- [FlatIcon](https://www.flaticon.com/) e [FontAwesome](https://fontawesome.com/) per le icone dell'applicazione
+- [LottieFiles](https://lottiefiles.com/) per le varie animazioni in JSON
+
 ## Licenza
 - Questo progetto è distribuito sotto i termini della [GNU General Public License v3.0](https://github.com/ShyVortex/plusone-ionic/blob/master/LICENSE.md).
 - Copyright di [@ShyVortex](https://github.com/ShyVortex), [@lorenzo-lepore](https://github.com/lorenzo-lepore), [@mariorascato](https://github.com/mariorascato), 2024.  
