@@ -3,21 +3,21 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonFooter,
-  IonTabs,
-  IonTabBar,
-  IonTabButton,
-  IonImg,
-  IonLabel,
-  IonButton,
-  IonItem,
-  IonInput,
-  IonAlert,
-  IonRow, IonSelect, IonSelectOption
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonFooter,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonImg,
+    IonLabel,
+    IonButton,
+    IonItem,
+    IonInput,
+    IonAlert,
+    IonRow, IonSelect, IonSelectOption, IonText
 } from '@ionic/angular/standalone';
 import {AlertController, NavController} from "@ionic/angular";
 import { Sesso } from 'src/app/models/persona/sesso';
@@ -33,7 +33,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
   templateUrl: './nurse-modify-details.page.html',
   styleUrls: ['./nurse-modify-details.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
+    imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption, IonText]
 })
 
 export class NurseModifyDetailsPage implements OnInit {

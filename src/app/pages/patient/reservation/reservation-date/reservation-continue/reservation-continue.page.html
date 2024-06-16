@@ -7,8 +7,8 @@
       <ion-label class="tab-name">Prenotazione</ion-label>
     </div>
   </ion-toolbar>
-</ion-header>  
- 
+</ion-header>
+
 <ion-content [fullscreen]="true" class="ion-padding">
   <h5 class="available-appointments"><b>Orari disponibili</b></h5>
 
@@ -30,7 +30,9 @@
   <h6 class="policy">Eventuali modifiche o annullamenti dovranno essere effettuati attraverso l'applicazione con almeno 24 ore di anticipo rispetto all'orario programmato.</h6>
 </ion-content>
 
-<ion-button class="confirm-button" (click)="submit()" expand="block" fill="solid" id="present-alert" shape="round">Prenota</ion-button>
+<ion-button class="confirm-button" (click)="submit()" expand="block" fill="solid" id="present-alert" shape="round">
+  <ion-text class="confirm-button-text">Prenota</ion-text>
+</ion-button>
 
 <ion-footer>
   <ion-toolbar>

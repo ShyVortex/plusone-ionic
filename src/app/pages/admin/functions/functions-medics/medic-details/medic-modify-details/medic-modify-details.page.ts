@@ -22,7 +22,7 @@ import {
   IonInput,
   IonItem,
   IonAlert,
-  IonRow, IonSelect, IonSelectOption
+  IonRow, IonSelect, IonSelectOption, IonText
 } from '@ionic/angular/standalone';
 import {AlertController, NavController} from "@ionic/angular";
 import { StorageService } from 'src/app/services/StorageService/storage.service';
@@ -39,7 +39,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
   templateUrl: './medic-modify-details.page.html',
   styleUrls: ['./medic-modify-details.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonItem, IonInput, IonCardSubtitle, IonCardTitle, IonCard, IonCardHeader, IonAvatar, IonLabel, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
+  imports: [IonAlert, IonItem, IonInput, IonCardSubtitle, IonCardTitle, IonCard, IonCardHeader, IonAvatar, IonLabel, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption, IonText]
 })
 
 export class MedicModifyDetailsPage implements OnInit {

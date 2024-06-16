@@ -81,8 +81,14 @@
       <ion-select-option>OSPEDALIERO</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button class="confirm-button" (click)="this.presentAlert()" shape="round">Conferma modifiche</ion-button>
-  <ion-button id="delete" class="delete-button" shape="round">Elimina medico</ion-button>
+  <ion-button class="confirm-button" (click)="this.presentAlert()"
+              shape="round">
+    <ion-text class="confirm-button-text">Conferma modifiche</ion-text>
+  </ion-button>
+  <ion-button id="delete" class="delete-button"
+              shape="round">
+    <ion-text class="confirm-button-text">Elimina medico</ion-text>
+  </ion-button>
 
 
   <ion-alert

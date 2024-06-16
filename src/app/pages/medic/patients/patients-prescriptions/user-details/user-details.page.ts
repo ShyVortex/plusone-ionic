@@ -1,7 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonImg, IonItem, IonList, IonAvatar, IonLabel, IonFooter, IonTabs, IonTabBar, IonTabButton, IonButton, IonSearchbar, IonCardContent, IonCardTitle, IonCardSubtitle, IonCard } from '@ionic/angular/standalone';
+import {
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonImg,
+    IonItem,
+    IonList,
+    IonAvatar,
+    IonLabel,
+    IonFooter,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonButton,
+    IonSearchbar,
+    IonCardContent,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCard,
+    IonText
+} from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
 import { Paziente } from 'src/app/models/paziente/Paziente';
 import { ModelUtilities } from 'src/app/models/ModelUtilities';
@@ -15,7 +36,7 @@ import { StorageService } from "../../../../../services/StorageService/storage.s
   templateUrl: './user-details.page.html',
   styleUrls: ['./user-details.page.scss'],
   standalone: true,
-  imports: [IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonLabel, IonAvatar, IonList, IonItem, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    imports: [IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonSearchbar, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonLabel, IonAvatar, IonList, IonItem, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText]
 })
 export class UserDetailsPage {
   protected patient!: any;

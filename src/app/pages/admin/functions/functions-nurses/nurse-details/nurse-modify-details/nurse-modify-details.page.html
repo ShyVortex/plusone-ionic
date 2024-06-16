@@ -74,9 +74,13 @@
     <ion-input type="" value="{{nurse.ruolo}}" [(ngModel)]="this.roleToUpdate"></ion-input>
   </ion-item>
   <ion-button id="confirm" class="confirm-button" (click)="this.presentAlert()"
-              shape="round">Conferma modifiche
+              shape="round">
+    <ion-text class="confirm-button-text">Conferma modifiche</ion-text>
   </ion-button>
-  <ion-button id="delete" class="delete-button" shape="round">Elimina infermiere</ion-button>
+  <ion-button id="delete" class="delete-button"
+              shape="round">
+    <ion-text class="confirm-button-text">Elimina infermiere</ion-text>
+  </ion-button>
 
   <ion-alert
     trigger="delete"

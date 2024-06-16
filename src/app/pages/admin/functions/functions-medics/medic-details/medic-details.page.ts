@@ -2,7 +2,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonLabel, IonCard, IonCardContent, IonAvatar, IonImg, IonCardTitle, IonCardSubtitle, IonFooter, IonTabs, IonTabBar, IonTabButton } from '@ionic/angular/standalone';
+import {
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonButton,
+    IonLabel,
+    IonCard,
+    IonCardContent,
+    IonAvatar,
+    IonImg,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonFooter,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonText
+} from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
 import { Medico } from 'src/app/models/medico/Medico';
 import { Sesso } from 'src/app/models/persona/sesso';
@@ -14,7 +32,7 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './medic-details.page.html',
   styleUrls: ['./medic-details.page.scss'],
   standalone: true,
-  imports: [IonTabButton, IonTabBar, IonTabs, IonFooter, IonCardSubtitle, IonCardTitle, IonImg, IonAvatar, IonCardContent, IonCard, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+    imports: [IonTabButton, IonTabBar, IonTabs, IonFooter, IonCardSubtitle, IonCardTitle, IonImg, IonAvatar, IonCardContent, IonCard, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText]
 })
 
 export class MedicDetailsPage implements OnInit {
