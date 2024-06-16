@@ -52,6 +52,7 @@ export class LoginPage implements OnInit,OnDestroy {
   private personToLogin: any;
   private medicoToAssign!: Medico;
 
+  public static canBypassToast: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -66,7 +67,6 @@ export class LoginPage implements OnInit,OnDestroy {
     this.email = "";
     this.password = "";
     this.hashedPassword = "";
-
 
     this.getAllPazientiSubscription = new Subscription();
     this.getPazienteByEmailObservable = new Observable<Paziente>();
@@ -120,7 +120,9 @@ export class LoginPage implements OnInit,OnDestroy {
   async loginButton(): Promise<void> {
     // Profili di default per far funzionare la login sul file .apk
     if ((<any>Object).values(PersonaDefault).includes(this.email) && this.password === "password123") {
+      LoginPage.canBypassToast = true;
       this.personToLogin = this.storageService.getState(this.email);
+
       if (this.personToLogin !== undefined)
         this.personaService.setPersona(this.personToLogin);
 
@@ -161,64 +163,54 @@ export class LoginPage implements OnInit,OnDestroy {
       }
     }
 
+    if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
+      this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)
+      try {
+        this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable)
+      }
+      catch(error) {
+        this.setOpen(true)
+      }
+      console.log(this.personToLogin)
+    } else if (LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE") {
+      this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
+      this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
+    } else if (LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO') {
+      this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail(this.email);
+      this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
+    } else if (LoginUtilities.getRuoloByEmail(this.email) === "NON VALIDA") {
+      this.setOpen(true);
+    }
+
+    if (await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)) {
+      this.dataService.sendData(this.email);
+
       if (LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE") {
-        this.getPazienteByEmailObservable = this.pazienteService.getPazienteByEmail(this.email)
-        try {
-          this.personToLogin = await firstValueFrom<Paziente>(this.getPazienteByEmailObservable)
+        if (this.personToLogin.attivo) {
+          this.personaService.setDefault(false);
+          this.navCtrl.navigateForward("patient-home");
         }
-        catch(error) {
-          this.setOpen(true)
-        }
-        console.log(this.personToLogin)
-      } else if (LoginUtilities.getRuoloByEmail(this.email) === "INFERMIERE") {
-        this.getInfermiereByEmailObservable = this.infermiereService.getInfermiereByEmail(this.email)
-        this.personToLogin = await firstValueFrom<Infermiere>(this.getInfermiereByEmailObservable);
-      } else if (LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO') {
-        this.getMedicoByEmailObservable = this.medicoService.getMedicoByEmail(this.email);
-        this.personToLogin = await firstValueFrom<Medico>(this.getMedicoByEmailObservable);
-      } else if (LoginUtilities.getRuoloByEmail(this.email) === "NON VALIDA") {
-        this.setOpen(true);
+        else
+          this.showAlert();
       }
-
-
-
-
-
-  if(await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
-
-    this.dataService.sendData(this.email);
-
-    if(LoginUtilities.getRuoloByEmail(this.email) === "PAZIENTE"){
-      if (this.personToLogin.attivo) {
+      else if (LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE") {
         this.personaService.setDefault(false);
-        this.navCtrl.navigateForward("patient-home");
+        this.navCtrl.navigateForward("nurse-home");
       }
-      else
-        this.showAlert();
+      else if (LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO') {
+        this.personaService.setDefault(false);
+        this.navCtrl.navigateForward("medic-home");
+      }
     }
-    else if(LoginUtilities.getRuoloByEmail(this.email)=== "INFERMIERE"){
-      this.personaService.setDefault(false);
-      this.navCtrl.navigateForward("nurse-home");
-    }
-    else if(LoginUtilities.getRuoloByEmail(this.email) === 'MEDICO'){
-      this.personaService.setDefault(false);
-      this.navCtrl.navigateForward("medic-home");
-    }
-
-
-  }
-
-      else if(!await HashingUtilities.verifyPassword(this.password, this.personToLogin.password)){
+    else {
+      if (!LoginPage.canBypassToast) {
         this.setOpen(true);
         console.log("Credenziali non valide")
       }
+    }
   }
 
-
-  isEnable():boolean{
-
-
+  isEnable():boolean {
     return this.email === "" || this.password === "";
   }
-
 }
