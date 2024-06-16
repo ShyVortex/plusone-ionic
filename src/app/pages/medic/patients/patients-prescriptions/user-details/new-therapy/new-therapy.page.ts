@@ -56,15 +56,19 @@ export class NewTherapyPage implements OnInit{
       role: 'confirm',
       handler: async () => {
         this.storageService.setPaziente(this.paziente);
-        try {
-          await firstValueFrom<void>(
-            this.tFarmacologicaService.deleteTfarmacologica(this.tFarmacologicaId)
-          );
+        if (this.paziente.isSet()) {
+          try {
+            await firstValueFrom<void>(
+              this.tFarmacologicaService.deleteTfarmacologica(this.tFarmacologicaId)
+            );
+            this.navCtrl.navigateBack(this.navURL, {});
+          }
+          catch (error) {
+            console.error(error);
+          }
+        }
+        else
           this.navCtrl.navigateBack(this.navURL, {});
-        }
-        catch (error){
-          console.error(error);
-        }
       }
     }
   ];

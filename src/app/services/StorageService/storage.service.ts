@@ -24,7 +24,7 @@ export class StorageService {
   private terapia!: Terapia;
   private terapie!: Terapia[];
   private triage!: Triage;
-  private richieste!: Triage[];
+  private richieste: Triage[];
   private segnalazione!: Segnalazione;
   private segnalazioni: Segnalazione[];
   private tFarmacologicaId!:number
@@ -39,6 +39,7 @@ export class StorageService {
     this.medico = new Medico();
     this.route = "";
     this.loginCache = [];
+    this.richieste = [];
     this.segnalazioni = [];
     this.tpeFarm = [];
     this.quantitaDettagli = [];
@@ -134,8 +135,8 @@ export class StorageService {
     return this.richieste;
   }
 
-  cacheRichieste(value: Triage[]) {
-    this.richieste = value;
+  cacheRichiesta(value: Triage) {
+    this.richieste.push(value);
   }
 
   getSegnalazione() {

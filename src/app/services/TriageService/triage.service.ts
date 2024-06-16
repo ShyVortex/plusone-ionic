@@ -22,7 +22,7 @@ export class TriageService {
 
   addRichiestaOffline(paziente: Paziente, richiesta: Triage) {
     paziente.richieste.push(richiesta);
-    this.storageService.cacheRichieste(paziente.richieste);
+    this.storageService.cacheRichiesta(richiesta);
   }
 
   getAllTriages(): Observable<Triage[]> {

@@ -33,7 +33,11 @@
     <ion-img class="item-title-icon" src="../../assets/icon/settings/bug.png"></ion-img>
     SEGNALAZIONI
   </ion-item>
-  <ion-list>
+  <div *ngIf="segnalazioni.length <= 0" class="nf-container">
+    <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
+    <ion-text class="nf-text">Nessuna segnalazione trovata</ion-text>
+  </div>
+  <ion-list *ngIf="segnalazioni.length > 0">
     <ion-item class="item-title" *ngFor="let segnalazione of segnalazioni">
       <div class="item-content">
         <ion-img class="request-icon" slot="start" src="../../assets/icon/admin/reports/exclamation.png"></ion-img>

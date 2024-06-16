@@ -31,7 +31,7 @@ import {Sesso} from "../../../models/persona/sesso";
 
 export class ReportsPage implements OnInit {
   protected admin: Admin;
-  protected segnalazioni!: Segnalazione[];
+  protected segnalazioni: Segnalazione[];
   protected ruolo: any;
 
   constructor(
@@ -42,6 +42,7 @@ export class ReportsPage implements OnInit {
     private storageService: StorageService
   ) {
     this.admin = personaService.getPersona();
+    this.segnalazioni = [];
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */
