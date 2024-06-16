@@ -378,3 +378,26 @@ ion-content {
   }
 }
 /////////////////////////////////////////////
+
+// Widget "NOT FOUND" //
+.nf-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 75%;
+
+  .nf-icon {
+    margin-right: 1em;
+    width: 7.5em;
+    height: auto;
+  }
+
+  .nf-text {
+    margin-top: 1.5em;
+    color: dimgray;
+    font-size: large;
+  }
+}
+/////////////////////////////////////////////

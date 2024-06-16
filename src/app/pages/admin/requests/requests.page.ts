@@ -35,7 +35,7 @@ import {PazienteService} from "../../../services/PazienteService/paziente.servic
 export class RequestsPage implements OnInit {
   protected admin: Admin;
   protected getAllInattiviObservable!: Observable<Paziente[]>;
-  protected pazienti!: Paziente[];
+  protected pazienti: Paziente[];
 
   constructor(
     private navCtrl: NavController,
@@ -46,6 +46,7 @@ export class RequestsPage implements OnInit {
     private storageService: StorageService
   ) {
     this.admin = this.personaService.getPersona();
+    this.pazienti = [];
 
     /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */

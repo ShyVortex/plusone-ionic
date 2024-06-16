@@ -35,7 +35,7 @@ import {Conferma} from "../../../models/triage/Conferma";
 export class SOSPage implements OnInit {
   protected infermiere!: Infermiere;
   protected paziente: any;
-  protected richieste!: Triage[];
+  protected richieste: Triage[];
   private getAllTriagesObservable!:Observable<Triage[]> ;
 
   constructor(
@@ -47,6 +47,7 @@ export class SOSPage implements OnInit {
     private triageService: TriageService
   ) {
     this.infermiere = personaService.getPersona();
+    this.richieste = [];
 
     if (this.personaService.isDefault()) {
       this.paziente = storageService.getState("mario.giannini@paziente.it");
@@ -91,6 +92,21 @@ export class SOSPage implements OnInit {
         this.richieste = this.paziente.richieste;
       event.target.complete();
     },1000);
+  }
+
+  checkRichieste(): boolean {
+    if (this.richieste.length > 0) {
+      let valid: boolean = false;
+
+      this.richieste.forEach(richiesta => {
+        if (richiesta.conferma === Conferma.IN_ATTESA)
+          valid = true;
+      });
+
+      return valid;
+    }
+    else
+      return false;
   }
 
   routeToRequestDetails(richiesta: Triage) {

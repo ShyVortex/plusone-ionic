@@ -39,7 +39,7 @@ export class NotificationsPage implements OnInit {
   private medicoEmail!:string;
   private getMedicoByEmailObservable!:Observable<Medico>
   private getAllprenotazioniByMedico!:Observable<Terapia[]>;
-  protected prenotazioni!: Terapia[];
+  protected prenotazioni: Terapia[];
 
 
   constructor(
@@ -51,6 +51,7 @@ export class NotificationsPage implements OnInit {
     private storageService: StorageService
   ) {
      this.medico = personaService.getPersona();
+     this.prenotazioni = [];
 
      /* Avere sempre il profilo di default a portata di mano aiuta nello sviluppo dato che altrimenti
        bisognerebbe sempre riloggare dopo il live reload di Ionic per vedere i cambiamenti effettuati */

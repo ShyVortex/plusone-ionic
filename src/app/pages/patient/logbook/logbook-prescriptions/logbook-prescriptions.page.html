@@ -10,7 +10,13 @@
 </ion-header>
 
 <ion-content class="prescriptions-content" [fullscreen]="true">
-  <ng-container *ngIf="!personaService.isDefault()">
+  <div *ngIf="(!personaService.isDefault() && tpeFarm.length <= 0)
+        || (personaService.isDefault() && tpeFarmOffline.length <= 0)"
+       class="nf-container">
+    <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
+    <ion-text class="nf-text">Nessuna prescrizione ricevuta</ion-text>
+  </div>
+  <ng-container *ngIf="!personaService.isDefault() && tpeFarm.length > 0">
     <ion-list>
       <div *ngFor="let tpaFarm of tpeFarm">
       <div *ngIf="tpaFarm.attivo">
@@ -31,7 +37,7 @@
       </div>
     </ion-list>
   </ng-container>
-  <ng-container *ngIf="personaService.isDefault()">
+  <ng-container *ngIf="personaService.isDefault() && tpeFarmOffline.length > 0">
     <ion-list>
       <ion-item class="item-title" *ngFor="let tpaFarmOffline of tpeFarmOffline">
         <div class="item-content">

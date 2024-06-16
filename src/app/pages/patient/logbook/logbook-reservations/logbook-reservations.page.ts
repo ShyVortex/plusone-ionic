@@ -29,16 +29,17 @@ import {PazienteService} from "../../../../services/PazienteService/paziente.ser
 
 export class LogbookReservationsPage implements OnInit {
   protected paziente: Paziente;
-  protected prenotazioni!: Terapia[];
+  protected prenotazioni: Terapia[];
   private getAllPrenotazioniByPaziente!:Observable<Terapia[]>;
 
   constructor(
     private navCtrl: NavController,
     private personaService: PersonaService,
     private storageService: StorageService,
-    private pazienteService:PazienteService
+    private pazienteService: PazienteService
   ) {
     this.paziente = personaService.getPersona();
+    this.prenotazioni = [];
   }
 
   ngOnInit() {

@@ -10,7 +10,11 @@
 </ion-header>
 
 <ion-content class="reservations-content" [fullscreen]="true">
-  <ion-list>
+  <div *ngIf="prenotazioni.length <= 0" class="nf-container">
+    <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
+    <ion-text class="nf-text">Nessuna prenotazione effettuata</ion-text>
+  </div>
+  <ion-list *ngIf="prenotazioni.length > 0">
     <ion-item class="item-title" *ngFor="let prenotazione of prenotazioni">
       <div class="item-content">
         <ion-img class="reservation-icon" slot="start" src="../../assets/icon/home/calendar.png"></ion-img>

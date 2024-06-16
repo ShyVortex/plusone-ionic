@@ -33,7 +33,11 @@
     <ion-img class="item-title-icon" src="../../assets/icon/admin/requests/request.png"></ion-img>
     RICHIESTE
   </ion-item>
-  <ion-list>
+  <div *ngIf="pazienti.length <= 0" class="nf-container">
+    <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
+    <ion-text class="nf-text">Nessuna richiesta trovata</ion-text>
+  </div>
+  <ion-list *ngIf="pazienti.length > 0">
     <ion-item class="item-title" *ngFor="let paziente of pazienti">
       <div class="item-content">
         <ion-img class="request-icon" slot="start" src="../../assets/icon/admin/requests/registration.png"></ion-img>
