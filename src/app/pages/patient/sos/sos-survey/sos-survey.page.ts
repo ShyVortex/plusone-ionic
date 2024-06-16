@@ -68,6 +68,19 @@ export class SosSurveyPage implements OnInit {
     this.navCtrl.navigateBack("patient-sos");
   }
 
+  unlockFirstQuestion() {
+    this.isFirstSelectable = true;
+    this.isSecondSelectable = false;
+    if (this.isCodiceVisible)
+      this.isCodiceVisible = false;
+  }
+
+  unlockSecondQuestion() {
+    this.isSecondSelectable = true;
+    if (this.isCodiceVisible)
+      this.updateAccessCode();
+  }
+
   checkFields(): boolean {
     if (this.wherePainRef && this.wherePainRef.value != null)
       return true;
@@ -124,17 +137,6 @@ export class SosSurveyPage implements OnInit {
     }
     else
       return false;
-  }
-
-  unlockFirstQuestion() {
-    this.isFirstSelectable = true;
-    this.isSecondSelectable = false;
-  }
-
-  unlockSecondQuestion() {
-    this.isSecondSelectable = true;
-    if (this.isCodiceVisible)
-      this.updateAccessCode();
   }
 
   updateDangerValue() {
