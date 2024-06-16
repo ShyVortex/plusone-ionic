@@ -64,7 +64,7 @@ export class UserDetailsPage {
   }
 
   goToNewTherapy() {
-    this.navCtrl.navigateForward('medic-patients-user-details-new-therapy');
+    this.navCtrl.navigateForward('medic-patients-user-details-new-prescription');
   }
 
   goToHome() {

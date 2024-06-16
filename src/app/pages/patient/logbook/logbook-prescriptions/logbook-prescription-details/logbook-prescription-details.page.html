@@ -4,7 +4,7 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Dettagli terapia</ion-label>
+      <ion-label class="tab-name">Dettagli impegnativa</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -18,12 +18,12 @@
       </ion-img>
       <ion-text *ngIf="!personaService.isDefault()"
                 class="prescription-summary-text">ù
-        Terapia farmacologica <br/>
+        Impegnativa medica <br/>
         assegnata da <b>{{tpaFarm.medico?.nome}} {{tpaFarm.medico?.cognome}}</b>
       </ion-text>
       <ion-text *ngIf="personaService.isDefault()"
                 class="prescription-summary-text">
-        Terapia farmacologica <br/>
+        Impegnativa medica <br/>
         assegnata da <b>{{paziente.medico.nome}} {{paziente.medico.cognome}}</b>
       </ion-text>
     </ion-item>
@@ -66,7 +66,7 @@
     <ion-button class="prescription-buttons"
                 color="primary"
                 shape="round"
-                (click)="markAsCompleted()">Completata
+                (click)="markAsCompleted()">Evadi
     </ion-button>
   </div>
 </ion-content>

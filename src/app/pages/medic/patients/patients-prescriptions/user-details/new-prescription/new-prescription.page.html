@@ -4,7 +4,7 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Assegna terapia</ion-label>
+      <ion-label class="tab-name">Prescrivi impegnativa</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
     <ion-grid class="drug-grid" *ngIf="drugs.length <= 0">
       <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug-info">Nessun farmaco prescritto</ion-label>
+          <ion-label class="drug-info">Nessun farmaco assegnato</ion-label>
         </ion-row>
       </ion-col>
     </ion-grid>
@@ -48,7 +48,7 @@
     <ion-grid class="drug-grid" *ngIf="exams.length <= 0">
       <ion-col class="drug-details">
         <ion-row>
-          <ion-label class="drug-info">Nessun esame prescritto</ion-label>
+          <ion-label class="drug-info">Nessun esame assegnato</ion-label>
         </ion-row>
       </ion-col>
     </ion-grid>
@@ -75,7 +75,7 @@
     <ion-row style="width: 100%; max-width: 1000px;">
       <ion-col class="buttons" size="10" style="padding-left: 0;">
         <ion-button shape="round" style="width: 100%; margin-top: 11px;" (click)="confirmButton()">
-          <ion-text class="confirm-button-text">Conferma terapia</ion-text>
+          <ion-text class="confirm-button-text">Conferma impegnativa</ion-text>
         </ion-button>
       </ion-col>
       <ion-col class="buttons" offset="0.3" size="1.5">

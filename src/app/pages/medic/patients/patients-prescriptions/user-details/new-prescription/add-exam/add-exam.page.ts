@@ -173,6 +173,7 @@ export class AddExamPage implements OnInit {
     });
     await alert.present()
   }
+
   async presentConfirmAlertButton() {
     const alert = await this.alertController.create({
       header: 'Conferma scelta',
@@ -180,6 +181,7 @@ export class AddExamPage implements OnInit {
     });
     await alert.present()
   }
+
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -190,23 +192,22 @@ export class AddExamPage implements OnInit {
   }
 
   navigateBack() {
-    this.storageService.setPaziente(this.paziente),
-    this.navCtrl.navigateBack('medic-patients-user-details-new-therapy');
+    this.storageService.setPaziente(this.paziente);
+    this.navCtrl.navigateBack('medic-patients-user-details-new-prescription');
   }
 
   goToHome() {
     this.navURL = 'medic-home'
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
 
   goToNotifs() {
     this.navURL = 'medic-notifs'
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
 
   goToPatients() {
     this.navURL = "medic-patients"
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
-
 }

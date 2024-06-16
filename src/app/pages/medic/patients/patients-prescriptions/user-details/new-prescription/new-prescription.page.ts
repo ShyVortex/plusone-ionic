@@ -56,14 +56,14 @@ import { TerapiaFarmacologica } from "../../../../../../models/terapiafarmacolog
 import { forEach } from "lodash";
 
 @Component({
-  selector: 'app-new-therapy',
-  templateUrl: './new-therapy.page.html',
-  styleUrls: ['./new-therapy.page.scss'],
+  selector: 'app-new-prescription',
+  templateUrl: './new-prescription.page.html',
+  styleUrls: ['./new-prescription.page.scss'],
   standalone: true,
     imports: [IonSearchbar, IonButtons, IonModal, IonAvatar, IonItemOptions, IonItemOption, IonItemSliding, IonCardTitle, IonCardContent, IonCardSubtitle, IonCardHeader, IonCard, IonCol, IonGrid, IonRow, IonItemDivider, IonItem, IonList, IonFabList, IonIcon, IonFabButton, IonFab, IonSelect, IonFooter, IonTabButton, IonTabs, IonTabBar, IonImg, IonLabel, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonText]
 })
 
-export class NewTherapyPage implements OnInit{
+export class NewPrescriptionPage implements OnInit{
   protected paziente: Paziente;
   protected medico: Medico;
   private tFarmacologicaId!:number
@@ -190,10 +190,10 @@ export class NewTherapyPage implements OnInit{
 
   ionViewDidEnter(){
     this.getAllFarmaciByTFarmacologicaObservable.subscribe(value => {
-      this.drugs = value
+      this.drugs = value;
     })
     this.getAllEsamiByTfarmacologicaObservable.subscribe(value => {
-      this.exams = value
+      this.exams = value;
     })
   }
 
@@ -209,18 +209,18 @@ export class NewTherapyPage implements OnInit{
 
   async presentConfirmButtonAlert() {
     const alert = await this.alertController.create({
-      header: 'Confermare terapia',
-      message: 'Sei sicuro di voler confermare la terapia? In seguito non sarà possibile modificare la scelta.',
+      header: 'Confermare impegnativa',
+      message: 'Sei sicuro di voler confermare l\'impegnativa? In seguito non sarà possibile modificare la scelta.',
       buttons: this.confirmButtons,
     });
 
-    await alert.present()
+    await alert.present();
   }
 
   async presentWarningButtonAlert() {
     const alert = await this.alertController.create({
       header: 'ATTENZIONE',
-      message: 'Inserire almeno un farmaco o un esame per confermare la terapia.',
+      message: 'Inserire almeno un farmaco o un esame per confermare l\'impegnativa.',
       buttons: this.warningButton,
     });
 
@@ -247,12 +247,12 @@ export class NewTherapyPage implements OnInit{
 
   goToNotifs() {
      this.navURL = 'medic-notifs'
-     this.presentAlert()
+     this.presentAlert();
   }
 
    goToPatients() {
      this.navURL = 'medic-patients'
-     this.presentAlert()
+     this.presentAlert();
   }
 
   async handleDrugEliminationItem(drug: QuantitaDettaglio) {
@@ -265,7 +265,7 @@ export class NewTherapyPage implements OnInit{
         this.quantitaDettaglioService.deleteQuantitaDettaglio(drug.id)
       );
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
 
   }
@@ -280,12 +280,12 @@ export class NewTherapyPage implements OnInit{
         this.tFarmacologicaService.removeEsameOfTfarmacologica(exam.id,this.tFarmacologicaId)
       );
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
   protected confirmButton() {
-    this.navURL = 'confirm-therapy'
+    this.navURL = 'medic-patients-confirm-prescription';
     this.presentConfirmButtonAlert();
   }
 

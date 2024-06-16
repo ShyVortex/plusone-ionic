@@ -70,7 +70,7 @@ export class AddDrugPage implements OnInit {
             this.presentToast("La quantità inserita sembra essere eccessiva, inserire una quantità adeguata!")
           } else {
             this.setQuantitaDettaglio();
-           
+
             if (this.paziente.isSet()) {
               try {
                 await firstValueFrom<QuantitaDettaglio>(
@@ -186,7 +186,7 @@ export class AddDrugPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.tfarmacologicaId = this.storageService.getTFarmacologicaId()
+    this.tfarmacologicaId = this.storageService.getTFarmacologicaId();
   }
 
   search(event: any) {
@@ -243,23 +243,23 @@ export class AddDrugPage implements OnInit {
 
   navigateBack() {
     this.storageService.setPaziente(this.paziente),
-    this.navCtrl.navigateBack('medic-patients-user-details-new-therapy', {
+    this.navCtrl.navigateBack('medic-patients-user-details-new-prescription', {
     });
   }
 
   goToHome() {
     this.navURL = 'medic-home'
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
 
   goToNotifs() {
     this.navURL = 'medic-notifs'
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
 
   goToPatients() {
     this.navURL = 'medic-patients'
-    this.presentExitAlertButton()
+    this.presentExitAlertButton();
   }
 
   private isValidInput(): boolean {
@@ -268,7 +268,7 @@ export class AddDrugPage implements OnInit {
 
   private setQuantitaDettaglio() {
     this.quantitaDettaglioJSON.quantita = this.quantita;
-    
+
     if (this.note == undefined || this.note == '') {
       this.quantitaDettaglioJSON.note = 'Nessuna informazione aggiuntiva';
     } else {
