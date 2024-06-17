@@ -27,7 +27,7 @@ import {
 import {AlertController, NavController} from "@ionic/angular";
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { Sesso } from 'src/app/models/persona/sesso';
-import {LoginUtilities} from "../../../../../registration/LoginUtilities";
+import {SignupUtilities} from "../../../../../registration/signup/SignupUtilities";
 import {alert} from "ionicons/icons";
 import {MedicoService} from "../../../../../../services/MedicoService/medico.service";
 import {firstValueFrom} from "rxjs";
@@ -136,7 +136,7 @@ export class MedicModifyDetailsPage implements OnInit {
   }
 
   async presentAlert() {
-    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate) === "MEDICO") {
+    if (SignupUtilities.getRuoloByEmail(this.emailToUpdate) === "MEDICO") {
       const alert = await this.alertController.create({
         header:"Conferma cambiamenti",
         message:"Sei sicuro di voler confermare le modifiche?",

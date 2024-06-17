@@ -4,35 +4,58 @@
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
         &larr;
       </ion-button>
-      <ion-label class="tab-name">Impostazioni</ion-label>
+      <ion-label class="tab-name">Riconoscimenti</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="settings-content" [fullscreen]="true">
-  <ion-item fill="transparent" (click)="routeToSecurity()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/security.png"></ion-img>
-    <ion-text class="settings-text">Sicurezza</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" *ngIf="ruolo !== 'ADMIN'" (click)="routeToBugReport()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/bug.png"></ion-img>
-    <ion-text class="settings-text">Segnalazione errori</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="routeToInfo()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/info.png"></ion-img>
-    <ion-text class="settings-text">Informazioni</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="routeToCredits()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/thank-you.png"></ion-img>
-    <ion-text class="settings-text">Riconoscimenti</ion-text>
-  </ion-item>
-  <ion-item fill="transparent" (click)="logout()">
-    <ion-img class="settings-image" src="../../assets/icon/settings/logout.png"></ion-img>
-    <ion-text class="settings-text">Logout</ion-text>
-  </ion-item>
+<ion-content class="credits-content" [fullscreen]="true">
+  <ion-row style="height: 16.5%"></ion-row>
+  <div class="card-container">
+    <ion-card class="select-card">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/settings/credits/flaticon.png"></ion-img>
+        <ion-row class="card-line"></ion-row>
+        <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;Flaticon&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
+        <ion-card-subtitle style="display: flex; justify-content: center">
+          Icone
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/settings/credits/freepik.png"></ion-img>
+        <ion-row class="card-line"></ion-row>
+        <ion-card-title class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freepik&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-card-title>
+        <ion-card-subtitle style="display: flex; justify-content: center">
+          Icone
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/settings/credits/font-awesome.png"></ion-img>
+        <ion-row class="card-line"></ion-row>
+        <ion-card-title id="fontawesome">FontAwesome</ion-card-title>
+        <ion-card-subtitle style="display: flex; justify-content: center">
+          Icone
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <ion-card class="select-card">
+      <ion-card-header>
+        <ion-img class="card-icon" src="../../assets/icon/settings/credits/lottiefiles.png"></ion-img>
+        <ion-row class="card-line"></ion-row>
+        <ion-card-title class="card-title">&nbsp;&nbsp;LottieFiles&nbsp;&nbsp;</ion-card-title>
+        <ion-card-subtitle style="display: flex; justify-content: center">
+          Animazioni
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
 </ion-content>
 
-<ion-footer>
+<ion-footer id="footer">
   <ion-toolbar>
     <ion-tabs class="bottom-bar">
       <ion-tab-bar class="bottom-tab-bar" slot="bottom">

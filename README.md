@@ -60,7 +60,7 @@ Alternativamente, è possibile aprire l'applicazione sul proprio browser predefi
  ```
 
 ## Riconoscimenti
-- [FlatIcon](https://www.flaticon.com/) e [FontAwesome](https://fontawesome.com/) per le icone dell'applicazione
+- [FlatIcon](https://www.flaticon.com/), [Freepik](https://www.freepik.com/) e [FontAwesome](https://fontawesome.com/) per le icone dell'applicazione
 - [LottieFiles](https://lottiefiles.com/) per le varie animazioni in JSON
 
 ## Licenza

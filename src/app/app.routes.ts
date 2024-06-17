@@ -350,5 +350,10 @@ export const routes: Routes = [
     path: 'settings-info',
     loadComponent: () => import('./pages/settings/info/info.page')
       .then(m => m.InfoPage)
+  },
+  {
+    path: 'settings-credits',
+    loadComponent: () => import('./pages/settings/credits/credits.page')
+      .then(m => m.CreditsPage)
   }
 ];

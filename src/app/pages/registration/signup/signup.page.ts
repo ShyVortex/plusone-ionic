@@ -15,7 +15,7 @@ import {
 import {firstValueFrom, Observable} from "rxjs";
 import {Paziente} from "../../../models/paziente/Paziente";
 import {PazienteService} from "../../../services/PazienteService/paziente.service";
-import {LoginUtilities} from "../LoginUtilities";
+import {SignupUtilities} from "./SignupUtilities";
 import {Infermiere} from "../../../models/infermiere/Infermiere";
 import {Persona} from "../../../models/persona/Persona";
 import {HashingUtilities} from "../hashing-utilities";
@@ -60,11 +60,11 @@ export class SignupPage implements OnInit {
   }
 
   async continueSignUp() {
-    if (LoginUtilities.getRuoloByEmail(this.email) == "NON VALIDA") {
+    if (SignupUtilities.getRuoloByEmail(this.email) == "NON VALIDA") {
       this.message = "Email non valida, inserire un'email valida"
       this.setOpen(true)
     }
-    if (LoginUtilities.getRuoloByEmail(this.email) == "PAZIENTE") {
+    if (SignupUtilities.getRuoloByEmail(this.email) == "PAZIENTE") {
         this.personToInsert = await firstValueFrom<Paziente>(this.pazienteService.getPazienteByEmail(this.email));
         console.log(this.personToInsert);
 

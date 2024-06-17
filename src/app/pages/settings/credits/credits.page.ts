@@ -2,44 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
-  IonContent, IonFooter,
+  IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle,
+  IonContent,
+  IonFooter,
   IonHeader,
-  IonIcon,
-  IonImg, IonItem, IonLabel,
-  IonTabBar,
-  IonTabButton, IonTabs, IonText,
+  IonImg, IonItem,
+  IonLabel, IonRow, IonTabBar, IonTabButton, IonTabs,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
-import {LoginUtilities} from "../registration/login/LoginUtilities";
-import {PersonaService} from "../../services/PersonaService/persona.service";
-import {StorageService} from "../../services/StorageService/storage.service";
-import {LoginPage} from "../registration/login/login.page";
+import {PersonaService} from "../../../services/PersonaService/persona.service";
+import { LoginUtilities } from "../../registration/login/LoginUtilities";
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
+  selector: 'app-credits',
+  templateUrl: './credits.page.html',
+  styleUrls: ['./credits.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonImg, IonTabBar, IonTabButton, IonTabs, IonItem, IonText, IonButton, IonLabel, IonFooter]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonRow, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle]
 })
-
-export class SettingsPage implements OnInit {
+export class CreditsPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
-  protected route: any;
-  protected readonly LoginUtilities = LoginUtilities;
 
   constructor(
     private navCtrl: NavController,
-    private personaService: PersonaService,
-    private storageService: StorageService
+    private personaService: PersonaService
   ) {
     this.persona = personaService.getPersona();
     this.ruolo = "";
-    this.route = storageService.getRoute();
   }
 
   ngOnInit() {
@@ -54,35 +46,7 @@ export class SettingsPage implements OnInit {
   }
 
   navigateBack() {
-    this.navCtrl.navigateBack(this.route);
-  }
-
-  routeToSecurity() {
-    this.navCtrl.navigateForward("settings-security");
-  }
-
-  routeToBugReport() {
-    this.navCtrl.navigateForward("settings-bugreport", {
-      state: {
-        ruolo: this.ruolo
-      }
-    });
-  }
-
-  routeToInfo() {
-    this.navCtrl.navigateForward("settings-info");
-  }
-
-  routeToCredits() {
-    this.navCtrl.navigateForward("settings-credits");
-  }
-
-  async logout() {
-    if (this.personaService.isDefault())
-      this.storageService.cacheState(this.persona);
-
-    await this.navCtrl.navigateRoot("login");
-    LoginPage.canBypassToast = false;
+    this.navCtrl.back();
   }
 
   goToHome() {
