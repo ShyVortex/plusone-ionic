@@ -26,12 +26,12 @@ a partire da un'idea del nostro manager [Victor Conde](https://github.com/vodkaa
   ### Paziente
   - Prenotazione visita generale o specialistica in diversi reparti ospedalieri
   - Invio richiesta SOS immediata (codice rosso), o questionario per richiesta triage (codici bianco-arancione)
-  - Registro dove è possibile visualizzare le proprie prenotazioni, la propria diagnosi o le terapie farmacologiche assegnate dal medico
+  - Registro dove è possibile visualizzare le proprie prenotazioni, la propria diagnosi o le impegnative prescritte dal medico
   ### Infermiere
   - Visualizzazione richieste SOS o triage con relativa posizione del paziente, e possibilità di accettazione o rifiuto
   ### Medico
   - Visualizzazione notifiche prenotazioni effettuate dal paziente
-  - Assegnazione terapia farmacologica ai pazienti
+  - Prescrizione impegnativa ai pazienti
   ### Admin
   - Accettazione o rifiuto delle richieste di registrazione da parte dei pazienti
   - Visualizzazione dettagli utente per ogni ruolo, con eventuale modifica dei campi sul database
