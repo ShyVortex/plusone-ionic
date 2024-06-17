@@ -13,7 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import {NavController} from "@ionic/angular";
 import {PersonaService} from "../../../services/PersonaService/persona.service";
-import { LoginUtilities } from "../../registration/login/LoginUtilities";
+import {LoginUtilities} from "../../registration/login/LoginUtilities";
 
 @Component({
   selector: 'app-credits',
@@ -22,6 +22,7 @@ import { LoginUtilities } from "../../registration/login/LoginUtilities";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonLabel, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonRow, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle]
 })
+
 export class CreditsPage implements OnInit {
   protected persona: any;
   protected ruolo: String;
