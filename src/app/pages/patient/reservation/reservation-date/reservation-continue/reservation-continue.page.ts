@@ -27,19 +27,21 @@ import {Medico} from "../../../../../models/medico/Medico";
 export class ReservationContinuePage implements OnInit {
   protected times!: time[];
   protected actualIndex!: number;
+  protected currentTime!: Date;
+  protected actualTime!: string;
 
   protected type!: string;
   protected hospitalWard!: string;
   protected date!: string;
-  private chosenMedic: Medico;
+  protected chosenMedic: Medico;
 
-  private terapia: any;
+  protected terapia: any;
   protected therapies!: any[];
-  private terapiaAdded: Terapia;
+  protected terapiaAdded: Terapia;
 
-  private dataSubscription!: Subscription;
-  private patientToPrenote!: Paziente;
-  private getPazienteByEmailObservable: Observable<Paziente>;
+  protected dataSubscription!: Subscription;
+  protected patientToPrenote!: Paziente;
+  protected getPazienteByEmailObservable: Observable<Paziente>;
 
   public alertButtons = [
     {
@@ -91,6 +93,10 @@ export class ReservationContinuePage implements OnInit {
     this.terapia = {};
     this.actualIndex = 6;
 
+    this.currentTime = new Date();
+    this.currentTime.setHours(this.currentTime.getHours() + 2);
+    this.actualTime = this.currentTime.toISOString().split('T')[1].substring(0, 5);
+    
     this.times = [
       { time: '07:00', clicked: false, reserved: false },
       { time: '11:00', clicked: false, reserved: false },
@@ -103,9 +109,12 @@ export class ReservationContinuePage implements OnInit {
     this.hospitalWard = history.state.hospitalWard;
     this.date = history.state.date;
 
-    console.log(this.type);
+    /* console.log("Data attuale: ", this.currentTime.toISOString().split('T')[0]);
+    console.log("Data selezionata: ", this.date); */
+
+    /* console.log(this.type);
     console.log(this.hospitalWard);
-    console.log(this.date);
+    console.log(this.date); */
   }
 
   ngOnInit(): void {
@@ -128,7 +137,25 @@ export class ReservationContinuePage implements OnInit {
     this.checkTimeReserved();
   }
 
+  timeStringToMinutes(time: string): number {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  blockPastReservations() {
+    const actualTime = this.timeStringToMinutes(this.actualTime);
+    this.times.forEach((element: time) => {
+      if (this.timeStringToMinutes(element.time) < actualTime) {
+        element.reserved = true;
+      } 
+    });
+  }
+
   checkTimeReserved() {
+    if (this.date === this.currentTime.toISOString().split('T')[0]) {
+      this.blockPastReservations();
+    } 
+
     this.terapiaService.getTerapieByTipologiaTerapia(this.type).subscribe((result: Terapia[]) => {
       this.therapies = result;
 
@@ -155,6 +182,10 @@ export class ReservationContinuePage implements OnInit {
   }
 
   checkTimeReservedOffline() {
+    if (this.date === this.currentTime.toISOString().split('T')[0]) {
+      this.blockPastReservations();
+    } 
+
     this.therapies = this.patientToPrenote.terapie;
 
     this.therapies.forEach((element: Terapia) => {
