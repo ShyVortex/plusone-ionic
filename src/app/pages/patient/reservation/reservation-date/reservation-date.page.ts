@@ -77,10 +77,10 @@ export class ReservationDatePage implements OnInit {
     private storageService:StorageService
   ) {
     this.currentDateTime = new Date().toISOString();
-    this.hospitalWard = "Specifica reparto";
     this.medics = [];
     this.filteredMedics = [];
     this.paziente = personaService.getPersona();
+    this.hospitalWard = "Specifica un reparto";
   }
 
   ngOnInit() {
@@ -124,7 +124,7 @@ export class ReservationDatePage implements OnInit {
   async presentWardAlert() {
     const alert = await this.alertController.create({
       header: 'Errore',
-      message: 'Selezione un reparto.',
+      message: 'Seleziona un reparto.',
       buttons: ['OK'],
     });
 
@@ -171,7 +171,7 @@ export class ReservationDatePage implements OnInit {
       break;
 
       case 'GENERALE':
-        if (!this.hospitalWard || !this.date) {
+        if (this.hospitalWard == "Specifica un reparto" || !this.date) {
           this.presentAlert();
         } else {
           this.routeToReservationContinue();
@@ -190,7 +190,6 @@ export class ReservationDatePage implements OnInit {
         type: this.type,
         hospitalWard: this.hospitalWard,
         date: this.date,
-        // chosenMedic: this.chosenMedic
       }
     });
   }
