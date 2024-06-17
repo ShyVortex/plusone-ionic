@@ -12,7 +12,7 @@
 <ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
 
 <ion-searchbar
-  placeholder="Cerca paziente..."
+  placeholder="Cerca esame..."
   (input)="search($event)"
 ></ion-searchbar>
 
@@ -40,7 +40,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
           Notifiche
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToPatients()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToPatients()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/patients.png"></ion-img>
           Pazienti
         </ion-tab-button>

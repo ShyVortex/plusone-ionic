@@ -22,12 +22,12 @@ import {
   IonInput,
   IonItem,
   IonAlert,
-  IonRow, IonSelect, IonSelectOption
+  IonRow, IonSelect, IonSelectOption, IonText
 } from '@ionic/angular/standalone';
 import {AlertController, NavController} from "@ionic/angular";
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import { Sesso } from 'src/app/models/persona/sesso';
-import {LoginUtilities} from "../../../../../registration/LoginUtilities";
+import {SignupUtilities} from "../../../../../registration/signup/SignupUtilities";
 import {alert} from "ionicons/icons";
 import {MedicoService} from "../../../../../../services/MedicoService/medico.service";
 import {firstValueFrom} from "rxjs";
@@ -39,7 +39,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
   templateUrl: './medic-modify-details.page.html',
   styleUrls: ['./medic-modify-details.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonItem, IonInput, IonCardSubtitle, IonCardTitle, IonCard, IonCardHeader, IonAvatar, IonLabel, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
+  imports: [IonAlert, IonItem, IonInput, IonCardSubtitle, IonCardTitle, IonCard, IonCardHeader, IonAvatar, IonLabel, IonButton, IonTabButton, IonTabBar, IonTabs, IonFooter, IonImg, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption, IonText]
 })
 
 export class MedicModifyDetailsPage implements OnInit {
@@ -136,7 +136,7 @@ export class MedicModifyDetailsPage implements OnInit {
   }
 
   async presentAlert() {
-    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate) === "MEDICO") {
+    if (SignupUtilities.getRuoloByEmail(this.emailToUpdate) === "MEDICO") {
       const alert = await this.alertController.create({
         header:"Conferma cambiamenti",
         message:"Sei sicuro di voler confermare le modifiche?",

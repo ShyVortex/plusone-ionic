@@ -16,6 +16,7 @@ import {NavController} from "@ionic/angular";
 import {LoginUtilities} from "../registration/login/LoginUtilities";
 import {PersonaService} from "../../services/PersonaService/persona.service";
 import {StorageService} from "../../services/StorageService/storage.service";
+import {LoginPage} from "../registration/login/login.page";
 
 @Component({
   selector: 'app-settings',
@@ -72,10 +73,16 @@ export class SettingsPage implements OnInit {
     this.navCtrl.navigateForward("settings-info");
   }
 
-  logout() {
+  routeToCredits() {
+    this.navCtrl.navigateForward("settings-credits");
+  }
+
+  async logout() {
     if (this.personaService.isDefault())
       this.storageService.cacheState(this.persona);
-    this.navCtrl.navigateRoot("login");
+
+    await this.navCtrl.navigateRoot("login");
+    LoginPage.canBypassToast = false;
   }
 
   goToHome() {

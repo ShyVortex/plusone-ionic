@@ -110,8 +110,13 @@
     </ion-select>
   </ion-item>
   <ion-button id="confirm" class="confirm-button" (click)="this.presentAlert()"
-              shape="round">Conferma modifiche</ion-button>
-  <ion-button id="delete" class="delete-button" shape="round">Elimina paziente</ion-button>
+              shape="round">
+    <ion-text class="confirm-button-text">Conferma modifiche</ion-text>
+  </ion-button>
+  <ion-button id="delete" class="delete-button"
+              shape="round">
+    <ion-text class="confirm-button-text">Elimina paziente</ion-text>
+  </ion-button>
 
   <ion-alert
     trigger="delete"
@@ -127,14 +132,14 @@
       </ion-toolbar>
 
       <ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
-      
+
       <ion-content>
         <ion-list>
           <div *ngIf="filteredMedics.length <= 0" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
             <ion-img style="margin-top: 4.5em; width: 30%;" src="../../../../../../../assets/icon/user-not-found.png" alt="nessun medico disponibile"></ion-img>
             <ion-text style="margin: 1em 4em 0 4em; width: 85%; color: gray;">Nessun medico disponibile</ion-text>
           </div>
-          
+
           <ion-item button *ngFor="let medic of filteredMedics" (click)="storeMedic(medic); ">
             <ion-avatar slot="start">
               <ion-img *ngIf="medic.sesso === Sesso.MASCHIO"
@@ -166,7 +171,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
           Richieste
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToFunctions()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToFunctions()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/functions.png"></ion-img>
           Funzioni
         </ion-tab-button>

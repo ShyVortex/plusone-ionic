@@ -3,7 +3,34 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonAlert, IonBackButton, IonButton, IonButtons, IonCard, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonImg, IonItem, IonItemDivider, IonLabel, IonRow, IonSegment, IonSegmentButton, IonTabBar, IonTabButton, IonTabs, IonTitle, IonToolbar, NavController } from '@ionic/angular/standalone';
+import {
+    AlertController,
+    IonAlert,
+    IonBackButton,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCol,
+    IonContent,
+    IonFooter,
+    IonGrid,
+    IonHeader,
+    IonIcon,
+    IonImg,
+    IonItem,
+    IonItemDivider,
+    IonLabel,
+    IonRow,
+    IonSegment,
+    IonSegmentButton,
+    IonTabBar,
+    IonTabButton,
+    IonTabs,
+    IonText,
+    IonTitle,
+    IonToolbar,
+    NavController
+} from '@ionic/angular/standalone';
 import { time } from './times';
 import { DataService } from "../../../../../services/data.service";
 import { firstValueFrom, Observable, Subscription } from "rxjs";
@@ -21,7 +48,7 @@ import {Medico} from "../../../../../models/medico/Medico";
   templateUrl: './reservation-continue.page.html',
   styleUrls: ['./reservation-continue.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonFooter, IonImg, IonTabButton, IonTabBar, IonTabs, IonItemDivider, IonItem, IonButton, IonCard, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSegment, IonIcon, IonSegmentButton, IonLabel]
+    imports: [IonAlert, IonFooter, IonImg, IonTabButton, IonTabBar, IonTabs, IonItemDivider, IonItem, IonButton, IonCard, IonCol, IonRow, IonGrid, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSegment, IonIcon, IonSegmentButton, IonLabel, IonText]
 })
 
 export class ReservationContinuePage implements OnInit {

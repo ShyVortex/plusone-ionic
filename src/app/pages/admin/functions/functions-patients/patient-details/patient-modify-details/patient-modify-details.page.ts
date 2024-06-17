@@ -9,7 +9,7 @@ import { firstValueFrom } from "rxjs";
 import { PazienteService } from "../../../../../../services/PazienteService/paziente.service";
 import { Paziente } from "../../../../../../models/paziente/Paziente";
 import { Medico } from "../../../../../../models/medico/Medico";
-import { LoginUtilities } from "../../../../../registration/LoginUtilities";
+import { SignupUtilities } from "../../../../../registration/signup/SignupUtilities";
 import { HashingUtilities } from "../../../../../registration/hashing-utilities";
 import { MedicoService } from "../../../../../../services/MedicoService/medico.service";
 import { Sesso } from 'src/app/models/persona/sesso';
@@ -152,7 +152,7 @@ export class PatientModifyDetailsPage implements OnInit {
   }
 
   async presentAlert() {
-    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate) === "PAZIENTE") {
+    if (SignupUtilities.getRuoloByEmail(this.emailToUpdate) === "PAZIENTE") {
       const alert = await this.alertController.create({
         header:"Conferma cambiamenti",
         message:"Sei sicuro di voler confermare le modifiche?",

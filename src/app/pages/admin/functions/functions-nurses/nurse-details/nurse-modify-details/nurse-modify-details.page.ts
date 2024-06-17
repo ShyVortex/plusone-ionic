@@ -3,27 +3,27 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonFooter,
-  IonTabs,
-  IonTabBar,
-  IonTabButton,
-  IonImg,
-  IonLabel,
-  IonButton,
-  IonItem,
-  IonInput,
-  IonAlert,
-  IonRow, IonSelect, IonSelectOption
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonFooter,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonImg,
+    IonLabel,
+    IonButton,
+    IonItem,
+    IonInput,
+    IonAlert,
+    IonRow, IonSelect, IonSelectOption, IonText
 } from '@ionic/angular/standalone';
 import {AlertController, NavController} from "@ionic/angular";
 import { Sesso } from 'src/app/models/persona/sesso';
 import { StorageService } from 'src/app/services/StorageService/storage.service';
 import {Infermiere} from "../../../../../../models/infermiere/Infermiere";
-import {LoginUtilities} from "../../../../../registration/LoginUtilities";
+import {SignupUtilities} from "../../../../../registration/signup/SignupUtilities";
 import {InfermiereService} from "../../../../../../services/InfermiereService/infermiere.service";
 import {firstValueFrom} from "rxjs";
 import {HashingUtilities} from "../../../../../registration/hashing-utilities";
@@ -33,7 +33,7 @@ import {HashingUtilities} from "../../../../../registration/hashing-utilities";
   templateUrl: './nurse-modify-details.page.html',
   styleUrls: ['./nurse-modify-details.page.scss'],
   standalone: true,
-  imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption]
+    imports: [IonAlert, IonInput, IonItem, IonButton, IonLabel, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonRow, IonSelect, IonSelectOption, IonText]
 })
 
 export class NurseModifyDetailsPage implements OnInit {
@@ -134,7 +134,7 @@ export class NurseModifyDetailsPage implements OnInit {
   }
 
   async presentAlert() {
-    if (LoginUtilities.getRuoloByEmail(this.emailToUpdate)==="INFERMIERE") {
+    if (SignupUtilities.getRuoloByEmail(this.emailToUpdate)==="INFERMIERE") {
       const alert = await this.alertController.create({
         header:"Conferma cambiamenti",
         message:"Sei sicuro di voler confermare le modifiche?",

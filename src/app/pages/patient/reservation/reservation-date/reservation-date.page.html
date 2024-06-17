@@ -74,7 +74,9 @@
   </ion-modal>
 </ion-content>
 
-<ion-button class="reservation-button" id="check-fields" shape="round" (click)="submit()">Verifica disponibilità</ion-button>
+<ion-button class="reservation-button" id="check-fields" shape="round" (click)="submit()">
+  <ion-text class="confirm-button-text">Verifica disponibilità</ion-text>
+</ion-button>
 
 <ion-footer>
   <ion-toolbar>
@@ -88,7 +90,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/logbook.png"></ion-img>
           Registro
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToReservation()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToReservation()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/calendar.png"></ion-img>
           Prenota
         </ion-tab-button>

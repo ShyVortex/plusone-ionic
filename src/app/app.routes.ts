@@ -197,17 +197,24 @@ export const routes: Routes = [
       .then( m => m.UserDetailsPage)
   },
   {
-    path: 'medic-patients-user-details-new-therapy',
-    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/new-therapy.page')
-      .then( m => m.NewTherapyPage)
+    path: 'medic-patients-user-details-new-prescription',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-prescription/new-prescription.page')
+      .then( m => m.NewPrescriptionPage)
   },
   {
     path: 'medic-patients-user-details-add-drug',
-    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/add-drug/add-drug.page').then( m => m.AddDrugPage)
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-prescription/add-drug/add-drug.page')
+      .then(m => m.AddDrugPage)
   },
   {
     path: 'medic-patients-user-details-add-exam',
-    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/add-exam/add-exam.page').then( m => m.AddExamPage)
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-prescription/add-exam/add-exam.page')
+      .then(m => m.AddExamPage)
+  },
+  {
+    path: 'medic-patients-confirm-prescription',
+    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-prescription/confirm-prescription/confirm-prescription.page')
+      .then(m => m.ConfirmPrescriptionPage)
   },
   {
     path: 'medic-patients-homecare',
@@ -345,8 +352,8 @@ export const routes: Routes = [
       .then(m => m.InfoPage)
   },
   {
-    path: 'confirm-therapy',
-    loadComponent: () => import('./pages/medic/patients/patients-prescriptions/user-details/new-therapy/confirm-therapy/confirm-therapy.page')
-      .then(m => m.ConfirmTherapyPage)
+    path: 'settings-credits',
+    loadComponent: () => import('./pages/settings/credits/credits.page')
+      .then(m => m.CreditsPage)
   }
 ];

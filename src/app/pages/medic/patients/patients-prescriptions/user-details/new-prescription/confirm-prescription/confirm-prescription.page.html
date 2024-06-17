@@ -1,32 +1,28 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
-      <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
-        &larr;
-      </ion-button>
-      <ion-label class="tab-name">Aggiungi farmaco</ion-label>
+      <ion-text class="tab-name-bl">Conferma</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-progress-bar [ngClass]="{ 'hidden': !isLoading }" type="indeterminate"></ion-progress-bar>
-
-<ion-searchbar
-  placeholder="Cerca farmaco..."
-  (input)="search($event)"
-></ion-searchbar>
-
-<ion-content>
-  <ion-list *ngIf="!isLoading">
-    @for (drug of filteredDrugs; track drug.id) {
-      <ion-item button (click)="submitDrug(drug)">
-        <ion-label>
-          <h2>{{drug.nome}}</h2>
-        </ion-label>
-      </ion-item>
-    }
-  </ion-list>
+<ion-content class="ion-padding" scroll-y="false">
+  <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
+  <h3 class="info-h3">IMPEGNATIVA PRESCRITTA</h3>
+  <h6 class="info-h6">L'impegnativa è stata prescritta correttamente.</h6>
 </ion-content>
+
+<div class="anim-confirm">
+  <ion-button class="confirm-button"
+              expand="block"
+              fill="solid"
+              (click)="goToPatientsListAnimated()"
+              shape="round">
+    <ion-text class="confirm-button-text">
+      Torna alla lista pazienti
+    </ion-text>
+  </ion-button>
+</div>
 
 <ion-footer>
   <ion-toolbar>
@@ -40,7 +36,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
           Notifiche
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToPatients()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToPatients()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/patients.png"></ion-img>
           Pazienti
         </ion-tab-button>

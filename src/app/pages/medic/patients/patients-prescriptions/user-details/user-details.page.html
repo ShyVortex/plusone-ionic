@@ -44,7 +44,9 @@
       <ion-card-subtitle *ngIf="!this.patient._donatoreOrgani">Non donatore</ion-card-subtitle>
     </ion-card-content>
   </ion-card>
-  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">Assegna terapia</ion-button>
+  <ion-button class="confirm-button" expand="block" shape="round" fill="solid" (click)="goToNewTherapy()">
+    <ion-text class="confirm-button-text">Prescrivi impegnativa</ion-text>
+  </ion-button>
 </ion-content>
 
 <ion-footer>
@@ -59,7 +61,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/notifications.png"></ion-img>
           Notifiche
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToPatients()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToPatients()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/patients.png"></ion-img>
           Pazienti
         </ion-tab-button>

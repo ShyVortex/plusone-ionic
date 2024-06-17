@@ -34,6 +34,7 @@ import {Sesso} from "../../../models/persona/sesso";
 import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Paziente} from "../../../models/paziente/Paziente";
+import {LoginPage} from "../../registration/login/login.page";
 
 @Component({
   selector: 'app-home',
@@ -103,10 +104,12 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward("settings-security");
   }
 
-  logout() {
+  async logout() {
     if (this.personaService.isDefault())
       this.storageService.cacheState(this.medico);
-    this.navCtrl.navigateRoot("login");
+
+    await this.navCtrl.navigateRoot("login");
+    LoginPage.canBypassToast = false;
   }
 
   goToHome() {

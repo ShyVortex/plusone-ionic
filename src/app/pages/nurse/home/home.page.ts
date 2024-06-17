@@ -32,6 +32,7 @@ import {InfermiereService} from "../../../services/InfermiereService/infermiere.
 import {Observable, Subscription} from "rxjs";
 import {DataService} from "../../../services/data.service";
 import {Medico} from "../../../models/medico/Medico";
+import {LoginPage} from "../../registration/login/login.page";
 
 @Component({
   selector: 'app-home',
@@ -83,10 +84,12 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward("settings-security");
   }
 
-  logout() {
+  async logout() {
     if (this.personaService.isDefault())
       this.storageService.cacheState(this.infermiere);
-    this.navCtrl.navigateRoot("login");
+
+    await this.navCtrl.navigateRoot("login");
+    LoginPage.canBypassToast = false;
   }
 
   goToHome() {

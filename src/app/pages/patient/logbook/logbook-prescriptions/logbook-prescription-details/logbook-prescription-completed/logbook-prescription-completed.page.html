@@ -1,15 +1,15 @@
 <ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
-      <ion-text class="tab-name-bl">Completato</ion-text>
+      <ion-text class="tab-name-bl">Conferma</ion-text>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" scroll-y="false">
   <ng-lottie [options]="options" [styles]="styles" (animationCreated)="animationCreated($event)" class="animation"></ng-lottie>
-  <h3 class="info-h3">TERAPIA COMPLETATA</h3>
-  <h6 class="info-h6">Hai completato la terapia farmacologica. Speriamo che ora ti senta meglio!</h6>
+  <h3 class="info-h3">IMPEGNATIVA EVASA</h3>
+  <h6 class="info-h6">Hai usufruito dell'impegnativa. Speriamo che ora ti senta meglio!</h6>
 </ion-content>
 
 <div class="anim-confirm">
@@ -33,7 +33,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/home.png"></ion-img>
           Home
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToLogbook()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToLogbook()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/logbook.png"></ion-img>
           Registro
         </ion-tab-button>

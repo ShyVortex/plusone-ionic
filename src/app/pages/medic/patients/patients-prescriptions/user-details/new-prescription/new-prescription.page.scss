@@ -1,3 +1,15 @@
+.legacy-toolbar {
+  .back-button {
+    margin-top: -0.1em;
+    margin-bottom: -1em;
+  }
+
+  .tab-name {
+    margin-top: 1em;
+    font-size: 25px;
+  }
+}
+
 ion-icon {
     color: black;
 }
@@ -36,7 +48,7 @@ ion-item-divider {
     border-left: 1px solid #ccc;
     height: 100%;
 }
-  
+
 ion-label {
     h1 {
         font-weight: 80;
@@ -76,7 +88,7 @@ h4 {
     display: flex;
     align-items: center;
 }
-  
+
 
 ion-fab-button[data-desc] {
     position: relative;
@@ -100,12 +112,12 @@ ion-modal {
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
-  
+
   ion-modal::part(backdrop) {
     background: rgba(209, 213, 219);
     opacity: 1;
   }
-  
+
   ion-modal ion-toolbar {
     --background: rgb(101, 234, 181);
     --color: white;

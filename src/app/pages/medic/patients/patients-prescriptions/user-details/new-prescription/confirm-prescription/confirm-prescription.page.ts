@@ -16,14 +16,14 @@ import {NavController} from "@ionic/angular";
 import {AnimationItem} from "lottie-web";
 
 @Component({
-  selector: 'app-confirm-therapy',
-  templateUrl: './confirm-therapy.page.html',
-  styleUrls: ['./confirm-therapy.page.scss'],
+  selector: 'app-confirm-prescription',
+  templateUrl: './confirm-prescription.page.html',
+  styleUrls: ['./confirm-prescription.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonFooter, IonImg, IonTabBar, IonTabButton, IonTabs, IonText, LottieComponent]
 })
 
-export class ConfirmTherapyPage implements OnInit {
+export class ConfirmPrescriptionPage implements OnInit {
   options: AnimationOptions = {
     path: '../../../assets/animations/green-check.json',
     loop: false,

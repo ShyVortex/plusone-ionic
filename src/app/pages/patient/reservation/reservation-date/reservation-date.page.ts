@@ -50,6 +50,7 @@ import {TipologiaMedico} from "../../../../models/medico/tipologia-medico";
   standalone: true,
   imports: [IonItemDivider, IonProgressBar, IonCardSubtitle, IonCardTitle, IonCard, IonModal, IonButtons, IonList, IonAvatar, IonText, IonItem, IonAlert, IonFooter, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonImg, IonTabBar,IonTabButton,IonTabs,IonIcon,IonSegment,IonSegmentButton, IonDatetime, IonLabel, IonButton,IonRow,IonSelect,IonSelectOption,]
 })
+
 export class ReservationDatePage implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 

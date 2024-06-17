@@ -74,9 +74,13 @@
     <ion-input type="" value="{{nurse.ruolo}}" [(ngModel)]="this.roleToUpdate"></ion-input>
   </ion-item>
   <ion-button id="confirm" class="confirm-button" (click)="this.presentAlert()"
-              shape="round">Conferma modifiche
+              shape="round">
+    <ion-text class="confirm-button-text">Conferma modifiche</ion-text>
   </ion-button>
-  <ion-button id="delete" class="delete-button" shape="round">Elimina infermiere</ion-button>
+  <ion-button id="delete" class="delete-button"
+              shape="round">
+    <ion-text class="confirm-button-text">Elimina infermiere</ion-text>
+  </ion-button>
 
   <ion-alert
     trigger="delete"
@@ -101,7 +105,7 @@
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/requests.png"></ion-img>
           Richieste
         </ion-tab-button>
-        <ion-tab-button class="bottom-bar-buttons" style="color:#0054e9" (click)="goToFunctions()">
+        <ion-tab-button class="bottom-bar-buttons" style="color:blue" (click)="goToFunctions()">
           <ion-img class="bottom-bar-icons" src="../../assets/icon/bottom-bar/focus/functions.png"></ion-img>
           Funzioni
         </ion-tab-button>
