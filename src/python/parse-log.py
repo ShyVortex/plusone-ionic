@@ -25,7 +25,10 @@ def replace_author_names(author):
         "ShyVortex": "Angelo Trotta",
         "lorenzo.lepore": "Lorenzo Lepore",
         "mariolino21714@gmail.com": "Mario Rascato",
-        "TheBiggestONE00": "Mario Rascato"
+        "TheBiggestONE00": "Mario Rascato",
+        "mariorascato": "Mario Rascato",
+        "Darpet23": "Dario Petruccelli",
+        "SimonGitto": "Simone Infantino"
     }
     return replacements.get(author, author)
 
@@ -48,7 +51,7 @@ while current_start <= end_date:
     current_start = current_end + timedelta(days=1)
 
 # Leggi il file di log
-with open('git-log-frontend.txt', 'r') as f:
+with open('git-log-backend.txt', 'r') as f:
     log_content = f.read()
 
 commits = parse_log(log_content)
