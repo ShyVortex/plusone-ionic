@@ -312,6 +312,9 @@ ion-content {
     height: auto;
   }
 }
+.ios ion-tab-bar {
+  --background: #65eab5;
+}
 
 .bottom-bar:hover {
   --ion-color-primary: #0054e9;
