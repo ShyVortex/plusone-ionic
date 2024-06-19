@@ -78,9 +78,9 @@ export class BugreportPage implements OnInit, AfterViewInit {
   }
 
   setSegnalazione() {
-    this.segnalazione.utente = this.persona;
     this.segnalazione.schermataBug = this.reportSelectRef.value;
     this.segnalazione.descrizione = this.reportAreaRef.value;
+    this.segnalazione.attivo = true
   }
 
   navigateBack() {

@@ -20,6 +20,8 @@ import {StorageService} from "../../../services/StorageService/storage.service";
 import {Router} from "@angular/router";
 import {Segnalazione} from "../../../models/segnalazione/Segnalazione";
 import {Sesso} from "../../../models/persona/sesso";
+import {SegnalazioneService} from "../../../services/SegnalazioneService/segnalazione.service";
+import {Terapia} from "../../../models/terapia/Terapia";
 
 @Component({
   selector: 'app-reports',
@@ -39,7 +41,8 @@ export class ReportsPage implements OnInit {
     private router: Router,
     private personaService: PersonaService,
     private adminService: AdminService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private segnalazioneService: SegnalazioneService
   ) {
     this.admin = personaService.getPersona();
     this.segnalazioni = [];
@@ -51,13 +54,28 @@ export class ReportsPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.personaService.isDefault()) {
-      this.adminService.offlineSetAdmin(this.admin);
-      this.segnalazioni = this.storageService.getSegnalazioni();
-    }
+     this.segnalazioneService.getAllSegnalazioni().subscribe(value => {
+       this.segnalazioni = value
+    })
+
   }
 
-  handleRefresh(event: any) {}
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      this.segnalazioneService.getAllSegnalazioni().subscribe(value => {
+        this.segnalazioni = value
+      })
+      event.target.complete();
+    }, 1000);
+
+
+  }
+  ionViewWillEnter(){
+    this.segnalazioneService.getAllSegnalazioni().subscribe(value => {
+      this.segnalazioni = value
+    })
+  }
+
 
   routeToReportDetails(segnalazione: Segnalazione) {
     this.storageService.setSegnalazione(segnalazione);
@@ -91,4 +109,19 @@ export class ReportsPage implements OnInit {
   }
 
     protected readonly Sesso = Sesso;
+
+  checkRichieste() {
+    if (this.segnalazioni.length > 0) {
+      let valid: boolean = false;
+
+      this.segnalazioni.forEach(segnalazione => {
+        if (segnalazione.attivo)
+          valid = true;
+      });
+
+      return valid;
+    }
+    else
+      return false;
+  }
 }
