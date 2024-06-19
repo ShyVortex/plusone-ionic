@@ -33,13 +33,14 @@
     <ion-img class="item-title-icon" src="../../assets/icon/settings/bug.png"></ion-img>
     SEGNALAZIONI
   </ion-item>
-  <div *ngIf="segnalazioni.length <= 0" class="nf-container">
+  <div *ngIf="!checkRichieste()" class="nf-container">
     <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
     <ion-text class="nf-text">Nessuna segnalazione trovata</ion-text>
   </div>
-  <ion-list *ngIf="segnalazioni.length > 0">
-    <ion-item class="item-title" *ngFor="let segnalazione of segnalazioni">
-      <div class="item-content">
+  <ion-list *ngIf="checkRichieste()">
+    <ng-container *ngFor="let segnalazione of segnalazioni">
+    <ion-item class="item-title" *ngIf="segnalazione.attivo" >
+      <div class="item-content" *ngIf="segnalazione.attivo">
         <ion-img class="request-icon" slot="start" src="../../assets/icon/admin/reports/exclamation.png"></ion-img>
         <ion-text class="item-title-list">L'utente {{segnalazione?.utente?.nome}} {{segnalazione?.utente?.cognome}}
           ha segnalato un errore relativo alla schermata "{{segnalazione?.schermataBug}}"</ion-text>
@@ -48,6 +49,7 @@
         </ion-button>
       </div>
     </ion-item>
+    </ng-container>
   </ion-list>
 </ion-content>
 

@@ -128,6 +128,7 @@ export class ModelUtilities {
     segnalazione.utente = json.utente;
     segnalazione.descrizione = json.descrizione;
     segnalazione.schermataBug = json.schermataBug;
+    segnalazione.attivo = json.attivo
 
     return segnalazione;
   }
