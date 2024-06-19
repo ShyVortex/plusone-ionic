@@ -75,7 +75,7 @@ export class SOSPage implements OnInit {
 
   ionViewWillEnter(){
     this.getAllTriagesObservable.subscribe((value:Triage[]) =>{
-      if (value !== undefined)
+      if (!this.personaService.isDefault())
         this.richieste = value;
       else
         this.richieste = this.paziente.richieste;
