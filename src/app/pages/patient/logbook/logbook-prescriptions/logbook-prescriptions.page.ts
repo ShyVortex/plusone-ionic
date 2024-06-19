@@ -86,4 +86,19 @@ export class LogbookPrescriptionsPage implements OnInit {
   goToSOS() {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
+
+  checkRichieste():boolean {
+    if (this.tpeFarm.length > 0) {
+      let valid: boolean = false;
+
+      this.tpeFarm.forEach(prenotazione => {
+        if (prenotazione.attivo)
+          valid = true;
+      });
+
+      return valid;
+    }
+    else
+      return false;
+  }
 }
