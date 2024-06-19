@@ -149,6 +149,9 @@ ion-content {
     font-size: xx-large;
     flex: 0 0 auto;
   }
+  .ios.back-button {
+    margin-top: 0.5em;
+  }
 
   .tab-name {
     color: #000;
@@ -158,6 +161,9 @@ ion-content {
     letter-spacing: 0;
     font-weight: bold;
     font-size: 25px;
+  }
+  .ios.tab-name {
+    margin-top: 0.65em;
   }
 
   .tab-name-bl {
@@ -285,6 +291,9 @@ ion-content {
       display: block;
     }
   }
+}
+.ios ion-card-title {
+  font-size: x-large;
 }
 
 .row-blank-space {
