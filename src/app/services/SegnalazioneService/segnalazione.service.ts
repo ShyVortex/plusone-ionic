@@ -16,7 +16,8 @@ export class SegnalazioneService {
   constructor(
     private storageService: StorageService
   ) {}
-  private segnalazioneURL: string = "http://localhost:8080/api/segnalazioni";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private segnalazioneURL: string = this.baseURL + "segnalazioni";
 
   addSegnalazioneOffline(persona: any, segnalazione: Segnalazione) {
     persona.segnalazioni.push(segnalazione);

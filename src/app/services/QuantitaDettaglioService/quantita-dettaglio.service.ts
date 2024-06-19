@@ -12,7 +12,8 @@ import {Farmaco} from "../../models/farmaco/Farmaco";
 })
 
 export class QuantitaDettaglioService {
-  private quantitaDettaglioURL = "http://localhost:8080/api/medici";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private quantitaDettaglioURL = this.baseURL + "medici";
 
   constructor(
     private storageService: StorageService

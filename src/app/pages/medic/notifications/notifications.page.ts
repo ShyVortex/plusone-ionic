@@ -83,6 +83,21 @@ export class NotificationsPage implements OnInit {
     });
   }
 
+  checkRichieste(): boolean {
+    if (this.prenotazioni.length > 0) {
+      let valid: boolean = false;
+
+      this.prenotazioni.forEach(prenotazione => {
+        if (!prenotazione.attivo)
+          valid = true;
+      });
+
+      return valid;
+    }
+    else
+      return false;
+  }
+
   routeToNotificationDetails(prenotazione: Terapia) {
     this.storageService.setTerapia(prenotazione);
     this.navCtrl.navigateForward("medic-notif-details");
