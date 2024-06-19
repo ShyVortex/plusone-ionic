@@ -9,7 +9,8 @@ import {StorageService} from "../StorageService/storage.service";
   providedIn: 'root'
 })
 export class EsameService {
-  private commonURL = "http://localhost:8080/api/esami";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private commonURL = this.baseURL + "esami";
 
   constructor(
     private storageService: StorageService

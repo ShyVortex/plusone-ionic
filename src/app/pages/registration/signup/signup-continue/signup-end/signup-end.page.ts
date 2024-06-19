@@ -85,7 +85,7 @@ export class SignupEndPage implements OnInit {
         await firstValueFrom<Paziente>(
           this.pazienteService.addPaziente(this.paziente)
         )
-        this.navCtrl.navigateRoot('signup-confirmed');
+        this.navCtrl.navigateRoot('signup-pending');
       } catch (err) {
         this.message = "Ci sono stati problemi con la registrazione, contattare l'amministratore di sistema"
         this.setOpen(true)

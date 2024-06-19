@@ -13,7 +13,8 @@ import {StorageService} from "../StorageService/storage.service";
 })
 
 export class TriageService {
-  private triageURL = "http://localhost:8080/api/triage";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private triageURL = this.baseURL + "triage";
 
   constructor(
     private storageService: StorageService

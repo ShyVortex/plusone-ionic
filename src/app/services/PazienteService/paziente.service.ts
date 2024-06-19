@@ -15,7 +15,8 @@ import {Terapia} from "../../models/terapia/Terapia";
 })
 
 export class PazienteService {
-  private pazienteURL= "http://localhost:8080/api/pazienti";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private pazienteURL= this.baseURL + "pazienti";
 
   constructor() {}
 
