@@ -6,10 +6,10 @@
 
 ## ⚒️ Builds
 
-|Piattaforma|Disponibilità||
-|--------|---------|--|
-|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/android-os.png" alt="android"> Android </p>|✔|[Download](https://github.com/ShyVortex/plusone-ionic/releases/latest)|
-|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/ios-logo.png" alt="ios"> iOS </p>|❌| |
+|Piattaforma| Compatibilità | Release                                                                |
+|--------|---------------|------------------------------------------------------------------------|
+|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/android-os.png" alt="android"> Android </p>| ✔             | [Download](https://github.com/ShyVortex/plusone-ionic/releases/latest) |
+|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/ios-logo.png" alt="ios"> iOS </p>| ✔             | Non disponibile                                                        |
 
 ## 📜 Descrizione
 PlusOne è un'applicazione Android il cui intento è quello di sperimentare un modo più facile e veloce per mettere in contatto medici, pazienti e infermieri permettendo loro di comunicare
