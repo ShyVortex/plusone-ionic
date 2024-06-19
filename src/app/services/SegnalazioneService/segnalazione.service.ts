@@ -63,4 +63,40 @@ export class SegnalazioneService {
         );
     });
   }
+  getAllSegnalazioni(): Observable<Segnalazione[]> {
+    let jsonResponse: any[] = [];
+    let segnalazioni: Segnalazione[] = [];
+
+    return new Observable<Segnalazione[]>((observer:Observer<Segnalazione[]>)  => {
+      axios.get<Segnalazione[]>(this.segnalazioneURL +"/getAll").then
+      ((response:AxiosResponse<Segnalazione[]>)  => {
+        jsonResponse = response.data
+        jsonResponse.forEach((element: any) => {
+          segnalazioni.push(ModelUtilities.segnalazioneFromJSON(element))
+        })
+        console.log(segnalazioni)
+
+        observer.next(segnalazioni);
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+            observer.next([])
+          }
+        );
+    });
+  }
+  setState(id:number,stato:boolean):Observable<any> {
+
+    return new Observable<any>((observer:Observer<any>)  => {
+      axios.put<any>(this.segnalazioneURL +"/setState" +"/"+id + "/" + stato).then
+      ((response:AxiosResponse<any>)  => {
+        observer.next(response.data)
+        observer.complete();
+      })
+        .catch(error => {console.log(error)
+
+          }
+        );
+    });
+  }
 }

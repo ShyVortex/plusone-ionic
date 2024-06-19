@@ -17,6 +17,7 @@ import {Segnalazione} from "../../../../models/segnalazione/Segnalazione";
 import {PersonaService} from "../../../../services/PersonaService/persona.service";
 import {StorageService} from "../../../../services/StorageService/storage.service";
 import {SegnalazioneService} from "../../../../services/SegnalazioneService/segnalazione.service";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-report-details',
@@ -43,11 +44,14 @@ export class ReportDetailsPage implements OnInit {
   ngOnInit() {
   }
 
-  markAsSolved() {
-    if (this.personaService.isDefault())
-      this.segnalazioneService.deleteSegnalazioneOffline(this.segnalazione.utente, this.segnalazione);
+  async markAsSolved() {
+    try {
+      await firstValueFrom(this.segnalazioneService.setState(this.segnalazione.id, false));
+      this.navigateBack();
+    } catch (error) {
+      console.log(error);
+    }
 
-    this.navigateBack();
   }
 
   navigateBack() {
