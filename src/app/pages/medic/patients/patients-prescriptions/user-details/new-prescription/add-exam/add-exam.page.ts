@@ -16,7 +16,7 @@ import {
   IonList,
   IonSearchbar,
   IonItem,
-  ToastController
+  ToastController, IonProgressBar
 } from '@ionic/angular/standalone';
 import { NavController } from "@ionic/angular";
 import { Esame } from 'src/app/models/esame/Esame';
@@ -33,7 +33,7 @@ import {TfarmacologicaService} from "../../../../../../../services/Tfarmacologic
   templateUrl: './add-exam.page.html',
   styleUrls: ['./add-exam.page.scss'],
   standalone: true,
-  imports: [IonItem, IonSearchbar, IonList, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonItem, IonSearchbar, IonList, IonImg, IonTabButton, IonTabBar, IonTabs, IonFooter, IonButton, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonProgressBar]
 })
 export class AddExamPage implements OnInit {
   protected paziente: Paziente;

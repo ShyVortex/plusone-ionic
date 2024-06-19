@@ -29,7 +29,7 @@ import {TerapiaFarmacologica} from "../../../../models/terapiafarmacologica/Tera
 
 export class LogbookPrescriptionsPage implements OnInit {
   protected paziente: Paziente;
-  protected tpeFarm!: any[];
+  protected tpeFarm: any[];
   protected tpeFarmOffline!: TerapiaFarmacologica[];
   private getAllTerapiaFarmacologicaByPazienteObservable!:Observable<any[]>;
 
@@ -40,7 +40,8 @@ export class LogbookPrescriptionsPage implements OnInit {
     private pazienteService:PazienteService
   ) {
     this.paziente = personaService.getPersona();
-    this.tpeFarm = []
+    this.tpeFarm = [];
+    this.tpeFarmOffline = [];
   }
 
   ngOnInit() {
@@ -87,8 +88,11 @@ export class LogbookPrescriptionsPage implements OnInit {
     this.navCtrl.navigateForward("patient-sos", { animated: false });
   }
 
-  checkRichieste():boolean {
-    if (this.tpeFarm.length > 0) {
+  checkImpegnative(): boolean {
+    if (this.tpeFarm.length > 0 || this.tpeFarmOffline.length > 0) {
+      if (this.tpeFarmOffline.length > 0)
+        return true;
+
       let valid: boolean = false;
 
       this.tpeFarm.forEach(prenotazione => {
