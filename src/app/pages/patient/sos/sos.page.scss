@@ -41,6 +41,9 @@
         margin: auto;
         display: block;
       }
+      .ios.card-icon {
+        margin-top: 1em;
+      }
 
       .card-line {
         flex-grow: 1;
@@ -53,6 +56,9 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+      }
+      .ios.card-title {
+        font-size: 25px;
       }
     }
 
@@ -71,6 +77,9 @@
         margin: auto;
         display: block;
       }
+      .ios.card-icon {
+        margin-top: 1em;
+      }
 
       .card-line {
         margin-top: 0.75em;
@@ -82,6 +91,9 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+      }
+      .ios.card-title {
+        font-size: 25px;
       }
     }
   }

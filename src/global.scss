@@ -267,7 +267,7 @@ ion-content {
 
   .access-card {
     margin-top: -0.5em;
-    width: 10em;
+    width: 9em;
     height: auto;
     display: inline-block;
 
@@ -277,6 +277,9 @@ ion-content {
       margin: auto;
       display: block;
     }
+    .ios.card-icon {
+      margin-top: 0.75em;
+    }
 
     .card-line {
       flex-grow: 1;
@@ -285,15 +288,14 @@ ion-content {
     }
 
     .card-title {
+      text-align: center;
       color: #000;
-      margin-left: auto;
-      margin-right: auto;
       display: block;
     }
+    .ios.card-title {
+      font-size: 19px;
+    }
   }
-}
-.ios ion-card-title {
-  font-size: x-large;
 }
 
 .row-blank-space {
