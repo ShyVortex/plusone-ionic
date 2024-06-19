@@ -12,7 +12,8 @@ import {Persona} from "../../models/persona/Persona";
 export class PersonaService {
   private persona: any;
   private default!: boolean;
-  private personaURL:string = "http://localhost:8080/api/persona";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private personaURL:string = this.baseURL + "persona";
 
   constructor() {
     this.default = true;

@@ -11,7 +11,8 @@ import {Medico} from "../../models/medico/Medico";
 })
 
 export class InfermiereService {
-  private infermiereURL = "http://localhost:8080/api/infermieri";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private infermiereURL = this.baseURL + "infermieri";
 
   constructor() {}
 

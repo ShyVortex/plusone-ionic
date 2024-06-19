@@ -14,7 +14,8 @@ import {isEqual} from "lodash";
 })
 
 export class TfarmacologicaService {
-  private tFarmacologicaURL: string = "http://localhost:8080/api/medici";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private tFarmacologicaURL: string = this.baseURL + "medici";
 
   constructor() { }
 

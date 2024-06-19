@@ -9,7 +9,8 @@ import { Farmaco } from 'src/app/models/farmaco/Farmaco';
   providedIn: 'root'
 })
 export class FarmacoService {
-  private farmacoURL = "http://localhost:8080/api/farmaci"
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private farmacoURL = this.baseURL + "farmaci";
 
   constructor(
     private storageService: StorageService

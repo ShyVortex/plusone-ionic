@@ -12,7 +12,8 @@ import {isEqual} from "lodash";
 })
 
 export class TerapiaService {
-  private terapiaURL = "http://localhost:8080/api/terapie";
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private terapiaURL = this.baseURL + "terapie";
 
   constructor() { }
 

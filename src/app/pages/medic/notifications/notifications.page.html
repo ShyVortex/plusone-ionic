@@ -39,11 +39,11 @@
     <ion-img class="item-title-icon" src="../../assets/icon/home/notification.png"></ion-img>
     NOTIFICHE
   </ion-item>
-  <div *ngIf="prenotazioni.length <= 0" class="nf-container">
+  <div *ngIf="!checkRichieste()" class="nf-container">
     <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
     <ion-text class="nf-text">Nessuna notifica</ion-text>
   </div>
-  <ion-list *ngIf="prenotazioni.length > 0">
+  <ion-list *ngIf="checkRichieste()">
     <ng-container *ngFor="let prenotazione of prenotazioni">
       <ion-item class="item-title" *ngIf="!prenotazione.attivo">
         <div *ngIf="!prenotazione.attivo" class="item-content">

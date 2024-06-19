@@ -14,7 +14,8 @@ import {Diagnosi} from "../../models/paziente/Diagnosi";
   providedIn: 'root'
 })
 export class MedicoService {
-  private medicoURL = "http://localhost:8080/api/medici"
+  private baseURL: string = "https://plusone-backend-8nmk.onrender.com/api/";
+  private medicoURL = this.baseURL + "medici";
 
   constructor(
     private storageService: StorageService
