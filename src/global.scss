@@ -308,6 +308,9 @@ ion-content {
     // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
     --ion-background-color: #65eab5; //  COLORE NUOVO TEMA
   }
+  .ios.bottom-tab-bar {
+    --background: #65eab5;
+  }
 
   .bottom-bar-buttons {
     font-family: Roboto, sans-serif;
@@ -320,9 +323,6 @@ ion-content {
     width: 1.65em;
     height: auto;
   }
-}
-.ios ion-tab-bar {
-  --background: #65eab5;
 }
 
 .bottom-bar:hover {
