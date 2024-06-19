@@ -149,6 +149,9 @@ ion-content {
     font-size: xx-large;
     flex: 0 0 auto;
   }
+  .ios.back-button {
+    margin-top: 0.5em;
+  }
 
   .tab-name {
     color: #000;
@@ -158,6 +161,9 @@ ion-content {
     letter-spacing: 0;
     font-weight: bold;
     font-size: 25px;
+  }
+  .ios.tab-name {
+    margin-top: 0.55em;
   }
 
   .tab-name-bl {
@@ -261,7 +267,7 @@ ion-content {
 
   .access-card {
     margin-top: -0.5em;
-    width: 10em;
+    width: 9em;
     height: auto;
     display: inline-block;
 
@@ -271,6 +277,9 @@ ion-content {
       margin: auto;
       display: block;
     }
+    .ios.card-icon {
+      margin-top: 0.75em;
+    }
 
     .card-line {
       flex-grow: 1;
@@ -279,10 +288,12 @@ ion-content {
     }
 
     .card-title {
+      text-align: center;
       color: #000;
-      margin-left: auto;
-      margin-right: auto;
       display: block;
+    }
+    .ios.card-title {
+      font-size: 19px;
     }
   }
 }
@@ -298,6 +309,9 @@ ion-content {
   .bottom-tab-bar {
     // --ion-background-color: #8DECB4; //  COLORE VECCHIO TEMA
     --ion-background-color: #65eab5; //  COLORE NUOVO TEMA
+  }
+  .ios.bottom-tab-bar {
+    --background: #65eab5;
   }
 
   .bottom-bar-buttons {

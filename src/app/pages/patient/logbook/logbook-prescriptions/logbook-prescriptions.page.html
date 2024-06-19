@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border" [translucent]="true">
+<ion-header class="ion-no-border" [translucent]="false">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
@@ -10,13 +10,13 @@
 </ion-header>
 
 <ion-content class="prescriptions-content" [fullscreen]="true">
-  <div *ngIf="!checkRichieste()"
+  <div *ngIf="!checkImpegnative()"
        class="nf-container">
     <ion-img class="nf-icon" src="../../assets/icon/shared/not-found.png"></ion-img>
     <ion-text class="nf-text">Nessuna impegnativa ricevuta</ion-text>
   </div>
   <ng-container>
-    <ion-list *ngIf="checkRichieste()">
+    <ion-list *ngIf="checkImpegnative()">
       <div *ngFor="let tpaFarm of tpeFarm">
       <div *ngIf="tpaFarm.attivo">
         <ion-item class="item-title" >
@@ -36,7 +36,7 @@
       </div>
     </ion-list>
   </ng-container>
-  <ng-container *ngIf="personaService.isDefault() && tpeFarmOffline.length > 0">
+  <ng-container *ngIf="personaService.isDefault() && checkImpegnative()">
     <ion-list>
       <ion-item class="item-title" *ngFor="let tpaFarmOffline of tpeFarmOffline">
         <div class="item-content">

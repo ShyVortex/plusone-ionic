@@ -8,6 +8,13 @@
     text-align: center;
   }
 }
+.ios.login-toolbar {
+  --ion-toolbar-background: white;
+
+  #login-title {
+    font-size: x-large;
+  }
+}
 
 .login-content {
   #plusone-logo {

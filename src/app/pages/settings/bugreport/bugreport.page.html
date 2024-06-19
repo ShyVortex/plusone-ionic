@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border" [translucent]="true">
+<ion-header class="ion-no-border" [translucent]="false">
   <ion-toolbar class="legacy-toolbar">
     <div class="container">
       <ion-button class="back-button" fill="transparent" (click)="navigateBack()">
@@ -72,9 +72,7 @@
       Descrivi il problema
     </ion-label>
     <ion-textarea #reportAreaRef
-                  id="report-textarea"
                   class="issue-textarea"
-                  fill="outline"
                   readonly="false"
                   autoGrow="true"
                   maxlength="200"

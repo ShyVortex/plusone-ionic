@@ -1,0 +1,45 @@
+cbc1bf4 - Darpet23, 2024-04-15 : primo commit
+37fb021 - Darpet23, 2024-04-15 : admin function
+c33642d - Darpet23, 2024-04-15 : admin function 2
+f5f7526 - mariolino21714@gmail.com, 2024-04-15 :  Aggiunte funzionalità base per il frontend
+93fd610 - TheBiggestONE00, 2024-04-16 : Aggiunta funzionalità del controller
+286c0f8 - mariolino21714@gmail.com, 2024-04-16 : piccola modifica
+b09b3ff - TheBiggestONE00, 2024-04-22 : Aggiunta logica con response entity
+a1a8d4b - mariolino21714@gmail.com, 2024-04-23 : Create Entity per paziente, medico ecc
+d3e6e01 - TheBiggestONE00, 2024-04-24 : Paziente Completo
+cbc7a1c - TheBiggestONE00, 2024-04-24 : Aggiunto endpoint(findPazienteByCitta)
+01079a7 - TheBiggestONE00, 2024-04-24 : Aggiunta relazione tra medico e paziente
+8f20368 - mariolino21714@gmail.com, 2024-04-25 : Sistemata relazione tra backend e frontend
+cff6851 - mariolino21714@gmail.com, 2024-04-25 : Aggiunta logica per Terapia
+ba04d39 - mariolino21714@gmail.com, 2024-04-26 : Aggiunto endpoint per tipologia medico e terapia
+4700100 - SimonGitto, 2024-04-27 : Add files via upload
+554d820 - SimonGitto, 2024-04-27 : Add files via upload
+f3d366b - SimonGitto, 2024-04-27 : Add files via upload
+a5fc95c - SimonGitto, 2024-04-27 : Add files via upload
+56724f6 - SimonGitto, 2024-04-27 : Add files via upload
+9b91c7a - mariorascato, 2024-04-27 : Merge pull request #1 from mariorascato/angry-simone
+0db65e1 - SimonGitto, 2024-05-02 : Farmaco:Model,Repository,Service,Controller
+6d41f5b - SimonGitto, 2024-05-15 : Terapia farmacologica
+4ada228 - SimonGitto, 2024-05-15 : Terapia farmacologica
+945ab52 - mariorascato, 2024-05-16 : Merge pull request #2 from mariorascato/angry-simone
+9011b2b - TheBiggestONE00, 2024-05-27 : Gestiti Triages
+e6b0945 - mariorascato, 2024-05-28 : Merge pull request #3 from mariorascato/dev-triage-mario
+f4fc267 - SimonGitto, 2024-05-29 : Esame,QuantitaDettaglio
+bacf4a3 - mariorascato, 2024-05-30 : Merge branch 'master' into angry-simone
+b630fcb - mariorascato, 2024-05-30 : Merge pull request #4 from mariorascato/angry-simone
+e692c04 - TheBiggestONE00, 2024-05-30 : Fix bugs
+09119b4 - TheBiggestONE00, 2024-05-30 : Aggiunto endpoint per aggiungere piu esami
+ea49497 - TheBiggestONE00, 2024-05-30 : Aggiunto Endpoint addFarmaci
+d878a14 - TheBiggestONE00, 2024-05-30 : Aggiunto Admin
+e1f7246 - TheBiggestONE00, 2024-05-30 : Aggiunta sezione Segnalazione lato backend
+ecc2032 - ShyVortex, 2024-06-01 : Logica attivazione paziente
+4f1cc85 - mariorascato, 2024-06-01 : Merge pull request #5 from mariorascato/dev-angelo
+d0ea0a2 - TheBiggestONE00, 2024-06-03 : Cambiati status da (FOUND) ad (OK) per tutti i service
+e4f3d55 - TheBiggestONE00, 2024-06-03 : Merge branch 'master' of github.com:mariorascato/plusone-backend
+ce8d8c7 - TheBiggestONE00, 2024-06-06 : Aggiunto endpoint in tFarmacologica
+f84e057 - mariolino21714@gmail.com, 2024-06-06 : fixed pom.xom
+deed821 - ShyVortex, 2024-06-09 : Aggiunta diagnosi al paziente
+83c606e - mariorascato, 2024-06-09 : Merge pull request #6 from mariorascato/dev-angelo
+776d638 - mariolino21714@gmail.com, 2024-06-10 : Aggiunta logica per fare la modifica password generica
+975f2e7 - mariolino21714@gmail.com, 2024-06-10 : Aggiunta classe hashedPassword
+bdef17c - mariolino21714@gmail.com, 2024-06-15 : versione definitiva prima dell'esame

@@ -1,0 +1,315 @@
+4277992 - ShyVortex, 2024-04-09 : Initial commit
+f1c83de - ShyVortex, 2024-04-10 : Struttura front-end iniziale
+b9b930a - ShyVortex, 2024-04-15 : Aggiunta altre pagine, light mode
+7743b91 - ShyVortex, 2024-04-15 : Rimozione home iniziale generata da Ionic
+677cfe0 - ShyVortex, 2024-04-15 : Aggiunta home paziente
+be1b249 - ShyVortex, 2024-04-15 : Inizio pagina login
+429eadc - ShyVortex, 2024-04-15 : Aggiunta tasto login
+846b90f - ShyVortex, 2024-04-15 : Aggiunta checkbox
+96d2308 - ShyVortex, 2024-04-15 : Aggiunta pulsanti in fondo
+710e1d8 - Angelo Trotta, 2024-04-15 : Merge pull request #1 from ShyVortex/dev-login
+8b2e75d - lorenzo.lepore, 2024-04-15 : Aggiunte schermate relative alla registrazione
+8e012ba - ShyVortex, 2024-04-15 : Piccoli aggiustamenti
+f5a915e - Angelo Trotta, 2024-04-15 : Merge pull request #2 from ShyVortex/dev-login-lorenzol
+846d909 - ShyVortex, 2024-04-16 : Fix android build
+80f0830 - ShyVortex, 2024-04-16 : Introduzione observable
+75a0acc - TheBiggestONE00, 2024-04-16 : inizio sviluppo chiamate REST
+7853a31 - ShyVortex, 2024-04-16 : Barra pagina paziente
+50de55b - ShyVortex, 2024-04-16 : Aggiunta header con impostazioni
+142b1a1 - mariolino21714@gmail.com, 2024-04-16 : Implementata funzionalità Login
+daf1491 - ShyVortex, 2024-04-17 : Aggiunta pagine infermiere, medico
+bb7ce87 - Angelo Trotta, 2024-04-17 : Merge pull request #3 from ShyVortex/dev-patient
+38a5e4e - ShyVortex, 2024-04-17 : Rinomina toolbar
+cb33350 - ShyVortex, 2024-04-17 : Ottimizzazione CSS
+54e659b - ShyVortex, 2024-04-17 : Logo migliorato
+515bcc2 - TheBiggestONE00, 2024-04-17 : Merge remote-tracking branch 'origin/master' into devloginmario
+58f54f2 - TheBiggestONE00, 2024-04-17 : Aggiunta funzionalità per navigazione
+8afb8e2 - ShyVortex, 2024-04-17 : Inizio schermata impostazioni
+284e8ee - TheBiggestONE00, 2024-04-18 : Migliorata funzionalità di login
+18a0e79 - lorenzo.lepore, 2024-04-18 : Aggiunto ion-toast in login.page.ts
+8c0908e - TheBiggestONE00, 2024-04-18 : Aggiunte funzionalità alla schermata Login
+0d301a9 - Angelo Trotta, 2024-04-18 : Merge pull request #4 from ShyVortex/devloginmario
+14bf0aa - ShyVortex, 2024-04-18 : Merge branch 'refs/heads/master' into dev-profile
+92e753d - mariolino21714@gmail.com, 2024-04-18 : Aggiunta funzionalità di hashing
+aac419c - ShyVortex, 2024-04-19 : Aggiunta schermata profilo
+cad5c2c - Angelo Trotta, 2024-04-19 : Merge pull request #5 from ShyVortex/dev-profile
+850d177 - TheBiggestONE00, 2024-04-19 : Merge remote-tracking branch 'origin/master' into devloginmario
+e68e399 - Angelo Trotta, 2024-04-19 : Merge pull request #6 from ShyVortex/devloginmario
+df31db7 - ShyVortex, 2024-04-21 : Migliorie profilo, schermata informazioni
+39346ef - ShyVortex, 2024-04-21 : Fix campi profilo
+0ec11da - ShyVortex, 2024-04-22 : Aggiornamento tema
+f10c311 - Angelo Trotta, 2024-04-22 : Merge pull request #7 from ShyVortex/dev-settings
+be27560 - ShyVortex, 2024-04-23 : Spostamento profilo
+8e35827 - ShyVortex, 2024-04-23 : Fix registro css
+3049416 - ShyVortex, 2024-04-24 : Redesign schermata home
+37606a0 - ShyVortex, 2024-04-25 : Fix bottom bar, home univoca
+4680516 - ShyVortex, 2024-04-25 : Spostamento impostazioni
+a0bfd1d - ShyVortex, 2024-04-25 : Aggiunta footer routing
+880dd94 - ShyVortex, 2024-04-26 : Fix profile-container
+6a24467 - ShyVortex, 2024-04-26 : Aggiunta backlight footer
+d21fdb1 - ShyVortex, 2024-04-26 : Aggiunta pulsanti prenotazione
+9030acf - lorenzo.lepore, 2024-04-26 : Aggiunta funzionalità di prenotazione visita
+f9d88bf - Angelo Trotta, 2024-04-26 : Merge pull request #8 from ShyVortex/profile-rebase
+667c979 - Angelo Trotta, 2024-04-26 : Merge branch 'master' into reservation
+949d250 - Angelo Trotta, 2024-04-26 : Merge pull request #9 from ShyVortex/reservation
+e3e4856 - ShyVortex, 2024-04-26 : Fix merge prenotazione
+caa87b4 - mariolino21714@gmail.com, 2024-04-27 : Aggiunti models delle entità mappate nel backend
+5146d3e - TheBiggestONE00, 2024-04-30 : Aggiunti service per Medico ed Infermiere e continuazione Login
+398f543 - lorenzo.lepore, 2024-05-01 : Gestione eccezioni e aggiustamenti CSS
+3aed13b - Angelo Trotta, 2024-05-02 : Merge pull request #10 from lorenzo-lepore/final-reservation
+69494cc - ShyVortex, 2024-05-02 : Interfaccia di base registro
+6d091f4 - TheBiggestONE00, 2024-05-02 : Merge remote-tracking branch 'origin/master' into dev-sprint2-mario
+423be80 - TheBiggestONE00, 2024-05-02 : Sistemata interfaccia login e funzionamento
+7044158 - Angelo Trotta, 2024-05-02 : Merge pull request #11 from mariorascato/dev-sprint2-mario
+22e7bb1 - ShyVortex, 2024-05-02 : Merge branch 'refs/heads/master' into initial-logbook
+25ac17f - Angelo Trotta, 2024-05-02 : Merge pull request #12 from ShyVortex/initial-logbook
+e90ef75 - TheBiggestONE00, 2024-05-02 : binding dati nella page paziente
+4067685 - mariolino21714@gmail.com, 2024-04-29 : Aggiustamenti vari ed inizio collegamento backend con frontend
+2456173 - TheBiggestONE00, 2024-05-02 : Aggiustamenti vari
+8703c45 - mariolino21714@gmail.com, 2024-05-02 : Merge remote-tracking branch 'origin/dev-sprint2-mario' into dev-sprint2-mario
+93fea39 - mariolino21714@gmail.com, 2024-05-02 : Piccole modifiche
+486e119 - ShyVortex, 2024-05-03 : Aggiunte e correzioni
+0884eba - ShyVortex, 2024-05-03 : Modifica icone android
+367ddb3 - lorenzo.lepore, 2024-05-03 : Updated confirmed reservation page
+eacd347 - ShyVortex, 2024-05-03 : Modifica dettagli utente
+ceeeb87 - ShyVortex, 2024-05-03 : Merge branch 'refs/heads/master' into dev-androidstudio
+a92f88a - TheBiggestONE00, 2024-05-03 : gestito corretamente il flusso della prenotazione
+05c87cb - ShyVortex, 2024-05-03 : Fix icone android
+b3e682d - ShyVortex, 2024-05-03 : Fix scrolling
+0d66303 - TheBiggestONE00, 2024-05-03 : Sistemato flusso terapia
+4ddae4d - TheBiggestONE00, 2024-05-04 : Merge remote-tracking branch 'origin/master' into dev-sprint2-mario
+5d1cc3c - Angelo Trotta, 2024-05-04 : Merge pull request #13 from ShyVortex/dev-sprint2-mario
+19fac01 - ShyVortex, 2024-05-04 : Merge branch 'refs/heads/master' into dev-androidstudio
+f347036 - ShyVortex, 2024-05-04 : Fix default paziente
+12906dc - lorenzo.lepore, 2024-05-04 : Aggiunta schermata di fallback per le prenotazioni non andate a buon fine
+c27b798 - ShyVortex, 2024-05-04 : Modifica stampa valori booleani
+c46f1a2 - Angelo Trotta, 2024-05-04 : Merge pull request #14 from ShyVortex/reservation-denied
+9f824ac - ShyVortex, 2024-05-04 : Merge branch 'refs/heads/master' into dev-androidstudio
+365b78d - Angelo Trotta, 2024-05-04 : Merge pull request #15 from ShyVortex/dev-androidstudio
+e715308 - ShyVortex, 2024-05-05 : Fix navigazione impostazioni
+dd24551 - ShyVortex, 2024-05-05 : Fix segnalazione errori
+931ef58 - ShyVortex, 2024-05-05 : Merge branch 'refs/heads/master' into dev-androidstudio
+53f18ce - ShyVortex, 2024-05-05 : Hotfix stato
+fc38b87 - Angelo Trotta, 2024-05-05 : Merge pull request #16 from ShyVortex/dev-androidstudio
+0b31ae8 - ShyVortex, 2024-05-09 : Inizio schermata SOS
+ae744a4 - ShyVortex, 2024-05-09 : Inizio interagibilità sicurezza
+e411aa6 - ShyVortex, 2024-05-10 : Fix passaggio persona
+d852704 - ShyVortex, 2024-05-10 : Fix conferma password
+ed95fe7 - ShyVortex, 2024-05-10 : Aggiunti triage, conferma SOS
+1e4e1a9 - ShyVortex, 2024-05-11 : Resa segnalazione errori interagibile
+35efca3 - ShyVortex, 2024-05-11 : Pulizia codice duplicato
+d757290 - ShyVortex, 2024-05-11 : Migliorie font animazioni
+a7bac6a - Angelo Trotta, 2024-05-11 : Merge pull request #17 from ShyVortex/patient-completion
+5df3029 - ShyVortex, 2024-05-13 : Aggiornamento interfaccia medico
+ad48275 - ShyVortex, 2024-05-13 : Aggiunta pagine funz. pazienti
+05a7b8e - TheBiggestONE00, 2024-05-13 : gestione notifiche effettuata
+abf3bd5 - ShyVortex, 2024-05-13 : Layout notifiche medico
+60190be - ShyVortex, 2024-05-14 : Aggiunte nuove schermate
+be94481 - ShyVortex, 2024-05-14 : Fix icona diagnosi
+dc7aee0 - TheBiggestONE00, 2024-05-14 : Inzio sviluppo signup
+42071c8 - ShyVortex, 2024-05-14 : Aggiustamenti interfaccia
+8b3bc7c - Angelo Trotta, 2024-05-14 : Merge pull request #19 from ShyVortex/dev-medic-angelo
+fab8798 - TheBiggestONE00, 2024-05-15 : Aggiunto cf in maiuscolo
+e3ce128 - mariolino21714@gmail.com, 2024-05-15 : Ultimata processo di registrazione
+f8dba7f - lorenzo.lepore, 2024-05-15 : Aggiornamento sezione medico
+bc293c0 - Angelo Trotta, 2024-05-16 : Merge pull request #21 from lorenzo-lepore/medic-patch-s3v2
+f653d3d - Angelo Trotta, 2024-05-16 : Merge branch 'master' into dev-signup-mario
+3388351 - Angelo Trotta, 2024-05-16 : Merge pull request #22 from mariorascato/dev-signup-mario
+9577716 - ShyVortex, 2024-05-16 : Fix conflitti PR #22
+6af79a7 - ShyVortex, 2024-05-16 : Fix enum TipologiaMedico
+1bb8264 - ShyVortex, 2024-05-16 : Inizio aggiunta sesso
+2b559d4 - lorenzo.lepore, 2024-05-16 : Rotte aggiornate - Vista Medico
+d9cddfa - ShyVortex, 2024-05-16 : Aggiunta visualizzazione sesso
+26a1700 - ShyVortex, 2024-05-16 : Fix selezione paziente
+b32dbd7 - ShyVortex, 2024-05-16 : Dettagli tipologia ad home medico
+6ebace4 - ShyVortex, 2024-05-17 : Aggiunta codici triage
+b1e3a94 - lorenzo.lepore, 2024-05-17 : Rotte aggiornate, aggiustamenti CSS
+e002de9 - lorenzo.lepore, 2024-05-17 : Aggiunto Alert
+14f0f59 - lorenzo.lepore, 2024-05-17 : Aggiunto indicatore di progresso
+324053b - Angelo Trotta, 2024-05-17 : Merge pull request #23 from ShyVortex/dev-medic-angelo
+dc3e30f - Lorenzo Lepore, 2024-05-17 : Merge branch 'master' into medic-patch-s3-rapid
+258f6b6 - Lorenzo Lepore, 2024-05-17 : Merge pull request #24 from lorenzo-lepore/medic-patch-s3-rapid
+2dc433f - ShyVortex, 2024-05-17 : Fix alert in user-details
+ce26c94 - lorenzo.lepore, 2024-05-17 : Posizione ion-progress-bar aggiornata
+890b909 - lorenzo.lepore, 2024-05-17 : Fix CSS ion-progress-bar
+93630a5 - ShyVortex, 2024-05-17 : Aggiornamento interfaccia home
+2df8222 - Angelo Trotta, 2024-05-17 : Merge pull request #25 from ShyVortex/dev-medic-angelo
+82b0053 - ShyVortex, 2024-05-17 : Modifica gestione immagini di profilo
+b34a503 - Angelo Trotta, 2024-05-17 : Merge pull request #26 from ShyVortex/dev-medic-angelo
+f16cb4d - ShyVortex, 2024-05-18 : Logica prenotazione offline
+51d9f91 - ShyVortex, 2024-05-18 : Inizio visualizzazione prenotazioni
+9995501 - ShyVortex, 2024-05-18 : Pulizia codice home
+f03d622 - ShyVortex, 2024-05-18 : Aggiunta caching locale
+569497a - ShyVortex, 2024-05-19 : Applicato caching locale a tutti i profili
+5e66ed7 - ShyVortex, 2024-05-19 : Aggiunta schermata info prenotazione
+e7235be - ShyVortex, 2024-05-19 : Fix avatar pazienti
+88fd4c5 - ShyVortex, 2024-05-19 : Comunicazione offline paziente-medico
+fc5b2e3 - ShyVortex, 2024-05-19 : Hotfix login medico
+8937227 - Angelo Trotta, 2024-05-20 : Merge pull request #27 from ShyVortex/dev-offline-logic
+743131a - ShyVortex, 2024-05-21 : Fix paziente in notifiche medico
+40f9210 - ShyVortex, 2024-05-23 : Aggiunta geolocalizzatore
+c5eb116 - ShyVortex, 2024-05-23 : Inizio logica richiesta triage
+ece34c3 - ShyVortex, 2024-05-23 : Modifica nome classi
+6789497 - ShyVortex, 2024-05-23 : Aggiunta ricezione SOS
+b028dc8 - ShyVortex, 2024-05-25 : Aggiunta visualizzazione mappa
+991e4a6 - Angelo Trotta, 2024-05-25 : Merge pull request #28 from ShyVortex/dev-geolocation-maps
+dbb1294 - ShyVortex, 2024-05-27 : Inizio aggiunta admin
+f5feee6 - ShyVortex, 2024-05-27 : Fix caching locale
+db07eb4 - ShyVortex, 2024-05-27 : Aggiunta schermate admin
+b4c1b07 - TheBiggestONE00, 2024-05-27 :  gestito collegamento tra backend e frontend per il triage
+b626973 - lorenzo.lepore, 2024-05-27 : Sviluppo sezione aggiunta terapia
+8091f95 - Angelo Trotta, 2024-05-28 : Merge pull request #29 from ShyVortex/dev-triage-mario
+93e2954 - TheBiggestONE00, 2024-05-28 : Fix Terapia
+539088b - lorenzo.lepore, 2024-05-28 : Sezione 'Assegna terapia' aggiornata
+8f3cb98 - Lorenzo Lepore, 2024-05-28 : Merge branch 'master' into dev-lorenzo
+fa55756 - Lorenzo Lepore, 2024-05-28 : Merge pull request #30 from ShyVortex/dev-lorenzo
+96ac6cb - ShyVortex, 2024-05-28 : Fix conflitti PR #29 e #30
+595ff9a - ShyVortex, 2024-05-28 : Merge branch 'refs/heads/master' into dev-admin
+5854885 - ShyVortex, 2024-05-29 : Aggiunta segnalazioni in admin
+09259db - Angelo Trotta, 2024-05-29 : Merge pull request #31 from ShyVortex/dev-admin
+7c494f4 - lorenzo.lepore, 2024-05-30 : Model Esame aggiornato
+99b3d65 - lorenzo.lepore, 2024-05-30 : Implementato service 'Esame'
+ab9a94a - lorenzo.lepore, 2024-05-30 : Aggiunto metodo esameFromJSON
+0bb310d - lorenzo.lepore, 2024-05-30 : Implementata schermata di caricamento esami
+1665fc6 - lorenzo.lepore, 2024-05-30 : Implementata schermata di caricamento farmaci
+a7aafcc - lorenzo.lepore, 2024-05-30 : Fix import Farmaco
+ab2cf26 - lorenzo.lepore, 2024-05-30 : Fix schermata di aggiunta farmaco
+ecb25ab - ShyVortex, 2024-05-30 : Invio segnalazione offline
+1ca92df - lorenzo.lepore, 2024-05-30 : Aggiunta schermata medici nella view Admin
+88f4e50 - lorenzo.lepore, 2024-05-30 : Aggiunte schermate pazienti e infermieri nella view Admin
+71c9a48 - lorenzo.lepore, 2024-05-30 : Finalizzata schermata di display dei farmaci nella view Medico
+6076a12 - Lorenzo Lepore, 2024-05-30 : Merge pull request #32 from lorenzo-lepore/dev-lorenzo-2
+93ba546 - ShyVortex, 2024-05-30 : Merge branch 'refs/heads/master' into dev-admin
+cbf9d5c - lorenzo.lepore, 2024-05-30 : Fix avatar
+42210d0 - lorenzo.lepore, 2024-05-30 : Implementate schermate dettagli per ciascun ruolo nella view Admin
+3b9939c - ShyVortex, 2024-05-30 : Aggiunta dettagli segnalazione
+120aad4 - Angelo Trotta, 2024-05-30 : Merge pull request #33 from ShyVortex/dev-admin
+b13b23d - ShyVortex, 2024-05-30 : Merge branch 'refs/heads/master' into dev-lorenzo-3
+2a65e2a - Lorenzo Lepore, 2024-05-30 : Merge pull request #34 from ShyVortex/dev-lorenzo-3
+c48a201 - lorenzo.lepore, 2024-05-30 : Implementate schermate dettagli e modifica dettagli per ciascun ruolo nella view Admin
+2f2414b - lorenzo.lepore, 2024-05-30 : Fix animazione
+08d25cd - Lorenzo Lepore, 2024-05-30 : Merge pull request #35 from ShyVortex/dev-details
+b69ccbe - lorenzo.lepore, 2024-05-30 : Fix testi bottoni
+fe382d0 - Lorenzo Lepore, 2024-05-30 : Merge pull request #36 from ShyVortex/dev-details
+11d0388 - lorenzo.lepore, 2024-05-31 : Aggiunta funzione di scelta specialista
+9e93be3 - ShyVortex, 2024-06-01 : Modifica conferma registrazione
+05d6d94 - ShyVortex, 2024-06-01 : Aggiunto alert attivo in login
+5ddb00a - lorenzo.lepore, 2024-06-01 : Patch modale di scelta specialista e sviluppo disabilitazione bottone per appuntamenti già prenotati
+b36a06b - Angelo Trotta, 2024-06-01 : Merge pull request #37 from ShyVortex/dev-admin
+478b83a - mariolino21714@gmail.com, 2024-06-01 : Gestite operazione di crud per il  medico
+546737d - mariolino21714@gmail.com, 2024-06-01 : Gestita logica nell'admin sia per paziente che per infermiere
+804005d - Angelo Trotta, 2024-06-01 : Merge pull request #38 from ShyVortex/dev-admin-crud-mario
+43d0fe2 - ShyVortex, 2024-06-01 : Varie aggiunte e modifiche
+3aa029a - mariolino21714@gmail.com, 2024-06-02 : Fixato Bug in visita specialistica
+18f1d2b - ShyVortex, 2024-06-02 : Modifica campi e stile in Admin > Funzioni
+f5256f8 - ShyVortex, 2024-06-02 : Aggiunte e ripristini
+22a3599 - Angelo Trotta, 2024-06-02 : Merge pull request #39 from ShyVortex/dev-admin
+89f593c - lorenzo.lepore, 2024-06-03 : Fix filtraggio medici specialisti, fix alert prenotazioni visite generali
+c3568c8 - lorenzo.lepore, 2024-06-03 : Fix CSS bottoni in Assegna Terapia
+038588c - lorenzo.lepore, 2024-06-03 : Implementati model per la funzionalità di assegnazione terapia
+0f6969e - lorenzo.lepore, 2024-06-03 : Implementato alert annullamento terapia, predisposti metodi per il submit di farmaci ed esami
+6a2bd7b - lorenzo.lepore, 2024-06-03 : Merge branch 'master' into dev-reservation-patch
+c48ef48 - lorenzo.lepore, 2024-06-03 : Implementato blocco dell'orario determinato da una precedente prenotazione
+ed69c17 - mariolino21714@gmail.com, 2024-06-04 : Gestita logica di assegnazione Farmaci al paziente(manca quella degli esami)
+32821d8 - ShyVortex, 2024-06-04 : Gestione richieste registrazione
+3befa55 - Angelo Trotta, 2024-06-04 : Merge pull request #40 from ShyVortex/dev-admin
+49486c6 - mariolino21714@gmail.com, 2024-06-04 : gestioni esami per la terapia completata
+76593df - lorenzo.lepore, 2024-06-04 : Aggiunta possibilità di cambiare medico nella schermata dettagli paziente della vista Admin
+2a12208 - mariolino21714@gmail.com, 2024-06-05 : Fixato bug observable nella gestione richieste da parte dell'admin
+647ea10 - lorenzo.lepore, 2024-06-05 : Fix modifica dettagli paziente
+6aa3755 - TheBiggestONE00, 2024-06-05 : Completata gestione di terapia Farmacologica
+bcc46f6 - Angelo Trotta, 2024-06-05 : Merge branch 'master' into dev-reservation-patch
+3af62d7 - Angelo Trotta, 2024-06-05 : Merge pull request #41 from ShyVortex/dev-reservation-patch
+a0edbdd - lorenzo.lepore, 2024-06-05 : Implementato metodo getMedicoOfPaziente
+eb9f1e0 - lorenzo.lepore, 2024-06-05 : Aggiustamenti TS per il display del medico assegnato ad un paziente
+9197cd3 - Angelo Trotta, 2024-06-06 : Merge pull request #42 from ShyVortex/dev-details-patch
+9983868 - ShyVortex, 2024-06-06 : Fix quantità farmaci negativa
+f97f9dd - ShyVortex, 2024-06-06 : Inizio visione ricetta paziente
+a11f7e9 - ShyVortex, 2024-06-07 : Aggiunta schermata dettagli ricetta
+a9fb7e8 - lorenzo.lepore, 2024-06-07 : Aggiunto Easter Egg
+5770ddf - lorenzo.lepore, 2024-06-07 : Fix logica EE
+54a86f6 - ShyVortex, 2024-06-07 : Merge branch 'refs/heads/master' into dev-paziente-terapie
+3fa288d - ShyVortex, 2024-06-07 : Caricamento farmaci ed esami offline
+c763edc - ShyVortex, 2024-06-07 : Aggiunta conferma annullamento prenotazione
+fcd6d0e - Angelo Trotta, 2024-06-07 : Merge pull request #43 from ShyVortex/dev-paziente-terapie
+3430419 - ShyVortex, 2024-06-07 : Merge branch 'refs/heads/master' into dev-admin
+7a6628d - Angelo Trotta, 2024-06-07 : Merge pull request #44 from ShyVortex/dev-admin
+b197e28 - lorenzo.lepore, 2024-06-07 : Fix ion-textarea
+dcc7052 - lorenzo.lepore, 2024-06-07 : Aggiunta possibilità di inserire farmaci senza note aggiuntive
+5d506c5 - lorenzo.lepore, 2024-06-07 : Aggiunta possibilità di assegnare solo farmaci o solo esami in una nuova terapia
+0f80637 - lorenzo.lepore, 2024-06-07 : Implementato il display del medico curante nella card dettagli paziente della vista Admin
+5bd63e8 - lorenzo.lepore, 2024-06-07 : Fix CSS
+e09f6e4 - lorenzo.lepore, 2024-06-08 : Modifica informazioni mostrate nella card paziente
+5e9dec8 - Lorenzo Lepore, 2024-06-08 : Merge branch 'master' into bug-fixing-lorenzo
+2a12a5c - Lorenzo Lepore, 2024-06-08 : Merge pull request #45 from ShyVortex/bug-fixing-lorenzo
+e8f36f8 - ShyVortex, 2024-06-09 : Implementazione diagnosi paziente
+29c7f66 - ShyVortex, 2024-06-09 : Hotfix icona diagnosi
+ba7c018 - ShyVortex, 2024-06-09 : Riduzione spaziatura richiesta SOS
+39663c7 - ShyVortex, 2024-06-09 : Ripristino diagnosi in dettagli paziente
+504fab5 - Angelo Trotta, 2024-06-09 : Merge pull request #46 from ShyVortex/dev-diagnosis
+aa68658 - ShyVortex, 2024-06-09 : Media queries Admin > Funzioni
+7422b28 - ShyVortex, 2024-06-09 : Aggiornamento stile info app
+c993a6f - mariolino21714@gmail.com, 2024-06-10 : Aggiunta logica di collegamento con il backend per le segnalazione
+e8767f0 - ShyVortex, 2024-06-10 : Alcuni fix, nascoste schermate vuote
+a6eb340 - ShyVortex, 2024-06-10 : Fix bugreport-confirm footer
+d39f01f - ShyVortex, 2024-06-10 : Migliorie CSS questionario, segnalazione
+1ab8c1b - Angelo Trotta, 2024-06-10 : Merge pull request #47 from ShyVortex/dev-final-patches
+556c548 - mariolino21714@gmail.com, 2024-06-10 : Gestita logica per cambio password per tutti i ruoli
+af79a92 - mariorascato, 2024-06-10 : Merge pull request #48 from ShyVortex/dev-mario-segnalation
+c89120e - mariolino21714@gmail.com, 2024-06-10 : fixed minor bug in homepage patient
+f40c591 - ShyVortex, 2024-06-10 : Fix prenotazioni offline
+ababe5a - ShyVortex, 2024-06-10 : Aggiunta logo circolare
+bf14f14 - ShyVortex, 2024-06-10 : Nascosto checkbox 'rimani connesso'
+7ad459b - Angelo Trotta, 2024-06-10 : Aggiunta README.md
+47f9b82 - ShyVortex, 2024-06-11 : Fix invio segnalazione
+1a26c97 - ShyVortex, 2024-06-11 : Aggiunta dettagli prenotazione in Medico
+2d809eb - ShyVortex, 2024-06-11 : Fix home navigation transition
+c4edc2e - Angelo Trotta, 2024-06-11 : Merge pull request #49 from ShyVortex/dev-final-patches
+b8ccfba - ShyVortex, 2024-06-12 : Re-engineering sistema offline
+d29130f - ShyVortex, 2024-06-12 : Fix salvataggio stato per Admin
+ec91245 - ShyVortex, 2024-06-12 : Merge branch 'refs/heads/master' into dev-final-patches
+deebe3c - ShyVortex, 2024-06-13 : Fix schermate infermiere in BugReport
+3b5b984 - Angelo Trotta, 2024-06-13 : Aggiunta licenza
+8f63405 - Angelo Trotta, 2024-06-13 : Merge pull request #52 from ShyVortex/add-license
+4b24fe7 - ShyVortex, 2024-06-13 : Merge branch 'refs/heads/master' into dev-final-patches
+8036164 - ShyVortex, 2024-06-13 : Aggiornamento README
+09aa599 - ShyVortex, 2024-06-14 : Nuove domande questionario triage
+133cc4b - mariolino21714@gmail.com, 2024-06-14 : gestione con il backend completata(notifiche medico)
+47be481 - mariolino21714@gmail.com, 2024-06-14 : Merge branch 'dev-final-patches' of github.com:ShyVortex/plusone-ionic into dev-final-patches
+0749f9b - mariolino21714@gmail.com, 2024-06-14 : collegamento al backend sia per le terapieFarmacologiche e sia per le le prenotazioni
+16dac74 - ShyVortex, 2024-06-14 : Modifica logica codici triage
+57e8928 - ShyVortex, 2024-06-14 : Fix prenotazioni e tFarmacologiche offline
+da17448 - ShyVortex, 2024-06-14 : Hotfix ngIf in Registro > Terapie
+fda64ee - lorenzo.lepore, 2024-06-15 : Fix assegnazione medico durante la prenotazione
+a9d6d80 - mariolino21714@gmail.com, 2024-06-15 : fix nella visualizzazione delle tFarmacologiche in Paziente
+c54ac5e - Angelo Trotta, 2024-06-15 : Merge pull request #53 from ShyVortex/dev-final-patches
+9a316a1 - ShyVortex, 2024-06-15 : Fix prenotazione specialistica offline
+bb7bcde - ShyVortex, 2024-06-15 : Uniformità design pulsanti
+39a29e6 - Angelo Trotta, 2024-06-15 : Merge pull request #54 from ShyVortex/dev-final-patches
+aea8c5b - lorenzo.lepore, 2024-06-15 : Fix display Easter Egg
+ce5f9f4 - lorenzo.lepore, 2024-06-15 : Fix CSS
+601cd4a - lorenzo.lepore, 2024-06-15 : Fix icone toolbar
+599e077 - ShyVortex, 2024-06-15 : Fix observable duplicato in Admin > Richieste
+7bfaec5 - ShyVortex, 2024-06-15 : Merge branch 'refs/heads/master' into dev-final-patches
+202b1b5 - ShyVortex, 2024-06-16 : Introduzione widget "Not found"
+4cf30fe - ShyVortex, 2024-06-16 : Fix blocco orario prenotazione offline
+ceb408f - Angelo Trotta, 2024-06-16 : Merge pull request #55 from ShyVortex/fix-lorenzo
+20bbedb - ShyVortex, 2024-06-16 : Merge branch 'refs/heads/master' into dev-final-patches
+6b855ec - ShyVortex, 2024-06-16 : Fix annulla tFarmacologica offline
+80dccbe - ShyVortex, 2024-06-16 : Incremento versione (1.0.1)
+9f7ba2a - Angelo Trotta, 2024-06-16 : Merge pull request #56 from ShyVortex/dev-final-patches
+3147a5e - ShyVortex, 2024-06-16 : Fix visibilità codice triage
+ee07097 - Angelo Trotta, 2024-06-16 : Inclusione credits in readme
+bed9749 - ShyVortex, 2024-06-16 : Fix login toast
+71b6053 - ShyVortex, 2024-06-16 : Uniformità ombreggiatura testo
+63949f3 - ShyVortex, 2024-06-16 : Incremento staging (1.0.2-preview)
+7fa862d - ShyVortex, 2024-06-17 : Rinomina tFarmacologica --> impegnativa
+b2e2db8 - ShyVortex, 2024-06-17 : Miglioria backlight bottom bar
+5e5fb29 - lorenzo.lepore, 2024-06-17 : Implementato blocco prenotazioni basato sull'orario attuale
+0b4a327 - lorenzo.lepore, 2024-06-17 : Fix mancato display dell'alert in prenotazioni generali
+8bb258b - Angelo Trotta, 2024-06-17 : Merge pull request #57 from ShyVortex/fix-lorenzo-2
+7b028b4 - ShyVortex, 2024-06-17 : Merge branch 'refs/heads/master' into dev-final-patches
+5d93a96 - ShyVortex, 2024-06-17 : Aggiunta schermata riconoscimenti
+e62d58d - ShyVortex, 2024-06-17 : Incremento versione (1.0.2)
+dfe07b5 - Angelo Trotta, 2024-06-17 : Merge pull request #58 from ShyVortex/dev-final-patches
+980ba3e - Angelo Trotta, 2024-06-17 : Rinomina tFarmacologica in README

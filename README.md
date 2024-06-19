@@ -6,10 +6,10 @@
 
 ## ⚒️ Builds
 
-|Piattaforma|Disponibilità||
-|--------|---------|--|
-|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/android-os.png" alt="android"> Android </p>|✔|[Download](https://github.com/ShyVortex/plusone-ionic/releases/latest)|
-|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/ios-logo.png" alt="ios"> iOS </p>|❌| |
+|Piattaforma| Compatibilità | Release                                                                |
+|--------|---------------|------------------------------------------------------------------------|
+|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/android-os.png" alt="android"> Android </p>| ✔ | [Download](https://github.com/ShyVortex/plusone-ionic/releases/latest) |
+|<p><img width="24" height="24" align="left" src="https://img.icons8.com/nolan/64/ios-logo.png" alt="ios"> iOS </p>| ✔ | Non disponibile |
 
 ## 📜 Descrizione
 PlusOne è un'applicazione Android il cui intento è quello di sperimentare un modo più facile e veloce per mettere in contatto medici, pazienti e infermieri permettendo loro di comunicare
@@ -49,12 +49,17 @@ a partire da un'idea del nostro manager [Victor Conde](https://github.com/vodkaa
   - Assistenza agli infermieri
 
 ## Dipendenze
-Per buildare manualmente l'applicazione è necessaria la pre-installazione e configurazione di [Android Studio](https://developer.android.com/studio?hl=it).
-Una volta configurato, è possibile procedere aprendo una finestra di terminale nella directory di lavoro e digitando:
+Per buildare manualmente l'applicazione è necessaria la pre-installazione e configurazione di [Android Studio](https://developer.android.com/studio?hl=it) oppure di
+[Xcode](https://developer.apple.com/xcode/) per deploy su iOS.  
+Una volta configurato Android Studio, è possibile procedere alla build aprendo una finestra di terminale nella directory di lavoro e digitando:
  ```shell
  ionic capacitor build android
  ```
-Alternativamente, è possibile aprire l'applicazione sul proprio browser predefinito con:
+Se si preferisce eseguire l'app su iOS, digitando il seguente comando è possibile proseguire con la build su Xcode:
+ ```shell
+ ionic capacitor open ios
+ ```
+Alternativamente, per entrambe le piattaforme è possibile visualizzare un'anteprima funzionante dell'applicazione sul proprio browser predefinito con:
  ```shell
  ionic serve
  ```

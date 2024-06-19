@@ -17,8 +17,10 @@
 
     .edit-labels {
       .label-textarea {
+        outline: black solid 0.1235em;
         margin-top: 0.5em;
         margin-bottom: 1.5em;
+        border-radius: 10px;
         height: 1em;
         font-size: medium;
       }
@@ -27,6 +29,11 @@
         // In qualche modo questi tre parametri centrano l'icona
         position: absolute;
         top: 15%;
+        transform: translateY(-50%);
+      }
+      .ios.edit-icon {
+        position: absolute;
+        top: 0;
         transform: translateY(-50%);
       }
 
