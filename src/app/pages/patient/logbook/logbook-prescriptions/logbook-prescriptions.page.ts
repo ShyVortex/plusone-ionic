@@ -40,6 +40,7 @@ export class LogbookPrescriptionsPage implements OnInit {
     private pazienteService:PazienteService
   ) {
     this.paziente = personaService.getPersona();
+    this.tpeFarm = []
   }
 
   ngOnInit() {
